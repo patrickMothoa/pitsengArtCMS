@@ -20,21 +20,9 @@
     </ion-item>
     <ion-item>
         <ion-label position="floating">Address</ion-label>
-        <ion-input type="email" [(ngModel)]="profile.email"></ion-input>
+        <ion-input type="email" [(ngModel)]="profile.address"></ion-input>
       </ion-item>
-  <!-- <ion-item>
-    <ion-label position="floating">Position</ion-label>
-        <ion-select multiple="false" [(ngModel)]="profile.position">
-            <ion-select-option>Manager</ion-select-option>
-            <ion-select-option>Administrator</ion-select-option>
-            <ion-select-option>Supervisor</ion-select-option>
-        </ion-select>
   
-  </ion-item> -->
-  <!-- <ion-item>
-      <ion-label position="floating">Bio</ion-label>
-      <ion-textarea rows="10" cols="500" [(ngModel)]="profile.bio"></ion-textarea>
-    </ion-item> -->
   <ion-button expand="full" (click)="createAccount()">
     Done
   </ion-button>

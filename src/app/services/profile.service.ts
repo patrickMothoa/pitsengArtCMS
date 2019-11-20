@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ProfileService {
   admin = {
     uid: '',
-    email: ''
+    // phoneNumber: ''
   };
   constructor() { }
   storeAdmin(admin){

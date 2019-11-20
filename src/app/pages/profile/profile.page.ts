@@ -16,10 +16,9 @@ export class ProfilePage implements OnInit {
     image: '',
     name: '',
     address: '',
-    number: '',
-    // position: '',
+    email: '',
     uid: '',
-    email: ''
+    phoneNumber: '',
   }
   uploadprogress = 0;
   errtext = '';
@@ -30,7 +29,7 @@ export class ProfilePage implements OnInit {
 
   admin = {
     uid: '',
-    email: ''
+    // phoneNumber: '',
   }
   constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { }
 
@@ -39,7 +38,7 @@ export class ProfilePage implements OnInit {
       if (user) {
         console.log('Got admin', user);
         this.admin.uid = user.uid
-      this.admin.email = user.email
+      // this.admin.phoneNumber = user.phoneNumber
       this.getProfile();
       } else {
         console.log('no admin');
@@ -93,11 +92,12 @@ export class ProfilePage implements OnInit {
     }
   }
   createAccount(){
-    if (!this.profile.address||!this.profile.name||!this.profile.number||!this.profile.email){
-      this.errtext = 'Fields should not be empty'
-    } else {
+    
+    if (!this.profile.address||!this.profile.name||!this.profile.email){
+      console.log("Are we inside");
       if (!this.profile.image){
         this.errtext = 'Profile image still uploading or not selected';
+        
       } else {
         this.profile.uid =  this.admin.uid;
         this.db.collection('admins').doc(this.profile.name).set(this.profile).then(res => {
@@ -108,7 +108,13 @@ export class ProfilePage implements OnInit {
         });
       }
     }
+    else {
+      
+      this.errtext = 'Fields should not be empty'
+    }
   }
+
+
   getProfile(){
     this.db.collection('admins').where('uid', '==', this.admin.uid).get().then(snapshot => {
       if (snapshot.empty) {
@@ -119,9 +125,9 @@ export class ProfilePage implements OnInit {
           this.profile.address = doc.data().address;
           this.profile.image= doc.data().image
           this.profile.name=doc.data().name
-          this.profile.number=doc.data().number
-          // this.profile.position=doc.data().position
+          this.profile.phoneNumber=doc.data().phoneNumber
           this.profile.email=doc.data().email
+          
         })
       }
     })

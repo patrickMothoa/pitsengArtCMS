@@ -73,7 +73,8 @@ export class AuthService {
     });
   }
   //Function : Routing logged out users to the login page
-  signOut(){
+  signOut()
+  {
     return new Promise((resolve, reject) =>{
       firebase.auth().signOut().then(()=> {
         // Sign-out successful.
