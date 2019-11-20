@@ -14,7 +14,7 @@ declare var window
 export class LoginPage  {
 
 
-  phoneNumber
+  phoneNumber = ''
   password
   registrationForm
   smsSent
@@ -51,31 +51,23 @@ export class LoginPage  {
       }
     })
   }
-  login(code){
+  logins(code){
     if(this.confirmationResult !== ''){
-      //var code = this.inputCode
       return this.authService.login(code, this.confirmationResult).then(result => {
         console.log(result);
       })
     }
-    this.route.navigateByUrl('/home')
-
   }
 ​
   addUser(){
     this.phoneNumber = this.registrationForm.get('phoneNumber').value
     console.log(this.phoneNumber);
-    // let recaptchaParameters: {
-    //   type: 'image', // another option is 'audio'
-    //   size: 'invisible', // other options are 'normal' or 'compact'
-    //   badge: 'bottomleft' // 'bottomright' or 'inline' applies to invisible.
-    // }
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
       size: 'invisible',
       callback: (response) => {
-        console.log('yeah yeah yeah');
+        console.log('checking here');
       },
-      'expired-callback': function() {
+      'expired-callback': () => {
         
       }
     });
@@ -86,16 +78,13 @@ export class LoginPage  {
         console.log(result);
         this.confirmationResult = result.result
         console.log(this.confirmationResult);
-        this.alert()
+      
+       this.alert();
+      
       }
     })
-    // window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(recaptchaParameters, result => {
-    //   console.log(result);
-​
-    // })
-      
-    
   }
+
   async alert(){
     const alert = await this.alertController.create({
       header: 'Verfification code',
@@ -112,12 +101,27 @@ export class LoginPage  {
         cssClass: 'secondary',
         handler: (result) => {
           console.log(result.code);
-          this.login(result.code)
+          this.logins(result.code);
+          this.route.navigateByUrl('/home');
         }
       }]
     });
-​
     await alert.present();
+  }
+
+  login(){
+    this.phoneNumber = this.registrationForm.get('phoneNumber').value
+        console.log(this.phoneNumber)
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    console.log(window.recaptchaVerifier);
+    let appVerifier = window.recaptchaVerifier
+
+    firebase.auth().signInWithPhoneNumber(String(this.phoneNumber), appVerifier).then(confirmationResult => {
+      window.confirmationResult = confirmationResult;
+      
+    }).catch((error) => {
+      console.log(error)
+    });
   }
 ​
 ​
