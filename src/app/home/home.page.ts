@@ -42,6 +42,10 @@ export class HomePage {
     this.router.navigateByUrl('/add-product');
   }
 
+  openInvoice(){
+    this.router.navigateByUrl('/user-invoices');
+  }
+
   logOut(){
     this.router.navigateByUrl('/login');
   }

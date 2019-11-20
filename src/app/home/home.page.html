@@ -3,20 +3,19 @@
       <ion-title>
           Pitseng Art
       </ion-title>
+     
       <ion-button (click)="openHome()" slot="end">Home</ion-button>
       <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
       <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
+      <ion-button (click)="openInvoice()" slot="end">Invoices</ion-button>
       <ion-button (click)="logOut()" slot="end">Logout</ion-button>
-      <!-- <ion-buttons slot="end">
-          <ion-button (click)="openCart()">
-              <ion-badge *ngIf="cart.length > 0">{{ cart.length }}</ion-badge>
-              <ion-icon slot="icon-only" name="cart"></ion-icon>
-          </ion-button>
-      </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-searchbar [(ngModel)]="searchQuery" (change)="search($event)" autocorrect="off"></ion-searchbar>
+
 
   <div *ngFor="let cat of items" class="category-block">
       <ion-row no-padding class="category-banner">
@@ -35,7 +34,7 @@
                           </ion-card-title>
                           <ion-card-content>
                             {{ product.name }} - R{{ product.price }}
-                              <ion-button expand="full" (click)="addToCart(product)">Add to Cart</ion-button>
+                              <ion-button expand="full" (click)="addToCart(product)">View </ion-button>
                           </ion-card-content>
                       </ion-card-header>
                   </ion-card>

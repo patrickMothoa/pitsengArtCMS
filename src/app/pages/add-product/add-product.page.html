@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>AddProduct</ion-title>
+    <ion-title>
+     Products
+    </ion-title>
+    <ion-button (click)="openHome()" slot="end">Home</ion-button>
+    <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
+    <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
+    <ion-button (click)="openInvoice()" slot="end">Invoices</ion-button>
+    <ion-button (click)="logOut()" slot="end">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
+ 
+<ion-content >
+    <ion-card-title>
+        <img src="https://via.placeholder.com/400x400">
+    </ion-card-title>
+  <ion-card>
+      <ion-card-header >
+        <ion-card-title>New Product </ion-card-title>
+      </ion-card-header>
+      <ion-card-content >
+      <ion-item >
+              <ion-label>Categories</ion-label>
+              <ion-select  (ionChange) = "getCategories($event)">
+                <ion-select-option value=1 >Vase</ion-select-option>
+                <ion-select-option value=2 >Cups and Plates</ion-select-option>
+                <ion-select-option value=3 >Photo Frames</ion-select-option>
+                <ion-select-option value=4 >Deco Pallets</ion-select-option>
+                <ion-select-option value=5 >Wall Deco</ion-select-option>
+                <ion-select-option value=6 >Bowls and Pots</ion-select-option>
+                <ion-select-option value=7 >Lamps</ion-select-option>
+      </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-textarea placeholder="Description" [(ngModel)]="event.desc"></ion-textarea>
+      </ion-item>
+        <ion-item>
+              <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+        </ion-item>
+       
+        <ion-item>
+          <ion-checkbox color="primary"> Small </ion-checkbox><br>
+          <ion-checkbox color="secondary">Medium </ion-checkbox>
+          <ion-checkbox color="danger"> Large </ion-checkbox>
+        </ion-item>
 
-<ion-content>
-
+        <ion-button color="primary" (click)="addEvent()" [disabled]="event.price == ''">Upload</ion-button>
+      </ion-card-content>
+  </ion-card>
 </ion-content>
