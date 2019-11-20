@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartserviceService } from '../services/cartservice.service';
 import { NavController } from '@ionic/angular';
+import * as firebase from 'firebase'
 
 @Component({
   selector: 'app-home',
@@ -47,7 +48,13 @@ export class HomePage {
   }
 
   logOut(){
-    this.router.navigateByUrl('/login');
+    firebase.auth().signOut().then(()=> {
+      // Sign-out successful.
+      this.router.navigateByUrl('/login');
+    }).catch((error)=> {
+      // An error happened.
+    });
+   
   }
 
   ///////////////////////
