@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartserviceService } from '../services/cartservice.service';
 import { NavController } from '@ionic/angular';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'app-home',

@@ -12,9 +12,11 @@
 </ion-header>
  
 <ion-content >
-    <ion-card-title>
-        <img src="https://via.placeholder.com/400x400">
-    </ion-card-title>
+    <ion-item *ngIf="!event.image">
+        <ion-label position="stacked" id="profile_image" color="primary">Select Product image</ion-label>
+        <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="event.image"><img  src="{{event.image}}" height="80" width="80"></ion-item>
   <ion-card>
       <ion-card-header >
         <ion-card-title>New Product </ion-card-title>
@@ -39,13 +41,16 @@
               <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-input type="text" placeholder="refference Number" [(ngModel)]="event.productno"></ion-input>
+        </ion-item>
+        <ion-item>
             <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
         </ion-item>
        
         <ion-item>
-          <ion-checkbox color="primary"> Small </ion-checkbox><br>
-          <ion-checkbox color="secondary">Medium </ion-checkbox>
-          <ion-checkbox color="danger"> Large </ion-checkbox>
+          <ion-checkbox color="primary" [(ngModel)]="event.small"> Small </ion-checkbox><br>
+          <ion-checkbox color="secondary" [(ngModel)]="event.medium">Medium </ion-checkbox>
+          <ion-checkbox color="danger" [(ngModel)]="event.large"> Large </ion-checkbox>
         </ion-item>
 
         <ion-button color="primary" (click)="addEvent()" [disabled]="event.price == ''">Upload</ion-button>

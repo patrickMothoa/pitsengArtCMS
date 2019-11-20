@@ -21,7 +21,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'add-product',
+    // path: 'add-product',
+    path:'update/:image/:name/:productno/:desc/:price',
     loadChildren: () => import('./pages/add-product/add-product.module').then( m => m.AddProductPageModule)
   },
   {
