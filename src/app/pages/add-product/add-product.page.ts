@@ -14,7 +14,7 @@ export class AddProductPage implements OnInit {
 
   db = firebase.firestore();
   storage = firebase.storage().ref();
-  categories
+  //categories
 
   event = {
     image: '',
@@ -36,7 +36,7 @@ export class AddProductPage implements OnInit {
 
 
   ngOnInit() {
-    const date = new Date();
+    // const date = new Date();
    //  this.event.lastcreated = date.toDateString();
     //console.log(this.navParams);
     // this.event.image = this.navParams.data.image;
@@ -46,11 +46,11 @@ export class AddProductPage implements OnInit {
     // this.event.desc = this.navParams.data.desc;
 
     /////
-    this.event.image = this.actRoute.snapshot.params['image'];
-    this.event.name = this.actRoute.snapshot.params['name'];
-    this.event.price = this.actRoute.snapshot.params['price'];
-    this.event.productno = this.actRoute.snapshot.params['productno'];
-    this.event.desc = this.actRoute.snapshot.params['desc'];
+    // this.event.image = this.actRoute.snapshot.params['image'];
+    // this.event.name = this.actRoute.snapshot.params['name'];
+    // this.event.price = this.actRoute.snapshot.params['price'];
+    // this.event.productno = this.actRoute.snapshot.params['productno'];
+    // this.event.desc = this.actRoute.snapshot.params['desc'];
 
   }
   changeListener(event): void {
@@ -68,20 +68,52 @@ export class AddProductPage implements OnInit {
       });
     });
   }
-  async addProduct() {
-    if (!this.event.desc || !this.event.productno || !this.event.name || !this.event.price) {
+
+  //////replaces this... here
+  async addEvent() {
+    console.log("xxxxx");
+    
+    if (!this.event.desc || !this.event.productno ||!this.event.categories || !this.event.name || !this.event.price) {
       const alert =  await this.alertCtrl.create({
         message: 'All Product fields must be filled',
+        
       });
       alert.present();
+      
+  
     } else {
       this.productservices.addProduct(this.event);
     }
   }
 
+  // async createSong() { 
+  //   const loading = await this.loadingCtrl.create(); 
+   
+  //   const albumName = this.createSongForm.value.albumName; 
+  //   const artistName = this.createSongForm.value.artistName; 
+  //   const songDescription = this.createSongForm.value.songDescription; 
+  //   const songName = this.createSongForm.value.songName; 
+   
+  //   this.firestoreService 
+  //     .createSong(albumName, artistName, songDescription, songName) 
+  //     .then( 
+  //       () => { 
+  //         loading.dismiss().then(() => { 
+  //           this.router.navigateByUrl(''); 
+  //         }); 
+  //       }, 
+  //       error => { 
+  //         console.error(error); 
+  //       } 
+  //     ); 
+   
+  //   return await loading.present(); 
+  // }
+
   getCategories(event){
-    this.categories = event.detail.value;
-    console.log(this.categories); 
+    console.log("oooo"); 
+    this.event.categories = event.detail.value;
+    console.log(this.event.categories, "cxcxcxxc"); 
   }
 
 back() {

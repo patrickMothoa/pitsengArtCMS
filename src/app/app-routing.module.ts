@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     // path: 'add-product',
-    path:'update/:image/:name/:productno/:desc/:price',
+    path:'add-product',
     loadChildren: () => import('./pages/add-product/add-product.module').then( m => m.AddProductPageModule)
   },
   {

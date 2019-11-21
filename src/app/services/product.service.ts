@@ -6,9 +6,9 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class ProductService {
-  
-  db = firebase.firestore();
 
+  db = firebase.firestore();
+  firestore
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 ​
@@ -18,7 +18,7 @@ export class ProductService {
       message: 'Adding product'
     });
     loading.present();
-    this.db.collection('Categories').doc(event.name).set(event).then(async res => {
+    this.db.collection('Categories').doc(event.categories).set(event).then(async res => {
         console.log('product add Response', res);
         loading.dismiss();
         location.reload();
@@ -34,6 +34,27 @@ export class ProductService {
         alert.present();
       });
     }
+
+
+    ///////////
+    // addProduct(
+    //   categories: string,
+    //   name: string,
+    //   desc: string,
+    //   productno: string,
+    //   price: string,
+    //   ): 
+    //   Promise<void> {
+    //   const id = this.firestore.createId();
+    //   return  this.firestore.doc('Categories/${id}').set({
+    //   id,
+    //   categories,
+    //   name,
+    //   desc,
+    //   productno,
+    //   price,
+    //   });
+    //   }
 
     // retriving from firebase.firestore
     getProductList() {
