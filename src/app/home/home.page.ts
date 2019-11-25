@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartserviceService } from '../services/cartservice.service';
-import { NavController } from '@ionic/angular';
+import * as firebase from 'firebase';
+import { ProductService } from '../services/product.service';
+
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,27 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage {
 
-  cart = [];
-  items = [];
+  db = firebase.firestore();
+  event = {
+    image: '',
+    categories:'',
+    name:'',
+    price:null,
+    productno:'',
+    desc: null,
+    small:'',
+    medium:'',
+    large: ''
+  };
+
+  Products = [];
+
+  thisSearches = []
+  public searchTerm: string = '';
+  public items: any;
+  public searching: boolean = false;
+
+  myProduct = false;
 
   sliderConfig = {
     slidesPerView: 1.6,
@@ -19,31 +39,61 @@ export class HomePage {
     centeredSlides: true
   };
 
-  constructor(private router: Router, private cartService: CartserviceService, public navCtrl: NavController) {}
+  constructor(private router: Router, public productService: ProductService) {}
 
   ngOnInit() {
-    this.items = this.cartService.getProducts();
-    this.cart = this.cartService.getCart();
+   // this.ViewDetails(this.navDetails)
+    this.getProducts();
+
+    // firebase.auth().onAuthStateChanged(category => {
+    //   if (category) {
+    //      this.event.categories = this.event.productno
+    //   this.getProducts();
+    //   } else {
+    //        console.log("not here");  
+    //   }
+    // })
   }
 
-  addToCart(product) {
-    this.cartService.addProduct(product);
-  }
-
-  openCart() {
-    this.router.navigate(['cart']);
-  }
+//   ViewDetails(view) {
+//     this.navDetails.push(this.ViewDetails,{
+//       image: view.image,
+//       categories:view.categories,
+//       name:view.name,
+//       price:view.price,
+//       productno:view.productno,
+//       desc: view.desc,
+//       small:view.small,
+//       medium:view.medium,
+//       large:view.large
+// });
+//     this.router.navigateByUrl('/details')
+//   }
 
   openProfile(){
     this.router.navigateByUrl('/profile');
+  }
+
+  openHome(){
+    this.router.navigateByUrl('/home');
   }
 
   openUploads(){
     this.router.navigateByUrl('/add-product');
   }
 
+  openInvoice(){
+    this.router.navigateByUrl('/user-invoices');
+  }
+
   logOut(){
-    this.router.navigateByUrl('/login');
+    firebase.auth().signOut().then(()=> {
+      // Sign-out successful.
+      this.router.navigateByUrl('/login');
+    }).catch((error)=> {
+      // An error happened.
+    });
+   
   }
 
   ///////////////////////
@@ -60,38 +110,69 @@ export class HomePage {
   listFetchStatus:boolean = false;
 
  
-  search(event){
-    if(this.searchQuery != ''){
-      this.apiLoader = true;
-      //console.log(this.searchQuery);
-      // Resetting page
-      this.pageNumber=1;
-      this.Pots = [];
-      this.listFetchStatus = false;
-
-      this.searched = true;
-      this.fetchAllArts();
+  onSearchInput(){
+    
+    if(this.searchTerm.length>0){
+     //  this.event = this.productService.filterItems(this.searchTerm);
+       this.searching = true;
+       
+    }else{
+      this.searching = false;
     }
   }
 
-  fetchAllArts(){
-    // this.cartService.getProducts(this.searchQuery, this.pageNumber)
-    //       .subscribe(fetchedpots => {
-       
-    //         if(fetchedpots.length==0){
-    //           this.listFetchStatus = true;
-    //         }else{
-    //           for(let i=0;i<fetchedpots.length;i++){
-    //             this.Pots.push(fetchedpots[i]);
-    //           }
-    //         }
-    //         this.apiLoader = false;
-    //         this.customErrorMsg = false;
+  select(item){
+    this.searchTerm = item.title;
+    this.searching = false;
+    this.thisSearches.push({searchItem:item});
+  }
 
-    //       }, err => {
-    //         this.apiLoader = false;
-    //         this.customErrorMsg = true;
-    //       });
+
+
+    /// retrieving from database
+
+  // getProducts(){
+  //   this.db.collection('Products').get().then(snapshot => {
+  //     if (snapshot.empty) {
+  //       this.myProduct = false;
+  //     } else {
+  //       this.myProduct = true;
+  //       snapshot.forEach(doc => {
+  //         this.event.image= doc.data().image;
+  //         this.event.categories = doc.data().categories
+  //         this.event.name=doc.data().name
+  //         this.event.price=doc.data().price
+  //         this.event.productno=doc.data().productno
+  //         this.event.desc=doc.data().desc
+  //         this.event.small=doc.data().small
+  //         this.event.medium=doc.data().medium
+  //         this.event.large=doc.data().large
+          
+  //       })
+  //     }
+  //   })
+  // }
+
+      // retriving from firebase.firestore
+      getProducts() {
+        this.db.collection('Products').get().then(snapshot => {
+          if (snapshot.empty) {
+                  this.myProduct = false;
+                } else {
+                  this.myProduct = true;
+                  snapshot.forEach(doc => {
+                    this.Products.push(doc.data());
+                    console.log("herererer", this.Products);
+                  });
+                  return this.Products;
+                }
+        });
+      }
+
+  navDetails = []
+
+  editProduct() {
+    this.myProduct = false;
   }
 
   itemClick(itemInfo){

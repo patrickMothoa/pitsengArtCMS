@@ -1,41 +1,53 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title>
-          Pitseng Art
-      </ion-title>
+     
       <ion-button (click)="openHome()" slot="end">Home</ion-button>
       <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
       <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
+      <ion-button (click)="openInvoice()" slot="end">Invoices</ion-button>
       <ion-button (click)="logOut()" slot="end">Logout</ion-button>
-      <!-- <ion-buttons slot="end">
-          <ion-button (click)="openCart()">
-              <ion-badge *ngIf="cart.length > 0">{{ cart.length }}</ion-badge>
-              <ion-icon slot="icon-only" name="cart"></ion-icon>
-          </ion-button>
-      </ion-buttons> -->
   </ion-toolbar>
+
+  <!-- <ion-toolbar>
+    <ion-searchbar
+     [(ngModel)]="searchTerm"  
+     (ionInput)="onSearchInput()" 
+     >
+     </ion-searchbar>
+      <ion-scroll *ngIf = 'searching' scrollY="true" style="width: 310px; height: 180px">
+          <div style="height: 180px; width: 310px;" class="pattern2">
+            <ion-item class="search-item" *ngFor="let product of event" (click)="select(product)">
+               <ion-thumbnail item-start>
+                  <img src="{{product.image}}">
+                </ion-thumbnail>
+               <h4>{{item.title}}</h4>
+            </ion-item>
+          </div>
+      </ion-scroll>  
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
 
-  <div *ngFor="let cat of items" class="category-block">
-      <ion-row no-padding class="category-banner">
+
+  <div class="categories-block"  *ngFor="let event of Products" >
+      <ion-row no-padding class="categories-banner">
           <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
-              {{ cat.category }}
+              {{event.categories }}<br>
           </ion-col>
       </ion-row>
 
       <ion-slides [options]="sliderConfig">
-          <ion-slide *ngFor="let product of cat.products">
-              <div *ngIf="cat.expanded">
-                  <ion-card>
-                      <ion-card-header>
+          <ion-slide >
+              <div *ngIf="myProduct">
+                  <ion-card >
+                      <ion-card-header (click)="ViewDetails(event)">
                           <ion-card-title>
-                            <img src="https://via.placeholder.com/300x300">
+                            <img src="{{event.image}}" alt="" height="300" width="300">
                           </ion-card-title>
                           <ion-card-content>
-                            {{ product.name }} - R{{ product.price }}
-                              <ion-button expand="full" (click)="addToCart(product)">Add to Cart</ion-button>
+                            {{event.name}} <br>
+                            R{{event.price}}
                           </ion-card-content>
                       </ion-card-header>
                   </ion-card>
@@ -44,4 +56,6 @@
       </ion-slides>
   </div>
 </ion-content>
+
+
 
