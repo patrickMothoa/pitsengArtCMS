@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { DataService } from "../services/data.service";
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
+
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
 
@@ -16,9 +17,10 @@ import { debounceTime } from "rxjs/operators";
 })
 export class HomePage implements OnInit {
 
-  // public searchTerm: string = "";
-  // public items: any;
-    searchControl: FormControl;
+  public searchControl: FormControl;
+  public searchTerm: string = "";
+  public items: any;
+  searching: any = false;
   db = firebase.firestore();
   event = {
     image: '',
@@ -35,9 +37,6 @@ export class HomePage implements OnInit {
   Products = [];
 
   thisSearches = []
-  public searchTerm: string = '';
-  public items: any;
-  public searching: boolean = false;
 
   myProduct = false;
 
@@ -105,26 +104,22 @@ export class HomePage implements OnInit {
   listFetchStatus:boolean = false;
 
   
-  // onSearchInput(){
+  onSearchInput(){
     
-  //   if(this.searchTerm.length>0){
-  //     // this.event = this.productService.filterItems(this.searchTerm);
-  //      this.searching = true;
-       
-  //   }else{
-  //     this.searching = false;
-  //   }
-  // }
+       this.searching = true;
+     
+  }
   ionViewDidLoad() {
 
     // this.setFilteredItems();
 
-    // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+    //     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
 
-    //     this.searching = false;
-    //     this.setFilteredItems();
+    //         this.searching = false;
+    //         this.setFilteredItems();
 
-    // });
+    //     });
+
 
 
 }
