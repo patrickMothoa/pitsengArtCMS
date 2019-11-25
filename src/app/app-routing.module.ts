@@ -21,7 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    // path: 'add-product',
     path:'add-product',
     loadChildren: () => import('./pages/add-product/add-product.module').then( m => m.AddProductPageModule)
   },
@@ -29,6 +28,15 @@ const routes: Routes = [
     path: 'user-invoices',
     loadChildren: () => import('./pages/user-invoices/user-invoices.module').then( m => m.UserInvoicesPageModule)
   },
+  // {
+  //   path: 'details',
+  //   loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+  // },
+  // {
+  //   path: 'product-details',
+  //   loadChildren: () => import('./pages/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
+  // },
+
 ];
 
 @NgModule({
