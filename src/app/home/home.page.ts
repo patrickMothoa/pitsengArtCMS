@@ -55,20 +55,20 @@ export class HomePage {
     // })
   }
 
-//   ViewDetails(view) {
-//     this.navDetails.push(this.ViewDetails,{
-//       image: view.image,
-//       categories:view.categories,
-//       name:view.name,
-//       price:view.price,
-//       productno:view.productno,
-//       desc: view.desc,
-//       small:view.small,
-//       medium:view.medium,
-//       large:view.large
-// });
-//     this.router.navigateByUrl('/details')
-//   }
+  ViewDetails(view) {
+    this.navDetails.push(this.ViewDetails,{
+      image: view.image,
+      categories:view.categories,
+      name:view.name,
+      price:view.price,
+      productno:view.productno,
+      desc: view.desc,
+      small:view.small,
+      medium:view.medium,
+      large:view.large
+});
+    this.router.navigateByUrl('/details')
+  }
 
   openProfile(){
     this.router.navigateByUrl('/profile');

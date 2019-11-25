@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'user-invoices',
     loadChildren: () => import('./pages/user-invoices/user-invoices.module').then( m => m.UserInvoicesPageModule)
+  },  {
+    path: 'details',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
+
   // {
   //   path: 'details',
   //   loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
