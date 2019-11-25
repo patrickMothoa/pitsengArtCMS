@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+   <ion-content padding>
+   <ion-card> 
+     <img src="{{event.image}}" alt="">
+   </ion-card>
+   <ion-card-title class="inline-title">
+     <h5 class="single-desc" >{{event.name}}</h5>
+     <h4 class="single-price" > {{event.price}}</h4>
+   </ion-card-title>
+     <!-- <ion-list *ngIf="category == 'tops' ">
+       <ion-item>
+         <ion-label>Size</ion-label>
+         <ion-select [(ngModel)]="getSize">
+           <ion-option value="XS">XS</ion-option>
+           <ion-option value="Small">Small</ion-option>
+           <ion-option value="Medium">Medium</ion-option>
+           <ion-option value="Large">Large</ion-option>
+           <ion-option value="XL">XL</ion-option>
+           <ion-option value="XXL">XXL</ion-option>
+         </ion-select>
+       </ion-item>
+       <p *ngIf='sizeErr' class="error"> * Select Size </p>
+     </ion-list> -->
+   
+  
+   <!-- <ion-list>
+     <ion-item>
+       <ion-label>Size</ion-label>
+       <ion-select [(ngModel)]="getSize">
+         <ion-option value="Small">Small</ion-option>
+         <ion-option value="Medium">Medium</ion-option>
+         <ion-option value="Large">Large</ion-option>
+       </ion-select>
+     </ion-item>
+     <p *ngIf='sizeErr' class="error"> * Select Size </p>
+   </ion-list> -->
+   <ion-label>Product Details</ion-label>
+   <ion-card>
+     <ul>
+       <li>{{event}}</li>  
+     </ul>	
+   </ion-card>
+  </ion-content>

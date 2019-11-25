@@ -38,7 +38,6 @@ export class ProfilePage implements OnInit {
       if (user) {
         console.log('Got admin', user);
         this.admin.uid = user.uid
-      // this.admin.phoneNumber = user.phoneNumber
       this.getProfile();
       } else {
         console.log('no admin');

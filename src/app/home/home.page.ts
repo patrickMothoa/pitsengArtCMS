@@ -64,6 +64,21 @@ export class HomePage implements OnInit {
     this.items = this.dataService.filterItems(searchTerm);
   }
 
+  ViewDetails(view) {
+    this.navDetails.push(this.ViewDetails,{
+      image: view.image,
+      categories:view.categories,
+      name:view.name,
+      price:view.price,
+      productno:view.productno,
+      desc: view.desc,
+      small:view.small,
+      medium:view.medium,
+      large:view.large
+});
+    this.router.navigateByUrl('/details')
+  }
+
   openProfile(){
     this.router.navigateByUrl('/profile');
   }
