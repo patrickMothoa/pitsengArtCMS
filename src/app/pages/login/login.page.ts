@@ -47,7 +47,6 @@ export class LoginPage  {
         console.log(result);
         this.confirmationResult = result.result
         console.log(this.confirmationResult);
-        //this.presentAlert();
       }
     })
   }
@@ -88,7 +87,7 @@ export class LoginPage  {
   async alert(){
     const alert = await this.alertController.create({
       header: 'Verfification code',
-      subHeader: 'Enter verification code',
+      // subHeader: 'Enter verification code',
       inputs: [
         {
           name: 'code',
