@@ -4,6 +4,8 @@
       <ion-item>
         <ion-input type="file" accept="image/*" multiple="false" (change)="getImage($event.target.files)"></ion-input>
   </ion-item>
+  <ion-item *ngIf="profile.image"><img  src="{{profile.image}}" height="80" width="80"></ion-item>
+  
   <p *ngIf="isuploading">Uploading</p>
   <p *ngIf="isuploaded">Done</p>
   <ion-item>

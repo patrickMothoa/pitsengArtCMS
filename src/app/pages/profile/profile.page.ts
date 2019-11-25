@@ -81,7 +81,7 @@ export class ProfilePage implements OnInit {
         }, error => {
 
         }, () => {
-          upload.snapshot.ref.getDownloadURL().then(downUrl => {
+          upload.snapshot.ref.getDownloadURL().then(downUrl => {this.ngOnInit
             this.profile.image = downUrl;
             this.uploadprogress = 0;
             this.isuploaded = true;
@@ -99,7 +99,8 @@ export class ProfilePage implements OnInit {
         
       } else {
         this.profile.uid =  this.admin.uid;
-        this.db.collection('admins').doc(this.profile.name).set(this.profile).then(res => {
+        this.db.collection('admins').doc(this.profile.name).set(this.profile).then(res => 
+          {
           console.log('Profile created');
           this.getProfile();
         }).catch(error => {
