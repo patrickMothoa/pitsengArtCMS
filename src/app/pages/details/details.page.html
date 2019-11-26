@@ -5,44 +5,95 @@
   </ion-header>
   
    <ion-content padding>
-   <ion-card> 
-     <img src="{{event.image}}" alt="">
-   </ion-card>
-   <ion-card-title class="inline-title">
-     <h5 class="single-desc" >{{event.name}}</h5>
-     <h4 class="single-price" > {{event.price}}</h4>
-   </ion-card-title>
-     <!-- <ion-list *ngIf="category == 'tops' ">
-       <ion-item>
-         <ion-label>Size</ion-label>
-         <ion-select [(ngModel)]="getSize">
-           <ion-option value="XS">XS</ion-option>
-           <ion-option value="Small">Small</ion-option>
-           <ion-option value="Medium">Medium</ion-option>
-           <ion-option value="Large">Large</ion-option>
-           <ion-option value="XL">XL</ion-option>
-           <ion-option value="XXL">XXL</ion-option>
-         </ion-select>
-       </ion-item>
-       <p *ngIf='sizeErr' class="error"> * Select Size </p>
-     </ion-list> -->
+      <div class="display">
+          <div class ="info" *ngFor="let p of Products" > 
+              <div class="d-image">
+                  <img src="{{p. obj.image}}" alt="">
+            </div>
+            <div class="name">
+                <h5 class="single-desc" >{{p.obj.categories}}</h5>
+                <h4 class="single-price" > {{p.obj.price}}</h4>
+            </div>
+            <div class="desc">
+                <h5 class="single-desc" >{{p.obj.desc}}</h5>
+                <h4 class="single-price" > {{p.obj.productno}}</h4>
+                <h4 class="single-price" > {{p.obj.items}}</h4>
+            </div>
+            <!-- <div class="Sizes">
+                <h3>Sizes</h3>
+                <hr>
+                <div class="size">
+                      <p *ngFor="let s of p.size">{{f}}</p>
+                </div>
+               
+          </div>	 -->
+          <div class="edit">
+              <button (click)="edit(p.id)" ion-button color="#3657B3" >
+                  <ion-icon color="secondary" name="md-create" class="icon1234"></ion-icon>
+            </button>
+            </div>
+          <div class="remove">
+              <ion-fab-button color="danger" (click)="Deleteproduct(p.id)">
+                    <ion-icon name="trash"></ion-icon>
+              </ion-fab-button>
+        </div>
+          </div>
+         
+          </div>
+
+    <!-- <p *ngFor="let p of Products">
+      <small>{{p.obj.categories}}</small>
+      <small>{{p.obj.name}}</small>
+    </p>
+     <img src="{{MyObj.obj.image}}" alt=""> -->
+      <!-- <div class="display">
+          <div class ="info" *ngFor="let p of Products" (click)="edit(p)">
+              <div class="d-image">
+                  <img src="{{p. obj.image}}" alt="">
+            </div>
+            <div class="details">
+                <div class="name">
+                    <h5 class="single-desc" >{{p.obj.name}}</h5>
+                    <h4 class="single-price" > {{p.obj.price}}</h4>
+                </div>
+                <p>{{p.obj.productno}}</p>  
+                <p>{p.obj.desc}}</p>  
+                <div class="Sizes">
+                    <h3>Sizes</h3>
+                    <hr>
+                    <div class="size">
+                          <p *ngFor="let s of p.size">{{f}}</p>
+                    </div>
+                   
+              </div>	
+            </div>
+           </div>
+      </div> -->
+     
    
+     
   
-   <!-- <ion-list>
-     <ion-item>
-       <ion-label>Size</ion-label>
-       <ion-select [(ngModel)]="getSize">
-         <ion-option value="Small">Small</ion-option>
-         <ion-option value="Medium">Medium</ion-option>
-         <ion-option value="Large">Large</ion-option>
-       </ion-select>
-     </ion-item>
-     <p *ngIf='sizeErr' class="error"> * Select Size </p>
-   </ion-list> -->
-   <ion-label>Product Details</ion-label>
+   <!-- <ion-card-title class="inline-title">
+     <h5 class="single-desc" >{{p.name}}</h5>
+     <h4 class="single-price" > {{p.price}}</h4>
+   </ion-card-title> -->
+     
+   <!-- <ion-label>Product Details</ion-label>
    <ion-card>
      <ul>
-       <li>{{event}}</li>  
-     </ul>	
-   </ion-card>
+       <p>{{p.productno}}</p>  
+       <p>{p.desc}}</p>  
+       <p>{{p.productno}}</p>   
+       <p>{{p.productno}}</p>  
+       <p>{{p.productno}}</p>   
+     </ul>
+     <div class="Sizes">
+      <h3>Features</h3>
+      <hr>
+      <div class="size">
+            <p *ngFor="let s of p.size">{{f}}</p>
+      </div>
+      
+</div>	
+   </ion-card> -->
   </ion-content>

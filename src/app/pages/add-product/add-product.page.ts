@@ -45,16 +45,13 @@ export class AddProductPage implements OnInit {
       productno: [this.event.productno, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
-      quantity:[this.event.quantity, Validators.compose([Validators.pattern("[^0-9]")])],
-      small: [this.event.small, Validators.compose([Validators.requiredTrue ])], 
-      medium: [this.event.medium, Validators.compose([Validators.requiredTrue ])], 
-      large: [this.event.large, Validators.compose([Validators.requiredTrue ])],
-
-
+      // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
+      // small: [this.event.small, Validators.compose([Validators.required])], 
+      // medium: [this.event.medium, Validators.compose([Validators.required])], 
+      // large: [this.event.large, Validators.compose([Validators.required])], 
     });
   }
 
- 
 
   ngOnInit() {
     // const date = new Date();
@@ -100,10 +97,28 @@ export class AddProductPage implements OnInit {
     this.event.items = event.detail.value;
   }
 
-  getQuantity(event){
-    this.event.quantity = event.detail.value
-  }
- 
+  // validating checkboxs
+  // document.getElementById('productForm').onsubmit =  (e) => {
+  //   var checkbox = document.getElementsByName("del[]"),
+  //       i,
+  //       checked;
+  //   for (i = 0; i < checkbox.length; i += 1) {
+  //     checked = (checkbox[i].checked||checked===true)?true:false;
+  //   }
+  
+  //   if (checked == false) {
+  //     alert('Check Something!');
+  //     e.preventDefault();
+  //     return false;
+  //   } else if(confirm('confirm submit?')) {
+  //     alert('done!');
+  //     return true;
+  //   }
+  // }
+
+  // getQuantity(event){
+  //   this.event.quantity = event.detail.value;
+  // }
 
 back() {
   var swiper = document.querySelector('.swiper-container')['swiper'];
