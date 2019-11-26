@@ -1,93 +1,132 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-     Products
-    </ion-title>
-    <ion-button (click)="openHome()" slot="end">Home</ion-button>
-    <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
-    <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
-    <ion-button (click)="openInvoice()" slot="end">Invoices</ion-button>
-    <ion-button (click)="logOut()" slot="end">Logout</ion-button>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content >
-    <form class="form" [formGroup]="productForm">
 
-    <ion-item *ngIf="!event.image">
-        <ion-label position="stacked" id="profile_image" color="primary">Select Product image</ion-label>
-        <ion-input type="file" formControlName="image" accept="image/*" (change)="changeListener($event)"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="event.image"><img  src="{{event.image}}" height="80" width="80"></ion-item>
-  <ion-card>
-      <ion-card-header >
-        <ion-card-title>New Product </ion-card-title>
-      </ion-card-header>
-      <ion-card-content >
-      <ion-item >
-              <ion-label>Categories</ion-label>
-              <ion-select  formControlName="categories"  (ionChange)="getCategories($event)">
-                <ion-select-option value="Vase" >Vase</ion-select-option>
-                <ion-select-option value="Cups and Plates" >Cups and Plates</ion-select-option>
-                <ion-select-option value="Photo Frame" >Photo Frames</ion-select-option>
-                <ion-select-option value="Decor Pallets" >Decor Pallets</ion-select-option>
-                <ion-select-option value="Wall Deco" >Wall Decor</ion-select-option>
-                <ion-select-option value="Bowls and Pots" >Bowls and Pots</ion-select-option>
-                <ion-select-option value="Lamps" >Lamps</ion-select-option>
-      </ion-select>
-      </ion-item>
-      <ion-item>
-          <ion-textarea placeholder="Description"   formControlName="desc" [(ngModel)]="event.desc"></ion-textarea>
-      </ion-item>
-        <ion-item>
-              <ion-input type="text" placeholder="Name"  formControlName="name" [(ngModel)]="event.name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="text" placeholder="Product Number"  formControlName="productno" [(ngModel)]="event.productno"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="text" placeholder="Price"  formControlName="price" [(ngModel)]="event.price"></ion-input>
-        </ion-item>
+<div class="navigation_bar">
+  <div class="left-icons" >
+    <ion-button fill="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
+    <ion-button  fill="clear" color="light"(click)="openProfile()" slot="end">Profile</ion-button>
+    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button>
+    <ion-button fill="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+  </div>
+  
+    <div class="avatar-image" >
+     
+      <img src="../../../assets/1.PNG" class="logo">
+    
+    </div>
+    
+    
+ <div class="right-icons" >
+    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear"  color="light" 	 (click)="openInvoice()" slot="end">
+       <ion-icon slot="icon-only" name="home"></ion-icon>
+       </ion-button>
+ </div>
+  
+</div>
 
-         <ion-list>
-            <ion-radio-group  formControlName="items" (ionChange) = "getOption($event)">
-              <ion-item>
-                <ion-label>per Item</ion-label>
-                <ion-radio slot="start" value="perItem" checked></ion-radio>
+<ion-content>
+    <div class="main-container-main">
+        <div class="main-container" >
+            <form class="form" [formGroup]="productForm">
+        <div class="image-container" [style.backgroundImage]="event.image ? 'none' : 'url(../../../assets/400-4001913_logo-placeholder-png-placeholder-icon-svg.png)'">
+          <div class="divitems">
+               <ion-item *ngIf="!event.image" class="imageitem" lines="none" >
+                <ion-label position="stacked" id="profile_image" color="primary"></ion-label>
+                <ion-input class="image-upload"  type="file" formControlName="image" accept="image/*" (change)="changeListener($event)"></ion-input>
+              </ion-item> 
+        <ion-item class="imageitem" lines="none" *ngIf="event.image"><img  src="{{event.image}}" height="400px" width="400px" ></ion-item>
+          </div>
+         
+        </div>
+          <div class="enter-detail-container"  >
+
+                <h2>Add a product </h2>
+             
+            
+              <ion-item class="ion-item"  >
+                      <ion-label>Categories</ion-label>
+                      <ion-select  formControlName="categories"  (ionChange)="getCategories($event)">
+                        <ion-select-option value="Vase" >Vase</ion-select-option>
+                        <ion-select-option value="Cups and Plates" >Cups and Plates</ion-select-option>
+                        <ion-select-option value="Photo Frame" >Photo Frames</ion-select-option>
+                        <ion-select-option value="Decor Pallets" >Decor Pallets</ion-select-option>
+                        <ion-select-option value="Wall Deco" >Wall Decor</ion-select-option>
+                        <ion-select-option value="Bowls and Pots" >Bowls and Pots</ion-select-option>
+                        <ion-select-option value="Lamps" >Lamps</ion-select-option>
+              </ion-select>
               </ion-item>
-          
-              <ion-item>
-                <ion-label>per Package</ion-label>
-                <ion-radio slot="start" value="perPackage"></ion-radio>
+              <ion-item class="ion-item"  >
+                  <ion-label position="floating" >Description</ion-label>
+                  <ion-textarea formControlName="desc" [(ngModel)]="event.desc"></ion-textarea>
               </ion-item>
-            </ion-radio-group>
-          </ion-list> 
-
-              <!-- quantity -->
-        <!-- <ion-list>
-        <ion-radio-group formControlName="quantity" (ionChange)="getQuantity($event)">
-            <ion-list-header>
-              <ion-label><strong><b>Quantity</b></strong></ion-label>
-            </ion-list-header>
-
-            <h1><b>
-              <ion-icon color="primary" name="remove-circle" (click)="decrement()"></ion-icon>
-              {{ event.quantity }}
-            <ion-icon color="primary" name="add-circle" (click)="increment()"></ion-icon><br>
-            </b></h1>
-        </ion-radio-group>
-      </ion-list> -->
-       
-        <!-- <ion-item>
-          <ion-checkbox color="primary" name="checkings[]"  [(ngModel)]="event.small"> </ion-checkbox><br>
-          <ion-label>S</ion-label>
-          <ion-checkbox color="secondary" name="checkings[]"  [(ngModel)]="event.medium"> </ion-checkbox>
-          <ion-label>M</ion-label>
-          <ion-checkbox color="danger" name="checkings[]"  [(ngModel)]="event.large"> </ion-checkbox>
-          <ion-label>L</ion-label>
-        </ion-item> -->
-        <ion-button color="primary" (click)="addEvent()" [disabled]="!productForm.valid">Upload</ion-button>
-      </ion-card-content>
-  </ion-card>
-</form>
+                <ion-item  class="ion-item" >
+                    <ion-label position="floating" >Name </ion-label>
+                      <ion-input type="text"  formControlName="name" [(ngModel)]="event.name"></ion-input>
+                </ion-item>
+                <ion-item  class="ion-item" >
+                  <ion-label position="floating" >Product number</ion-label>
+                  <ion-input type="text"  formControlName="productno" [(ngModel)]="event.productno"></ion-input>
+                </ion-item>
+                <ion-item class="ion-item"  >
+                    <ion-label position="floating" >Price</ion-label>
+                    <ion-input type="text"  formControlName="price" [(ngModel)]="event.price"></ion-input>
+                </ion-item>
+        
+                <div class="radio-buttonsContainer" >
+                  <div>
+                    <ion-radio-group  formControlName="items" (ionChange) = "getOption($event)" class="flex" >
+                      <ion-item lines ="none" id="radio-buttons">
+                        <ion-label>per Item</ion-label>
+                        <ion-radio slot="start" value="perItem" checked></ion-radio>
+                      </ion-item>
+                
+                      <ion-item lines ="none" id="radio-buttons" >
+                        <ion-label>per Package</ion-label>
+                        <ion-radio slot="start" value="perPackage"></ion-radio>
+                      </ion-item>
+                    </ion-radio-group>
+                  </div>
+                </div>
+                 
+                      <!-- quantity -->
+                <!-- <ion-list>
+                <ion-radio-group formControlName="quantity" (ionChange)="getQuantity($event)">
+                    <ion-list-header>
+                      <ion-label><strong><b>Quantity</b></strong></ion-label>
+                    </ion-list-header>
+        
+                    <h1><b>
+                      <ion-icon color="primary" name="remove-circle" (click)="decrement()"></ion-icon>
+                      {{ event.quantity }}
+                    <ion-icon color="primary" name="add-circle" (click)="increment()"></ion-icon><br>
+                    </b></h1>
+                </ion-radio-group>
+              </ion-list> -->
+               
+                <!-- <ion-item>
+                  <ion-checkbox color="primary" name="checkings[]"  [(ngModel)]="event.small"> </ion-checkbox><br>
+                  <ion-label>S</ion-label>
+                  <ion-checkbox color="secondary" name="checkings[]"  [(ngModel)]="event.medium"> </ion-checkbox>
+                  <ion-label>M</ion-label>
+                  <ion-checkbox color="danger" name="checkings[]"  [(ngModel)]="event.large"> </ion-checkbox>
+                  <ion-label>L</ion-label>
+                </ion-item> -->
+        <ion-button   class="buttons"  color="danger" (click)="addEvent()" [disabled]="!productForm.valid">Upload</ion-button>
+              
+                
+              
+        
+        </div>
+        </form>
+        </div>
+        
+    </div>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <ion-title color="light" size="small" >  @ 2019  Pitseng Arts and Crafts.  All right reserved. Privacy Policy</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+

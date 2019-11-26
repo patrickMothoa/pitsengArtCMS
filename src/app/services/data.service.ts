@@ -7,14 +7,14 @@ export class DataService {
   public items: any = [];
 
   constructor() {
-    this.items = [
-      { title: "one" },
-      { title: "two" },
-      { title: "three" },
-      { title: "four" },
-      { title: "five" },
-      { title: "six" }
-    ];
+    // this.items = [
+    //   { title: "one" },
+    //   { title: "two" },
+    //   { title: "three" },
+    //   { title: "four" },
+    //   { title: "five" },
+    //   { title: "six" }
+    // ];
   }
 
   filterItems(searchTerm) {

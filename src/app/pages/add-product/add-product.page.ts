@@ -16,7 +16,7 @@ export class AddProductPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
-
+  
   event = {
     image: '',
     categories:'',
