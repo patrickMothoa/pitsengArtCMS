@@ -7,6 +7,7 @@ import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
+import {ProductDetailService} from "../../app/product-detail.service"
 
 
 @Component({
@@ -47,7 +48,7 @@ export class HomePage implements OnInit {
     centeredSlides: true
   };
 
-  constructor(private dataService: DataService, private router: Router, public productService: ProductService) {
+  constructor(private dataService: DataService, public data : ProductDetailService,  private router: Router, public productService: ProductService) {
     this.searchControl = new FormControl();
   }
 
@@ -63,6 +64,12 @@ export class HomePage implements OnInit {
   }
   setFilteredItems(searchTerm) {
     this.items = this.dataService.filterItems(searchTerm);
+  }
+
+  ViewDetails(view) {
+    console.log("dddddddddddddd", view);
+    this.data.data = view;
+    this.router.navigateByUrl('/details')
   }
 
   openProfile(){
@@ -137,13 +144,20 @@ export class HomePage implements OnInit {
 
 
       getProducts() {
+
+        let obj = {id : '', obj : {}};
+
         this.db.collection('Products').get().then(snapshot => {
+          this.Products = [];
           if (snapshot.empty) {
                   this.myProduct = false;
                 } else {
                   this.myProduct = true;
                   snapshot.forEach(doc => {
-                    this.Products.push(doc.data());
+                    obj.id = doc.id;
+                    obj.obj = doc.data();
+                    this.Products.push(obj);
+                    obj = {id : '', obj : {}};
                     console.log("herererer", this.Products);
                   });
                   return this.Products;

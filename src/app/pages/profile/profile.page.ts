@@ -29,16 +29,18 @@ export class ProfilePage implements OnInit {
 
   admin = {
     uid: '',
+    phoneNumber:''
+
     // phoneNumber: '',
   }
   constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { }
-
+ 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         console.log('Got admin', user);
         this.admin.uid = user.uid
-      // this.admin.phoneNumber = user.phoneNumber
+        this.admin.phoneNumber = user.phoneNumber
       this.getProfile();
       } else {
         console.log('no admin');
