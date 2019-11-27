@@ -7,6 +7,7 @@ import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
+import {ProductDetailService} from "../../app/product-detail.service"
 
 
 @Component({
@@ -85,17 +86,8 @@ export class HomePage implements OnInit {
   }
 
   ViewDetails(view) {
-    this.navDetails.push(this.ViewDetails,{
-      image: view.image,
-      categories:view.categories,
-      name:view.name,
-      price:view.price,
-      productno:view.productno,
-      desc: view.desc,
-      small:view.small,
-      medium:view.medium,
-      large:view.large
-});
+    console.log("dddddddddddddd", view);
+   // this.data.data = view;
     this.router.navigateByUrl('/details')
   }
 
@@ -171,13 +163,20 @@ export class HomePage implements OnInit {
 
 
       getProducts() {
+
+        let obj = {id : '', obj : {}};
+
         this.db.collection('Products').get().then(snapshot => {
+          this.Products = [];
           if (snapshot.empty) {
                   this.myProduct = false;
                 } else {
                   this.myProduct = true;
                   snapshot.forEach(doc => {
-                    this.Products.push(doc.data());
+                    obj.id = doc.id;
+                    obj.obj = doc.data();
+                    this.Products.push(obj);
+                    obj = {id : '', obj : {}};
                     console.log("herererer", this.Products);
                   });
                   return this.Products;

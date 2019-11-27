@@ -4,6 +4,7 @@ import { AuthService } from 'services/auth.service';
 import * as firebase from 'firebase'
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 declare var window
 
 @Component({
@@ -26,6 +27,7 @@ export class LoginPage  {
     public formBuilder: FormBuilder,
     public alertController: AlertController,
     public route :Router,
+    private profileService: ProfileService
     ) {
       this.smsSent = false
 
@@ -35,6 +37,14 @@ export class LoginPage  {
     phoneNumber: [this.phoneNumber, Validators.compose([Validators.required])]
   })
 
+  }
+  ngOnInit() {
+    firebase.auth().onAuthStateChanged(res => {
+      if (res) {
+        this.profileService.storeAdmin(res);
+        this.route.navigateByUrl('home', { skipLocationChange: true });
+      }
+    });
   }
  
   requestCode(){
