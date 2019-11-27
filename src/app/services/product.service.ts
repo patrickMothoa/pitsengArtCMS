@@ -64,8 +64,8 @@ export class ProductService {
 
   //////updating
   updateProduct(event) {
-    const roomUpdate = this.db.collection('Products').doc();
-    return roomUpdate.update(event)
+    const productUpdate = this.db.collection('Products').doc();
+    return productUpdate.update(event)
 .then(() => {
     console.log('Document successfully updated!');
 })

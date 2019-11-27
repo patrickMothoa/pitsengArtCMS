@@ -35,16 +35,17 @@
         </ion-select>
         </ion-item>
         <ion-item>
-            <ion-textarea placeholder="Description" [(ngModel)]="event.desc"></ion-textarea>
+            <ion-textarea placeholder="Description" [(ngModel)]="event.desc" required></ion-textarea>
         </ion-item>
           <ion-item>
-                <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
+                <ion-input type="text" placeholder="Name" [(ngModel)]="event.name" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="text" placeholder="Product Number" [(ngModel)]="event.productno"></ion-input>
+            <ion-input type="number"   #input maxLength="5" placeholder="Product Number" [(ngModel)]="event.productno"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+              <ion-input type="number"  #input maxLength="10000000"
+               placeholder="Price" [(ngModel)]="event.price" required></ion-input>
           </ion-item>
   
           <ion-list>
@@ -83,8 +84,7 @@
             <ion-checkbox color="danger" [(ngModel)]="event.large"> </ion-checkbox>
             <ion-label>L</ion-label>
           </ion-item>
-  
-          <!-- <ion-button color="primary" (click)="addEvent()" [disabled]="event.large == ''" >Upload</ion-button> -->
+
           
 
           <ion-button color="primary" (click)="addEvent()" >Upload</ion-button>

@@ -18,6 +18,7 @@ export class AddProductPage implements OnInit {
   //categories
 
   event = {
+     id: '',
     image: '',
     categories:'',
     name:'',

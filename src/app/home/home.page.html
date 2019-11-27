@@ -1,11 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <ion-toolbar>
-      <ion-searchbar [formControl]="searchControl"  [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
-    </ion-toolbar> -->
-    <!-- <div *ngIf="searching" class="spinner-container">
-       <ion-spinner></ion-spinner>
-    </div> -->
+
+    <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Search an item"></ion-searchbar>
+    <ion-list>
+      <div *ngIf=" event.length > 0; else noItems">
+        <ion-item >
+          <ion-icon [name]=" event.icon" slot="start"></ion-icon>
+          {{event.desc}}
+          <div class="item-note" slot="end">
+            <!-- {{item.note}} -->
+          </div>
+        </ion-item>
+      </div>
+      <ng-template #noItems>
+        <ion-item>
+          No items found.
+        </ion-item>
+      </ng-template>
+    </ion-list>
+
+
       <ion-button (click)="openHome()" slot="end">Home</ion-button>
       <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
       <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
