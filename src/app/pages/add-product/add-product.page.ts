@@ -45,10 +45,10 @@ export class AddProductPage implements OnInit {
       productno: [this.event.productno, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
-      // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
-      // small: [this.event.small, Validators.compose([Validators.required])], 
-      // medium: [this.event.medium, Validators.compose([Validators.required])], 
-      // large: [this.event.large, Validators.compose([Validators.required])], 
+      quantity : [this.event.quantity, Validators.compose([Validators.pattern("[^0-9]")])], 
+      small: [this.event.small, Validators.compose([Validators.requiredTrue])], 
+      medium: [this.event.medium, Validators.compose([Validators.requiredTrue])], 
+      large: [this.event.large, Validators.compose([Validators.requiredTrue])], 
     });
   }
 
