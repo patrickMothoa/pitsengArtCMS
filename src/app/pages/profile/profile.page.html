@@ -13,21 +13,15 @@
     <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Phone Number</ion-label>
-    <ion-input type="tel" [(ngModel)]="profile.PhoneNumber"></ion-input>
-  </ion-item>
-  <ion-item>
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" [(ngModel)]="profile.email"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label position="floating">Address</ion-label>
-        <ion-input type="email" [(ngModel)]="profile.address"></ion-input>
+        <ion-label position="floating" >Address</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.address"></ion-input>
       </ion-item>
   
-  <ion-button expand="full" (click)="createAccount()">
-    Done
-  </ion-button>
+  <ion-button expand="full" (click)="createAccount()">Done</ion-button>
     </div>
     
     <div *ngIf="isprofile" class="profileD">

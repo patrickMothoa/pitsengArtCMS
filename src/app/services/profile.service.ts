@@ -4,9 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileService {
+  user;
   admin = {
     uid: '',
-     phoneNumber: ''
+    phoneNumber: ''
   };
   constructor() { }
   storeAdmin(admin){
@@ -17,4 +18,8 @@ export class ProfileService {
   getAdmin(){
     return this.admin.uid;
   }
+  setUser(val){
+    this.user = val;
+      console.log('User form Provider', this.user);
+   }
 }
