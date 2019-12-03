@@ -74,11 +74,6 @@ export class ProductService {
 });
 }
 
-filterItems(searchTerm){
-  // return this.event.filter((item) => {
-  //     return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-  // });     
-
-}
+data = {};
 
 }

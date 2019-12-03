@@ -39,8 +39,11 @@ export class HomePage implements OnInit {
   public searchTerm: string = '';
   public items: any;
   public searching: boolean = false;
+  supplier
 
   myProduct = false;
+  autocompleteItemz: any;
+  autocompletez:any;
 
   sliderConfig = {
     slidesPerView: 1.6,
@@ -52,38 +55,18 @@ export class HomePage implements OnInit {
   public allItems: Array<{ title: string; icon: string }> = [];
 
 
-  constructor(private dataService: DataService, private router: Router, public productService: ProductService) {
+  constructor(private dataService: DataService, private router: Router, public productService: ProductService,public data: ProductService) {
     this.searchControl = new FormControl();
 
-
+    this.autocompleteItemz = [];
+    this.autocompletez = { input: '' };
 
   }
 
   ngOnInit() {
     this.getProducts();
-    this.setFilteredItems("");
-    
-     this.MySearch();
-
-    this.searchControl.valueChanges
-    .pipe(debounceTime(700))
-    .subscribe(search => {
-      this.setFilteredItems(search);
-    });
-  }
-  setFilteredItems(searchTerm) {
-    this.items = this.dataService.filterItems(searchTerm);
   }
 
-  MySearch(){
-    for (let i = 0; i < this.Products.length; i++) {
-      this.item.push({
-        title: this.Products[i].charAt(0).toUpperCase() + this.Products[i].slice(1),
-        icon: this.Products[i]
-      });
-    }
-    this.allItems = this.item;
-  }
 
   ViewDetails(view) {
     console.log("dddddddddddddd", view);
@@ -130,28 +113,7 @@ export class HomePage implements OnInit {
   customErrorMsg:boolean = false;
   listFetchStatus:boolean = false;
 
-  
-  // onSearchInput(){
-    
-  //   if(this.searchTerm.length>0){
-  //     // this.event = this.productService.filterItems(this.searchTerm);
-  //      this.searching = true;
-       
-  //   }else{
-  //     this.searching = false;
-  //   }
-  // }
   ionViewDidLoad() {
-
-    // this.setFilteredItems();
-
-    // this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-
-    //     this.searching = false;
-    //     this.setFilteredItems();
-
-    // });
-
 
 }
 
@@ -194,15 +156,26 @@ export class HomePage implements OnInit {
   //  this.navCtrl.push(ItemViewPage,itemInfo);
   }
 
-  onSearchTerm(ev: CustomEvent) {
-    this.items = this.allItems;
-    const val = ev.detail.value;
- 
+  SearchProducts(ev: CustomEvent){
+    if(this.supplier === '') {
+      this.autocompleteItemz = [];
+      return;
+    }
+   this.autocompleteItemz = this.Products;
+   console.log("ooo", this.autocompleteItemz );
+    this.getProducts();
+  
+    const val = ev.detail.value; 
     if (val.trim() !== '') {
-      this.items = this.items.filter(term => {
-        return term.title.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+      this.autocompleteItemz = this.autocompleteItemz.filter(term => {
+        return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
       });
     }
+  }
 
-}
+  productDetails(item){
+    this.data.data = item;
+    this.router.navigateByUrl('/details')
+  }
+
 }
