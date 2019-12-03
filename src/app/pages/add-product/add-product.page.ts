@@ -87,6 +87,7 @@ export class AddProductPage implements OnInit {
   
     } else {
       this.productservices.addProduct(this.event);
+      this.openHome()
     }
   }
 
