@@ -1,45 +1,48 @@
-<ion-header>
-    <ion-toolbar>
-      <ion-title>details</ion-title>
-    </ion-toolbar>
-  </ion-header>
   
    <ion-content padding>
-      <div class="display">
+      <div class="firstContainer" >
+
+
           <div class ="info" *ngFor="let p of Products" > 
-              <div class="d-image">
+              <div class="imageContainer">
                   <img src="{{p. obj.image}}" alt="">
             </div>
+            <div class="rightContainer">
+  <div class="ProductDetails" >
             <div class="name">
-                <h5 class="single-desc" >{{p.obj.categories}}</h5>
-                <h4 class="single-price" > {{p.obj.price}}</h4>
+              <!-- <span><h5 class="single-desc" >{{p.obj.categories}}</h5></span> -->
+              <span><h4 class="single-price" > {{p.obj.price}}</h4></span>  
             </div>
             <div class="desc">
-                <h5 class="single-desc" >{{p.obj.desc}}</h5>
-                <h4 class="single-price" > {{p.obj.productno}}</h4>
-                <h4 class="single-price" > {{p.obj.items}}</h4>
+              <span><h5 class="single-desc" >{{p.obj.desc}}</h5></span>
+              <span>  <h4 class="single-price" > {{p.obj.productno}}</h4></span>
+              <span> <h4 class="single-price" > {{p.obj.items}}</h4></span>            
             </div>
-            <!-- <div class="Sizes">
+            </div>
+
+            <div class="Sizes">
                 <h3>Sizes</h3>
                 <hr>
                 <div class="size">
                       <p *ngFor="let s of p.size">{{f}}</p>
                 </div>
                
-          </div>	 -->
-          <div class="edit">
-              <button (click)="edit(p.id)" ion-button color="#3657B3" >
-                  <ion-icon color="secondary" name="md-create" class="icon1234"></ion-icon>
-            </button>
+          </div>	 
+          <div class="productButtons-Container" >
+        
+              <ion-button color="success"  (click)="edit(p.id)" ion-button >
+                  <ion-icon  name="md-create" class="icon1234"></ion-icon>edit</ion-button>
+              <ion-button color="dark" (click)="Deleteproduct(p.id)">
+                    <ion-icon name="trash"></ion-icon> Delete
+              </ion-button>
+        
+          </div>
             </div>
-          <div class="remove">
-              <ion-fab-button color="danger" (click)="Deleteproduct(p.id)">
-                    <ion-icon name="trash"></ion-icon>
-              </ion-fab-button>
-        </div>
+          
+
           </div>
          
-          </div>
+
 
     <!-- <p *ngFor="let p of Products">
       <small>{{p.obj.categories}}</small>
@@ -95,5 +98,6 @@
       </div>
       
 </div>	
-   </ion-card> -->
+   </ion-card> -->   
+     </div>
   </ion-content>

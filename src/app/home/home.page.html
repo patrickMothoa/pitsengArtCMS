@@ -1,53 +1,70 @@
-<ion-header>
-  <ion-toolbar>
-    <!-- <ion-toolbar>
-      <ion-searchbar [formControl]="searchControl"  [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
-    </ion-toolbar>
-    <div *ngIf="searching" class="spinner-container">
-      <ion-spinner></ion-spinner>
-    </div> -->
-      <ion-button (click)="openHome()" slot="end">Home</ion-button>
-      <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
-      <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
-      <ion-button (click)="openInvoice()" slot="end">Invoices</ion-button>
-      <ion-button (click)="logOut()" slot="end">Logout</ion-button>
-  </ion-toolbar>
-
-</ion-header>
+<div class="navigation_bar">
+  <div class="left-icons" >
+    <ion-button fill="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
+    <ion-button  fill="clear" color="light"(click)="openProfile()" slot="end">Profile</ion-button>
+    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button>
+    <ion-button fill="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+  </div>
+  
+    <div class="avatar-image" >
+     
+      <img src="../../../assets/1.PNG" class="logo">
+    
+    </div>
+    
+    
+ <div class="right-icons" >
+    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear"  color="light" 	 (click)="openInvoice()" slot="end">
+       <ion-icon slot="icon-only" name="home"></ion-icon>
+       </ion-button>
+ </div>
+  
+</div>
 
 <ion-content>
-
-  <ion-list>
+  <div class="mainContainer">
+    <!-- <div class="productTitle" >
     <ion-item *ngFor="let item of items">
       {{ item.title }}
     </ion-item>
-  </ion-list>
+    </div> -->
+
+
+
   <div class="categories-block"  *ngFor="let event of Products" >
-      <ion-row no-padding class="categories-banner">
+      <!-- <ion-row no-padding class="categories-banner">
           <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
               {{event.obj.categories }}<br>
           </ion-col>
-      </ion-row>
-
-      <ion-slides [options]="sliderConfig">
-          <ion-slide >
-              <div *ngIf="myProduct">
-                  <ion-card >
-                      <ion-card-header (click)="ViewDetails(event)">
-                          <ion-card-title>
-                            <img src="{{event.obj.image}}" alt="" height="300" width="300">
+      </ion-row> -->      
+              <div *ngIf="myProduct" class="myProduct" >
+                <div>
+                  
+                </div>
+                  <ion-card no-padding >
+                      <ion-card-header no-padding (click)="ViewDetails(event)">
+                          <ion-card-title no-padding >
+                            <img src="{{event.obj.image}}" alt="" class="image" >
                           </ion-card-title>
-                          <ion-card-content>
-                            {{event.obj.name}} <br>
-                            R{{event.obj.price}}
+                          <ion-card-content >
+                            <span><h2>{{event.obj.name}}</h2></span> 
+                            <span> <p>R{{event.obj.price}}</p> </span>
+                           
                           </ion-card-content>
                       </ion-card-header>
                   </ion-card>
               </div>
-          </ion-slide>
-      </ion-slides>
   </div>
+</div>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <ion-title color="light" size="small" >  @ 2019  Pitseng Arts and Crafts.  All right reserved. Privacy Policy</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 
 
 
