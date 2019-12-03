@@ -12,13 +12,14 @@ import { ProfileService } from '../../services/profile.service';
 export class ProfilePage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
+  uid
   profile = {
     image: '',
     name: '',
     address: '',
     email: '',
     uid: '',
-    phoneNumber: '',
+    phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
   uploadprogress = 0;
   errtext = '';
@@ -33,7 +34,10 @@ export class ProfilePage implements OnInit {
 
     // phoneNumber: '',
   }
-  constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { }
+  
+  constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { 
+    this.uid = firebase.auth().currentUser.uid;
+  }
  
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -97,23 +101,23 @@ export class ProfilePage implements OnInit {
     
     if (!this.profile.address||!this.profile.name||!this.profile.email){
       console.log("Are we inside");
+      this.errtext = 'Fields should not be empty'
       if (!this.profile.image){
         this.errtext = 'Profile image still uploading or not selected';
         
       } else {
-        this.profile.uid =  this.admin.uid;
-        this.db.collection('admins').doc(this.profile.name).set(this.profile).then(res => 
-          {
-          console.log('Profile created');
-          this.getProfile();
-        }).catch(error => {
-          console.log('Error');
-        });
+        this.errtext = 'image not uploaded'
       }
     }
     else {
-      
-      this.errtext = 'Fields should not be empty'
+      this.profile.uid =  this.admin.uid;
+      this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => 
+        {
+        console.log('Profile created');
+        this.getProfile();
+      }).catch(error => {
+        console.log('Error');
+      });
     }
   }
 

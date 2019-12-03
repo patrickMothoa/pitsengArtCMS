@@ -13,11 +13,25 @@
     
     
  <div class="right-icons" >
-    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear"  color="light" 	 (click)="openProfile()"slot="end">
-       <ion-icon slot="icon-only" name="contact"></ion-icon>
+
+<!-- search from here -->
+  <ion-toolbar> 
+          <ion-searchbar placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" style='min-width: 200px;'></ion-searchbar> 
+          <ion-icon style="float: right; padding: 10px;" name="close" (click)="HideButton()"></ion-icon>
+          <ion-list  [hidden]="autocompleteItemz.length == 0" >
+            <div *ngIf="autocompleteItemz.length > 0">
+          <ion-item class="list"  *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
+                <ion-avatar>
+                    <img src="{{item.obj.image}}" alt="" height="300" width="300">
+                </ion-avatar>
+                <ion-label> {{ item.obj.name }}</ion-label>  
+          </ion-item>
+          </div>
+         </ion-list>
+  </ion-toolbar>
+
+    <ion-button fill="clear"  color="light" 	 (click)="openInvoice()" slot="end">
+       <ion-icon slot="icon-only" name="home"></ion-icon>
        </ion-button>
  </div>
   
