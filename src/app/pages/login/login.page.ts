@@ -135,14 +135,14 @@ export class LoginPage  {
 
     firebase.auth().signInWithPhoneNumber(String(this.phoneNumber), appVerifier).then(confirmationResult => {
       window.confirmationResult = confirmationResult;
-      this.db.collection('admins').doc(firebase.auth().currentUser.uid).get().then(res =>{
-        if (res.exists){
-          this.route.navigateByUrl('/profile')
+      // this.db.collection('admins').doc(firebase.auth().currentUser.uid).get().then(res =>{
+      //   if (res.exists){
+      //     this.route.navigateByUrl('/home')
          
-        }else{
-          this.route.navigateByUrl('/profile')
-        }
-      })
+      //   }else{
+      //     this.route.navigateByUrl('/profile')
+      //   }
+      // })
     //   console.log(confirmationResult.user.uid,confirmationResult.user.email,'user logged in');
     //   // this.slist.email = result.user.email;
     //   // console.log(this.lsname)
