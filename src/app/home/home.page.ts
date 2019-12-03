@@ -8,6 +8,8 @@ import { debounceTime } from "rxjs/operators";
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
 import {ProductDetailService} from "../../app/product-detail.service"
+import { DetailsPage } from '../pages/details/details.page';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -48,7 +50,8 @@ export class HomePage implements OnInit {
     centeredSlides: true
   };
 
-  constructor(private dataService: DataService, public data : ProductDetailService,  private router: Router, public productService: ProductService) {
+  constructor(private dataService: DataService, public data : ProductDetailService,  private router: Router, public productService: ProductService,
+    public modalController: ModalController) {
     this.searchControl = new FormControl();
   }
 
@@ -66,10 +69,18 @@ export class HomePage implements OnInit {
     this.items = this.dataService.filterItems(searchTerm);
   }
 
+  async viewModal(){
+    const modal = await this.modalController.create({
+      component: DetailsPage
+    });
+    return  modal.present();
+
+  }
   ViewDetails(view) {
     console.log("dddddddddddddd", view);
     this.data.data = view;
-    this.router.navigateByUrl('/details')
+    /* this.router.navigateByUrl('/details') */
+    this.createModal();
   }
 
   openProfile(){
@@ -96,6 +107,14 @@ export class HomePage implements OnInit {
       // An error happened.
     });
    
+  }
+
+  async createModal() {
+    const modal = await this.modalController.create({
+      component: DetailsPage,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
   }
 
   ///////////////////////

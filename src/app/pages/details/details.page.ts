@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductDetailService } from 'src/app/product-detail.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -32,7 +32,9 @@ export class DetailsPage implements OnInit {
     public productService: ProductService, 
     public data : ProductDetailService,
     public alertCtrl: AlertController,
-    public route : Router) { }
+    public route : Router,
+    public modalController: ModalController
+    ) { }
 
   ngOnInit() {
     this.getProducts();
@@ -77,6 +79,7 @@ export class DetailsPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'DELETE!',
       message: '<strong>Are you sure you want to delete this tattoo?</strong>!!!',
+      
       buttons: [
         {
           text: 'Cancel',
@@ -93,5 +96,14 @@ export class DetailsPage implements OnInit {
     });
     await alert.present();
   }
+
+  dismiss() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
+
 
 }
