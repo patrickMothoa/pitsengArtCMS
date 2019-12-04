@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+     Products
+    </ion-title>
+    <ion-button (click)="openHome()" slot="end">Home</ion-button>
+    <ion-button (click)="openProfile()" slot="end">Profile</ion-button>
+    <ion-button (click)="openUploads()" slot="end">Add Product</ion-button>
+    <ion-button (click)="openInvoice()" slot="end">Invoices</ion-button>
+    <ion-button (click)="logOut()" slot="end">Logout</ion-button>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content >
+    <ion-item *ngIf="!event.image">
+        <ion-label position="stacked" id="profile_image" color="primary">Select Product image</ion-label>
+        <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="event.image"><img  src="{{event.image}}" height="80" width="80"></ion-item>
+  <ion-card>
+      <ion-card-header >
+        <ion-card-title>New Product </ion-card-title>
+      </ion-card-header>
+      <ion-card-content >
+      <ion-item >
+              <ion-label>Categories</ion-label>
+              <ion-select  (ionChange) = "getCategories($event)">
+                <ion-select-option value="Vase" >Vase</ion-select-option>
+                <ion-select-option value="Cups and Plates" >Cups and Plates</ion-select-option>
+                <ion-select-option value="Photo Frame" >Photo Frames</ion-select-option>
+                <ion-select-option value="Decor Pallets" >Decor Pallets</ion-select-option>
+                <ion-select-option value="Wall Deco" >Wall Decor</ion-select-option>
+                <ion-select-option value="Bowls and Pots" >Bowls and Pots</ion-select-option>
+                <ion-select-option value="Lamps" >Lamps</ion-select-option>
+      </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-textarea placeholder="Description" [(ngModel)]="event.desc"></ion-textarea>
+      </ion-item>
+        <ion-item>
+              <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Product Number" [(ngModel)]="event.productno"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+        </ion-item>
+
+        <ion-list>
+            <ion-radio-group (ionChange) = "getOption($event)">
+              <ion-item>
+                <ion-label>per Item</ion-label>
+                <ion-radio slot="start" value="perItem" checked></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>per Package</ion-label>
+                <ion-radio slot="start" value="perPackage"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-item>
+            <ion-input type="number" min="1" max="1000000" [(ngModel)]="event.quantity"></ion-input>
+        </ion-item>
+       
+            <ion-item>
+              <ion-label position="floating">Size</ion-label>
+        <ion-select multiple="true" [(ngModel)]="event.size">
+              <ion-select-option *ngFor="let s of size">{{s}}</ion-select-option>
+        </ion-select>
+  </ion-item>
+        <!-- <ion-button color="primary" (click)="addEvent()" [disabled]="event.large == ''" >Upload</ion-button> -->
+        <ion-button color="primary" *ngIf="!updateBtn" (click)="addEvent()" >Save Product</ion-button>
+        <button *ngIf="updateBtn" (click)="update(autoId)">Update</button>
+      </ion-card-content>
+  </ion-card>
+
+
+
+  <div class="display">
+    <div class="d-card" *ngFor="let p of listproduct" >
+          
+          <div class="d-image" (click)="edit(p.data, p.id)">
+                <img src="{{p.data.image}}" alt="">
+          </div>
+          <div class="details">
+                <div class="r-name">
+                      <h3>{{p.data.name}}</h3>
+                      <p>R {{p.data.price}} pp/pn</p>
+                </div>
+                <p>{{p.data.desc}}</p>
+                <h3>{{p.data.productno}}</h3>
+                <h4>{{p.data.items}}</h4>
+
+                <div class="size">
+                      <h3>Sizes</h3>
+                      <hr>
+                      <div class="fet">
+                            <p *ngFor="let s of p.size">{{s}}</p>
+                      </div>
+                      <p>Created: {{p.data.lastcreated}}</p>
+                </div>
+                
+          </div>
+          <div class="remove">
+            <ion-fab-button color="danger" (click)="delete(p.id)">
+                  <ion-icon name="trash"></ion-icon>
+            </ion-fab-button>
+      </div>
+    </div>
+    <div class="listb">
+                
+    </div>
+</div>
+</ion-content>
+
+

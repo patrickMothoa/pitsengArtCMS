@@ -4,6 +4,7 @@ import { AuthService } from 'services/auth.service';
 import * as firebase from 'firebase'
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 declare var window
 
 @Component({
@@ -21,11 +22,13 @@ export class LoginPage  {
   confirmationResult = ''
   inputCode
   public recaptchaVerifier: firebase.auth.RecaptchaVerifier
+  db=firebase.firestore()
   constructor(  
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public alertController: AlertController,
     public route :Router,
+    private profileService: ProfileService
     ) {
       this.smsSent = false
 
@@ -35,6 +38,14 @@ export class LoginPage  {
     phoneNumber: [this.phoneNumber, Validators.compose([Validators.required])]
   })
 
+  }
+  ngOnInit() {
+    // firebase.auth().onAuthStateChanged(res => {
+    //   if (res) {
+    //     this.profileService.storeAdmin(res);
+    //     this.route.navigateByUrl('home', { skipLocationChange: true });
+    //   }
+    // });
   }
  
   requestCode(){
@@ -101,7 +112,14 @@ export class LoginPage  {
         handler: (result) => {
           console.log(result.code);
           this.logins(result.code);
-          this.route.navigateByUrl('/home');
+          this.db.collection('admins').doc(firebase.auth().currentUser.uid).get().then(res =>{
+            if (res.exists){
+              this.route.navigateByUrl('/home')
+             
+            }else{
+              this.route.navigateByUrl('/profile')
+            }
+          })
         }
       }]
     });
@@ -117,6 +135,27 @@ export class LoginPage  {
 
     firebase.auth().signInWithPhoneNumber(String(this.phoneNumber), appVerifier).then(confirmationResult => {
       window.confirmationResult = confirmationResult;
+      // this.db.collection('admins').doc(firebase.auth().currentUser.uid).get().then(res =>{
+      //   if (res.exists){
+      //     this.route.navigateByUrl('/home')
+         
+      //   }else{
+      //     this.route.navigateByUrl('/profile')
+      //   }
+      // })
+    //   console.log(confirmationResult.user.uid,confirmationResult.user.email,'user logged in');
+    //   // this.slist.email = result.user.email;
+    //   // console.log(this.lsname)
+    //   if(confirmationResult.user.uid >"")
+    //   {
+    // //     const toast =  this.toastCtrl.create({
+    // //       message: 'Login Successful!',
+    // //       duration: 9000
+    // //     });
+    // // toast.present();
+    //   ​this.route.navigateByUrl('/home')
+    //   }
+   
       
     }).catch((error) => {
       console.log(error)

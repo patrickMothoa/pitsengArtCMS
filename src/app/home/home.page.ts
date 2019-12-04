@@ -8,6 +8,9 @@ import { debounceTime } from "rxjs/operators";
 
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
+import {ProductDetailService} from "../../app/product-detail.service"
+import { DetailsPage } from '../pages/details/details.page';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -39,9 +42,12 @@ export class HomePage implements OnInit {
 'hjyuu'];
 
   thisSearches = []
+  public items: any;
+  supplier
 
   myProduct = false;
-  data : string = "";
+  autocompleteItemz: any;
+  autocompletez:any;
 
   sliderConfig = {
     slidesPerView: 1.6,
@@ -49,31 +55,13 @@ export class HomePage implements OnInit {
     centeredSlides: true
   };
 
- 
-  public items: Array<{ title: string; icon: string }> = [];
-  public allItems: Array<{ title: string; icon: string }> = [];
- 
-
-  constructor(private dataService: DataService, private router: Router, public productService: ProductService) {
+  constructor(private dataService: DataService, public data : ProductDetailService,  private router: Router, public productService: ProductService,
+    public modalController: ModalController) {
     this.searchControl = new FormControl();
-   for (let i = 0; i < this.Products.length; i++) {
-      this.items.push({
-        title: this.Products[i].charAt(0).toUpperCase() + this.Products[i].slice(1),
-        icon: this.Products[i]
-      });
-    }
-    this.allItems = this.items;
-  }
- 
-  onSearchTerm(ev: CustomEvent) {
-    this.items = this.allItems;
-    const val = ev.detail.value;
- 
-    if (val.trim() !== '') {
-      this.items = this.items.filter(term => {
-        return term.title.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
-      });
-    } 
+
+    this.autocompleteItemz = [];
+    this.autocompletez = { input: '' };
+
   }
   
   // Wall_Deco = [];
@@ -99,31 +87,20 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this.setFilteredItems("");
+  }
 
-    this.searchControl.valueChanges
-    .pipe(debounceTime(700))
-    .subscribe(search => {
-      this.setFilteredItems(search);
+  async viewModal(){
+    const modal = await this.modalController.create({
+      component: DetailsPage
     });
-  }
-  setFilteredItems(searchTerm) {
-    this.items = this.dataService.filterItems(searchTerm);
-  }
+    return  modal.present();
 
+  }
   ViewDetails(view) {
-    this.navDetails.push(this.ViewDetails,{
-      image: view.image,
-      categories:view.categories,
-      name:view.name,
-      price:view.price,
-      productno:view.productno,
-      desc: view.desc,
-      small:view.small,
-      medium:view.medium,
-      large:view.large
-});
-    this.router.navigateByUrl('/details')
+    console.log("dddddddddddddd", view);
+    this.data.data = view;
+    /* this.router.navigateByUrl('/details') */
+    this.createModal();
   }
 
   openProfile(){
@@ -150,6 +127,14 @@ export class HomePage implements OnInit {
       // An error happened.
     });
    
+  }
+
+  async createModal() {
+    const modal = await this.modalController.create({
+      component: DetailsPage,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
   }
 
   ///////////////////////
@@ -194,13 +179,20 @@ export class HomePage implements OnInit {
 
 
       getProducts() {
+
+        let obj = {id : '', obj : {}};
+
         this.db.collection('Products').get().then(snapshot => {
+          this.Products = [];
           if (snapshot.empty) {
                   this.myProduct = false;
                 } else {
                   this.myProduct = true;
                   snapshot.forEach(doc => {
-                    this.Products.push(doc.data());
+                    obj.id = doc.id;
+                    obj.obj = doc.data();
+                    this.Products.push();
+                    obj = {id : '', obj : {}};
                     console.log("herererer", this.Products);
                   });
                   return this.Products;
@@ -216,6 +208,28 @@ export class HomePage implements OnInit {
 
   itemClick(itemInfo){
   //  this.navCtrl.push(ItemViewPage,itemInfo);
+  }
+
+  SearchProducts(ev: CustomEvent){
+    if(this.supplier === '') {
+      this.autocompleteItemz = [];
+      return;
+    }
+   this.autocompleteItemz = this.Products;
+   console.log("ooo", this.autocompleteItemz );
+    this.getProducts();
+  
+    const val = ev.detail.value; 
+    if (val.trim() !== '') {
+      this.autocompleteItemz = this.autocompleteItemz.filter(term => {
+        return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+      });
+    }
+  }
+
+  productDetails(item){
+    this.data.data = item;
+    this.router.navigateByUrl('/details')
   }
 
 }
