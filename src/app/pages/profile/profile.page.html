@@ -1,4 +1,9 @@
 <ion-content>
+    <div class="left-icons" >
+        <ion-button fill="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
+          <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button>
+        <ion-button fill="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+      </div>
     <h1>Manage Profile</h1>
     <div *ngIf="!isprofile" class="profile-form">
       <ion-item>
