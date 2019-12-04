@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
-      <ion-searchbar
+      <!-- <ion-searchbar
       [showCancelButton]="shouldShowCancel"
       (ionInput)="onInput($event)"
       (ionChange)="setFilteredItems()"
       (ionCancel)="onCancel($event)">
-    </ion-searchbar>
+    </ion-searchbar> -->
    
 
       <ion-button (click)="openHome()" slot="end">Home</ion-button>
@@ -18,11 +18,33 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
+    <!-- <ion-list>
         <ion-item *ngFor="let item of items">
           {{ item.title }}
         </ion-item>
-      </ion-list>
+      </ion-list>     -->
+<!-- 
+      <input type="text" [(ngModel)]="data">
+      <button (click)="search()">Search</button> -->
+
+
+      <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Search an item"></ion-searchbar>
+  <ion-list>
+    <div *ngIf="items.length > 0; else noItems">
+      <ion-item *ngFor="let item of items">
+        <ion-icon [name]="item.icon" slot="start"></ion-icon>
+        {{item.title}}
+        <div class="item-note" slot="end">
+          {{item.note}}
+        </div>
+      </ion-item>
+    </div>
+    <ng-template #noItems>
+      <ion-item>
+        <!-- No items found. -->
+      </ion-item>
+    </ng-template>
+  </ion-list>
   
   <div class="categories-block"  *ngFor="let event of Products" >
       <ion-row no-padding class="categories-banner">

@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
 
   public searchControl: FormControl;
   public searchTerm: string = "";
-  public items: any;
+  // public items: any;
   searching: any = false;
   db = firebase.firestore();
   event = {
@@ -34,11 +34,14 @@ export class HomePage implements OnInit {
     large: ''
   };
 
-  Products = [];
+  Products = ['pptptpt',
+'iyuyiu',
+'hjyuu'];
 
   thisSearches = []
 
   myProduct = false;
+  data : string = "";
 
   sliderConfig = {
     slidesPerView: 1.6,
@@ -46,9 +49,53 @@ export class HomePage implements OnInit {
     centeredSlides: true
   };
 
+ 
+  public items: Array<{ title: string; icon: string }> = [];
+  public allItems: Array<{ title: string; icon: string }> = [];
+ 
+
   constructor(private dataService: DataService, private router: Router, public productService: ProductService) {
     this.searchControl = new FormControl();
+   for (let i = 0; i < this.Products.length; i++) {
+      this.items.push({
+        title: this.Products[i].charAt(0).toUpperCase() + this.Products[i].slice(1),
+        icon: this.Products[i]
+      });
+    }
+    this.allItems = this.items;
   }
+ 
+  onSearchTerm(ev: CustomEvent) {
+    this.items = this.allItems;
+    const val = ev.detail.value;
+ 
+    if (val.trim() !== '') {
+      this.items = this.items.filter(term => {
+        return term.title.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+      });
+    } 
+  }
+  
+  // Wall_Deco = [];
+  
+  // ionViewWillEnter(){
+
+  // }
+
+  // search(){
+  //   this.db.collection("Products").onSnapshot(e => {
+  //     e.forEach(kk => {
+      
+  //       if(kk.data().categories === this.data){
+  //         console.log("Your data is here ", kk.data());
+  //         this.Wall_Deco.push(kk.data());
+  //       }else{
+  //         console.log("Category does not exist");
+          
+  //       }
+  //     })
+  //   })
+  // }
 
   ngOnInit() {
     this.getProducts();
