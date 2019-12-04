@@ -1,7 +1,10 @@
 import { Component, OnInit, } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -9,63 +12,59 @@ import * as firebase from 'firebase';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  public form = [   
-    { val: 'small' , isChecked: false},  
-    { val: 'medium' , isChecked: false},  
-    { val: 'large' , isChecked: false}
-  ];
+  db = firebase.firestore()
+  storage = firebase.storage().ref();
+  public signupForm: FormGroup;
+  public loading: any;
+  constructor(
+    private authService: AuthService,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    this.signupForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: [
+        '',
+        Validators.compose([Validators.minLength(6), Validators.required])
+      ]
+    });
+  }
 
-  verificationId: any;
-  code = '';
-  phone: string;
+  ngOnInit() {}
 
-  constructor(public navCtrl: NavController, public toastController: ToastController) { }
+  async signupUser(signupForm: FormGroup): Promise<void> {
+    if (!signupForm.valid) {
+      console.log(
+        'Need to complete the form, current value: ',
+        signupForm.value
+      );
+    } else {
+      const email: string = signupForm.value.email;
+      const password: string = signupForm.value.password;
 
-   ngOnInit() {}
-  // send() {
-  //   const tell = '+27' + this.phone;
-  //   (<any> window).FirebasePlugin.verifyPhoneNumber(tell, 60, (credential) => {
-  //     console.log(credential);
-  //     this.verificationId = credential;
-  //   }, (error) => {
-  //     console.error(error);
-  //     alert(error);
-  //    });
-  // }
-
-  // verify() {
-  //   const signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
-  //   firebase.auth().signInWithCredential(signInCredential).then((info) => {
-  //     console.log(info);
-  //     this.navCtrl.navigateRoot('/home'); 
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-  //   }
-  //   showToast() {
-  //     this.toastController.create({
-  //       message: 'Your settings have been saved.',
-  //       duration: 2000,
-  //       animated: true,
-  //       showCloseButton: true,
-  //       closeButtonText: "OK",
-  //       cssClass: "my-toast",
-  //       position: "middle"
-  //     }).then((obj) => {
-  //       obj.present();
-  //     });
-  //   }
-   
-  // lll(){
-  //   firebase.auth().signInWithPhoneNumber(this.phone, window.recaptchaVerifier)
-  //     .then( (confirmationResult) => {
-  //       // SMS sent. Prompt user to type the code from the message, then sign the
-  //       // user in with confirmationResult.confirm(code).
-  //       window.confirmationResult = confirmationResult;
-  //     }).catch(function (error) {
-  //       // Error; SMS not sent
-  //       // ...
-  //     });
-  // }
-  
+      this.authService.signupUser(email, password).then(
+        () => {
+          this.loading.dismiss().then(() => {
+             this.router.navigateByUrl('/home');
+          });
+        },
+        error => {
+          this.loading.dismiss().then(async () => {
+            const alert = await this.alertCtrl.create({
+              message: error.message,
+              buttons: [{ text: 'Ok', role: 'cancel' }]
+            });
+            await alert.present();
+          });
+        }
+      );
+      this.loading = await this.loadingCtrl.create();
+      await this.loading.present();
+    }
+  }
+  loginuser() {
+    this.router.navigateByUrl('/login');
+  }
 }
