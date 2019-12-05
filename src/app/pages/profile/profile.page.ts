@@ -39,6 +39,7 @@ export class ProfilePage implements OnInit {
   
   constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { 
     this.uid = firebase.auth().currentUser.uid;
+    
   }
  
   ngOnInit() {

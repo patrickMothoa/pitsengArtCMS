@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
 import { DetailsPageModule } from './pages/details/details.module';
 
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyB1es8iP2ZqtEUH8TJCa9HRDU7yjgRcuqs",
   authDomain: "pitsengart.firebaseapp.com",
   databaseURL: "https://pitsengart.firebaseio.com",
