@@ -208,7 +208,7 @@ export class HomePage implements OnInit {
                   snapshot.forEach(doc => {
                     obj.id = doc.id;
                     obj.obj = doc.data();
-                    this.Products.push(obj);
+                    this.Products.push();
                     obj = {id : '', obj : {}};
                     console.log("herererer", this.Products);
                   });
