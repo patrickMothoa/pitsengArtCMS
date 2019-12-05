@@ -15,6 +15,7 @@ export class ProPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
+  public isSearchbarOpened = false;
   listproduct = [];
   event = {
     image: '',
@@ -38,7 +39,7 @@ export class ProPage implements OnInit {
   eventSource = [];
   reviews = [];
   actRoute: any;
-size = ['small', 'medium', 'large']
+size = ['S' + '', 'M'+ '', 'L']
   autoId: any;
   constructor(public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
@@ -80,13 +81,13 @@ size = ['small', 'medium', 'large']
   async addEvent(){
     if (!this.event.image){
       const alerter = await this.alertCtrl.create({
-        message: 'Error saving product. No image selected or has not finnished uploading.'
+        message: ' No image selected or has not finnished uploading.'
       })
       alerter.present();
     } else {
       if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
         const alerter = await this.alertCtrl.create({
-          message: 'Error saving product. Some fields not filled'
+          message: ' Some fields not filled'
         })
         alerter.present();
       }else {
@@ -253,12 +254,12 @@ async update(id) {
     
     const alert = await this.alertCtrl.create({
       header: 'Confirm!',
-      message: 'Message <strong>Are you sure you want to delete? This action is ireversable.</strong>!!!',
+      message: 'Are you sure you want to delete? This action is ireversable.',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary',
+          cssClass: 'medium',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
@@ -281,7 +282,8 @@ async update(id) {
             })
           }
         }
-      ]
+      ],
+      cssClass: 'alertCustomCss'
     });
 
     await alert.present(); 
