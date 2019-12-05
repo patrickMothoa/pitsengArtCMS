@@ -128,8 +128,8 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  openUploads(){
-    this.router.navigateByUrl('/add-product');
+  openPro(){
+    this.router.navigateByUrl('/pro');
   }
 
   openInvoice(){

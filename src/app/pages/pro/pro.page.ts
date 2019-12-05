@@ -50,10 +50,7 @@ size = ['S' + '', 'M'+ '', 'L']
       productno: [this.event.productno, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
-      // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
-      // small: [this.event.small, Validators.compose([Validators.required])], 
-      // medium: [this.event.medium, Validators.compose([Validators.required])], 
-      // large: [this.event.large, Validators.compose([Validators.required])], 
+     
     });
   }
 
@@ -126,23 +123,25 @@ size = ['S' + '', 'M'+ '', 'L']
     //**************************** */
     
      }
-    } 
-    this.event = {
-      image: '',
-      categories:'',
-      name:'',
-      price:0,
-      productno:'',
-      desc: '',
-      items:'',
-      quantity : 1,
-      lastcreated: '',
-      size:[]
-      // small:'',
-      // medium:'',
-      // large: ''
-    };
-  }
+    }
+  } 
+    clear(){
+      this.event = {
+        image: '',
+        categories:'',
+        name:'',
+        price:0,
+        productno:'',
+        desc: '',
+        items:'',
+        quantity : 1,
+        lastcreated: '',
+        size:[]
+        
+      };
+    }
+    
+  
 
 async update(id) {
   if (!this.event.image){
@@ -202,9 +201,7 @@ async update(id) {
     quantity : 1,
     lastcreated: '',
     size:[]
-    // small:'',
-    // medium:'',
-    // large: ''
+    
   };
 }
 
