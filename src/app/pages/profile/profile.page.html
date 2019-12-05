@@ -1,4 +1,9 @@
 <ion-content>
+    <div class="left-icons" >
+        <ion-button fill="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
+          <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button>
+        <ion-button fill="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+      </div>
     <h1>Manage Profile</h1>
     <div *ngIf="!isprofile" class="profile-form">
       <ion-item>
@@ -13,8 +18,8 @@
     <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
   </ion-item>
   <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="profile.email"></ion-input>
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input type="tel" [(ngModel)]="profile.phoneNumber"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label position="floating" >Address</ion-label>

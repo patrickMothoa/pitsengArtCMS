@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-product/add-product.module').then( m => m.AddProductPageModule)
   },
   {
+    path:'pro',
+    loadChildren: () => import('./pages/pro/pro.module').then( m => m.ProPageModule)
+  },
+  {
     path: 'user-invoices',
     loadChildren: () => import('./pages/user-invoices/user-invoices.module').then( m => m.UserInvoicesPageModule)
   },

@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2  } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from '../services/product.service';
@@ -22,6 +22,9 @@ export class HomePage implements OnInit {
 
   public searchControl: FormControl;
   public searchTerm: string = "";
+  isShow = false;
+  public isSearchbarOpened = false;
+  // public searchTerm: string = "";
   // public items: any;
   searching: any = false;
   db = firebase.firestore();
@@ -56,7 +59,7 @@ export class HomePage implements OnInit {
   };
 
   constructor(private dataService: DataService, public data : ProductDetailService,  private router: Router, public productService: ProductService,
-    public modalController: ModalController) {
+    public modalController: ModalController, private element: ElementRef, public render: Renderer2) {
     this.searchControl = new FormControl();
 
     this.autocompleteItemz = [];
@@ -89,6 +92,20 @@ export class HomePage implements OnInit {
     this.getProducts();
   }
 
+   removeSearchList() {
+ 
+    this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'none'); 
+    
+  }
+  displaySearch() {
+    this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'block'); 
+    
+  } 
+
+  toggleDisplay() {
+    this.isShow = !this.isShow;
+  }
+  
   async viewModal(){
     const modal = await this.modalController.create({
       component: DetailsPage
@@ -212,6 +229,7 @@ export class HomePage implements OnInit {
 
   SearchProducts(ev: CustomEvent){
     if(this.supplier === '') {
+      
       this.autocompleteItemz = [];
       return;
     }
@@ -221,15 +239,19 @@ export class HomePage implements OnInit {
   
     const val = ev.detail.value; 
     if (val.trim() !== '') {
+      this.displaySearch();
       this.autocompleteItemz = this.autocompleteItemz.filter(term => {
         return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
       });
+    }else {
+      this.removeSearchList();
     }
   }
 
   productDetails(item){
     this.data.data = item;
-    this.router.navigateByUrl('/details')
+    this.createModal();
   }
+ 
 
 }
