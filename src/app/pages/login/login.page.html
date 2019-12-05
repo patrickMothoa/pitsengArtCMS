@@ -1,4 +1,4 @@
-<ion-content padding>
+<!-- <ion-content padding>
   <div id="recaptcha-container"></div>
   
       <form class="form" style="padding: 50px;" [formGroup]="registrationForm">
@@ -10,4 +10,28 @@
         </form>
 
 
-</ion-content>
+</ion-content> --><ion-content>
+    <div class="main">
+        <div class="form">
+          
+          <div>
+                <form #adminLogin="ngForm" (ngSubmit)="loginAdmin(adminLogin.value)">
+                    <ion-item>
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input type="email" ngModel name="email"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label position="floating">Password</ion-label>
+                          <ion-input type="password" ngModel name="password"></ion-input>
+                        </ion-item>
+                        
+                        <div class="login">
+                            <button>Login</button>
+                          </div>
+                </form>
+                    
+          </div>
+        </div>
+        
+      </div>
+    </ion-content>

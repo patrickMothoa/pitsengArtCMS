@@ -104,20 +104,21 @@ export class ProfilePage implements OnInit {
       this.errtext = 'Fields should not be empty'
       if (!this.profile.image){
         this.errtext = 'Profile image still uploading or not selected';
+        this.profile.uid =  this.admin.uid;
+        this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => 
+          {
+          console.log('Profile created');
+          this.getProfile();
+        }).catch(error => {
+          console.log('Error');
+        });
         
       } else {
         this.errtext = 'image not uploaded'
       }
     }
     else {
-      this.profile.uid =  this.admin.uid;
-      this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => 
-        {
-        console.log('Profile created');
-        this.getProfile();
-      }).catch(error => {
-        console.log('Error');
-      });
+     
     }
   }
 

@@ -7,6 +7,9 @@ declare var window
   providedIn: 'root'
 })
 export class AuthService {
+  signupUser(email: string, password: string) {
+    throw new Error("Method not implemented.");
+  }
   email
   password
   //confirmationResult

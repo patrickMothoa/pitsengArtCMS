@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { DataService } from "../services/data.service";
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
+
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
 import {ProductDetailService} from "../../app/product-detail.service"
@@ -19,11 +20,13 @@ import { ModalController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
+  public searchControl: FormControl;
+  public searchTerm: string = "";
   isShow = false;
   public isSearchbarOpened = false;
   // public searchTerm: string = "";
   // public items: any;
-    searchControl: FormControl;
+  searching: any = false;
   db = firebase.firestore();
   event = {
     image: '',
@@ -37,12 +40,12 @@ export class HomePage implements OnInit {
     large: ''
   };
 
-  Products = [];
+  Products = ['pptptpt',
+'iyuyiu',
+'hjyuu'];
 
   thisSearches = []
-  public searchTerm: string = '';
   public items: any;
-  public searching: boolean = false;
   supplier
 
   myProduct = false;
@@ -63,6 +66,27 @@ export class HomePage implements OnInit {
     this.autocompletez = { input: '' };
 
   }
+  
+  // Wall_Deco = [];
+  
+  // ionViewWillEnter(){
+
+  // }
+
+  // search(){
+  //   this.db.collection("Products").onSnapshot(e => {
+  //     e.forEach(kk => {
+      
+  //       if(kk.data().categories === this.data){
+  //         console.log("Your data is here ", kk.data());
+  //         this.Wall_Deco.push(kk.data());
+  //       }else{
+  //         console.log("Category does not exist");
+          
+  //       }
+  //     })
+  //   })
+  // }
 
   ngOnInit() {
     this.getProducts();
@@ -143,7 +167,24 @@ export class HomePage implements OnInit {
   customErrorMsg:boolean = false;
   listFetchStatus:boolean = false;
 
+  
+  onSearchInput(){
+    
+       this.searching = true;
+     
+  }
   ionViewDidLoad() {
+
+    // this.setFilteredItems();
+
+    //     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+
+    //         this.searching = false;
+    //         this.setFilteredItems();
+
+    //     });
+
+
 
 }
 
