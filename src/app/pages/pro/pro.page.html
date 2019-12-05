@@ -256,7 +256,6 @@
  
 
 <ion-content >
-    <div class="form">
     <ion-item *ngIf="!event.image">
         <ion-label position="stacked" id="profile_image" color="primary">Select Product image</ion-label>
         <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
@@ -307,7 +306,7 @@
           </ion-list>
 
           <ion-item>
-            <ion-input type="number" min="1" max="100" [(ngModel)]="event.quantity"></ion-input>
+            <ion-input type="number" min="1" max="1000000" [(ngModel)]="event.quantity"></ion-input>
         </ion-item>
        
             <ion-item>
@@ -321,7 +320,6 @@
         <button *ngIf="updateBtn" (click)="update(autoId)">Update</button>
       </ion-card-content>
   </ion-card>
-    </div>
 
 
 
@@ -334,7 +332,7 @@
           <div class="details">
                 <div class="r-name">
                       <h3>{{p.data.name}}</h3>
-                      <p>R {{p.data.price}}</p>
+                      <p>R {{p.data.price}} pp/pn</p>
                 </div>
                 <p>{{p.data.desc}}</p>
                 <h3>{{p.data.productno}}</h3>

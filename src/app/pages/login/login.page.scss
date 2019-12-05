@@ -1,4 +1,11 @@
 page-login {
+  .mainContent{
+    background-color: red;
+  }
+  .form{
+    background-color: blue;
+    border: solid blue;
+  }
     ion-item {
       margin-bottom: 32px !important;
     }

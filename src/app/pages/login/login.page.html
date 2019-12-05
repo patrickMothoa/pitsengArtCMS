@@ -1,21 +1,9 @@
-<!-- <ion-content padding>
-  <div id="recaptcha-container"></div>
-  
-      <form class="form" style="padding: 50px;" [formGroup]="registrationForm">
-          <ion-label stacked>Phone Number</ion-label>
-          <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="phoneNumber"></ion-input>
-        <ion-button id="sign-in-button" class="form-buttons" [disabled]="!registrationForm.valid"  (click)="addUser()">
-          Sign In
-        </ion-button>
-        </form>
-
-
-</ion-content> --><ion-content>
-    <div class="main">
-        <div class="form">
+<ion-content  color="danger" >
+ 
+       
           
-          <div>
-                <form #adminLogin="ngForm" (ngSubmit)="loginAdmin(adminLogin.value)">
+  
+                <form class="form" #adminLogin="ngForm" (ngSubmit)="loginAdmin(adminLogin.value)">
                     <ion-item>
                         <ion-label position="floating">Email</ion-label>
                         <ion-input type="email" ngModel name="email"></ion-input>
@@ -30,8 +18,7 @@
                           </div>
                 </form>
                     
-          </div>
-        </div>
-        
-      </div>
+       
+       
+
     </ion-content>
