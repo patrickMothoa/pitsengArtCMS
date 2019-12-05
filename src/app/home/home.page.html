@@ -15,7 +15,7 @@
  <div class="right-icons" >
 
 <!-- search from here -->
-<div class="searchbar">
+<!-- <div class="searchbar">
     <ion-searchbar  *ngIf="isSearchbarOpened" showCancelButton="true" (ionFocus)="displaySearch()" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" style='min-width: 200px;'></ion-searchbar>
 
     <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened"  >
@@ -39,7 +39,7 @@
       
       </div>
   
-</div>
+</div> -->
 
 
 
@@ -49,35 +49,15 @@
      <ion-button fill="clear" color="light" (click)="openProfile()"slot="end">
         <ion-icon slot="icon-only" name="contact"  ></ion-icon>
       </ion-button>
-
-
  </div>
-  
-
-  
  </div>
-  
 </div>
 
 <ion-content>
   <div class="mainContainer">
-    <!-- <div class="productTitle" >
-    <ion-item *ngFor="let item of items">
-      {{ item.title }}
-    </ion-item>
-    </div> -->
-
-
-
-  <div class="categories-block"  *ngFor="let event of Products" >
-      <!-- <ion-row no-padding class="categories-banner">
-          <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
-              {{event.obj.categories }}<br>
-          </ion-col>
-      </ion-row> -->      
+  <div class="categories-block"  *ngFor="let event of Products" >     
               <div *ngIf="myProduct" class="myProduct" >
                 <div>
-                  
                 </div>
                   <ion-card no-padding >
                       <ion-card-header no-padding (click)="ViewDetails(event)">
