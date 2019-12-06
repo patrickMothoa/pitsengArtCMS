@@ -300,13 +300,13 @@ back() {
     openProfile(){
       this.router.navigateByUrl('/profile');
     }
-    openHome(){
-      this.router.navigateByUrl('/home');
+    openpro(){
+      this.router.navigateByUrl('/pro');
     }
   
-    openUploads(){
-      this.router.navigateByUrl('/add-product');
-    }
+    // openUploads(){
+    //   this.router.navigateByUrl('/add-product');
+    // }
   
     openInvoice(){
       this.router.navigateByUrl('/user-invoices');
