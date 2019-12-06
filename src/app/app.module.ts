@@ -12,6 +12,8 @@ import * as firebase from 'firebase';
 import { DetailsPageModule } from './pages/details/details.module';
 
 
+
+
 var firebaseConfig = {
     apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
     authDomain: "pitsengproject.firebaseapp.com",
