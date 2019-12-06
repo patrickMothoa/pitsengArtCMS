@@ -74,7 +74,7 @@
             <div class="inputsContainer">
 
               <ion-card-header>
-                <ion-card-title>Add Item</ion-card-title>
+                <ion-card-title>Add Product</ion-card-title>
               </ion-card-header>
               <ion-item *ngIf="!event.image">
                 <ion-label color="medium" position="stacked" id="profile_image">Upload Product Image</ion-label>
@@ -102,9 +102,9 @@
                 <ion-item>
                   <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
                 </ion-item>
-                <ion-item>
+                <!-- <ion-item>
                   <ion-input type="text" placeholder="Product number" [(ngModel)]="event.productno"></ion-input>
-                </ion-item>
+                </ion-item> -->
                 <ion-item>
                   <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
                 </ion-item>
@@ -166,8 +166,8 @@
                     <hr>
                     <div class="fet">
                       <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p>
-                    </div> -->
-                    <p>Created: {{p.data.lastcreated}}</p> -->
+                    </div> 
+                    <!-- <p>Created: {{p.data.lastcreated}}</p>  -->
                   </div>
                  
                   
