@@ -13,13 +13,15 @@ export class ProfilePage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
+  
   profile = {
     image: '',
     name: '',
+    phoneNumber:'',
     address: '',
     email: '',
     uid: '',
-    phoneNumber: firebase.auth().currentUser.phoneNumber,
+    // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
   uploadprogress = 0;
   errtext = '';
@@ -30,13 +32,14 @@ export class ProfilePage implements OnInit {
 
   admin = {
     uid: '',
-    phoneNumber:''
+    email:''
 
     // phoneNumber: '',
   }
   
   constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { 
     this.uid = firebase.auth().currentUser.uid;
+    
   }
  
   ngOnInit() {
@@ -44,7 +47,7 @@ export class ProfilePage implements OnInit {
       if (user) {
         console.log('Got admin', user);
         this.admin.uid = user.uid
-        this.admin.phoneNumber = user.phoneNumber
+        this.admin.email = user.email
       this.getProfile();
       } else {
         console.log('no admin');
@@ -99,7 +102,7 @@ export class ProfilePage implements OnInit {
   }
   createAccount(){
     
-    if (!this.profile.address||!this.profile.name||!this.profile.email){
+    if (!this.profile.address||!this.profile.name||!this.profile.phoneNumber){
       console.log("Are we inside");
       this.errtext = 'Fields should not be empty'
       if (!this.profile.image){

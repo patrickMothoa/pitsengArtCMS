@@ -125,23 +125,27 @@ size = ['small', 'medium', 'large']
     //**************************** */
     
      }
-    } 
-    this.event = {
-      image: '',
-      categories:'',
-      name:'',
-      price:0,
-      productno:'',
-      desc: '',
-      items:'',
-      quantity : 1,
-      lastcreated: '',
-      size:[]
-      // small:'',
-      // medium:'',
-      // large: ''
-    };
-  }
+    }
+  } 
+    clear(){
+      this.event = {
+        image: '',
+        categories:'',
+        name:'',
+        price:0,
+        productno:'',
+        desc: '',
+        items:'',
+        quantity : 1,
+        lastcreated: '',
+        size:[]
+        // small:'',
+        // medium:'',
+        // large: ''
+      };
+    }
+    
+  
 
 async update(id) {
   if (!this.event.image){
@@ -201,9 +205,7 @@ async update(id) {
     quantity : 1,
     lastcreated: '',
     size:[]
-    // small:'',
-    // medium:'',
-    // large: ''
+    
   };
 }
 
@@ -298,13 +300,13 @@ back() {
     openProfile(){
       this.router.navigateByUrl('/profile');
     }
-    openHome(){
-      this.router.navigateByUrl('/home');
+    openpro(){
+      this.router.navigateByUrl('/pro');
     }
   
-    openUploads(){
-      this.router.navigateByUrl('/add-product');
-    }
+    // openUploads(){
+    //   this.router.navigateByUrl('/add-product');
+    // }
   
     openInvoice(){
       this.router.navigateByUrl('/user-invoices');

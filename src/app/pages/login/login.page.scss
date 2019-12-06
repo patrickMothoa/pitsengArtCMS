@@ -1,5 +1,109 @@
-page-login {
-    ion-item {
-      margin-bottom: 32px !important;
-    }
-  }
+.mainContainer {
+  background: linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  // border: solid 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.logo {
+  max-height: 130px;
+  // position: absolute;
+  // top: 25%;
+  // bottom: 0%;
+}
+.logo > img {
+  padding: 3px;
+  border: 3px solid white;
+  border-radius: 100%;
+}
+.formContainer2{
+  width: 100%;
+  height: 100%;
+  // border: solid 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.text{
+  padding-top: 16%;
+}
+
+.content {
+  width: 50%;
+  margin: auto;
+  top: auto;
+  bottom: auto;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  // border: solid red;
+  box-shadow:  rgb(230, 224, 224);
+}
+.formContainer {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border: solid blue;
+  background: white ;
+}
+.imageside {
+  // border: solid purple;
+  width: 100%;
+  height: 100%;
+  // background-image:linear-gradient(to bottom, rgba(249, 178, 183, 0.877) ,rgba(107,43,93, 0.877)),url('../../assets/b4.jpg');
+  background-image: url(../../../assets/b.jpg);
+  background-size: 100% 100%;
+
+
+}
+ion-button{
+  width: 100%;
+  --border-radius: 0px 50px 0px 50px;
+  font-family: serif;
+  font-weight: bolder;
+}
+ion-title {
+  --color: #707070;
+  font-weight: lighter;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-family: serif;
+  text-align: right;
+  padding: 16px;
+}
+.box {
+  position: fixed;
+  top: 0;
+  transform: rotate(80deg); 
+  left: 0;
+}
+
+
+ion-input{
+  font-family: serif;
+}
+
+ion-item{ 
+  border-bottom: 0.5px solid #d1cdcd !important;
+
+ }
+
+ 
+
+
+
+
+
+
+
+
+
