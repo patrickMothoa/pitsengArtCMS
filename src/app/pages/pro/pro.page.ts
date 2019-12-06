@@ -154,7 +154,7 @@ async update(id) {
     })
     alerter.present();
   } else {
-    if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+    if (!this.event.desc ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product. Some fields not filled'
       })
@@ -198,7 +198,7 @@ async update(id) {
     image: '',
     categories:'',
     name:'',
-    price:0,
+    price:null,
     productno:'',
     desc: '',
     items:'',
@@ -304,9 +304,9 @@ back() {
       this.router.navigateByUrl('/pro');
     }
   
-    // openUploads(){
-    //   this.router.navigateByUrl('/add-product');
-    // }
+    openUploads(){
+      this.router.navigateByUrl('/add-product');
+    }
   
     openInvoice(){
       this.router.navigateByUrl('/user-invoices');

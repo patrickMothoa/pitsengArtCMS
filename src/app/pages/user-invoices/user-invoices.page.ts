@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+  import { from } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
+import { ProductDetailService } from 'src/app/product-detail.service';
+import { ProductService } from 'src/app/services/product.service';
+
+import { ModalController, LoadingController, AlertController, ToastController } from '@ionic/angular';
+import{ OrderDetailsPage } from '../../pages/order-details/order-details.page'
 import * as firebase from 'firebase';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+  
+
 @Component({
   selector: 'app-user-invoices',
   templateUrl: './user-invoices.page.html',
@@ -16,7 +26,8 @@ export class UserInvoicesPage implements OnInit {
   public postSort='recent';
   public userID;
   public userTransact: any;
-  constructor(public alertCtrl: AlertController) { }
+ 
+  constructor(public modalController: ModalController, public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController) {}
 
   ngOnInit() {
 
@@ -63,4 +74,27 @@ this.db.collection("Users").doc("dyBHPtUnGFcZZzI1DrYD1jGJIG73").collection("Orde
 
 
   }
+  async viewModal(){
+    const modal = await this.modalController.create({
+      component: OrderDetailsPage
+    });
+    return  modal.present();
+
+  }
+
+  viewDetails(){
+    this.viewModal()
+  }
+  openPro(){
+    this.router.navigateByUrl('/pro');
+  }
+  logOut(){
+    firebase.auth().signOut().then(()=> {
+      // Sign-out successful.
+      this.router.navigateByUrl('/login');
+    }).catch((error)=> {
+      // An error happened.
+    });
+  }
+
 }

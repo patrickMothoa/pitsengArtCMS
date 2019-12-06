@@ -68,15 +68,15 @@ export class HomePage implements OnInit {
     this.getProducts();
   }
 
-   removeSearchList() {
+  //  removeSearchList() {
  
-    this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'none'); 
+  //   this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'none'); 
     
-  }
-  displaySearch() {
-    this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'block'); 
+  // }
+  // displaySearch() {
+  //   this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'block'); 
     
-  } 
+  // } 
 
   toggleDisplay() {
     this.isShow = !this.isShow;
@@ -198,12 +198,12 @@ export class HomePage implements OnInit {
   
     const val = ev.detail.value; 
     if (val.trim() !== '') {
-      this.displaySearch();
+      // this.displaySearch();
       this.autocompleteItemz = this.autocompleteItemz.filter(term => {
         return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
       });
     }else {
-      this.removeSearchList();
+      // this.removeSearchList();
     }
   }
 
