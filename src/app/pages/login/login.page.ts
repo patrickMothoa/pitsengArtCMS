@@ -52,7 +52,7 @@ export class LoginPage  {
             this.profileService.storeAdmin(res);
             this.db.collection('admins').doc(firebase.auth().currentUser.uid).get().then(res =>{
                           if (res.exists){
-                            this.router.navigateByUrl('/home')
+                            this.router.navigateByUrl('/pro')
                            
                           }else{
                             this.router.navigateByUrl('/profile')
@@ -142,6 +142,9 @@ async  register() {
       ]
     });
     alert.present();
+  }
+  goToRegister(){
+    this.router.navigate(['register']);
   }
 
 //   phoneNumber = ''

@@ -198,7 +198,7 @@ async update(id) {
     image: '',
     categories:'',
     name:'',
-    price:0,
+    price:null,
     productno:'',
     desc: '',
     items:'',
@@ -304,9 +304,9 @@ back() {
       this.router.navigateByUrl('/pro');
     }
   
-    // openUploads(){
-    //   this.router.navigateByUrl('/add-product');
-    // }
+    openUploads(){
+      this.router.navigateByUrl('/add-product');
+    }
   
     openInvoice(){
       this.router.navigateByUrl('/user-invoices');
