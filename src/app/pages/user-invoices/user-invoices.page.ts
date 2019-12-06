@@ -30,7 +30,11 @@ export class UserInvoicesPage implements OnInit {
     return  modal.present();
 
   }
-  openpro(){
+
+  viewDetails(){
+    this.viewModal()
+  }
+  openPro(){
     this.router.navigateByUrl('/pro');
   }
   logOut(){
