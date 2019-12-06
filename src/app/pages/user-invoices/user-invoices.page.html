@@ -7,4 +7,22 @@
 
 <ion-content>
 
+  <ion-label>Products Orders: </ion-label>
+   
+	<ion-list >
+      <ion-card  *ngFor="let li of conArray">
+        <ion-item class="cart-item" >
+          <ion-thumbnail item-start>
+            <img src="{{li.obj.image}}">
+          </ion-thumbnail>
+           <p>Order confirmation number:  <span class="ornum">{{li.details.orderNumber}}</span> </p>
+           <p>Name : {{li.obj.name}}</p>
+           <p> R {{li.obj.price}} </p>
+             <p>Quantity: {{li.obj.quantity}}</p>
+          <h6 class="order-date">{{li.datetime}}</h6>
+        </ion-item>
+      </ion-card>
+      
+	</ion-list>
+
 </ion-content>
