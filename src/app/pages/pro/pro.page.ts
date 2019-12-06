@@ -15,7 +15,6 @@ export class ProPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
-  public isSearchbarOpened = false;
   listproduct = [];
   event = {
     image: '',
@@ -39,7 +38,7 @@ export class ProPage implements OnInit {
   eventSource = [];
   reviews = [];
   actRoute: any;
-size = ['S' + '', 'M'+ '', 'L']
+size = ['small', 'medium', 'large']
   autoId: any;
   constructor(public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
@@ -50,7 +49,10 @@ size = ['S' + '', 'M'+ '', 'L']
       productno: [this.event.productno, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
-     
+      // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
+      // small: [this.event.small, Validators.compose([Validators.required])], 
+      // medium: [this.event.medium, Validators.compose([Validators.required])], 
+      // large: [this.event.large, Validators.compose([Validators.required])], 
     });
   }
 
@@ -81,13 +83,13 @@ size = ['S' + '', 'M'+ '', 'L']
   async addEvent(){
     if (!this.event.image){
       const alerter = await this.alertCtrl.create({
-        message: ' No image selected or has not finnished uploading.'
+        message: 'Error saving product. No image selected or has not finnished uploading.'
       })
       alerter.present();
     } else {
       if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
         const alerter = await this.alertCtrl.create({
-          message: ' Some fields not filled'
+          message: 'Error saving product. Some fields not filled'
         })
         alerter.present();
       }else {
@@ -137,7 +139,9 @@ size = ['S' + '', 'M'+ '', 'L']
         quantity : 1,
         lastcreated: '',
         size:[]
-        
+        // small:'',
+        // medium:'',
+        // large: ''
       };
     }
     
@@ -254,12 +258,12 @@ async update(id) {
     
     const alert = await this.alertCtrl.create({
       header: 'Confirm!',
-      message: 'Are you sure you want to delete? This action is ireversable.',
+      message: 'Message <strong>Are you sure you want to delete? This action is ireversable.</strong>!!!',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'medium',
+          cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
@@ -282,8 +286,7 @@ async update(id) {
             })
           }
         }
-      ],
-      cssClass: 'alertCustomCss'
+      ]
     });
 
     await alert.present(); 
