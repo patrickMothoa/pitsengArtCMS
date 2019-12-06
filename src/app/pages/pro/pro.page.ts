@@ -154,7 +154,7 @@ async update(id) {
     })
     alerter.present();
   } else {
-    if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+    if (!this.event.desc ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product. Some fields not filled'
       })
