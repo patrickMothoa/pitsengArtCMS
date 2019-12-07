@@ -4,7 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+
   public items: any = [];
+
+  myArray = [];
 
   constructor() {
     // this.items = [
