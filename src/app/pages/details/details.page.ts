@@ -78,7 +78,7 @@ export class DetailsPage implements OnInit {
   async Deleteproduct( docid) {
     const alert = await this.alertCtrl.create({
       header: 'DELETE!',
-      message: '<strong>Are you sure you want to delete this tattoo?</strong>!!!',
+      message: '<strong>Are you sure you want to delete this product?</strong>!!!',
       
       buttons: [
         {

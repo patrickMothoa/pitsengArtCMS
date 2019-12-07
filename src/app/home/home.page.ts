@@ -67,26 +67,6 @@ export class HomePage implements OnInit {
 
   }
   
-  // Wall_Deco = [];
-  
-  // ionViewWillEnter(){
-
-  // }
-
-  // search(){
-  //   this.db.collection("Products").onSnapshot(e => {
-  //     e.forEach(kk => {
-      
-  //       if(kk.data().categories === this.data){
-  //         console.log("Your data is here ", kk.data());
-  //         this.Wall_Deco.push(kk.data());
-  //       }else{
-  //         console.log("Category does not exist");
-          
-  //       }
-  //     })
-  //   })
-  // }
 
   ngOnInit() {
     this.getProducts();
