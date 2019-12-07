@@ -21,7 +21,7 @@ export class ProPage implements OnInit {
     categories:'',
     name:'',
     price:0,
-    productno:'',
+    // productno:'',
     desc: '',
     items:'',
     quantity : 1,
@@ -38,7 +38,7 @@ export class ProPage implements OnInit {
   eventSource = [];
   reviews = [];
   actRoute: any;
-size = ['small', 'medium', 'large']
+  size = ['small','medium','large']
   autoId: any;
   constructor(public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
@@ -46,7 +46,7 @@ size = ['small', 'medium', 'large']
       categories: [this.event.categories, Validators.compose([Validators.required])], 
       name: [this.event.name, Validators.compose([Validators.required])],
       price: [this.event.price, Validators.compose([Validators.required])], 
-      productno: [this.event.productno, Validators.compose([Validators.required])], 
+      // productno: [this.event.productno, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
       // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
@@ -56,7 +56,11 @@ size = ['small', 'medium', 'large']
     });
   }
 
-
+ionViewDidLoad(){
+  this.event.price =0;
+  console.log(this.event.price);
+ 
+}
  
     ngOnInit() {
       this.retrieve();
@@ -87,12 +91,14 @@ size = ['small', 'medium', 'large']
       })
       alerter.present();
     } else {
-      if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+      if (!this.event.desc  ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
         const alerter = await this.alertCtrl.create({
           message: 'Error saving product. Some fields not filled'
         })
         alerter.present();
       }else {
+        let num = parseFloat(this.event.price.toString())
+      this.event.price = num;
         if (this.event.price > 1000) {
           const alerter = await this.alertCtrl.create({
             message: 'The price cannot be more than R1000.00 pp/pn'
@@ -133,7 +139,7 @@ size = ['small', 'medium', 'large']
         categories:'',
         name:'',
         price:0,
-        productno:'',
+        // productno:'',
         desc: '',
         items:'',
         quantity : 1,
@@ -199,7 +205,6 @@ async update(id) {
     categories:'',
     name:'',
     price:null,
-    productno:'',
     desc: '',
     items:'',
     quantity : 1,

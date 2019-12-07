@@ -106,7 +106,7 @@
                   <ion-input type="text" placeholder="Product number" [(ngModel)]="event.productno"></ion-input>
                 </ion-item> -->
                 <ion-item>
-                  <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+                  <ion-input type="tel" placeholder="Price" [(ngModel)]="event.price"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label color="medium" position="floating">Size</ion-label>
@@ -162,10 +162,11 @@
                 </div>
              
               <div class="size">
-                <ion-card-subtitle>Size:&nbsp; S, M, L</ion-card-subtitle>
+                <ion-card-subtitle>Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
                     <hr>
-                    <div class="fet">
-                      <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p>
+                    <div class="size">
+                      <p></p>
+                      <!-- <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p> -->
                     </div> 
                     <!-- <p>Created: {{p.data.lastcreated}}</p>  -->
                   </div>
