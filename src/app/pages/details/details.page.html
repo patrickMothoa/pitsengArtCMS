@@ -1,12 +1,3 @@
-<!-- <header>
-  <ion-toolbar >
-    <ion-buttons >
-      <ion-button   (click)="dismiss()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</header> -->
 
 <div class="closeButton" >
   <div >
@@ -16,78 +7,22 @@
   </div>
  
 </div>
-    
 
-<ion-content>
-
-<div class="firstContainer">
-  <div class="info" *ngFor="let p of Products">
-    <div class="imageContainer">
-      <img src="{{p. obj.image}}" alt="">
-    </div>
-    <div class="rightContainer">
-      <div class="ProductDetails">
+<ion-content padding>
+  <div class="display">
+      <div class ="info" *ngFor="let p of Products"  > 
+          <div class="d-image">
+              <img src="{{p.obj.image}}" alt="">
+        </div>
         <div class="name">
-          <div>
-            <div class="ProdName">
-              <div class="priceandName">
-                <div>
-                  <h5 class="single-desc">{{p.obj.desc}}</h5>
-                </div>
-                <div class="prod">
-                  <div>
-                    <p>Product code: &nbsp;</p>
-                  </div>
-                  <div>
-                    <p class="single-productNo"> {{p.obj.productno}}</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-            <div class="price">
-              <h4> R {{p.obj.price}}</h4>
-            </div>
-          </div>
-          <!-- <span>
-              <h5 class="single-desc">{{p.obj.categories}}</h5>
-            </span> -->
+            <p class="single-desc" >{{p.obj.name}}</p>
+            <p class="single-price" > {{p.obj.price}}</p>
+        </div>
+        <div class="desc">
+            <p class="single-desc" >{{p.obj.desc}}</p>
+            <p class="single-price" > {{p.obj.productno}}</p>
         </div>
       </div>
-      <div class="size">
-        <div >
-          <div class="sizeContainer">
-            <ion-item class="radioBttns" lines="none">
-              <ion-checkbox color="danger" [(ngModel)]="event.small"> </ion-checkbox>
-              <ion-label padding>S</ion-label>
-            </ion-item>
-            <ion-item lines="none" class="radioBttns">
-              <ion-checkbox color="danger" [(ngModel)]="event.medium"> </ion-checkbox>
-              <ion-label padding>M</ion-label>
-            </ion-item>
-            <ion-item lines="none" class="radioBttns">
-              <ion-checkbox color="danger" [(ngModel)]="event.large"> </ion-checkbox>
-              <ion-label padding>L</ion-label>
-            </ion-item>
-          </div>
-
-          <!-- <p *ngFor="let s of p.size">{{f}}</p> -->
-        </div>
-        <div class="ItemNo">
-          <p> {{p.obj.items}}</p>
-        </div>
-
       </div>
-      <div class="productButtons-Container">
-        <ion-button class="ion-button" color="success" (click)="edit(p.id)"  (click)="dismiss()">
-          <ion-icon name="md-create" class="icon1234"></ion-icon>edit
-        </ion-button>
-        <ion-button  class="ion-button" color="dark" (click)="Deleteproduct(p.id)">
-          <ion-icon name="trash"></ion-icon> Delete
-        </ion-button>
-      </div>
-    </div>
-  </div>
-</div>
+
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-
+import * as firebase from 'firebase';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sow-data',
@@ -9,19 +10,21 @@ import { DataService } from '../services/data.service';
 })
 export class SowDataPage implements OnInit {
 
-
+db = firebase.firestore();
   a = []
-
-  constructor(public DataService : DataService) { }
+  conArray =[]
+  Orders =[]
+  constructor(public DataService : DataService, public modalController: ModalController) { }
 
   ngOnInit() {
- 
-    this.a = this.DataService.myArray;
-   
+    this.Orders = this.DataService.myArray;
+      console.log("Data in the Service ====   ", this.Orders);
 
-      console.log("Data in the Service ====   ", this.a);
-
-
+  }
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
   }
 
 

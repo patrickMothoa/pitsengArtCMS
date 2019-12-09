@@ -35,14 +35,6 @@ export class LoginPage  {
   }
 
   ngOnInit() {
-
-    console.log("ssssss");
-    this.db.collection("Users").doc("AL3Fk9YQTyekdmpegZWr1bFrcrn2").collection("Orders").onSnapshot(d => {
-      d.forEach(k => {
-         console.log("ssssss", k.data());
-         
-      })
-    })
     firebase.auth().onAuthStateChanged(res => {
       if (res) {
         this.profileService.storeAdmin(res);
