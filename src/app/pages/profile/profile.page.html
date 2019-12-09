@@ -123,13 +123,13 @@
               </ion-item>
               <ion-item>
                 <ion-label color="medium"  position="floating" >Surname</ion-label>
-                <ion-input type="text"  [(ngModel)]="profile.name"></ion-input>
+                <ion-input type="text"  [(ngModel)]="profile.surname"></ion-input>
               </ion-item>
             </div>
             <div class="contact" >
-                <ion-item><ion-label color="medium"   position="floating" >Email</ion-label>
+                <!-- <ion-item><ion-label color="medium"   position="floating" >Email</ion-label>
                   <ion-input type="tel"  [(ngModel)]="profile.email"></ion-input>
-                </ion-item>
+                </ion-item> -->
                 <ion-item>
                   <ion-label  position="floating" color="medium"  >Contact Number</ion-label>
                   <ion-input type="tel"  [(ngModel)]="profile.phoneNumber"></ion-input>
@@ -173,14 +173,14 @@
             <ion-item><ion-title>{{profile.name}}</ion-title>
             </ion-item>
             <ion-item>
-              <ion-title>{{profile.name}}</ion-title>
+              <ion-title>{{profile.surname}}</ion-title>
             </ion-item>
           </div>
           <div class="contact" >
               <ion-item><ion-title>{{profile.email}}</ion-title>
               </ion-item>
               <ion-item>
-                <ion-title>{{profile.PhoneNumber}}</ion-title>
+                <ion-title>{{profile.phoneNumber}}</ion-title>
               </ion-item>
             </div>
             <div class="address" >
