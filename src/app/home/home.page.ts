@@ -4,7 +4,6 @@ import * as firebase from 'firebase';
 import { ProductService } from '../services/product.service';
 import { DataService } from "../services/data.service";
 import { FormControl } from "@angular/forms";
-import { debounceTime } from "rxjs/operators";
 
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
@@ -153,20 +152,6 @@ export class HomePage implements OnInit {
        this.searching = true;
      
   }
-  ionViewDidLoad() {
-
-    // this.setFilteredItems();
-
-    //     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-
-    //         this.searching = false;
-    //         this.setFilteredItems();
-
-    //     });
-
-
-
-}
 
   select(item){
     this.searchTerm = item.title;
