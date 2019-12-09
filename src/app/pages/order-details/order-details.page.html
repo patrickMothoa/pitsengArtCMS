@@ -1,167 +1,233 @@
-<div class="body">
-  <div class="row" > 
-    <div class="itemsContainer">
-      <div class="itemsDetails">
-        <div class="filterContiner">
-          <ion-item>
-            <ion-label><ion-icon name="funnel"></ion-icon> &nbsp; Orders</ion-label>
-            <ion-select interface="popover">
-              <ion-select-option value="nes">Not Paid</ion-select-option>
-              <ion-select-option value="n64">Paid</ion-select-option>
+<div class="content">
 
-            </ion-select>
-          </ion-item>
+    <div class="row">
+      <div class=" sidebar1  ">
+        <div class="logo">
+          <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
         </div>
-        <div class="invoicesContainer">
-          <ion-card>
-            <div class="invoicesList" (click)="viewDetails()_">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-          <ion-card>
-            <div class="invoicesList">
-              <div>
-                <ion-label> Smith Hall </ion-label>
-              </div>
-              <div>
-                <ion-label>INV/01/1002</ion-label>
-              </div>
-              <div>
-                <ion-label>8/NOV/2019</ion-label>
-              </div>
-            </div>
-          </ion-card>
-
-
+        <br>
+        <div class="left-navigation">
+          <div class="list">
+  
+            <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
+            <br>
+            <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+            <br>
+            <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
+          </div>
         </div>
+      </div>
+      <div class="main-content">
+        <div class="navigation_bar">
+          <div class="navigation_bar">
+            <div class="navBarItems">
+              <div class="searchBar">
+                <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
+                  (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel">
+                </ion-searchbar>
+                <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened">
+                  <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true">
+                    <ion-icon slot="icon-only" name="search"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </div>
+  
+              <div class="profileBar">
+                <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
+                  <ion-icon slot="icon-only" name="contact"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coverContent">
+
+            <div class="heading">
+              <div class="items">
+                <ion-title>item</ion-title>
+                <div class="itemsDetails" >
+                  <div class="itemImage" >
+                       <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
+                  </div>
+                  <div class="itemName" >
+                       <ion-label>Item name</ion-label>
+                  <ion-label>product code</ion-label>
+                  </div>
+               
+                </div>
+                <div class="itemsDetails" >
+                    <div class="itemImage" >
+                         <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
+                    </div>
+                    <div class="itemName" >
+                         <ion-label>Item name</ion-label>
+                    <ion-label>product code</ion-label>
+                    </div>
+                 
+                  </div>
+              </div>
+              <div class="qty" >
+                  <ion-title>qty</ion-title>
+                  <div class="qtyNo" >
+                    <ion-label class="Qno" >1</ion-label>
+                  </div>
+                  <div class="qtyNo" >
+                      <ion-label>1</ion-label>
+                    </div>
+                  
+              </div>
+              <div class="size" >
+                  <ion-title>size</ion-title>
+                  <div class="sizeNo" >
+                    <ion-label>1</ion-label>
+                  </div>
+                  <div class="sizeNo" >
+                      <ion-label>1</ion-label>
+                    </div>
+                  
+              </div>
+              <div class="price" >
+                  <ion-title>price</ion-title>
+                  <div class="priceNo">
+                    <ion-label>1</ion-label>
+                  </div>
+                  <div class="priceNo">
+                      <ion-label>1</ion-label>
+                    </div>
+                  
+              </div>
+              <div class="subtotal" >
+                  <ion-title>subtotal</ion-title>
+                  <div class="subtotalNo" >
+                    <ion-label>1</ion-label>
+                  </div>
+                  <div class="subtotalNo" >
+                      <ion-label>1</ion-label>
+                    </div>
+                  
+              </div>
+            </div>
+            <div class="total">
+              <div class="totaldetails" > 
+                <div>
+                  <ion-label > total amount </ion-label>
+                </div>
+                <div>
+                    <ion-label > R &nbsp; 5000</ion-label>
+                </div>
+                
+              
+              </div>
+              <div class="buttons" >
+            <ion-button *ngIf= "!isPaymentRecieved" padding  color="warning"  shape="round" expand="full" >Payment Recieved</ion-button>
+                  <ion-button *ngIf= "isPaymentRecieved" padding color="warning" expand="full" shape="full">send reciept</ion-button>
+        
+              </div>
+            </div>
+        
+        
+        
+          </div>
+      </div>
+    </div>
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Tab Two</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="coverContent">
+
+    <div class="heading">
+      <div class="items">
+        <ion-title>item</ion-title>
+        <div class="itemsDetails" >
+          <div class="itemImage" >
+               <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
+          </div>
+          <div class="itemName" >
+               <ion-label>Item name</ion-label>
+          <ion-label>product code</ion-label>
+          </div>
+       
+        </div>
+        <div class="itemsDetails" >
+            <div class="itemImage" >
+                 <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
+            </div>
+            <div class="itemName" >
+                 <ion-label>Item name</ion-label>
+            <ion-label>product code</ion-label>
+            </div>
+         
+          </div>
+      </div>
+      <div class="qty" >
+          <ion-title>qty</ion-title>
+          <div class="qtyNo" >
+            <ion-label class="Qno" >1</ion-label>
+          </div>
+          <div class="qtyNo" >
+              <ion-label>1</ion-label>
+            </div>
+          
+      </div>
+      <div class="size" >
+          <ion-title>size</ion-title>
+          <div class="sizeNo" >
+            <ion-label>1</ion-label>
+          </div>
+          <div class="sizeNo" >
+              <ion-label>1</ion-label>
+            </div>
+          
+      </div>
+      <div class="price" >
+          <ion-title>price</ion-title>
+          <div class="priceNo">
+            <ion-label>1</ion-label>
+          </div>
+          <div class="priceNo">
+              <ion-label>1</ion-label>
+            </div>
+          
+      </div>
+      <div class="subtotal" >
+          <ion-title>subtotal</ion-title>
+          <div class="subtotalNo" >
+            <ion-label>1</ion-label>
+          </div>
+          <div class="subtotalNo" >
+              <ion-label>1</ion-label>
+            </div>
+          
+      </div>
+    </div>
+    <div class="total">
+      <div class="totaldetails" > 
+        <div>
+          <ion-label > total amount </ion-label>
+        </div>
+        <div>
+            <ion-label > R &nbsp; 5000</ion-label>
+        </div>
+        
+      
+      </div>
+      <div class="buttons" >
+    <ion-button *ngIf= "!isPaymentRecieved" padding  color="warning"  shape="round" expand="full" >Payment Recieved</ion-button>
+          <ion-button *ngIf= "isPaymentRecieved" padding color="warning" expand="full" shape="round" fill="outline">send reciept</ion-button>
 
       </div>
-
     </div>
+
+
+
   </div>
-</div>
+
+</ion-content> -->

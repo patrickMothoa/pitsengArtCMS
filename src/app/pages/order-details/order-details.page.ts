@@ -7,6 +7,7 @@ import {} from '../user-invoices/user-invoices.page'
   styleUrls: ['./order-details.page.scss'],
 })
 export class OrderDetailsPage implements OnInit {
+  public isPaymentRecieved =false
 
   constructor() { }
 

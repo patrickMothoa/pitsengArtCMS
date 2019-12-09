@@ -23,16 +23,17 @@ export class UserInvoicesPage implements OnInit {
   ngOnInit() {
   }
 
-  async viewModal(){
-    const modal = await this.modalController.create({
-      component: OrderDetailsPage
-    });
-    return  modal.present();
+  // async viewModal(){
+  //   const modal = await this.modalController.create({
+  //     component: OrderDetailsPage
+  //   });
+  //   return  modal.present();
 
-  }
+  // }
 
   viewDetails(){
-    this.viewModal()
+    this.router.navigateByUrl('/order-details');
+    // this.viewModal()
   }
   openPro(){
     this.router.navigateByUrl('/pro');
