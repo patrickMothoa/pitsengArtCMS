@@ -15,14 +15,13 @@ export class ProPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
-  public isSearchbarOpened = false;
   listproduct = [];
   event = {
     image: '',
     categories:'',
     name:'',
     price:0,
-    productno:'',
+    // productno:'',
     desc: '',
     items:'',
     quantity : 1,
@@ -39,7 +38,7 @@ export class ProPage implements OnInit {
   eventSource = [];
   reviews = [];
   actRoute: any;
-size = ['S' + '', 'M'+ '', 'L']
+  size = ['small','medium','large']
   autoId: any;
   constructor(public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
@@ -47,14 +46,21 @@ size = ['S' + '', 'M'+ '', 'L']
       categories: [this.event.categories, Validators.compose([Validators.required])], 
       name: [this.event.name, Validators.compose([Validators.required])],
       price: [this.event.price, Validators.compose([Validators.required])], 
-      productno: [this.event.productno, Validators.compose([Validators.required])], 
+      // productno: [this.event.productno, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
-     
+      // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
+      // small: [this.event.small, Validators.compose([Validators.required])], 
+      // medium: [this.event.medium, Validators.compose([Validators.required])], 
+      // large: [this.event.large, Validators.compose([Validators.required])], 
     });
   }
 
-
+ionViewDidLoad(){
+  this.event.price =0;
+  console.log(this.event.price);
+ 
+}
  
     ngOnInit() {
       this.retrieve();
@@ -81,16 +87,18 @@ size = ['S' + '', 'M'+ '', 'L']
   async addEvent(){
     if (!this.event.image){
       const alerter = await this.alertCtrl.create({
-        message: ' No image selected or has not finnished uploading.'
+        message: 'Error saving product. No image selected or has not finnished uploading.'
       })
       alerter.present();
     } else {
-      if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+      if (!this.event.desc  ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
         const alerter = await this.alertCtrl.create({
-          message: ' Some fields not filled'
+          message: 'Error saving product. Some fields not filled'
         })
         alerter.present();
       }else {
+        let num = parseFloat(this.event.price.toString())
+      this.event.price = num;
         if (this.event.price > 1000) {
           const alerter = await this.alertCtrl.create({
             message: 'The price cannot be more than R1000.00 pp/pn'
@@ -131,13 +139,15 @@ size = ['S' + '', 'M'+ '', 'L']
         categories:'',
         name:'',
         price:0,
-        productno:'',
+        // productno:'',
         desc: '',
         items:'',
         quantity : 1,
         lastcreated: '',
         size:[]
-        
+        // small:'',
+        // medium:'',
+        // large: ''
       };
     }
     
@@ -150,7 +160,7 @@ async update(id) {
     })
     alerter.present();
   } else {
-    if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+    if (!this.event.desc ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product. Some fields not filled'
       })
@@ -194,8 +204,7 @@ async update(id) {
     image: '',
     categories:'',
     name:'',
-    price:0,
-    productno:'',
+    price:null,
     desc: '',
     items:'',
     quantity : 1,
@@ -254,12 +263,12 @@ async update(id) {
     
     const alert = await this.alertCtrl.create({
       header: 'Confirm!',
-      message: 'Are you sure you want to delete? This action is ireversable.',
+      message: 'Message <strong>Are you sure you want to delete? This action is ireversable.</strong>!!!',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'medium',
+          cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
@@ -282,8 +291,7 @@ async update(id) {
             })
           }
         }
-      ],
-      cssClass: 'alertCustomCss'
+      ]
     });
 
     await alert.present(); 
@@ -297,8 +305,8 @@ back() {
     openProfile(){
       this.router.navigateByUrl('/profile');
     }
-    openHome(){
-      this.router.navigateByUrl('/home');
+    openpro(){
+      this.router.navigateByUrl('/pro');
     }
   
     openUploads(){

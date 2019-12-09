@@ -1,0 +1,327 @@
+// left sidemenu
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  left: 0%;
+  right: 0%;
+  background-color: red;
+}
+.content {
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  left: 0%;
+  right: 0%;
+//   background-color: green;
+}
+.sidebar1 {
+  background: #FFAF65;
+  background: linear-gradient(#f17153, #f58d63, #f1ab53);
+  padding: 16px;
+
+}
+.sidebar2 {
+  background:#FFAF65;
+
+  background: linear-gradient(#f17153, #f58d63, #f1ab53);
+
+  text-align: center;
+  padding: 16px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.topnavbar {
+  float: left;
+}
+
+.itemDetails {
+width: 200px;
+height: 500px;
+border: solid black;
+display: flex;
+flex-direction: row;
+}
+.logo > img {
+  padding: 3px;
+  border: 3px solid white;
+  border-radius: 100%;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  list-style: none;
+  padding-left: 0px;
+  justify-content: space-between;
+}
+.list > li:hover {
+}
+ion-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: bolder;
+}
+.main-content {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  left: 0%;
+  right: 0%;
+//   background-color: white;
+}
+
+.navigation_bar {
+  background:#f17153;
+  position: relative;
+  width: 100%;
+}
+.searchBar{
+  margin-left: auto;
+
+}
+.profileBar{
+    margin-right: 3%;
+}
+ion-searchbar{
+  font-weight: bold;
+
+}
+.search{
+  --ion-background-color: transparent;
+}
+.nav-icons {
+  width: 100%;
+}
+.navBarItems {
+  display: flex;
+  margin-left: auto;
+}
+
+.search {
+  --ion-background-color: transparent;
+}
+.heading{
+    // border: solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    width: 100%;
+    // height: 10%;
+}
+.itemsContainer{
+    width: 100%;
+    height: 100%;
+    // border: solid blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+.itemsDetails{
+    // border: solid green;
+    width: 80%;
+    height: 100%;
+    margin-top: 10%;
+
+}
+.ProdDetails{
+  display: flex;
+  flex-direction: column;
+}
+.invoicesContainer{
+
+    // border: solid orchid;
+
+}
+.invoicesList{
+    border-bottom: 1px #d1cdcd !important;
+     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    // height: 100;
+    border: solid green;
+
+}
+ion-card{
+    font-family: serif;
+    font-size: large;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    padding-top: 20px;
+    border: solid red;
+}
+
+ion-title{
+    font-weight: bold;
+    font-family: serif;
+    font-size: medium;
+    text-transform: uppercase;
+
+  }
+
+.coverContent {
+  // border: solid red;
+  width: 100%;
+  // height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0% auto;
+}
+.heading {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  // height: 100%;
+  // border: solid black;
+  display: flex;
+  flex-direction: row;
+}
+.items {
+  // border: solid red;
+  width: 30%;
+}
+.qty {
+  // border: solid green;
+  width: 17.5%;
+}
+.size {
+  width: 17.5%;
+  // border: solid rgb(185, 185, 34);
+}
+.price {
+  width: 17.5%;
+  // border: solid rgb(25, 101, 136);
+}
+.subtotal {
+  width: 17.5%;
+  // border: solid rgb(130, 23, 180);
+}
+.otherHeading {
+  // border: solid blue;
+  width: 70%;
+  display: flex;
+  float: left;
+}
+.itemsDetails {
+  height: 110px;
+  // border: solid mediumaquamarine;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0% auto;
+  top: 0%;
+  bottom: 0%;
+  margin: 40px;
+  top: 0%;
+  bottom: 0%;
+  height: 110px;
+}
+.qtyNo {
+  // border: solid mediumaquamarine;
+  margin: 40px;
+  top: 0%;
+  bottom: 0%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-content: center;
+  justify-items: center;
+}
+.sizeNo {
+  // border: solid mediumaquamarine;
+  margin: 40px;
+  top: 0%;
+  bottom: 0%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-content: center;
+  justify-items: center;
+}
+.priceNo {
+  // border: solid mediumaquamarine;
+  margin: 40px;
+  top: 0%;
+  bottom: 0%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-content: center;
+  justify-items: center;
+}
+.subtotalNo {
+  // border: solid mediumaquamarine;
+  margin: 40px;
+  top: 0%;
+  bottom: 0%;
+  height: 110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-content: center;
+  justify-items: center;
+}
+.itemName {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.total{
+  // border: solid blueviolet;
+  width: 17.5%;
+  height: 150px;
+  margin: auto;
+  margin-right: 20%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+}
+.totaldetails{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // border: solid red;
+}
+.buttons{
+  // border: solid black         ;
+  
+}
+ion-title {
+  font-family: serif;
+  font-size: large;
+  font-weight: bold;
+  color: #707070;
+  text-transform: uppercase;
+  text-align: center;
+}
+ion-button{
+  width: 100%;
+  --border-radius: 0px 50px 0px 50px;
+  font-family: serif;
+  font-weight: bolder;
+}
+
+ion-label {
+  font-family: serif;
+  font-size: large;
+  font-weight: bold;
+  color: #707070;
+  text-transform: capitalize;
+  text-align: center;
+}

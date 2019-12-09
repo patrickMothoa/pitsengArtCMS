@@ -10,17 +10,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import * as firebase from 'firebase';
 import { DetailsPageModule } from './pages/details/details.module';
+import { OrderDetailsPageModule } from './pages/order-details/order-details.module';
+import { SowDataPageModule } from './sow-data/sow-data.module';
+
 
 
 var firebaseConfig = {
-    apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
-    authDomain: "pitsengproject.firebaseapp.com",
-    databaseURL: "https://pitsengproject.firebaseio.com",
-    projectId: "pitsengproject",
-    storageBucket: "pitsengproject.appspot.com",
-    messagingSenderId: "359447010965",
-    appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
-    measurementId: "G-T4KR75ZKET"
+  apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
+  authDomain: "pitsengproject.firebaseapp.com",
+  databaseURL: "https://pitsengproject.firebaseio.com",
+  projectId: "pitsengproject",
+  storageBucket: "pitsengproject.appspot.com",
+  messagingSenderId: "359447010965",
+  appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
+  measurementId: "G-T4KR75ZKET"
 };
 firebase.initializeApp(firebaseConfig);
   firebase.analytics();
@@ -28,7 +31,7 @@ firebase.initializeApp(firebaseConfig);
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule],
+  imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule,OrderDetailsPageModule, SowDataPageModule],
   providers: [
     StatusBar,
     SplashScreen,

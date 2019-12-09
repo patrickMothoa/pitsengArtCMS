@@ -4,7 +4,6 @@ import * as firebase from 'firebase';
 import { ProductService } from '../services/product.service';
 import { DataService } from "../services/data.service";
 import { FormControl } from "@angular/forms";
-
 // import { NavController } from 'ionic-angular';
 // import 'rxjs/add/operator/debounceTime';
 import {ProductDetailService} from "../../app/product-detail.service"
@@ -19,13 +18,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  public searchControl: FormControl;
-  public searchTerm: string = "";
   isShow = false;
   public isSearchbarOpened = false;
   // public searchTerm: string = "";
   // public items: any;
-  searching: any = false;
+    searchControl: FormControl;
   db = firebase.firestore();
   event = {
     image: '',
@@ -39,12 +36,12 @@ export class HomePage implements OnInit {
     large: ''
   };
 
-  Products = ['pptptpt',
-'iyuyiu',
-'hjyuu'];
+  Products = [];
 
   thisSearches = []
+  public searchTerm: string = '';
   public items: any;
+  public searching: boolean = false;
   supplier
 
   myProduct = false;
@@ -71,15 +68,15 @@ export class HomePage implements OnInit {
     this.getProducts();
   }
 
-   removeSearchList() {
+  //  removeSearchList() {
  
-    this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'none'); 
+  //   this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'none'); 
     
-  }
-  displaySearch() {
-    this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'block'); 
+  // }
+  // displaySearch() {
+  //   this.render.setStyle(this.element.nativeElement.children[0].children[2].children[0].children[1].children[0], 'display', 'block'); 
     
-  } 
+  // } 
 
   toggleDisplay() {
     this.isShow = !this.isShow;
@@ -173,7 +170,7 @@ export class HomePage implements OnInit {
                   snapshot.forEach(doc => {
                     obj.id = doc.id;
                     obj.obj = doc.data();
-                    this.Products.push();
+                    this.Products.push(obj);
                     obj = {id : '', obj : {}};
                     console.log("herererer", this.Products);
                   });
@@ -204,12 +201,12 @@ export class HomePage implements OnInit {
   
     const val = ev.detail.value; 
     if (val.trim() !== '') {
-      this.displaySearch();
+      // this.displaySearch();
       this.autocompleteItemz = this.autocompleteItemz.filter(term => {
         return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
       });
     }else {
-      this.removeSearchList();
+      // this.removeSearchList();
     }
   }
 

@@ -9,10 +9,9 @@
         <div class="left-navigation">
           <div class="list">
 
-            <ion-button expand="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
+            <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
             <br>
-            <!-- <ion-button expand="clear" color="light" (click)="openProfile()" slot="end">Profile</ion-button>
-            <ion-button expand="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button> -->
+           
             <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
             <br>
             <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
@@ -49,8 +48,9 @@
             
           <div class="navBarItems" >
               <div class="searchBar">
-              <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionFocus)="displaySearch()" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+              <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
           
+              <!-- (ionFocus)="displaySearch()" (ionClear)="resetChanges()"  -->
               <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened"  >
                   <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true" >
                     <ion-icon slot="icon-only" name="search" ></ion-icon>
@@ -73,10 +73,10 @@
             <div class="inputsContainer">
 
               <ion-card-header>
-                <ion-card-title>Add Item</ion-card-title>
+                <ion-card-title>Add Product</ion-card-title>
               </ion-card-header>
               <ion-item *ngIf="!event.image">
-                <ion-label color="medium" position="stacked" id="profile_image">Upload item Image</ion-label>
+                <ion-label color="medium" position="stacked" id="profile_image">Upload Product Image</ion-label>
                 <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
               </ion-item>
               <ion-item *ngIf="event.image"><img src="{{event.image}}" height="80" width="80"></ion-item>
@@ -85,11 +85,13 @@
                   <ion-label color="medium">Categories</ion-label>
                   <ion-select (ionChange)="getCategories($event)">
                     <ion-select-option value="Vase">Vase</ion-select-option>
-                    <ion-select-option value="Cups and Plates">Cups and Plates</ion-select-option>
+                    <ion-select-option value="Cups ">Cups </ion-select-option>
+                    <ion-select-option value=" Plates"> Plates</ion-select-option>
                     <ion-select-option value="Photo Frame">Photo Frames</ion-select-option>
                     <ion-select-option value="Decor Pallets">Decor Pallets</ion-select-option>
                     <ion-select-option value="Wall Deco">Wall Decor</ion-select-option>
-                    <ion-select-option value="Bowls and Pots">Bowls and Pots</ion-select-option>
+                    <ion-select-option value="Bowls">Bowls </ion-select-option>
+                    <ion-select-option value="Bowls and Pots"> Pots</ion-select-option>
                     <ion-select-option value="Lamps">Lamps</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -99,11 +101,11 @@
                 <ion-item>
                   <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
                 </ion-item>
-                <ion-item>
+                <!-- <ion-item>
                   <ion-input type="text" placeholder="Product number" [(ngModel)]="event.productno"></ion-input>
-                </ion-item>
+                </ion-item> -->
                 <ion-item>
-                  <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+                  <ion-input type="tel" placeholder="Price" [(ngModel)]="event.price"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label color="medium" position="floating">Size</ion-label>
@@ -159,12 +161,13 @@
                 </div>
              
               <div class="size">
-                <ion-card-subtitle>Size:&nbsp; S, M, L</ion-card-subtitle>
-                    <!-- <hr>
-                    <div class="fet">
-                      <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p>
-                    </div> -->
-                    <!-- <p>Created: {{p.data.lastcreated}}</p> -->
+                <ion-card-subtitle>Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
+                    <hr>
+                    <div class="size">
+                      <p></p>
+                      <!-- <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p> -->
+                    </div> 
+                    <!-- <p>Created: {{p.data.lastcreated}}</p>  -->
                   </div>
                  
                   

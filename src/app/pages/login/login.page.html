@@ -1,24 +1,51 @@
-<ion-content  color="danger" >
+<ion-content >
+  <div class="mainContainer" >
+
+
  
-       
-          
-  
-                <form class="form" #adminLogin="ngForm" (ngSubmit)="loginAdmin(adminLogin.value)">
-                    <ion-item>
-                        <ion-label position="floating">Email</ion-label>
-                        <ion-input type="email" ngModel name="email"></ion-input>
+      <div class="content">
+        <!-- <img class="pattern" src="../../../assets/icon/Group 107.svg" alt=""> -->
+            <div class="formContainer" >
+              <div  class="formContainer2" >
+
+            
+                <div class="logo">
+                    <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="100" height="100" >
+                  </div>
+                 
+                 <div  >
+                     <form class="form" #adminLogin="ngForm" (ngSubmit)="loginAdmin(adminLogin.value)">
+                    <ion-item lines="none"  color="transparent" >
+                        <ion-label><ion-icon color="medium" name="contact"></ion-icon> </ion-label>
+                        <ion-input color="medium"  placeholder="Email "  type="email" ngModel name="email"></ion-input>
                       </ion-item>
-                      <ion-item>
-                          <ion-label position="floating">Password</ion-label>
-                          <ion-input type="password" ngModel name="password"></ion-input>
+                      <ion-item lines="none" color="transparent" >
+                          <ion-label ><ion-icon name="lock" color="medium" ></ion-icon> </ion-label>
+                          <ion-input color="medium"  placeholder="Password"  type="password" ngModel name="password"></ion-input>
                         </ion-item>
-                        
-                        <div class="login">
-                            <button>Login</button>
+                        <div class="forgotpassword" >
+                          <ion-button color="light" fill="clear" (click)="register()">
+                            Reset Password?
+                          </ion-button>
+                         </div>
+                        <div class="buttons">
+                            <ion-button color="warning"  padding shape="block"  (click)="loginAdmin(adminLogin.value)">LOGIN</ion-button>
+                            <ion-button fill="clear" color="medium" padding shape="block" (click)="goToRegister()" >REGISTER</ion-button>
                           </div>
                 </form>
-                    
+                 </div>
+
+                    </div>  
+          </div>
+          <div class="imageside" > 
        
+        
+          <img src="../../../assets/" alt="">
+          </div>
+
+      </div>
+         
+         </div>
        
 
     </ion-content>

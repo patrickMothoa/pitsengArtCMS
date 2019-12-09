@@ -19,7 +19,8 @@ export class ProfilePage implements OnInit {
     name: '',
     phoneNumber:'',
     address: '',
-    email: '',
+    email: firebase.auth().currentUser.email,
+   
     uid: '',
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
@@ -39,6 +40,7 @@ export class ProfilePage implements OnInit {
   
   constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { 
     this.uid = firebase.auth().currentUser.uid;
+    
   }
  
   ngOnInit() {
@@ -100,29 +102,46 @@ export class ProfilePage implements OnInit {
     }
   }
   createAccount(){
-    
     if (!this.profile.address||!this.profile.name||!this.profile.phoneNumber){
-      console.log("Are we inside");
       this.errtext = 'Fields should not be empty'
+    } else {
       if (!this.profile.image){
         this.errtext = 'Profile image still uploading or not selected';
+      } else {
         this.profile.uid =  this.admin.uid;
-        this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => 
-          {
+        this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => {
           console.log('Profile created');
           this.getProfile();
         }).catch(error => {
           console.log('Error');
         });
-        
-      } else {
-        this.errtext = 'image not uploaded'
       }
     }
-    else {
-     
-    }
   }
+  // createAccount(){
+    
+  //   if (!this.profile.address||!this.profile.name||!this.profile.phoneNumber){
+  //     console.log("Are we inside");
+  //     this.errtext = 'Fields should not be empty'
+  //     if (!this.profile.image){
+  //       this.errtext = 'Profile image still uploading or not selected';
+  //       this.profile.uid =  this.admin.uid;
+  //       this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => 
+  //         {
+  //         console.log('Profile created');
+  //         this.getProfile();
+  //       }).catch(error => {
+  //         console.log('Error');
+  //       });
+        
+  //     } else {
+  //       this.errtext = 'image not uploaded'
+  //     }
+  //   }
+  //   else {
+     
+  //   }
+  // }
 
 
   getProfile(){
@@ -137,6 +156,7 @@ export class ProfilePage implements OnInit {
           this.profile.name=doc.data().name
           this.profile.phoneNumber=doc.data().phoneNumber
           this.profile.email=doc.data().email
+          
           
         })
       }
