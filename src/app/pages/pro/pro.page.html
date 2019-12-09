@@ -11,8 +11,7 @@
 
             <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
             <br>
-            <!-- <ion-button expand="clear" color="light" (click)="openProfile()" slot="end">Profile</ion-button>
-            <ion-button expand="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button> -->
+           
             <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
             <br>
             <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
@@ -106,7 +105,7 @@
                   <ion-input type="text" placeholder="Product number" [(ngModel)]="event.productno"></ion-input>
                 </ion-item> -->
                 <ion-item>
-                  <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+                  <ion-input type="tel" placeholder="Price" [(ngModel)]="event.price"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label color="medium" position="floating">Size</ion-label>
@@ -162,10 +161,11 @@
                 </div>
              
               <div class="size">
-                <ion-card-subtitle>Size:&nbsp; S, M, L</ion-card-subtitle>
+                <ion-card-subtitle>Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
                     <hr>
-                    <div class="fet">
-                      <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p>
+                    <div class="size">
+                      <p></p>
+                      <!-- <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p> -->
                     </div> 
                     <!-- <p>Created: {{p.data.lastcreated}}</p>  -->
                   </div>

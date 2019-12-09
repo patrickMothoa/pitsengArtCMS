@@ -19,7 +19,8 @@ export class ProfilePage implements OnInit {
     name: '',
     phoneNumber:'',
     address: '',
-    email: '',
+    email: firebase.auth().currentUser.email,
+   
     uid: '',
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
@@ -155,6 +156,7 @@ export class ProfilePage implements OnInit {
           this.profile.name=doc.data().name
           this.profile.phoneNumber=doc.data().phoneNumber
           this.profile.email=doc.data().email
+          
           
         })
       }
