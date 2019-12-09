@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { AlertController } from '@ionic/angular';
 import { ProfileService } from '../../services/profile.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +17,6 @@ export class ProfilePage implements OnInit {
   profile = {
     image: '',
     name: '',
-    surname:'',
     phoneNumber:'',
     address: '',
     email: firebase.auth().currentUser.email,
@@ -40,9 +38,7 @@ export class ProfilePage implements OnInit {
     // phoneNumber: '',
   }
   
-  constructor(public alertCtrl: AlertController, 
-    private router: Router,
-    private profileServ: ProfileService) { 
+  constructor(public alertCtrl: AlertController, private profileServ: ProfileService) { 
     this.uid = firebase.auth().currentUser.uid;
     
   }
@@ -106,7 +102,7 @@ export class ProfilePage implements OnInit {
     }
   }
   createAccount(){
-    if (!this.profile.address||!this.profile.name||!this.profile.surname||!this.profile.phoneNumber){
+    if (!this.profile.address||!this.profile.name||!this.profile.phoneNumber){
       this.errtext = 'Fields should not be empty'
     } else {
       if (!this.profile.image){
@@ -158,7 +154,6 @@ export class ProfilePage implements OnInit {
           this.profile.address = doc.data().address;
           this.profile.image= doc.data().image
           this.profile.name=doc.data().name
-          this.profile.surname=doc.data().surname
           this.profile.phoneNumber=doc.data().phoneNumber
           this.profile.email=doc.data().email
           
