@@ -57,7 +57,7 @@
     <div class=" sidebar1  ">
       <div class="logo">
         <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
-        
+
       </div>
       <br>
       <div class="left-navigation">
@@ -96,22 +96,21 @@
       </div>
 
       <!-- edit profile -->
-      <div *ngIf="!isprofile"  class="content">
-          <div >
-            <div class="coverImage">
-              <br><br>
-              <div class="CprofilePictureContainer" >
-                  <ion-label  position="floating">cover image</ion-label>
-                   <ion-input type="file" placeholder="upload image"  accept="image/*" multiple="false" (change)="getImage($event.target.files)"></ion-input>
-                <!-- <img class="imageCover" src="{{profile.image}}" alt=""> -->
-              </div>
-              <div class="ppic">
-                <div class="profilePictureContainer">
-                  <div>
-                      <ion-label  position="floating">Profile picture</ion-label>
-                      <ion-input type="file" placeholder="upload image"  accept="image/*" multiple="false" (change)="getImage($event.target.files)"></ion-input>
-                    <!-- <img class="profilePicture" src="{{profile.image}}" alt=""> -->
-                  </div>
+      <div *ngIf="!isprofile" class="content">
+        <div>
+          <div class="coverImage">
+            <br><br>
+            <div class="CprofilePictureContainer">
+              <ion-label position="floating">cover image</ion-label>
+              <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
+                (change)="getImage($event.target.files)"></ion-input>
+              <!-- <img class="imageCover" src="{{profile.image}}" alt=""> -->
+            </div>
+            <div class="ppic">
+              <div class="profilePictureContainer">
+                <div>
+                  <ion-button class="button"  padding color=" warning" expand="full" shape="full"
+                    (click)="createAccount()">Done</ion-button>
                 </div>
               </div>
             </div>
@@ -146,11 +145,12 @@
                 </div>
           </div>
         </div>
+      </div>
 
 
 
 
-        <!-- show profile -->
+      <!-- show profile -->
       <div *ngIf="isprofile" class="content">
         <div>
           <div class="coverImage">
@@ -168,9 +168,10 @@
             </div>
           </div>
         </div>
-        <div class="adminDetails" >
-          <div class="label" >
-            <ion-item><ion-title>{{profile.name}}</ion-title>
+        <div class="adminDetails">
+          <div class="label">
+            <ion-item>
+              <ion-title>{{profile.name}}</ion-title>
             </ion-item>
             <ion-item>
               <ion-title>{{profile.surname}}</ion-title>
