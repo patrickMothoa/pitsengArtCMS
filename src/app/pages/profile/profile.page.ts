@@ -176,6 +176,14 @@ export class ProfilePage implements OnInit {
   openInvoice(){
     this.router.navigateByUrl('/user-invoices');
   }
+   logOut(){
+      firebase.auth().signOut().then(()=> {
+        // Sign-out successful.
+        this.router.navigateByUrl('/login');
+      }).catch((error)=> {
+        // An error happened.
+      });
+    }
 }
 
   
