@@ -96,38 +96,38 @@ console.log("xxxx");
   }
   
 
- async  viewDetails(uid){
+//  async  viewDetails(uid){
+//     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
+//       this.DataService.myArray = []
+//         data.forEach(item => {
+//           console.log("Your data is here ", item.data());
+          
+//           this.DataService.myArray.push(item.data())
+//         })
+//       })
+//       this.DataService.myArray.forEach(i => {
+//         console.log("data from the service ", i);
+//       })
+
+//     let modal = await this.modalController.create({
+//       component : SowDataPage
+//     })
+//     return await modal.present();
+//   }
+
+  viewDetails(uid){
     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
       this.DataService.myArray = []
         data.forEach(item => {
-          console.log("Your data is here ", item.data());
-          
+          console.log("Your data is here ", item.data());        
           this.DataService.myArray.push(item.data())
         })
       })
       this.DataService.myArray.forEach(i => {
         console.log("data from the service ", i);
       })
-
-    let modal = await this.modalController.create({
-      component : SowDataPage
-    })
-    return await modal.present();
+    this.router.navigateByUrl('/order-details');
   }
-
-  // viewDetails(uid){
-  //   this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
-  //     this.DataService.myArray = []
-  //       data.forEach(item => {
-  //         console.log("Your data is here ", item.data());        
-  //         this.DataService.myArray.push(item.data())
-  //       })
-  //     })
-  //     this.DataService.myArray.forEach(i => {
-  //       console.log("data from the service ", i);
-  //     })
-  //   this.router.navigateByUrl('/sow-data');
-  // }
 
   openPro(){
     this.router.navigateByUrl('/pro');
