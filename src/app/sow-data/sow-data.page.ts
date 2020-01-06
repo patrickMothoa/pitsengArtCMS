@@ -19,8 +19,7 @@ db = firebase.firestore();
   ngOnInit() {
     this.Orders = this.DataService.myArray;
       console.log("Data in the Service ====   ", this.Orders);
-
-  }
+ }
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {} from '../user-invoices/user-invoices.page'
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-order-details',
@@ -12,7 +13,13 @@ export class OrderDetailsPage implements OnInit {
 
   text : boolean = false;
 
-  constructor(private router: Router) { }
+  
+  db = firebase.firestore();
+  a = []
+  conArray =[]
+  Orders =[]
+  myArray = []
+  constructor(private router: Router,public DataService : DataService) { }
 
   ChangeText(){
     this.text = !false
@@ -21,6 +28,13 @@ export class OrderDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    // this.Orders = this.DataService.myArray;
+    // console.log("Data in the Service ====   ", this.Orders);
+  }
+  ionViewDidEnter(){
+    this.Orders = this.DataService.myArray;
+    console.log("Data in the Service ====   ", this.Orders);
+   
   }
   goToPDF(){
     this.router.navigateByUrl('/pdf');

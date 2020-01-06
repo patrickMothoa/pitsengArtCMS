@@ -43,17 +43,16 @@
           <div class="heading">
             <div class="items">
               <ion-title>item</ion-title>
-              <div class="itemsDetails" >
+              <div class="itemsDetails" *ngFor="let li of Orders">
                 <div class="itemImage" >
-                     <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
+                     <img src="{{li.obj.image}}" width="100px" height="100px" alt="">
                 </div>
                 <div class="itemName" >
-                     <ion-label>Item name</ion-label>
-                <ion-label>product code</ion-label>
+                     <ion-label>{{li.obj.name}}</ion-label>
+                <ion-label>{{li.obj.productCode}}</ion-label>
                 </div>
-             
               </div>
-              <div class="itemsDetails" >
+              <!-- <div class="itemsDetails" >
                   <div class="itemImage" >
                        <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
                   </div>
@@ -62,56 +61,56 @@
                   <ion-label>product code</ion-label>
                   </div>
                
-                </div>
+                </div> -->
             </div>
             <div class="qty" >
                 <ion-title>qty</ion-title>
-                <div class="qtyNo" >
-                  <ion-label class="Qno" >1</ion-label>
+                <div class="qtyNo" *ngFor="let li of Orders">
+                  <ion-label class="Qno" >{{li.obj.quantity}}</ion-label>
                 </div>
-                <div class="qtyNo" >
+                <!-- <div class="qtyNo" >
                     <ion-label>1</ion-label>
-                  </div>
+                  </div> -->
                 
             </div>
             <div class="size" >
                 <ion-title>size</ion-title>
-                <div class="sizeNo" >
-                  <ion-label>1</ion-label>
+                <div class="sizeNo" *ngFor="let li of Orders">
+                  <ion-label>{{li.obj.size}}</ion-label>
                 </div>
-                <div class="sizeNo" >
+                <!-- <div class="sizeNo" >
                     <ion-label>1</ion-label>
-                  </div>
+                  </div> -->
                 
             </div>
             <div class="price" >
                 <ion-title>price</ion-title>
-                <div class="priceNo">
-                  <ion-label>1</ion-label>
+                <div class="priceNo" *ngFor="let li of Orders">
+                  <ion-label>{{li.obj.price}}</ion-label>
                 </div>
-                <div class="priceNo">
+                <!-- <div class="priceNo">
                     <ion-label>1</ion-label>
-                  </div>
+                  </div> -->
                 
             </div>
             <div class="subtotal" >
                 <ion-title>subtotal</ion-title>
-                <div class="subtotalNo" >
-                  <ion-label>1</ion-label>
+                <div class="subtotalNo" *ngFor="let li of Orders">
+                  <ion-label>{{li.obj.price}}</ion-label>
                 </div>
-                <div class="subtotalNo" >
+                <!-- <div class="subtotalNo" >
                     <ion-label>1</ion-label>
                   </div>
-                
+                 -->
             </div>
           </div>
           <div class="total">
-            <div class="totaldetails" > 
+            <div class="totaldetails" *ngFor="let d of Orders"> 
               <div>
                 <ion-label > total amount </ion-label>
               </div>
               <div>
-                  <ion-label > R &nbsp; 5000</ion-label>
+                  <ion-label > {{d.details.total}}</ion-label>
               </div>
               
             
