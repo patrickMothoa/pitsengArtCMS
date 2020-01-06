@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {} from '../user-invoices/user-invoices.page'
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-order-details',
@@ -9,11 +10,36 @@ import * as firebase from 'firebase';
   styleUrls: ['./order-details.page.scss'],
 })
 export class OrderDetailsPage implements OnInit {
-
-  constructor(private router: Router) { }
+  db = firebase.firestore();
+  a = []
+  conArray =[]
+  Orders =[]
+  myArray = []
+  constructor(private router: Router,public DataService : DataService) { }
 
   ngOnInit() {
+    // this.Orders = this.DataService.myArray;
+    // console.log("Data in the Service ====   ", this.Orders);
   }
+  ionViewDidEnter(){
+    this.Orders = this.DataService.myArray;
+    console.log("Data in the Service ====   ", this.Orders);
+   
+  }
+  // viewDetails(uid){
+  //   this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
+  //     this.Orders =this.DataService.myArray = []
+  //       data.forEach(item => {
+  //         console.log("Your data is here ", item.data());        
+  //         this.DataService.myArray.push(item.data())
+  //       })
+  //     })
+  //     this.DataService.myArray.forEach(i => {
+  //       console.log("data from the service ", i);
+  //     })
+  //   this.router.navigateByUrl('/order-details');
+  // }
+
   openPro(){
     this.router.navigateByUrl('/pro');
   }

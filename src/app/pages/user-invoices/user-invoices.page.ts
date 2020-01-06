@@ -88,12 +88,12 @@ console.log("xxxx");
   }
 
 
-  async viewModal(){
-    const modal = await this.modalController.create({
-      component: OrderDetailsPage
-    });
-    return  modal.present();
-  }
+  // async viewModal(){
+  //   const modal = await this.modalController.create({
+  //     component: OrderDetailsPage
+  //   });
+  //   return  modal.present();
+  // }
   
 
 //  async  viewDetails(uid){
