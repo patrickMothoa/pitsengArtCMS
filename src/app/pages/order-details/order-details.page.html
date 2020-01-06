@@ -116,9 +116,10 @@
               
             
             </div>
-            <div class="buttons" >
-          <ion-button class="buttons" *ngIf= "!isPaymentRecieved" padding  color="warning"  shape="round" expand="full" >Payment Recieved</ion-button>
-                <ion-button class="buttonss" color="warning"  padding shape="block" *ngIf= "isPaymentRecieved">send reciept</ion-button>
+            <div class="buttons">
+          <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
+          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button>
+                <!-- <ion-button class="buttonss" color="warning"  padding shape="block" *ngIf= "isPaymentRecieved">send reciept</ion-button> -->
       
             </div>
           </div>

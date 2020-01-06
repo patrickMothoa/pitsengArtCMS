@@ -33,6 +33,7 @@
     "firebase": "^7.4.0",
     "firebase-admin": "^8.8.0",
     "firebase-functions": "^3.3.0",
+    "ionic-angular": "^3.9.9",
     "pdfmake": "^0.1.62",
     "react-native-firebase": "^5.5.6",
     "rxjs": "~6.5.1",

@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'sow-data',
     loadChildren: () => import('./sow-data/sow-data.module').then( m => m.SowDataPageModule)
+  },  {
+    path: 'pdf',
+    loadChildren: () => import('./pdf/pdf.module').then( m => m.PdfPageModule)
   },
+
 
 ];
 

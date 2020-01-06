@@ -10,9 +10,20 @@ import * as firebase from 'firebase';
 })
 export class OrderDetailsPage implements OnInit {
 
+  text : boolean = false;
+
   constructor(private router: Router) { }
 
+  ChangeText(){
+    this.text = !false
+    // document.getElementById("text").innerHTML = "Send Recept";
+    // this.router.navigateByUrl('/pdf');
+  }
+
   ngOnInit() {
+  }
+  goToPDF(){
+    this.router.navigateByUrl('/pdf');
   }
   openPro(){
     this.router.navigateByUrl('/pro');
