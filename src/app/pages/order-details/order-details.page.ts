@@ -36,9 +36,9 @@ export class OrderDetailsPage implements OnInit {
     console.log("Data in the Service ====   ", this.Orders);
    
   }
-  goToPDF(){
-    this.router.navigateByUrl('/pdf');
-  }
+  // goToPDF(){
+  //   this.router.navigateByUrl('/pdf');
+  // }
   openPro(){
     this.router.navigateByUrl('/pro');
   }

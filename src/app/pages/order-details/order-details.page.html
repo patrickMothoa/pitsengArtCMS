@@ -20,7 +20,7 @@
       <div class="navigation_bar">
         <div class="navigation_bar">
           <div class="navBarItems">
-            <div class="searchBar">
+            <!-- <div class="searchBar">
               <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
                 (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel">
               </ion-searchbar>
@@ -29,7 +29,7 @@
                   <ion-icon slot="icon-only" name="search"></ion-icon>
                 </ion-button>
               </ion-item>
-            </div>
+            </div> -->
 
             <div class="profileBar">
               <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
@@ -117,7 +117,7 @@
             </div>
             <div class="buttons">
           <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
-          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button>
+          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full"  >send reciept</ion-button>
                 <!-- <ion-button class="buttonss" color="warning"  padding shape="block" *ngIf= "isPaymentRecieved">send reciept</ion-button> -->
       
             </div>

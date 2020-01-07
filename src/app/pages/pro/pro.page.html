@@ -23,8 +23,8 @@
           <div class="navBarItems" >
              <!-- attempting search from here  -->
            <div class="searchBar">
-              <ion-searchbar  placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" ></ion-searchbar> 
-              <ion-icon style="float: right; padding: 10px;"  name="close" (click)="HideButton()"></ion-icon>
+              <ion-searchbar  placeholder="Search Products"   (ionChange)='SearchProducts($event);' value="" ></ion-searchbar> 
+              <ion-icon style="float: right; padding: 10px;"  name="close" ></ion-icon>
               <ion-list  [hidden]="autocompleteItemz.length == 0" >
                 <div *ngIf="autocompleteItemz.length > 0">
               <ion-item  *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
