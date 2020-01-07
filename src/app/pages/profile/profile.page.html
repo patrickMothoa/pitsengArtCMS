@@ -47,22 +47,15 @@
     </div>
   </ion-content>
  -->
-
-
-
-
-<div class="content">
-
+ <div class="content">
   <div class="row">
     <div class=" sidebar1  ">
       <div class="logo">
         <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
-
       </div>
       <br>
       <div class="left-navigation">
         <div class="list">
-
           <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
           <br>
           <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
@@ -85,7 +78,6 @@
                 </ion-button>
               </ion-item>
             </div>
-
             <div class="profileBar">
               <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
                 <ion-icon slot="icon-only" name="contact"></ion-icon>
@@ -94,7 +86,6 @@
           </div>
         </div>
       </div>
-
       <!-- edit profile -->
       <div *ngIf="!isprofile" class="content">
         <div>
@@ -124,14 +115,14 @@
             </ion-item>
             <ion-item>
               <ion-label color="medium" position="floating">Surname</ion-label>
-              <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
+              <ion-input type="text" [(ngModel)]="profile.surname"></ion-input>
             </ion-item>
           </div>
           <div class="contact">
-            <ion-item>
+            <!-- <ion-item>
               <ion-label color="medium" position="floating">Email</ion-label>
               <ion-input type="tel" [(ngModel)]="profile.email"></ion-input>
-            </ion-item>
+            </ion-item> -->
             <ion-item>
               <ion-label position="floating" color="medium">Contact Number</ion-label>
               <ion-input type="tel" [(ngModel)]="profile.phoneNumber"></ion-input>
@@ -148,17 +139,9 @@
                 (change)="getImage($event.target.files)"></ion-input>
               <!-- <img class="profilePicture" src="{{profile.image}}" alt=""> -->
             </ion-item>
-
-
-
-
           </div>
         </div>
       </div>
-
-
-
-
       <!-- show profile -->
       <div *ngIf="isprofile" class="content">
         <div>
@@ -183,7 +166,7 @@
               <ion-title>{{profile.name}}</ion-title>
             </ion-item>
             <ion-item>
-              <ion-title>{{profile.name}}</ion-title>
+              <ion-title>{{profile.surname}}</ion-title>
             </ion-item>
           </div>
           <div class="contact">
@@ -191,7 +174,7 @@
               <ion-title>{{profile.email}}</ion-title>
             </ion-item>
             <ion-item>
-              <ion-title>{{profile.PhoneNumber}}</ion-title>
+              <ion-title>{{profile.phoneNumber}}</ion-title>
             </ion-item>
           </div>
           <div class="address">
@@ -204,7 +187,15 @@
           </div>
         </div>
       </div>
-
-
     </div>
+    <!-- <div [ngClass]="{'d-active': dActive.accommodation, 'd-notactive': !dActive.accommodation}">
+      <app-accommodation *ngIf="page=='accommodation'"></app-accommodation>
+    </div>
+    <div [ngClass]="{'d-active': dActive.feedback, 'd-notactive': !dActive.feedback}">
+      <app-bookings *ngIf="page=='bookings'"></app-bookings>
+    </div>
+    
+    <div [ngClass]="{'d-active': dActive.hotelmaster, 'd-notactive': !dActive.hotelmaster}">
+      <app-hotelmaster *ngIf="page=='hotelmaster'"></app-hotelmaster>
+    </div> -->
   </div>

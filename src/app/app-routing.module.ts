@@ -39,33 +39,19 @@ const routes: Routes = [
   {
     path: 'demo',
     loadChildren: () => import('./demo/demo.module').then( m => m.DemoPageModule)
-  },  {
+  },
+  {
     path: 'order-details',
     loadChildren: () => import('./pages/order-details/order-details.module').then( m => m.OrderDetailsPageModule)
   },
   {
     path: 'sow-data',
     loadChildren: () => import('./sow-data/sow-data.module').then( m => m.SowDataPageModule)
-  }
+  },  {
+    path: 'pdf',
+    loadChildren: () => import('./pdf/pdf.module').then( m => m.PdfPageModule)
+  },
 
- 
-
-
-  // {
-  //   path: 'order-list',
-  //   loadChildren: () => import('./pages/order-list/order-list.module').then( m => m.OrderListPageModule)
-  // },
-
-
-
-  // {
-  //   path: 'details',
-  //   loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
-  // },
-  // {
-  //   path: 'product-details',
-  //   loadChildren: () => import('./pages/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
-  // },
 
 ];
 

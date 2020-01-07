@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
-import { ProductDetailService } from 'src/app/product-detail.service';
 import { AlertController, ModalController } from '@ionic/angular';
 
 
@@ -13,6 +12,8 @@ import { AlertController, ModalController } from '@ionic/angular';
 })
 export class DetailsPage implements OnInit {
   db = firebase.firestore();
+  autoId: any;
+  updateBtn = false;
   MyObj = [];
   event = {
     image: '',
@@ -26,23 +27,28 @@ export class DetailsPage implements OnInit {
     large: ''
   };
 
+  public items: any;
+  cart = [];
   Products = [];
   myProduct = false;
   constructor(
     public productService: ProductService, 
-    public data : ProductDetailService,
+    public data : ProductService,
     public alertCtrl: AlertController,
-    public route : Router,
-    public modalController: ModalController
-    ) { }
+    private router: Router,
+    public modalController: ModalController) { }
 
   ngOnInit() {
     this.getProducts();
   }
 
+
+  Home() {
+   this.router.navigateByUrl('/pro');
+  }
+
   ionViewWillEnter(){
-    this.Products.push(this.data.data)
-    
+    this.Products.push(this.data.data)  
   }
    ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
@@ -70,36 +76,10 @@ export class DetailsPage implements OnInit {
       }
     })
   }
-
-  edit(){
-    this.route.navigateByUrl('/add-product');
-  }
   
-  async Deleteproduct( docid) {
-    const alert = await this.alertCtrl.create({
-      header: 'DELETE!',
-      message: '<strong>Are you sure you want to delete this product?</strong>!!!',
-      
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        }, {
-          text: 'Delete',
-          handler: data => {
-            this.db.collection("Products").doc(docid).delete();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
 
-  dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
+  dismiss(p) {
+    this.data.data = p;
     this.modalController.dismiss({
       'dismissed': true
     });

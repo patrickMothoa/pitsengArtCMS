@@ -45,14 +45,6 @@ export class UserInvoicesPage implements OnInit {
 
   save(){
 
-    // this.db.collection('Msindisi').doc().set({
-    //   name : "Msinisi",
-    //   id : 5346,
-    //   email : "m@gmail.com"
-    // }).then(() => {
-    //   console.log("data saved");
-    // })
-
     this.db.collection("Users").doc("gtd9dtzULGTVmbrbOpNUIDGJIFr2").collection("Cart").doc().set({
       name : "Msinisi",
       id : 5346,
@@ -66,13 +58,6 @@ export class UserInvoicesPage implements OnInit {
 
 
   Pull(){
-
-    // this.db.collection("Msindisi").onSnapshot(e => {
-    //     e.forEach(r => {
-    //       console.log("ssss ", r.data());
-          
-    //     })
-    // })
 
      this.db.collection("Users").doc("gtd9dtzULGTVmbrbOpNUIDGJIFr2").collection("Orders").onSnapshot(w => {
        w.forEach(d => {
@@ -98,84 +83,50 @@ console.log("xxxx");
       obj = {name : '', uid : ''} ;
       console.log("users ",  this.users);
 
-
-  
-      
     })
-  })
-
-
-
-    // this.db.collection('Users').doc(firebase.auth().currentUser.uid).collection('Orders').onSnapshot((res)=> {
-    //   console.log('one',res );
-    //   this.myArr = [];
-    //   res.forEach((doc)=>{
-    //     this.myArr.push(doc.data());
-    //   })
-    //   console.log('xxxx ',this.myArr );
-    // })
- 
-    // setTimeout(() => {
-    //   this.myArr.forEach((item)=>{
-    //     this.myArray.push(item.name.obj)
-    //   })
-    //   console.log('My array ', this.myArray );
-    // }, 1500);
-
-// this.db.collection("Ordings").onSnapshot(data => {
-// console.log("xxx",data );
-
-//   data.forEach(item => {
-//     console.log("data ",item.data());
-//   })
-  
-// })
-
-  //   let  obj = {
-  //     details : {orderNumber : 0, total : 0},
-  //     obj : {
-  //       categories : "", price : "", productNumber : "", quantity : 0,name : "", image : ""
-  //     }
-  // }
-
-  
-//     this.db.collection("Users").doc("dyBHPtUnGFcZZz1DrYD1jGJIG73").collection("Orders").onSnapshot(res => {
-//     this.conArray = [];
-//     res.forEach(doc=>{
-//       console.log("data ",doc.data());
-//       obj.details.orderNumber = doc.data().details.orderNumber;
-//       obj.details.total = doc.data().details.total;
-//       obj.obj.categories = doc.data().obj.categories;
-//       obj.obj.price = doc.data().obj.price;
-//       obj.obj.productNumber = doc.data().obj.productNumber;
-//       obj.obj.quantity = doc.data().obj.quantity;
-//       obj.obj.name = doc.data().obj.name;
-//       obj.obj.image = doc.data().obj.image;
-
-//       this.conArray.push(obj);
-     
-//        console.log('My array ', this.conArray);
-//     })  
-// })
-
-  // setTimeout(() => {
-  //   this.conArray.forEach((item)=>{
-  //     this.Orders.push(item)
-  //   })
-  // }, 1500);
+   })
   }
+
 
   // async viewModal(){
   //   const modal = await this.modalController.create({
   //     component: OrderDetailsPage
   //   });
   //   return  modal.present();
-
   // }
+  
 
-  viewDetails(){
+//  async  viewDetails(uid){
+//     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
+//       this.DataService.myArray = []
+//         data.forEach(item => {
+//           console.log("Your data is here ", item.data());
+          
+//           this.DataService.myArray.push(item.data())
+//         })
+//       })
+//       this.DataService.myArray.forEach(i => {
+//         console.log("data from the service ", i);
+//       })
+
+//     let modal = await this.modalController.create({
+//       component : SowDataPage
+//     })
+//     return await modal.present();
+//   }
+
+  viewDetails(uid){
+    this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
+      this.DataService.myArray = []
+        data.forEach(item => {
+          console.log("Your data is here ", item.data());        
+          this.DataService.myArray.push(item.data())
+        })
+      })
+      this.DataService.myArray.forEach(i => {
+        console.log("data from the service ", i);
+      })
     this.router.navigateByUrl('/order-details');
-    // this.viewModal()
   }
 
   openPro(){

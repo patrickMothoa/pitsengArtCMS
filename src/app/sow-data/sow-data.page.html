@@ -1,19 +1,53 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>SowData</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar >
+  <ion-buttons >
+    <ion-button   (click)="dismiss()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 
-<ion-content>
+<div class="body">
+  <div class="row" > 
+    <div class="itemsContainer">
+      <div class="itemsDetails">
+        <div class="filterContiner">
+          <ion-item>
+            <ion-label><ion-icon name="funnel"></ion-icon> &nbsp; Orders</ion-label>
+            <ion-select interface="popover">
+              <ion-select-option value="nes">Not Paid</ion-select-option>
+              <ion-select-option value="n64">Paid</ion-select-option>
 
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="invoicesContainer">
+          <ion-card  *ngFor="let li of Orders">
+            <div class="invoicesList" >
+              <div>
+                <ion-label>Name : {{li.obj.name}} </ion-label>
+              </div>
+              <div>
+                <ion-label> order number :  {{li.details.orderNumber}}</ion-label>
+              </div>
+              <div>
+                <ion-label>Price : R{{li.obj.price}} </ion-label>
+              </div>
+              <div>
+                <ion-label>Quantity : {{li.obj.quantity}}</ion-label>
+              </div>
+              <div>
+                <ion-label>Total: R{{li.details.total}}</ion-label>
+              </div>
+              <div>
+                <ion-label>Date : 9/NOV/2019</ion-label>
+              </div>
+            </div>
+          </ion-card>
 
-  <ion-list *ngFor = "let item of a">
+        </div>
 
-    <ion-item>
-{{item.array.id}}
-    </ion-item>
+      </div>
 
-  </ion-list>
-
-  
-</ion-content>
+    </div>
+  </div>
+</div>

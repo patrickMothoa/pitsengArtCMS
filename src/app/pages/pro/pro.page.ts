@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ToastController, LoadingController} from '@ionic/angular';
+import { AlertController, ToastController, LoadingController, ModalController} from '@ionic/angular';
 import { Inject, LOCALE_ID } from '@angular/core';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DetailsPage } from '../details/details.page';
 
 @Component({
   selector: 'app-pro',
@@ -16,12 +17,13 @@ export class ProPage implements OnInit {
   storage = firebase.storage().ref();
   //categories
   listproduct = [];
+  Products = []
   event = {
     image: '',
     categories:'',
     name:'',
     price:0,
-    // productno:'',
+    productCode:'',
     desc: '',
     items:'',
     quantity : 1,
@@ -31,7 +33,10 @@ export class ProPage implements OnInit {
     // medium:'',
     // large: ''
   };
-
+  supplier
+  myProduct = false;
+  autocompleteItemz: any;
+  autocompletez:any;
  updateBtn = false;
  
   public productForm: FormGroup;
@@ -40,7 +45,16 @@ export class ProPage implements OnInit {
   actRoute: any;
   size = ['small','medium','large']
   autoId: any;
-  constructor(public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
+  constructor(public modalController: ModalController,
+    public data : ProductService,
+    public   formBuilder: FormBuilder,
+    private router: Router,
+    public route : ActivatedRoute,
+    public loadingCtrl: LoadingController, 
+    public productservices : ProductService, 
+    public alertCtrl: AlertController,
+     public toastController: ToastController,
+     @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
      image: [this.event.image, Validators.compose([Validators.required])],
       categories: [this.event.categories, Validators.compose([Validators.required])], 
@@ -54,6 +68,9 @@ export class ProPage implements OnInit {
       // medium: [this.event.medium, Validators.compose([Validators.required])], 
       // large: [this.event.large, Validators.compose([Validators.required])], 
     });
+
+    this.autocompleteItemz = [];
+    this.autocompletez = { input: '' };
   }
 
 ionViewDidLoad(){
@@ -91,7 +108,7 @@ ionViewDidLoad(){
       })
       alerter.present();
     } else {
-      if (!this.event.desc  ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+      if ( !this.event.desc  ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
         const alerter = await this.alertCtrl.create({
           message: 'Error saving product. Some fields not filled'
         })
@@ -106,6 +123,10 @@ ionViewDidLoad(){
           alerter.present();
         } else{
           this.listproduct = [];
+     /////// generating Random product Code
+    this.event.productCode =  this.stringGen(6);
+    console.log(" product code : ", this.event.productCode );
+    
     const date = new Date();
     this.event.lastcreated = date.toDateString();
     const worker = await this.loadingCtrl.create({
@@ -139,20 +160,25 @@ ionViewDidLoad(){
         categories:'',
         name:'',
         price:0,
-        // productno:'',
+        productCode:"",
         desc: '',
         items:'',
         quantity : 1,
         lastcreated: '',
         size:[]
-        // small:'',
-        // medium:'',
-        // large: ''
+        
       };
     }
-    
+    /////// generating Random product Code
+    stringGen(len){
+      var text = " ";
+      var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+      for( var i=0; i < len; i++ )
+          text += charset.charAt(Math.floor(Math.random() * charset.length));
+      return text;
+    }
   
-
+ 
 async update(id) {
   if (!this.event.image){
     const alerter = await this.alertCtrl.create({
@@ -205,6 +231,7 @@ async update(id) {
     categories:'',
     name:'',
     price:null,
+    productCode:"",
     desc: '',
     items:'',
     quantity : 1,
@@ -213,21 +240,6 @@ async update(id) {
     
   };
 }
-
-  // async addEvent() {
-    
-  //   if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items || !this.event.name || !this.event.price) {
-  //     const alert =  await this.alertCtrl.create({
-  //       message: 'All Product fields must be filled',
-        
-  //     });
-  //     alert.present();
-      
-  
-  //   } else {
-  //     this.productservices.addProduct(this.event);
-  //   }
-  // }
 
   getCategories(event){
     this.event.categories = event.detail.value;
@@ -305,14 +317,9 @@ back() {
     openProfile(){
       this.router.navigateByUrl('/profile');
     }
-    openpro(){
+    openPro(){
       this.router.navigateByUrl('/pro');
     }
-  
-    openUploads(){
-      this.router.navigateByUrl('/add-product');
-    }
-  
     openInvoice(){
       this.router.navigateByUrl('/user-invoices');
     }
@@ -326,15 +333,65 @@ back() {
       });
     }
 
-  // Quantinty code (Increment, decrement, quantinty)
-  // increment() {
-  //   this.event.quantity++;
-  //  }
-  // decrement() {
-  //   if (this.event.quantity > 1) {
-  //   this.event.quantity--;
-  //   }
-  //  }
+////// for searching
 
+getProduct(){
+  let obj = {id : '', obj : {}};
+  this.db.collection('Products').get().then(snapshot => {
+    this.Products = [];
+    if (snapshot.empty) {
+            this.myProduct = false;
+          } else {
+            this.myProduct = true;
+            snapshot.forEach(doc => {
+              obj.id = doc.id;
+              obj.obj = doc.data();
+              this.Products.push(obj);
+              obj = {id : '', obj : {}};
+              console.log("herererer", this.Products);
+            });
+            return this.Products;
+          }
+  });
+}
+
+SearchProducts(ev: CustomEvent){
+  if(this.supplier === '') {
+    this.autocompleteItemz = [];
+    return;
+  }
+ this.autocompleteItemz = this.Products;
+ console.log("ooo", this.autocompleteItemz );
+  this.getProduct();
+
+  const val = ev.detail.value; 
+  if (val.trim() !== '') {
+    this.autocompleteItemz = this.autocompleteItemz.filter(term => {
+      return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+    });
+  }
+}
+
+productDetails(item){
+  this.data.data = item;
+  // this.router.navigateByUrl('/details');
+  this.createModal();
+}
+
+async viewModal(){
+  const modal = await this.modalController.create({
+    component: DetailsPage
+  });
+  return  modal.present();
+}
+
+
+async createModal() {
+  const modal = await this.modalController.create({
+    component: DetailsPage,
+    cssClass: 'my-custom-modal-css'
+  });
+  return await modal.present();
+}
 
 }

@@ -12,7 +12,8 @@ import * as firebase from 'firebase';
 import { DetailsPageModule } from './pages/details/details.module';
 import { OrderDetailsPageModule } from './pages/order-details/order-details.module';
 import { SowDataPageModule } from './sow-data/sow-data.module';
-
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 
 var firebaseConfig = {
@@ -35,6 +36,8 @@ firebase.initializeApp(firebaseConfig);
   providers: [
     StatusBar,
     SplashScreen,
+    File,
+    FileOpener,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -11,7 +11,6 @@
 
             <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
             <br>
-           
             <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
             <br>
             <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
@@ -20,43 +19,30 @@
       </div>
       <div class="main-content">
         <div class="navigation_bar">
-            <!-- <div class="searchbar">
-                <ion-searchbar  *ngIf="isSearchbarOpened" showCancelButton="true" (ionFocus)="displaySearch()" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" style='min-width: 200px;'></ion-searchbar>
-            
-                <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened"  >
-                    <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true" >
-                      <ion-icon slot="icon-only" name="search" ></ion-icon>
-                    </ion-button>
-                  </ion-item>
-                  <div >
-                  
-                          <ion-list  class="list"  [hidden]="autocompleteItemz.length == 0" (click)="close()"  >
-                  <div *ngIf="autocompleteItemz.length > 0"  >
-                <ion-item   *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)"   >
-                      <ion-avatar>
-                          <img src="{{item.obj.image}}" alt="" height="300" width="300">
-                      </ion-avatar>
-                      <ion-label> {{ item.obj.name }}</ion-label>
-                </ion-item>
-                </div>
-                </ion-list>
-                  
-                  
-                  </div>
-              
-            </div>  -->
             
           <div class="navBarItems" >
-              <div class="searchBar">
+             <!-- attempting search from here  -->
+           <div class="searchBar">
+              <ion-searchbar  placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" ></ion-searchbar> 
+              <ion-icon style="float: right; padding: 10px;"  name="close" (click)="HideButton()"></ion-icon>
+              <ion-list  [hidden]="autocompleteItemz.length == 0" >
+                <div *ngIf="autocompleteItemz.length > 0">
+              <ion-item  *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
+                    <ion-label> {{item.obj.name}}</ion-label>
+              </ion-item>
+              </div>
+             </ion-list>
+          </div>
+      
+              <!-- <div class="searchBar">
               <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
-          
-              <!-- (ionFocus)="displaySearch()" (ionClear)="resetChanges()"  -->
+
               <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened"  >
                   <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true" >
                     <ion-icon slot="icon-only" name="search" ></ion-icon>
                   </ion-button>
-                </ion-item>
-            </div>
+              </ion-item>
+            </div> -->
 
           <div class="profileBar" >
             <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
