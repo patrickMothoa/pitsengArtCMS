@@ -1,4 +1,4 @@
-<div class="content">
+
   <div class="row">
     <div class=" sidebar1  ">
       <div class="logo">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="itemName" >
                      <ion-label>{{li.obj.name}}</ion-label>
-                <ion-label>{{li.obj.productCode}}</ion-label>
+                <ion-label> {{li.obj.productCode}}</ion-label>
                 </div>
               </div>
               <!-- <div class="itemsDetails" >
@@ -105,7 +105,7 @@
             </div>
           </div>
           <div class="total">
-            <div class="totaldetails" *ngFor="let d of Orders"> 
+            <div *ngFor="let d of Orders" class="totaldetails" > 
               <div>
                 <ion-label > total amount </ion-label>
               </div>
@@ -113,21 +113,28 @@
                   <ion-label > {{d.details.total}}</ion-label>
               </div>
               
-            
+        
             </div>
-            <div class="buttons">
+                      <div class="buttons">
           <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
-          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full"  >send reciept</ion-button>
+          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br>
+          <ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</ion-button>
                 <!-- <ion-button class="buttonss" color="warning"  padding shape="block" *ngIf= "isPaymentRecieved">send reciept</ion-button> -->
       
             </div>
           </div>
-      
+
       
       
         </div>
     </div>
   </div>
+
+
+
+
+
+
 <!-- <ion-header>
 <ion-toolbar>
   <ion-title>Tab Two</ion-title>
