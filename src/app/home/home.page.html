@@ -1,3 +1,4 @@
+
 <div class="navigation_bar">
   <div class="left-icons" >
     <ion-button fill="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
@@ -15,7 +16,7 @@
  <div class="right-icons" >
 
 <!-- search from here -->
-<!-- <div class="searchbar">
+<div class="searchbar">
     <ion-searchbar  *ngIf="isSearchbarOpened" showCancelButton="true" (ionFocus)="displaySearch()" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" style='min-width: 200px;'></ion-searchbar>
 
     <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened"  >
@@ -39,7 +40,7 @@
       
       </div>
   
-</div> -->
+</div>
 
 
 
@@ -53,7 +54,7 @@
  </div>
 </div>
 
-<ion-content>
+
   <div class="mainContainer">
   <div class="categories-block"  *ngFor="let event of Products" >     
               <div *ngIf="myProduct" class="myProduct" >
@@ -83,3 +84,5 @@
 
 
 
+  
+</div>
