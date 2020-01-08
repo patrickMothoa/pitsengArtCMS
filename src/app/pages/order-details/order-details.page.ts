@@ -58,13 +58,6 @@ profile={
    
   }
   goToPDF(){
-    // this.db.collection("Users").doc(uid).collection("Orders").doc('orderNumber').onSnapshot(data => {
-    //   this.DataService.myArray = []
-    //     data.forEach(item => {
-    //       console.log("Your data is here ", item.data());        
-    //       this.DataService.myArray.push(item.data())
-    //     })
-    //   })
     var docDefinition = {
       content: [
         { text: 'Pitseng Arts and Crafts', style: 'header' },
