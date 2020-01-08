@@ -54,7 +54,9 @@ profile={
     // console.log("Data in the Service ====   ", this.Orders);
   }
   ionViewDidEnter(){
+    this.Orders=[];
     this.Orders = this.DataService.myArray;
+   
     console.log("Data in the Service ====   ", this.Orders);
    
   }
