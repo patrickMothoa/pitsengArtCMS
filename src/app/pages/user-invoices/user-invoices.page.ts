@@ -35,6 +35,7 @@ export class UserInvoicesPage implements OnInit {
   public userTransact: any;
   myArr = []
   myArray = []
+  loader: boolean = false;
   constructor(public DataService : DataService, public modalController: ModalController, public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController) {
 
   
@@ -126,18 +127,25 @@ console.log("xxxx");
 
 
   viewDetails(uid){
+
+    this.loader = true;
+
     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
       this.DataService.myArray = []
         data.forEach(item => {
           console.log("Your data is here ", item.data());        
-          this.DataService.myArray.push(item.data())
+          this.DataService.myArray.push(item.data());
         })
         
       })
-      this.DataService.myArray.forEach(i => {
+      /* this.DataService.myArray.forEach(i => {
         console.log("data from the service ", i);
-      })
-    this.router.navigateByUrl('/order-details');
+      }) */
+      setTimeout(() => {
+        this.loader = false;
+        this.router.navigateByUrl('/order-details');
+      }, 2000);
+   
   }
 
   openPro(){

@@ -76,7 +76,10 @@ export class OrderDetailsPage implements OnInit {
   conArray =[]
   Orders =[]
   myArray = []
-  constructor(private router: Router,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) { }
+  constructor(private router: Router,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+
+    this.Orders = this.DataService.myArray;
+   }
 
   
   ChangeText(){
@@ -93,9 +96,15 @@ export class OrderDetailsPage implements OnInit {
   //   this.Orders = this.DataService.myArray;
   //   console.log("Data in the Service ====   ", this.Orders);
   // }
+
+  ionViewDidLeave() {
+    console.log('this page is not active');
+    
+    this.Orders = [];
+  }
   ionViewDidEnter(){
    
-    this.Orders = this.DataService.myArray;
+  
    
     
     console.log("Data in the Service ====   ", this.Orders);
