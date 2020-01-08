@@ -42,7 +42,7 @@ body {
 .itemDetails {
 width: 200px;
 height: 500px;
-border: solid black;
+// border: solid black;
 display: flex;
 flex-direction: row;
 }
@@ -122,12 +122,12 @@ ion-searchbar{
     align-items: center;
     margin: auto;
 }
-.itemsDetails{
-    // border: solid green;
-    width: 80%;
-    height: 100%;
-    margin-top: 10%;
-}
+// .itemsDetails{
+//     border: solid green;
+//     width: 80%;
+//     height: 100%;
+//     margin-top: 10%;
+// }
 .ProdDetails{
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ ion-searchbar{
     justify-content: space-around;
     width: 100%;
     // height: 100;
-    border: solid green;
+    // border: solid green;
 }
 ion-card{
     font-family: serif;
@@ -151,7 +151,7 @@ ion-card{
     height: 200px;
     text-align: center;
     padding-top: 20px;
-    border: solid red;
+    // border: solid red;
 }
 ion-title{
     font-weight: bold;
@@ -172,7 +172,7 @@ ion-title{
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 70%;
   // height: 100%;
   // border: solid black;
   display: flex;
@@ -181,22 +181,27 @@ ion-title{
 }
 .items {
   // border: solid red;
-  width: 30%;
+  width: 40%;
 }
 .qty {
   // border: solid green;
-  width: 17.5%;
+  width: 15%;
+  // justify-content: space-around;
+  // display: flex;
+  // // flex-direction: row;
+  // justify-content: center;
+  // justify-items: center;
 }
 .size {
-  width: 17.5%;
+  width: 15%
   // border: solid rgb(185, 185, 34);
 }
 .price {
-  width: 17.5%;
+  width: 15%;
   // border: solid rgb(25, 101, 136);
 }
 .subtotal {
-  width: 17.5%;
+  width: 15%;
   // border: solid rgb(130, 23, 180);
 }
 .otherHeading {
@@ -207,33 +212,35 @@ ion-title{
 }
 .itemsDetails {
   height: 110px;
-  // border: solid mediumaquamarine;
+  border-bottom:  0.5px solid #7070707e;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin: 0% auto;
   top: 0%;
   bottom: 0%;
-  margin: 40px;
+  // margin: 40px;
   top: 0%;
   bottom: 0%;
   height: 110px;
+  width: 100%;
 }
 .qtyNo {
-  // border: solid mediumaquamarine;
-  margin: 40px;
+  border-bottom:  0.5px solid #7070707e;
+  margin: 0% auto;
   top: 0%;
   bottom: 0%;
   height: 110px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  justify-content: center;
-  justify-items: center;
+  text-align: center;
+  font-weight: lighter;
+  font-family:serif ;
 }
 .sizeNo {
-  // border: solid mediumaquamarine;
-  margin: 40px;
+  border-bottom:  0.5px solid #7070707e;
+  // margin: 40px;
   top: 0%;
   bottom: 0%;
   height: 110px;
@@ -242,10 +249,12 @@ ion-title{
   justify-content: space-around;
   justify-content: center;
   justify-items: center;
+  font-weight: lighter;
+  font-family:serif ;
 }
 .priceNo {
-  // border: solid mediumaquamarine;
-  margin: 40px;
+  border-top:  0.5px solid #7070707e;
+  // margin: 40px;
   top: 0%;
   bottom: 0%;
   height: 110px;
@@ -254,10 +263,12 @@ ion-title{
   justify-content: space-around;
   justify-content: center;
   justify-items: center;
+  font-weight: lighter;
+  font-family:serif ;
 }
 .subtotalNo {
-  // border: solid mediumaquamarine;
-  margin: 40px;
+  border-bottom:  0.5px solid #7070707e;
+  // margin: 40px;
   top: 0%;
   bottom: 0%;
   height: 110px;
@@ -266,6 +277,8 @@ ion-title{
   justify-content: space-around;
   justify-content: center;
   justify-items: center;
+  font-weight: lighter;
+  font-family:serif ;
 }
 .itemName {
   display: flex;
@@ -287,7 +300,7 @@ ion-title{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // border: solid red;
+  border: solid red;
 }
 .buttons{
   // border: solid black         ;
@@ -309,8 +322,8 @@ ion-title {
 }
 ion-label {
   font-family: serif;
-  font-size: large;
-  font-weight: bold;
+  // font-size: large;
+  // font-weight: bold;
   color: #707070;
   text-transform: capitalize;
   text-align: center;
