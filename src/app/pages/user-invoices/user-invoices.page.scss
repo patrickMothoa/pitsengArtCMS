@@ -77,12 +77,15 @@ ion-button:hover {
   background:#f17153;
   position: relative;
   width: 100%;
+  display: flex;
 }
 .searchBar{
   margin-left: auto;
 
 }
 .profileBar{
+    // margin-right: 3%;
+    margin-left: 0% auto;
     margin-right: 3%;
 }
 ion-searchbar{
@@ -97,6 +100,7 @@ ion-searchbar{
 }
 .navBarItems {
   display: flex;
+  flex-direction: row;
   margin-left: auto;
 }
 
@@ -110,27 +114,22 @@ ion-searchbar{
 }
 .itemsContainer{
     width: 100%;
-    height: 100%;
+    // height: 100%;
     // border: solid blue;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: auto;
+    
 
 }
 .itemsDetails{
     // border: solid green;
     width: 80%;
     height: 100%;
-    margin-top: 10%;
+    margin-top: 5%;
     
-}
-.invoicesContainer{
-    
-    // border: solid orchid;
-   
-
 }
 .invoicesList{
     border-bottom: 1px #d1cdcd !important;
@@ -150,3 +149,10 @@ ion-label{
     
 }
 
+.invoice{
+  
+    background-color: rgba(255, 255, 255, 0.2);
+    // background-color: white;
+    font-weight: bolder;
+ 
+}

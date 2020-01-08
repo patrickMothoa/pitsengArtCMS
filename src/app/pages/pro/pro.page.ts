@@ -23,7 +23,7 @@ export class ProPage implements OnInit {
     categories:'',
     name:'',
     price:0,
-    // productno:'',
+    productCode:'',
     desc: '',
     items:'',
     quantity : 1,
@@ -43,7 +43,16 @@ export class ProPage implements OnInit {
   actRoute: any;
   size = ['small','medium','large']
   autoId: any;
-  constructor(public modalController: ModalController,public data : ProductService,public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
+  constructor(public modalController: ModalController,
+    public data : ProductService,
+    public   formBuilder: FormBuilder,
+    private router: Router,
+    public route : ActivatedRoute,
+    public loadingCtrl: LoadingController, 
+    public productservices : ProductService, 
+    public alertCtrl: AlertController,
+     public toastController: ToastController,
+     @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
      image: [this.event.image, Validators.compose([Validators.required])],
       categories: [this.event.categories, Validators.compose([Validators.required])], 
@@ -97,7 +106,7 @@ ionViewDidLoad(){
       })
       alerter.present();
     } else {
-      if (!this.event.desc  ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
+      if ( !this.event.desc  ||!this.event.categories ||!this.event.quantity ||!this.event.items||!this.event.size || !this.event.name || !this.event.price) {
         const alerter = await this.alertCtrl.create({
           message: 'Error saving product. Some fields not filled'
         })
@@ -112,6 +121,10 @@ ionViewDidLoad(){
           alerter.present();
         } else{
           this.listproduct = [];
+     /////// generating Random product Code
+    this.event.productCode =  this.stringGen(6);
+    console.log(" product code : ", this.event.productCode );
+    
     const date = new Date();
     this.event.lastcreated = date.toDateString();
     const worker = await this.loadingCtrl.create({
@@ -145,18 +158,25 @@ ionViewDidLoad(){
         categories:'',
         name:'',
         price:0,
-        // productno:'',
+        productCode:"",
         desc: '',
         items:'',
         quantity : 1,
         lastcreated: '',
         size:[]
-
+        
       };
     }
-    
+    /////// generating Random product Code
+    stringGen(len){
+      var text = " ";
+      var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+      for( var i=0; i < len; i++ )
+          text += charset.charAt(Math.floor(Math.random() * charset.length));
+      return text;
+    }
   
-
+ 
 async update(id) {
   if (!this.event.image){
     const alerter = await this.alertCtrl.create({
@@ -209,6 +229,7 @@ async update(id) {
     categories:'',
     name:'',
     price:null,
+    productCode:"",
     desc: '',
     items:'',
     quantity : 1,
@@ -252,7 +273,7 @@ async update(id) {
     
     const alert = await this.alertCtrl.create({
       header: 'Confirm!',
-      message: 'Message <strong>Are you sure you want to delete? This action is ireversable.</strong>!!!',
+      message: 'Are you sure you want to delete? This action is ireversable.!',
       buttons: [
         {
           text: 'Cancel',
@@ -294,14 +315,9 @@ back() {
     openProfile(){
       this.router.navigateByUrl('/profile');
     }
-    openpro(){
+    openPro(){
       this.router.navigateByUrl('/pro');
     }
-  
-    openUploads(){
-      this.router.navigateByUrl('/add-product');
-    }
-  
     openInvoice(){
       this.router.navigateByUrl('/user-invoices');
     }

@@ -1,4 +1,5 @@
-<body class="container">
+<ion-content scroll="true" >
+<div class="container">
   <div class="content ">
     <div class="row">
       <div class=" sidebar1  ">
@@ -9,10 +10,9 @@
         <div class="left-navigation">
           <div class="list">
 
-            <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
+            <ion-button class="home" expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
             <br>
-           
-            <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+            <ion-button  expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
             <br>
             <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
           </div>
@@ -23,27 +23,37 @@
             
           <div class="navBarItems" >
              <!-- attempting search from here  -->
-           <div class="searchBar">
-              <ion-searchbar  placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" ></ion-searchbar> 
-              <ion-icon style="float: right; padding: 10px;"  name="close" (click)="HideButton()"></ion-icon>
-              <ion-list  [hidden]="autocompleteItemz.length == 0" >
+           <!-- <div class="searchBar">
+              <ion-searchbar   placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" ></ion-searchbar> 
+                         <ion-list  [hidden]="autocompleteItemz.length == 0" >
                 <div *ngIf="autocompleteItemz.length > 0">
               <ion-item  *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
                     <ion-label> {{item.obj.name}}</ion-label>
               </ion-item>
               </div>
              </ion-list>
-          </div>
+          </div> -->
       
-              <!-- <div class="searchBar">
-              <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+              <div class="searchBar">
+              <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false'
+               showCancelButton="focus" cancelButtonText="Custom Cancel" [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" ></ion-searchbar>
 
               <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened"  >
                   <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true" >
                     <ion-icon slot="icon-only" name="search" ></ion-icon>
                   </ion-button>
               </ion-item>
-            </div> -->
+
+              <ion-list [style.display]="!myDest ? 'none' : 'block'" padding  class="listitems"  [hidden]="autocompleteItemz.length == 0" >
+                <div *ngIf="autocompleteItemz.length > 0">
+              <ion-item class="searchItems" *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
+                <div><img padding src="{{item.obj.image}}" alt="" height="100px" width="100px"></div>
+                <div><ion-label padding > {{item.obj.name}}</ion-label></div>
+                    
+              </ion-item>
+              </div>
+             </ion-list>
+            </div>
 
           <div class="profileBar" >
             <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
@@ -97,6 +107,9 @@
                     <ion-select-option *ngFor="let s of size">{{s}}</ion-select-option>
                   </ion-select>
                 </ion-item>
+                <ion-item>
+                    <ion-input  placeholder="Available stock" type="number" min="1" max="1000000" [(ngModel)]="event.quantity"></ion-input>
+                  </ion-item>
 
 
                 <ion-list>
@@ -132,7 +145,7 @@
                 <!-- <img class="cardImage" src="../../../assets/original (2).jpg" alt=""> -->
               </div>
               <div class="itemDetails" >
-                <div> <ion-title  >{{p.data.name}}</ion-title>
+                <div> <ion-title text-wrap >{{p.data.name}}</ion-title>
                 <!-- <ion-card-subtitle padding >{{p.data.productno}}</ion-card-subtitle> -->
                 </div>
                 <div>
@@ -140,7 +153,7 @@
                 </div>
              
               <div class="size">
-                <ion-card-subtitle>Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
+                <ion-card-subtitle  >Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
                     <hr>
                     <div class="size">
                       <p></p>
@@ -162,7 +175,7 @@
            
               </div>
               
-                <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="delete(p.id)">
+                <ion-fab class="fabButton" vertical="bottom" horizontal="end" slot="fixed" (click)="delete(p.id)">
                   <ion-fab-button color="danger">
                     <ion-icon name="trash"></ion-icon>
                   </ion-fab-button>
@@ -220,7 +233,9 @@
       </div>
     </div>
   </div>
-</body>
+</div>
+
+</ion-content>
 
 
 <!-- <ion-header>

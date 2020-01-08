@@ -85,35 +85,67 @@ console.log("xxxx");
   }
 
 
-  async viewModal(){
-    const modal = await this.modalController.create({
-      component: OrderDetailsPage
-    });
-    return  modal.present();
-  }
+  // async viewModal(){
+  //   const modal = await this.modalController.create({
+  //     component: OrderDetailsPage
+  //   });
+  //   return  modal.present();
+  // }
   
 
- async  viewDetails(uid){
+//  async  viewDetails(uid){
+//     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
+//       this.DataService.myArray = []
+//         data.forEach(item => {
+//           console.log("Your data is here ", item.data());
+          
+//           this.DataService.myArray.push(item.data())
+//         })
+//       })
+//       this.DataService.myArray.forEach(i => {
+//         console.log("data from the service ", i);
+//       })
+
+//     let modal = await this.modalController.create({
+//       component : SowDataPage
+//     })
+//     return await modal.present();
+//   }
+
+// this goes to the order details
+// here(){
+//   this.db.collection("Users").doc(uid).collection("Orders").doc(this.orderNumber).onSnapshot(data => {
+//     this.DataService.myArray = []
+//       data.forEach(item => {
+//         console.log("Your data is here ", item.data());        
+//         this.DataService.myArray.push(item.data())
+//       })
+//     })
+// }
+
+
+
+  viewDetails(uid): void{
+    // this.DataService.myArray=[]
     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
       this.DataService.myArray = []
         data.forEach(item => {
-          console.log("Your data is here ", item.data());
-          
+          console.log("Your data is here ", item.data());        
           this.DataService.myArray.push(item.data())
         })
+        
       })
       this.DataService.myArray.forEach(i => {
         console.log("data from the service ", i);
       })
-
-    let modal = await this.modalController.create({
-      component : SowDataPage
-    })
-    return await modal.present();
+    this.router.navigateByUrl('/order-details');
   }
 
   openPro(){
     this.router.navigateByUrl('/pro');
+  }
+  openInvoice(){
+    this.router.navigateByUrl('/user-invoices');
   }
   openProfile(){
     this.router.navigateByUrl('/profile');

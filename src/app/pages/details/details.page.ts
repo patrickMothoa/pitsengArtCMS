@@ -78,12 +78,12 @@ export class DetailsPage implements OnInit {
   }
   
 
-  dismiss(p) {
-    this.data.data = p;
-    this.modalController.dismiss({
-      'dismissed': true
-    });
-  }
+  // dismiss(p) {
+  //   this.data.data = p;
+  //   this.modalController.dismiss({
+  //     'dismissed': true
+  //   });
+  // }
 
 
 }

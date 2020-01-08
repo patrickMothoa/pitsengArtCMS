@@ -1,7 +1,5 @@
-<div class="content">
+<ion-content scroll="true" >
 
-  <button (click)="save()">Save</button>
-  <button (click)="Pull()">Pull</button>
 
     <div class="row">
       <div class=" sidebar1  ">
@@ -14,7 +12,7 @@
   
             <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
             <br>
-            <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+            <ion-button class="invoice" expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
             <br>
             <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
           </div>
@@ -24,7 +22,7 @@
         <div class="navigation_bar">
           <div class="navigation_bar">
             <div class="navBarItems">
-              <div class="searchBar">
+              <!-- <div class="searchBar">
                 <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
                   (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel">
                 </ion-searchbar>
@@ -33,10 +31,10 @@
                     <ion-icon slot="icon-only" name="search"></ion-icon>
                   </ion-button>
                 </ion-item>
-              </div>
+              </div> -->
   
               <div class="profileBar">
-                <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
+                <ion-button fill="clear" color="light" (click)="openProfile()" >
                   <ion-icon slot="icon-only" name="contact"></ion-icon>
                 </ion-button>
               </div>
@@ -88,3 +86,4 @@
         </div>
       </div>
     </div>
+  </ion-content>
