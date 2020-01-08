@@ -44,7 +44,7 @@
                   </ion-button>
               </ion-item>
 
-              <ion-list padding  class="listitems"  [hidden]="autocompleteItemz.length == 0" >
+              <ion-list [style.display]="!myDest ? 'none' : 'block'" padding  class="listitems"  [hidden]="autocompleteItemz.length == 0" >
                 <div *ngIf="autocompleteItemz.length > 0">
               <ion-item class="searchItems" *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
                 <div><img padding src="{{item.obj.image}}" alt="" height="100px" width="100px"></div>
