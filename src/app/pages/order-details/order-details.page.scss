@@ -81,12 +81,14 @@ ion-button:hover {
   position: relative;
   width: 100%;
   overflow: hidden;
+  display: flex;
 }
 .searchBar{
   margin-left: auto;
 }
 .profileBar{
-    margin-right: 3%;
+margin-left: 0 auto;
+margin-right: 3%;
 }
 ion-searchbar{
   font-weight: bold;
@@ -172,7 +174,7 @@ ion-title{
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 80%;
   // height: 100%;
   // border: solid black;
   display: flex;
@@ -228,19 +230,22 @@ ion-title{
 .qtyNo {
   border-bottom:  0.5px solid #7070707e;
   margin: 0% auto;
+  padding-top: 30px;
   top: 0%;
   bottom: 0%;
   height: 110px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  text-align: center;
+  justify-content: center;
+  justify-items: center;
   font-weight: lighter;
   font-family:serif ;
 }
 .sizeNo {
   border-bottom:  0.5px solid #7070707e;
   // margin: 40px;
+  padding-top: 30px;
   top: 0%;
   bottom: 0%;
   height: 110px;
@@ -253,8 +258,9 @@ ion-title{
   font-family:serif ;
 }
 .priceNo {
-  border-top:  0.5px solid #7070707e;
+  border-bottom:  0.5px solid #7070707e;
   // margin: 40px;
+  padding-top: 30px;
   top: 0%;
   bottom: 0%;
   height: 110px;
@@ -269,6 +275,7 @@ ion-title{
 .subtotalNo {
   border-bottom:  0.5px solid #7070707e;
   // margin: 40px;
+  padding-top: 30px;
   top: 0%;
   bottom: 0%;
   height: 110px;
@@ -286,9 +293,9 @@ ion-title{
   justify-content: space-around;
 }
 .total{
-  border: solid blueviolet;
+  // border: solid blueviolet;
   width: 17.5%;
-  // height: 150px;
+  // height: auto;
   margin: auto;
   margin-right: 20%;
   display: flex;
@@ -300,7 +307,13 @@ ion-title{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: solid red;
+  // border: solid red;
+  text-align: center;
+  text-align: center;
+  justify-content: center;
+}
+.amount{
+text-align: center;
 }
 .buttons{
   // border: solid black         ;
@@ -327,4 +340,11 @@ ion-label {
   color: #707070;
   text-transform: capitalize;
   text-align: center;
+}
+.invoice{
+  
+  background-color: rgba(255, 255, 255, 0.2);
+  // background-color: white;
+  font-weight: bolder;
+
 }

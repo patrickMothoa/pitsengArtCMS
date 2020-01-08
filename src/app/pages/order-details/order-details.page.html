@@ -10,7 +10,7 @@
 
           <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
           <br>
-          <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+          <ion-button  class="invoice" expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
           <br>
           <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
         </div>
@@ -20,7 +20,7 @@
       <div class="navigation_bar">
         <div class="navigation_bar">
           <div class="navBarItems">
-            <div class="searchBar">
+            <!-- <div class="searchBar">
               <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
                 (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel">
               </ion-searchbar>
@@ -29,7 +29,7 @@
                   <ion-icon slot="icon-only" name="search"></ion-icon>
                 </ion-button>
               </ion-item>
-            </div>
+            </div> -->
 
             <div class="profileBar">
               <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
@@ -105,20 +105,20 @@
             </div>
           </div>
           <div class="total">
-            <div *ngFor="let d of Orders" class="totaldetails" > 
-              <div>
-                <ion-label > total amount </ion-label>
+            <div  class="totaldetails" > 
+              <div class="amount" >
+                <ion-label > total amount: R 12345 </ion-label>
               </div>
               <div>
-                  <ion-label > {{d.details.total}}</ion-label>
+                  <!-- <ion-label > {{d.details.total}}</ion-label> -->
               </div>
               
         
             </div>
-                      <div class="buttons">
-          <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
-          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br>
-          <ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</ion-button>
+                      <div class="">
+          <ion-button class="buttons" *ngIf= "!text"  padding  color="warning"   expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
+          <ion-button class="buttons" *ngIf= "text" padding  color="warning"   expand="full" (click)="goToPDF()" >send reciept</ion-button><br>
+          <ion-button    expand="full" color="tertiary"  padding  (click)="downloadPdf()">Download PDF</ion-button>
                 <!-- <ion-button class="buttonss" color="warning"  padding shape="block" *ngIf= "isPaymentRecieved">send reciept</ion-button> -->
       
             </div>

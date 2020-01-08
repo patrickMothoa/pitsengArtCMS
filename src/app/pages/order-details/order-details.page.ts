@@ -33,6 +33,7 @@ profile={
  
   pdfObj = null;
   text : boolean = false;
+  pdf : boolean =false;
 
   
   db = firebase.firestore();
