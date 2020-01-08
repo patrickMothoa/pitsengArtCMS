@@ -97,6 +97,11 @@ ion-button:hover {
   color: white;
   font-weight: bolder;
 }
+ion-button:hover .active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: bolder;
+}
 .main-content {
   text-align: center;
   height: 100%;
@@ -247,6 +252,7 @@ ion-card {
   justify-content: space-around;
   width: 25%;
   height: 20%;
+  flex-wrap: wrap;
 }
 .cardImage {
   width: 100%;
@@ -265,6 +271,7 @@ ion-card {
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
+  
   // border:solid red;
 }
 // .image-cards {
@@ -284,4 +291,10 @@ ion-card {
 }
 .cardInfor:hover .fabButton{
   display: block;
+}
+
+.home{
+  background-color: rgba(255, 255, 255, 0.2);
+  // background-color: white;
+  font-weight: bolder;
 }

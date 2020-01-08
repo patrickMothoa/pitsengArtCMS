@@ -10,9 +10,9 @@
         <div class="left-navigation">
           <div class="list">
 
-            <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
+            <ion-button class="home" expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
             <br>
-            <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+            <ion-button  expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
             <br>
             <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
           </div>
@@ -150,7 +150,7 @@
                 <!-- <img class="cardImage" src="../../../assets/original (2).jpg" alt=""> -->
               </div>
               <div class="itemDetails" >
-                <div> <ion-title  >{{p.data.name}}</ion-title>
+                <div> <ion-title text-wrap >{{p.data.name}}</ion-title>
                 <!-- <ion-card-subtitle padding >{{p.data.productno}}</ion-card-subtitle> -->
                 </div>
                 <div>
@@ -158,7 +158,7 @@
                 </div>
              
               <div class="size">
-                <ion-card-subtitle>Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
+                <ion-card-subtitle  >Size:&nbsp;{{p.data.size}}</ion-card-subtitle>
                     <hr>
                     <div class="size">
                       <p></p>

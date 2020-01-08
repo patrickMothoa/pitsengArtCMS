@@ -10,7 +10,7 @@
 
           <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
           <br>
-          <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+          <ion-button  class="invoice" expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
           <br>
           <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
         </div>
@@ -105,12 +105,12 @@
             </div>
           </div>
           <div class="total">
-            <div *ngFor="let d of Orders" class="totaldetails" > 
-              <div>
-                <ion-label > total amount </ion-label>
+            <div  class="totaldetails" > 
+              <div class="amount" >
+                <ion-label > total amount: R 12345 </ion-label>
               </div>
               <div>
-                  <ion-label > {{d.details.total}}</ion-label>
+                  <!-- <ion-label > {{d.details.total}}</ion-label> -->
               </div>
               
         
