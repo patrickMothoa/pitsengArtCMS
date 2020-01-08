@@ -33,7 +33,7 @@ profile={
  
   pdfObj = null;
   text : boolean = false;
-  visible : boolean = false;
+  hideButton : boolean = false;
 
   
   db = firebase.firestore();
@@ -43,9 +43,10 @@ profile={
   myArray = []
   constructor(private router: Router,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) { }
 
+  
   ChangeText(){
     this.text = !false;
-    // this.visible = true
+    this.hideButton=true;
   }
 
   ngOnInit() {
