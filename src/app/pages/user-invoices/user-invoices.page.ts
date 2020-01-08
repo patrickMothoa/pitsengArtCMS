@@ -128,8 +128,7 @@ console.log("xxxx");
 
 
 
-  viewDetails(uid): void{
-    // this.DataService.myArray=[]
+  viewDetails(uid){
     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
       this.DataService.myArray = []
         data.forEach(item => {
