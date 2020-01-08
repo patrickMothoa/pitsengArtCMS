@@ -275,7 +275,7 @@ async update(id) {
     
     const alert = await this.alertCtrl.create({
       header: 'Confirm!',
-      message: 'Message <strong>Are you sure you want to delete? This action is ireversable.</strong>!!!',
+      message: 'Are you sure you want to delete? This action is ireversable.!',
       buttons: [
         {
           text: 'Cancel',
