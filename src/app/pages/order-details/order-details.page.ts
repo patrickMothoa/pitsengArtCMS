@@ -33,6 +33,7 @@ profile={
  
   pdfObj = null;
   text : boolean = false;
+  visible : boolean = false;
 
   
   db = firebase.firestore();
@@ -43,9 +44,8 @@ profile={
   constructor(private router: Router,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) { }
 
   ChangeText(){
-    this.text = !false
-    // document.getElementById("text").innerHTML = "Send Recept";
-    // this.router.navigateByUrl('/pdf');
+    this.text = !false;
+    // this.visible = true
   }
 
   ngOnInit() {
@@ -58,7 +58,13 @@ profile={
    
   }
   goToPDF(){
-    // this.router.navigateByUrl('/pdf');
+    // this.db.collection("Users").doc(uid).collection("Orders").doc('orderNumber').onSnapshot(data => {
+    //   this.DataService.myArray = []
+    //     data.forEach(item => {
+    //       console.log("Your data is here ", item.data());        
+    //       this.DataService.myArray.push(item.data())
+    //     })
+    //   })
     var docDefinition = {
       content: [
         { text: 'Pitseng Arts and Crafts', style: 'header' },
