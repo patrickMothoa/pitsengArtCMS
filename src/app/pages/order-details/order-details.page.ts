@@ -67,6 +67,7 @@ export class OrderDetailsPage implements OnInit {
  
   pdfObj = null;
   text : boolean = false;
+  hideButton : boolean = false;
 
   
   db = firebase.firestore();
@@ -77,10 +78,10 @@ export class OrderDetailsPage implements OnInit {
   myArray = []
   constructor(private router: Router,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) { }
 
+  
   ChangeText(){
-    this.text = !false
-    // document.getElementById("text").innerHTML = "Send Recept";
-    // this.router.navigateByUrl('/pdf');
+    this.text = !false;
+    this.hideButton=true;
   }
 
   ngOnInit() {
@@ -109,38 +110,6 @@ export class OrderDetailsPage implements OnInit {
     })
   }
   goToPDF(){
-    // // this.router.navigateByUrl('/pdf');
-    // var docDefinition = {
-    //   content: [
-    
-    //     { text: 'Pitseng Arts and Crafts', style: 'header' },
-    //     { text: new Date().toTimeString(), alignment: 'right' },
- 
-    //     { text: '', style: 'subheader' },
-    //     this.profile.address,
-    //     this.profile.phoneNumber,
-        
-        
-    //   ],
-    //   styles: {
-    //     header: {
-    //       fontSize: 18,
-    //       bold: true,
-    //     },
-    //     subheader: {
-    //       fontSize: 14,
-    //       bold: true,
-    //       margin: [0, 15, 0, 0]
-    //     },
-    //     story: {
-    //       italic: true,
-    //       alignment: 'center',
-    //       width: '50%',
-    //     }
-    //   }
-    // }
-    // this.pdfObj = pdfMake.createPdf(docDefinition);
-
     var docDefinition = {
       content: [
         // {
