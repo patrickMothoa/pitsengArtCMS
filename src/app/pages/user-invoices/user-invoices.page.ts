@@ -71,9 +71,6 @@ export class UserInvoicesPage implements OnInit {
 console.log("xxxx");
 
   let obj = {name : '', uid : ''} ;
- 
-  
-
   this.db.collection("UserProfile").onSnapshot(data => {
     data.forEach(item => {
      
@@ -114,20 +111,6 @@ console.log("xxxx");
     })
     return await modal.present();
   }
-
-  // viewDetails(uid){
-  //   this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
-  //     this.DataService.myArray = []
-  //       data.forEach(item => {
-  //         console.log("Your data is here ", item.data());        
-  //         this.DataService.myArray.push(item.data())
-  //       })
-  //     })
-  //     this.DataService.myArray.forEach(i => {
-  //       console.log("data from the service ", i);
-  //     })
-  //   this.router.navigateByUrl('/sow-data');
-  // }
 
   openPro(){
     this.router.navigateByUrl('/pro');

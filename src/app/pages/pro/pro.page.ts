@@ -29,9 +29,7 @@ export class ProPage implements OnInit {
     quantity : 1,
     lastcreated: '',
     size:[]
-    // small:'',
-    // medium:'',
-    // large: ''
+
   };
   supplier
   myProduct = false;
@@ -153,9 +151,7 @@ ionViewDidLoad(){
         quantity : 1,
         lastcreated: '',
         size:[]
-        // small:'',
-        // medium:'',
-        // large: ''
+
       };
     }
     

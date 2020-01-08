@@ -88,9 +88,6 @@
                 <ion-item>
                   <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
                 </ion-item>
-                <!-- <ion-item>
-                  <ion-input type="text" placeholder="Product number" [(ngModel)]="event.productno"></ion-input>
-                </ion-item> -->
                 <ion-item>
                   <ion-input type="tel" placeholder="Price" [(ngModel)]="event.price"></ion-input>
                 </ion-item>
@@ -100,9 +97,6 @@
                     <ion-select-option *ngFor="let s of size">{{s}}</ion-select-option>
                   </ion-select>
                 </ion-item>
-                <!-- <ion-item>
-                    <ion-input  placeholder="Available stock" type="number" min="1" max="1000000" [(ngModel)]="event.quantity"></ion-input>
-                  </ion-item> -->
 
 
                 <ion-list>
@@ -120,13 +114,11 @@
                 </ion-list>
 
 
-
-                <!-- <ion-button color="primary" (click)="addEvent()" [disabled]="event.large == ''">Upload</ion-button> -->
                 <ion-button class="buttons " color="warning" *ngIf="!updateBtn" (click)="addEvent()">Upload
                 </ion-button>
                 <ion-button class="buttons " color="warning" *ngIf="updateBtn" (click)="update(autoId)">Update
                   </ion-button>
-                <!-- <button class="buttons" color="warning" *ngIf="updateBtn" (click)="update(autoId)">Update</button> -->
+
               </ion-card-content>
             </div>
           </div>
