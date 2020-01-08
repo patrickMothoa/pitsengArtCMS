@@ -71,9 +71,6 @@ export class UserInvoicesPage implements OnInit {
 console.log("xxxx");
 
   let obj = {name : '', uid : ''} ;
- 
-  
-
   this.db.collection("UserProfile").onSnapshot(data => {
     data.forEach(item => {
      

@@ -98,9 +98,6 @@
                 <ion-item>
                   <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
                 </ion-item>
-                <!-- <ion-item>
-                  <ion-input type="text" placeholder="Product number" [(ngModel)]="event.productno"></ion-input>
-                </ion-item> -->
                 <ion-item>
                   <ion-input type="tel" placeholder="Price" [(ngModel)]="event.price"></ion-input>
                 </ion-item>
@@ -130,13 +127,11 @@
                 </ion-list>
 
 
-
-                <!-- <ion-button color="primary" (click)="addEvent()" [disabled]="event.large == ''">Upload</ion-button> -->
                 <ion-button class="buttons " color="warning" *ngIf="!updateBtn" (click)="addEvent()">Upload
                 </ion-button>
                 <ion-button class="buttons " color="warning" *ngIf="updateBtn" (click)="update(autoId)">Update
                   </ion-button>
-                <!-- <button class="buttons" color="warning" *ngIf="updateBtn" (click)="update(autoId)">Update</button> -->
+
               </ion-card-content>
             </div>
           </div>
