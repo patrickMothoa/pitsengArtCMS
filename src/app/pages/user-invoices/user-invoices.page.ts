@@ -73,6 +73,7 @@ console.log("xxxx");
 
   let obj = {name : '', uid : ''} ;
   this.db.collection("UserProfile").onSnapshot(data => {
+    // this.db.collection("Users").doc('g04alz7nftX5NCrbwuYHRBnvq5w2').collection("Orders").onSnapshot(data => {
     data.forEach(item => {
      
       obj.name = item.data().email;
