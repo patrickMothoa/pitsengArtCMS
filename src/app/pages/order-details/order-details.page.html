@@ -1,5 +1,7 @@
 
-  <div class="row">
+ 
+ 
+ <div class="row">
     <div class=" sidebar1  ">
       <div class="logo">
         <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
@@ -39,19 +41,24 @@
           </div>
         </div>
       </div>
+      <ion-content scroll="true" >
       <div class="coverContent">
+        <div>
+
+       
           <div class="heading">
-            <div class="items">
+            <div class="items" >
               <ion-title>item</ion-title>
-              <div class="itemsDetails" *ngFor="let li of Orders">
+              <div class="itemsDetails" *ngFor="let li of Orders" >
                 <div class="itemImage" >
                      <img src="{{li.obj.image}}" width="100px" height="100px" alt="">
                 </div>
-                <div class="itemName" >
+                <div class="itemName" *ngIf="Orders.length>=1">
                      <ion-label>{{li.obj.name}}</ion-label>
                 <ion-label> {{li.obj.productCode}}</ion-label>
                 </div>
               </div>
+
               <!-- <div class="itemsDetails" >
                   <div class="itemImage" >
                        <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
@@ -104,7 +111,7 @@
                  -->
             </div>
           </div>
-          <div class="total">
+            <div class="total">
             <div  class="totaldetails" > 
               <div class="amount" >
                 <ion-label > total amount: R 12345 </ion-label>
@@ -123,12 +130,16 @@
          
             </div>
           </div>
-
-      
-      
-        </div>
+         
+        
+  
+      </div>
+    </div>
+       
+        </ion-content>
     </div>
   </div>
+
 
 
 
