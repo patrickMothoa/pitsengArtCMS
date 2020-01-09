@@ -335,6 +335,19 @@ async update(id) {
               ],
             })
             alerter.present();
+            this.event = {
+              image: '',
+              categories:'',
+              name:'',
+              price:null,
+              productCode:"",
+              desc: '',
+              items:'',
+              quantity : 1,
+              lastcreated: '',
+              size:[]
+              
+            };
             })
           }
         }
