@@ -4,7 +4,7 @@ ion-content{
 .firstContainer{
     display: flex;
     flex-direction: row;
-    border: solid black;
+    // border: solid black;
     // background-color:red;
     justify-content: center;
     width: 100%;
@@ -16,7 +16,7 @@ ion-content{
     text-align: center;
     display: flex;
     flex-direction: row;
-    border: solid black;
+    // border: solid black;
     // background-color:red;
     
     width: 100%;
@@ -24,7 +24,7 @@ ion-content{
 }
 
 .ProductDetails{
-    border: solid green;
+    // border: solid green;
 
 }
 .productButtons-Container{
@@ -33,7 +33,7 @@ ion-content{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: solid orangered;
+    // border: solid orangered;
     padding-left: 8px;
 }
 .size{
@@ -100,14 +100,14 @@ p{
 
   display: flex;
     flex-direction: column;
-    border: solid blue;
+    // border: solid blue;
     // background-color:purple;
     justify-content: center;
     width: 100%;
     // margin-left: 5%;
 }
 .imageContainer{
-    border: solid blueviolet;
+    // border: solid blueviolet;
     display: flex;
     justify-content: center;
     width: 100%;
