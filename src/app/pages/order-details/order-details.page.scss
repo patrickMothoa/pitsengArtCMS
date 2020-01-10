@@ -20,8 +20,8 @@ body {
   background: #FFAF65;
   background: linear-gradient(#F17153, #F58D63, #F1AB53);
   padding: 16px;
-  overflow: hidden;
-  height: 1005;
+
+  height: 100%;
 }
 .sidebar2 {
   background:#FFAF65;
@@ -34,7 +34,7 @@ body {
   display: flex;
   flex-direction: row;
   height: 100%;
-  // overflow: auto;
+  
 }
 .topnavbar {
   float: left;
@@ -73,14 +73,14 @@ ion-button:hover {
   margin: 0%;
   left: 0%;
   right: 0%;
-  overflow: overflow;
+
 //   background-color: white;
 }
 .navigation_bar {
   background:#f17153;
   position: relative;
   width: 100%;
-  overflow: hidden;
+ 
   display: flex;
 }
 .searchBar{
@@ -168,7 +168,7 @@ ion-title{
   display: flex;
   flex-direction: column;
   margin: 0% auto;
-  overflow: auto;
+ 
 }
 .heading {
   margin-top: 5%;
@@ -179,7 +179,7 @@ ion-title{
   // border: solid black;
   display: flex;
   flex-direction: row;
-  // overflow: auto;
+
 }
 .items {
   // border: solid red;
@@ -295,7 +295,7 @@ ion-title{
 .total{
   // border: solid blueviolet;
   width: 17.5%;
-  // height: auto;
+  height: 15%;
   margin: auto;
   margin-right: 20%;
   display: flex;

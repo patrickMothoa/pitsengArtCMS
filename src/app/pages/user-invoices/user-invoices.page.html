@@ -1,6 +1,9 @@
 <ion-content scroll="true" >
 
-
+  <div class="loader" *ngIf="loader">
+    <div class="loads"></div>
+    <p>Loading...</p>
+  </div>
     <div class="row">
       <div class=" sidebar1  ">
         <div class="logo">
@@ -46,11 +49,11 @@
             <div class="filterContiner">
               <ion-item>
                 <ion-label><ion-icon name="funnel"></ion-icon> &nbsp; Orders</ion-label>
-                <ion-select interface="popover">
+                <!-- <ion-select interface="popover">
                   <ion-select-option value="nes">Not Paid</ion-select-option>
                   <ion-select-option value="n64">Paid</ion-select-option>
   
-                </ion-select>
+                </ion-select> -->
               </ion-item>
             </div>
             <div class="invoicesContainer">

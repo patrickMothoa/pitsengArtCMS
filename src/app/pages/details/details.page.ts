@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -14,24 +14,28 @@ export class DetailsPage implements OnInit {
   db = firebase.firestore();
   autoId: any;
   updateBtn = false;
+  listproduct = [];
   MyObj = [];
   event = {
     image: '',
     categories:'',
     name:'',
     price:null,
-    productno:'',
-    desc: null,
-    small:'',
-    medium:'',
-    large: ''
-  };
+    productCode:"",
+    desc: '',
+    items:'',
+    quantity : 1,
+    lastcreated: '',
+    size:[]
+    
+  }
 
   public items: any;
   cart = [];
   Products = [];
   myProduct = false;
   constructor(
+    public loadingCtrl: LoadingController,
     public productService: ProductService, 
     public data : ProductService,
     public alertCtrl: AlertController,
@@ -66,11 +70,11 @@ export class DetailsPage implements OnInit {
           this.event.categories = doc.data().categories
           this.event.name=doc.data().name
           this.event.price=doc.data().price
-          this.event.productno=doc.data().productno
+          this.event.productCode=doc.data().productCode
           this.event.desc=doc.data().desc
-          this.event.small=doc.data().small
-          this.event.medium=doc.data().medium
-          this.event.large=doc.data().large
+          // this.event.small=doc.data().small
+          // this.event.medium=doc.data().medium
+          // this.event.large=doc.data().large
           
         })
       }
@@ -85,5 +89,85 @@ export class DetailsPage implements OnInit {
   //   });
   // }
 
+  async Deleteproduct(value){
+    console.log('item =>',value);
+    
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm!',
+      message: 'Are you sure you want to delete? This action is ireversable.!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: async () => {
+            const worker = await this.loadingCtrl.create({
+              message: 'Working',
+              spinner: 'bubbles'
+            })
+            worker.present();
+            this.db.collection('Products').doc(value).delete().then(async res => {
+             worker.dismiss()
+              this.listproduct = [];
+              this.retrieve();
+           
+              const alerter = await this.alertCtrl.create({
+              message: 'Product deleted',
+              buttons: [
+                {
+                text: 'OK'
+                }  
+              ], 
+            })
+           alerter.present();
+            this.event = {
+              image: '',
+              categories:'',
+              name:'',
+              price:null,
+              productCode:"",
+              desc: '',
+              items:'',
+              quantity : 1,
+              lastcreated: '',
+              size:[]
+              
+            };
+            })
+          }
+        }
+      ]
+      
+    });
+   
+    await alert.present(); 
+    this.dismiss();
+  }
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+    }
+
+  retrieve(){
+    this.listproduct = [];
+    this.db.collection('Products').onSnapshot(snapshot => {
+      if (snapshot.empty) {
+        console.log('No documents');
+      } else {
+        snapshot.forEach(doc => {
+          
+          this.listproduct.push({id : doc.id, data : doc.data()});
+          console.log(this.listproduct);
+          
+        })
+      }
+    })
+  }
 
 }

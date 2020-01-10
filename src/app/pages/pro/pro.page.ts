@@ -136,9 +136,36 @@ ionViewDidLoad(){
       /* this.retrieve(); */
       worker.dismiss();
       const alerter = await this.alertCtrl.create({
-        message: 'product saved'
+      inputs: [
+        {
+          placeholder: 'product added successful',
+          type: "text"
+        }],
+      buttons: [
+        {
+          text: 'OK'}
+        ],
+        // message: 'product saved'
       })
+      worker.dismiss();
       alerter.present();
+
+     this.event = {
+      image: '',
+      categories:'',
+      name:'',
+      price:0,
+      productCode:'',
+      desc: '',
+      items:'',
+      quantity : 1,
+      lastcreated: '',
+      size:[]
+  
+    };
+
+
+
     }).catch(async err => {
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product.'
@@ -208,7 +235,12 @@ async update(id) {
     /* this.retrieve(); */
     worker.dismiss();
     const alerter = await this.alertCtrl.create({
-      message: 'product saved'
+      message: 'Product updated successful',
+      buttons: [
+        {
+        text: 'OK'
+        }
+      ],
     })
     alerter.present();
   }).catch(async err => {
@@ -295,9 +327,27 @@ async update(id) {
               this.listproduct = [];
               this.retrieve();
               const alerter = await this.alertCtrl.create({
-              message: 'product deleted'
+              message: 'Product deleted',
+              buttons: [
+                {
+                text: 'OK'
+                }
+              ],
             })
             alerter.present();
+            this.event = {
+              image: '',
+              categories:'',
+              name:'',
+              price:null,
+              productCode:"",
+              desc: '',
+              items:'',
+              quantity : 1,
+              lastcreated: '',
+              size:[]
+              
+            };
             })
           }
         }

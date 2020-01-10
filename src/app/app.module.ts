@@ -16,17 +16,19 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 
-var firebaseConfig = {
-  apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
-  authDomain: "pitsengproject.firebaseapp.com",
-  databaseURL: "https://pitsengproject.firebaseio.com",
-  projectId: "pitsengproject",
-  storageBucket: "pitsengproject.appspot.com",
-  messagingSenderId: "359447010965",
-  appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
-  measurementId: "G-T4KR75ZKET"
-};
-firebase.initializeApp(firebaseConfig);
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
+    authDomain: "pitsengproject.firebaseapp.com",
+    databaseURL: "https://pitsengproject.firebaseio.com",
+    projectId: "pitsengproject",
+    storageBucket: "pitsengproject.appspot.com",
+    messagingSenderId: "359447010965",
+    appId: "1:359447010965:web:30e22a1e055bd366d7c59c",
+    measurementId: "G-T4KR75ZKET"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
 @NgModule({
