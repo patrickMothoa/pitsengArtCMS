@@ -112,16 +112,6 @@ console.log("xxxx");
 //     return await modal.present();
 //   }
 
-// this goes to the order details
-// here(){
-//   this.db.collection("Users").doc(uid).collection("Orders").doc(this.orderNumber).onSnapshot(data => {
-//     this.DataService.myArray = []
-//       data.forEach(item => {
-//         console.log("Your data is here ", item.data());        
-//         this.DataService.myArray.push(item.data())
-//       })
-//     })
-// }
 
 
 
@@ -132,14 +122,15 @@ console.log("xxxx");
         data.forEach(item => {
           console.log("Your data is here ", item.data());        
           this.DataService.myArray.push(item.data())
-        })
-        
+        }) 
       })
       this.DataService.myArray.forEach(i => {
         console.log("data from the service ", i);
       })
     this.router.navigateByUrl('/order-details');
   }
+
+  
 
   openPro(){
     this.router.navigateByUrl('/pro');
