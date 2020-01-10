@@ -170,4 +170,12 @@ export class DetailsPage implements OnInit {
     })
   }
 
+  edit(val, id){
+    this.event = val;
+    this.autoId = id;
+    console.log('Edit: ', this.event);
+    this.updateBtn = true;
+    this.router.navigateByUrl('/pro');
+  }
+
 }
