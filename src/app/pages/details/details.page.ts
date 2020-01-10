@@ -114,7 +114,7 @@ export class DetailsPage implements OnInit {
             this.db.collection('Products').doc(value).delete().then(async res => {
              worker.dismiss()
               this.listproduct = [];
-              this.retrieve();
+              // this.retrieve();
            
               const alerter = await this.alertCtrl.create({
               message: 'Product deleted',
