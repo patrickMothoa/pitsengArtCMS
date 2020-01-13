@@ -84,17 +84,7 @@ console.log("xxxx");
 
     })
    })
-   this.db.collection("Users").doc().collection("Orders").onSnapshot(data => {
-    data.forEach(item => {
-     
-      obj.name = item.data().email;
-      obj.uid = item.data().uid
-      this.users.push(obj);
-      obj = {name : '', uid : ''} ;
-      console.log("users ",  this.users);
-
-    })
-   })
+  
   }
 
 

@@ -30,7 +30,7 @@
                       <p>Product code: &nbsp;</p>
                     </div>
                     <div>
-                      <p class="single-productNo"> {{p.obj.productno}}</p>
+                      <p class="single-productNo"> {{p.obj.productCode}}</p>
                     </div>
                   </div>
 
@@ -71,7 +71,7 @@
 
         </div>
         <div class="productButtons-Container">
-          <ion-button class="ion-button" color="success" (click)="edit(p.id)" (click)="dismiss()">
+          <ion-button class="ion-button" color="success" (click)="edit(p.id)">
             <ion-icon name="md-create" class="icon1234"></ion-icon>edit
           </ion-button>
           <ion-button class="ion-button" color="dark" (click)="Deleteproduct(p.id)">
