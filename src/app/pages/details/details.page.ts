@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -120,7 +121,10 @@ export class DetailsPage implements OnInit {
               message: 'Product deleted',
               buttons: [
                 {
-                text: 'OK'
+                text: 'OK',
+                handler: async () => {
+                  this.dismiss();
+                }
                 }  
               ], 
             })
@@ -146,7 +150,7 @@ export class DetailsPage implements OnInit {
     });
    
     await alert.present(); 
-    this.dismiss();
+   
   }
   dismiss() {
     this.modalController.dismiss({

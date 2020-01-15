@@ -78,6 +78,7 @@ ionViewDidLoad(){
 }
  
     ngOnInit() {
+      
       this.retrieve();
       // this.getbookings();
       // this.getusers();

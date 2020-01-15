@@ -165,9 +165,6 @@ this.Data.push(obj1);
             
           ]
         },
-       
-        
-​
         { text: '', style: 'subheader' },
         { text: this.letterObj.from },
 ​
