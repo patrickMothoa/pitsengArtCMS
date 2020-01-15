@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {} from '../user-invoices/user-invoices.page'
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
 
@@ -11,13 +11,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.page.html',
   styleUrls: ['./order-details.page.scss'],
 })
 export class OrderDetailsPage implements OnInit {
+
+
+  @Input() id: any;
 
   Data = [];
 
@@ -43,6 +46,7 @@ export class OrderDetailsPage implements OnInit {
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
   order = {
+    item:'',
     quantity:'',
     // ownerName: '',
     // overallHouse: 0,
@@ -82,15 +86,48 @@ export class OrderDetailsPage implements OnInit {
   conArray =[]
   Orders =[]
   myArray = []
-  constructor(private router: Router,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+  key: any;
+  constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
-    this.Orders = this.DataService.myArray;
+    // this.Orders = this.DataService.myArray;
+    this.route.queryParams.subscribe((data) => {
+      console.log('dsd', data.id);
+      this.key = JSON.parse(data.id);
+
+      this.getProduct(this.key);
+      
+    })
+ 
+    
    }
 
   
   ChangeText(){
     this.text = !false;
     this.hideButton=true;
+  }
+
+  getProduct(key) {
+    // this.Orders =[]
+
+
+    // firebase.firestore().collection("Order").get().then( file => {
+    //   file.forEach(item => {
+    //     console.log("qqqqqqqqqqqqqqq ", item.data());
+        
+    //     this.Orders.push(item.data())
+    //   })
+    // })
+
+    console.log("This is my key", key);
+    
+
+    this.db.collection('Order').doc(key).onSnapshot((file) => {
+      console.log(file.data(), 'yeyujdsa');
+    
+      this.Orders.push(file.data())
+      })
+    
   }
 
   ngOnInit() {

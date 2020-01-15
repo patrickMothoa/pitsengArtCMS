@@ -8,7 +8,7 @@ import { ModalController, LoadingController, AlertController, ToastController } 
 import{ OrderDetailsPage } from '../../pages/order-details/order-details.page'
 import * as firebase from 'firebase';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { SowDataPage } from 'src/app/sow-data/sow-data.page';
 
 
@@ -98,7 +98,7 @@ console.log("xxxx");
          this.ordersPlaced.push({ref:item.id,info:item.data()})
          this.loader = false;
         }) 
-        this.router.navigateByUrl('/order-details');
+       /*  this.router.navigateByUrl('/order-details'); */
       })
 
    
@@ -108,7 +108,17 @@ console.log("xxxx");
   
     })
   }
-  
+
+  viewDetail(value) {
+    console.log(value);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: JSON.stringify(value)
+      }
+    };
+    
+    this.router.navigate(['order-details'], navigationExtras)
+  }
   openPro(){
     this.router.navigateByUrl('/pro');
   }

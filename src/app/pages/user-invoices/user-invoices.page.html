@@ -58,7 +58,7 @@
             </div>
             <div class="invoicesContainer">
               <ion-card *ngFor = "let item of ordersPlaced">
-                <div class="invoicesList" (click)="viewDetails(item.uid)">
+                <div class="invoicesList" (click)="viewDetail(item.ref)">
                   <div>
                     <ion-label>##########</ion-label>
                   </div>
