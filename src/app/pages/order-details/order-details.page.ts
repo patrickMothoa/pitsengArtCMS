@@ -87,7 +87,12 @@ export class OrderDetailsPage implements OnInit {
   Orders =[]
   myArray = []
   key: any;
-  constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+  constructor(private router: Router, 
+    public route: ActivatedRoute,
+    public DataService : DataService,
+     private file: File, 
+     private fileOpener: FileOpener,
+      private plt: Platform) {
 
     // this.Orders = this.DataService.myArray;
     this.route.queryParams.subscribe((data) => {
@@ -154,24 +159,13 @@ export class OrderDetailsPage implements OnInit {
 
     this.Orders.forEach(i => {
      
-      // let obj = {price:'', name : '', quantity : ''}
+      
 let obj1 = [];
 obj1 = [];
 obj1.push(i.obj.name);
 obj1.push(i.obj.quantity);
 obj1.push(i.obj.price);
 this.Data.push(obj1);
-
-
-
-      // obj.name = i.obj.name;
-      // obj.quantity = i.obj.quantity;
-      // obj.price = i.obj.price;
-   
-
-      // this.Data.push(obj);
-      // obj = {price:'', name : '', quantity : ''}
-      
      
     })
 
@@ -186,7 +180,18 @@ this.Data.push(obj1);
     this.profile.address = res.data().address;
     })
   }
+  items: any;
+  date: any;
   goToPDF(){
+
+  this.Orders.forEach((item) => {
+
+    // this.date = item.date;
+     this.items =  item.product.map(element => {
+        console.log(element);
+          return [element.product_name, element.quantity, element.price]; 
+      });
+  });
     var docDefinition = {
       content: [
         {
@@ -227,7 +232,7 @@ this.Data.push(obj1);
                   [
                       '',
                       'Invoice Date:',
-                      // this.order.orderDate,
+                      // this.date,
                   ],
                   [
                       '',
@@ -258,7 +263,7 @@ this.Data.push(obj1);
 
           // this.Data
           
-      ]
+      ].concat(this.items)
       // .concat(items)
   }
 },
