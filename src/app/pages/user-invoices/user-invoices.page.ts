@@ -58,22 +58,21 @@ export class UserInvoicesPage implements OnInit {
   }
 
 
-  Pull(){
+  // Pull(){
 
-     this.db.collection("Users").doc("gtd9dtzULGTVmbrbOpNUIDGJIFr2").collection("Orders").onSnapshot(w => {
-       w.forEach(d => {
-         console.log("sssssss ", d.data());
+  //    this.db.collection("Users").doc("gtd9dtzULGTVmbrbOpNUIDGJIFr2").collection("Orders").onSnapshot(w => {
+  //      w.forEach(d => {
+  //        console.log("sssssss ", d.data());
          
-       })
-     })
-  }
+  //      })
+  //    })
+  // }
 
   ngOnInit() {
 console.log("xxxx");
 
   let obj = {name : '', uid : ''} ;
   this.db.collection("UserProfile").onSnapshot(data => {
-    // this.db.collection("Users").doc('g04alz7nftX5NCrbwuYHRBnvq5w2').collection("Orders").onSnapshot(data => {
     data.forEach(item => {
      
       obj.name = item.data().email;
@@ -84,6 +83,7 @@ console.log("xxxx");
 
     })
    })
+
    this.db.collection("Users").doc().collection("Orders").onSnapshot(data => {
     data.forEach(item => {
      
@@ -96,36 +96,6 @@ console.log("xxxx");
     })
    })
   }
-
-
-  // async viewModal(){
-  //   const modal = await this.modalController.create({
-  //     component: OrderDetailsPage
-  //   });
-  //   return  modal.present();
-  // }
-  
-
-//  async  viewDetails(uid){
-//     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
-//       this.DataService.myArray = []
-//         data.forEach(item => {
-//           console.log("Your data is here ", item.data());
-          
-//           this.DataService.myArray.push(item.data())
-//         })
-//       })
-//       this.DataService.myArray.forEach(i => {
-//         console.log("data from the service ", i);
-//       })
-
-//     let modal = await this.modalController.create({
-//       component : SowDataPage
-//     })
-//     return await modal.present();
-//   }
-
-
 
 
   viewDetails(uid){

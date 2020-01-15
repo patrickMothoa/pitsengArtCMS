@@ -136,16 +136,12 @@ ionViewDidLoad(){
       /* this.retrieve(); */
       worker.dismiss();
       const alerter = await this.alertCtrl.create({
-      inputs: [
-        {
-          placeholder: 'product added successful',
-          type: "text"
-        }],
-      buttons: [
-        {
-          text: 'OK'}
+        message: 'Product added successful',
+        buttons: [
+          {
+          text: 'OK'
+          }
         ],
-        // message: 'product saved'
       })
       worker.dismiss();
       alerter.present();
