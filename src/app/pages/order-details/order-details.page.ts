@@ -102,7 +102,7 @@ export class OrderDetailsPage implements OnInit {
   //   this.Orders = this.DataService.myArray;
   //   console.log("Data in the Service ====   ", this.Orders);
   // }
-
+  
   ionViewDidLeave() {
     console.log('this page is not active');
     
