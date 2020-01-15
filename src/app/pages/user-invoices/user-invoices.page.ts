@@ -35,6 +35,7 @@ export class UserInvoicesPage implements OnInit {
   public userTransact: any;
   myArr = []
   myArray = []
+  ordersPlaced = [];
   loader: boolean = false;
   constructor(public DataService : DataService, public modalController: ModalController, public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController) {
 
@@ -70,7 +71,7 @@ export class UserInvoicesPage implements OnInit {
 
   ngOnInit() {
 console.log("xxxx");
-
+    this.viewDetails();
   let obj = {name : '', uid : ''} ;
   this.db.collection("UserProfile").onSnapshot(data => {
     // this.db.collection("Users").doc('g04alz7nftX5NCrbwuYHRBnvq5w2').collection("Orders").onSnapshot(data => {
@@ -88,59 +89,27 @@ console.log("xxxx");
   }
 
 
-  // async viewModal(){
-  //   const modal = await this.modalController.create({
-  //     component: OrderDetailsPage
-  //   });
-  //   return  modal.present();
-  // }
-  
-
-//  async  viewDetails(uid){
-//     this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
-//       this.DataService.myArray = []
-//         data.forEach(item => {
-//           console.log("Your data is here ", item.data());
-          
-//           this.DataService.myArray.push(item.data())
-//         })
-//       })
-//       this.DataService.myArray.forEach(i => {
-//         console.log("data from the service ", i);
-//       })
-
-//     let modal = await this.modalController.create({
-//       component : SowDataPage
-//     })
-//     return await modal.present();
-//   }
-
-
-
-
-  viewDetails(uid){
+  viewDetails(){
 
     this.loader = true;
 
-    this.db.collection("Users").doc(uid).collection("Orders").onSnapshot(data => {
-      this.DataService.myArray = []
-        data.forEach(item => {
-          console.log("Your data is here ", item.data());        
-          this.DataService.myArray.push(item.data())
+    this.db.collection("Order").onSnapshot(data => {
+      this.ordersPlaced = [];
+        data.forEach(item => {       
+         this.ordersPlaced.push({ref:item.id,info:item.data()})
+         this.loader = false;
         }) 
-      })
-      /* this.DataService.myArray.forEach(i => {
-        console.log("data from the service ", i);
-      }) */
-      setTimeout(() => {
-        this.loader = false;
         this.router.navigateByUrl('/order-details');
-      }, 2000);
+      })
+
    
   }
-
+  userProfiles() {
+    this.ordersPlaced.forEach((i)=>{
   
-
+    })
+  }
+  
   openPro(){
     this.router.navigateByUrl('/pro');
   }

@@ -58,7 +58,7 @@ export class DetailsPage implements OnInit {
    ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
   }
-
+  
         // retriving from firebase.firestore
     getProducts(){
     this.db.collection('Products').get().then(snapshot => {
