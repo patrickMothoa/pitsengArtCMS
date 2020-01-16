@@ -182,11 +182,13 @@ this.Data.push(obj1);
   }
   items: any;
   date: any;
+  orderNumber :any;
   goToPDF(){
 
   this.Orders.forEach((item) => {
 
-    // this.date = item.date;
+    this.date = item.date;
+    this.orderNumber =item.key
      this.items =  item.product.map(element => {
         console.log(element);
           return [element.product_name, element.quantity, element.price]; 
@@ -232,6 +234,8 @@ this.Data.push(obj1);
                   [
                       '',
                       'Invoice Date:',
+                    
+                    
                       // this.date,
                   ],
                   [

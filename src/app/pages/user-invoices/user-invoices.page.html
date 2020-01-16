@@ -60,14 +60,14 @@
               <ion-card *ngFor = "let item of ordersPlaced">
                 <div class="invoicesList" (click)="viewDetail(item.ref)">
                   <div>
-                    <ion-label>##########</ion-label>
+                    <ion-label>{{item.info.name}}</ion-label>
                   </div>
                   <div>
                     <ion-label>{{item.ref}}</ion-label>
                   </div>
                   <div>
                  
-                    <ion-label> {{item.info.date | date:"medium"}} </ion-label>
+                    <ion-label> {{item.info.date }} </ion-label>
                   </div>
                 </div>
               </ion-card>
