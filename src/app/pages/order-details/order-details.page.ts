@@ -113,20 +113,8 @@ export class OrderDetailsPage implements OnInit {
   }
 
   getProduct(key) {
-    // this.Orders =[]
-
-
-    // firebase.firestore().collection("Order").get().then( file => {
-    //   file.forEach(item => {
-    //     console.log("qqqqqqqqqqqqqqq ", item.data());
-        
-    //     this.Orders.push(item.data())
-    //   })
-    // })
-
     console.log("This is my key", key);
     
-
     this.db.collection('Order').doc(key).onSnapshot((file) => {
       console.log(file.data(), 'yeyujdsa');
     
