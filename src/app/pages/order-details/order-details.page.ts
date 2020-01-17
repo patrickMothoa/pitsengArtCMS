@@ -31,8 +31,9 @@ export class OrderDetailsPage implements OnInit {
   };
 
   checkpdf = 'yeah im working';
-  
+  dbUser = firebase.firestore().collection('UserProfile');
   dbProfile = firebase.firestore().collection('admins');
+  dbOrder = firebase.firestore().collection('Order');
   uid = firebase.auth().currentUser.uid;
   profile = {
     image: '',
@@ -45,54 +46,33 @@ export class OrderDetailsPage implements OnInit {
     uid: '',
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
-  order = {
-    item:'',
-    quantity:'',
-    // ownerName: '',
-    // overallHouse: 0,
-    // ownerAddress: '',
-    // fullName: '',
-    // expiry: '',
-    address: '',
-    // dimension: '',
-    total: 0,
-    price: 0,
-    uid: '',
-    pdfLink: null,
-    // meter: null,
-    // discount: null,
-    // discountAmount: null,
-    // discountPrice: null,
-    //ownerUID: null,
-    // hOwnerUID: '',
-    subtotal: 0,
-    dateCreated: Date(),
-    // viewed: false,
-    msgStatus: ''
-  }
-  
- 
   pdfObj = null;
   text : boolean = false;
   hideButton : boolean = false;
 
-  
   db = firebase.firestore();
   a = []
-
-
-
   public item =[];
   conArray =[]
   Orders =[]
   myArray = []
   key: any;
+  date:any;
+  name:any;
+  amount =0;
+  total = 0;
+  pdfLink: any;
   constructor(private router: Router, 
     public route: ActivatedRoute,
     public DataService : DataService,
      private file: File, 
      private fileOpener: FileOpener,
       private plt: Platform) {
+        this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
+          console.log(element.data());
+          this.name = element.data().name
+        })
+       
 
     // this.Orders = this.DataService.myArray;
     this.route.queryParams.subscribe((data) => {
@@ -169,7 +149,7 @@ this.Data.push(obj1);
     })
   }
   items: any;
-  date: any;
+  // date: any;
   orderNumber :any;
   goToPDF(){
 
@@ -224,7 +204,7 @@ this.Data.push(obj1);
                       'Invoice Date:',
                     
                     
-                      // this.date,
+                      // this.item.date,
                   ],
                   [
                       '',
@@ -268,7 +248,7 @@ this.Data.push(obj1);
           [
               '',
               'Subtotal',
-              // this.order.subtotal,
+              //  this.item.amount,
           ],
           [
               '',
@@ -347,7 +327,8 @@ this.Data.push(obj1);
         var blob = new Blob([buffer], { type: 'application/pdf' });
  
         // Save the PDF to the data Directory of our App
-        this.file.writeFile(this.file.dataDirectory, 'myletter.pdf', blob, { replace: true }).then(fileEntry => {
+        firebase.storage().ref('receipt/').child('receipt' + '.pdf').put(blob).then((results) => {
+          console.log('results url: ', results);
           // Open the PDf with the correct OS tools
           this.fileOpener.open(this.file.dataDirectory + 'myletter.pdf', 'application/pdf');
         })
@@ -356,6 +337,47 @@ this.Data.push(obj1);
       // On a browser simply use download!
       this.pdfObj.download();
     }
+  }
+  downloadUrl() {
+
+    this.pdfObj.getBuffer((buffer) => {
+      var blob = new Blob([buffer], { type: 'application/pdf' });
+      let date = Date();
+      this.orderNumber=this.key
+      let user = firebase.auth().currentUser.email;
+      // Save the PDF to the data Directory of our App
+      firebase.storage().ref('Quotations/').child('receipt' + '.pdf').put(blob).then((results) => {
+        console.log('results url: ', results);
+        // results.downloadURL
+        firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+          // console.log(results);
+         // this.pdfDoc = url;
+           this.pdfLink = url;
+           this.saveData();
+          //console.log('pdf link from storage............:', this.pdfDoc);
+          
+        
+        })
+      })
+      // this.file.writeFile(this.file.dataDirectory, 'receipt.pdf', blob, { replace: true }).then(fileEntry => {
+      // this.fileOpener.open(this.file.dataDirectory + 'receipt.pdf', 'application/pdf');
+      // })
+    });
+    // this.navCtrl.setRoot(SuccessPage);
+    this.pdfObj.download();
+  }
+
+
+  saveData() {
+
+      // this. dbOrder.doc().collection(this.uid).doc(this.navParams.data.docID).collection("convo").add({ chat: 'receipt', pdf: this.pdfLink, builder: true, id:this.navParams.data.docID }).then((res) => {
+      //   this.pdfLink= '';
+      // })
+      console.log("Your key ", this.orderNumber);
+     
+   firebase.firestore().collection("Order").doc(this.orderNumber).update({
+      pdfLink : this.pdfLink })
+  
   }
   openPro(){
     this.router.navigateByUrl('/pro');

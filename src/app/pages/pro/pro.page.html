@@ -21,17 +21,7 @@
           <div class="navigation_bar">
               
             <div class="navBarItems" >
-               <!-- attempting search from here  -->
-             <!-- <div class="searchBar">
-                <ion-searchbar   placeholder="Search Products"  [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" ></ion-searchbar> 
-                           <ion-list  [hidden]="autocompleteItemz.length == 0" >
-                  <div *ngIf="autocompleteItemz.length > 0">
-                <ion-item  *ngFor="let item of autocompleteItemz" tappable id="submit" (click)="productDetails(item)">
-                      <ion-label> {{item.obj.name}}</ion-label>
-                </ion-item>
-                </div>
-               </ion-list>
-            </div> -->
+              
         
                 <div class="searchBar">
                 <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false'
@@ -123,15 +113,15 @@
               </div>
             </div>
             <div class="card">
-              <ion-card no-padding class="cardInfor" *ngFor="let p of listproduct" (click)="edit(p.data, p.id)">
+              <ion-card no-padding class="cardInfor" *ngFor="let p of listproduct;let i = index" [ngClass]="{'edited':cardEdited==i}" (click)="edit(p.data, p.id, i)">
                 
                 <div class="itemImage">
                   <img class="cardImage"  src="{{p.data.image}}" alt="" height="500px" >
-                  <!-- <img class="cardImage" src="../../../assets/original (2).jpg" alt=""> -->
+                 
                 </div>
                 <div class="itemDetails" >
                   <div> <ion-title text-wrap >{{p.data.name}}</ion-title>
-                  <!-- <ion-card-subtitle padding >{{p.data.productno}}</ion-card-subtitle> -->
+                
                   </div>
                   <div>
                        <ion-card-title  >R &nbsp;{{p.data.price}}</ion-card-title>
@@ -142,17 +132,10 @@
                       <hr>
                       <div class="size">
                         <p></p>
-                        <!-- <p *ngFor="let s of p.size">Size: &nbsp;{{s}}</p> -->
+
                       </div> 
-                      <!-- <p>Created: {{p.data.lastcreated}}</p>  -->
+                      
                     </div>
-                   
-                    
-                    
-                 
-                  <!-- <ion-card-content >
-                    {{p.data.desc}}
-                  </ion-card-content> -->
                   <ion-card-content >
       
                   </ion-card-content> 
@@ -164,44 +147,9 @@
                       <ion-icon name="trash"></ion-icon>
                     </ion-fab-button>
                   </ion-fab>
-                  <!-- <ion-fab-button vertical="bottom" horizontal="end" slot="fixed"  >
-                              <ion-icon name="trash"></ion-icon>
-                            </ion-fab-button>
-                      -->
-             
-      
               </ion-card>
-              <!--             
-                <div class="cardInfor" *ngFor="let p of listproduct">
-              <div class="d-image" (click)="edit(p.data, p.id)">
-                <img src="{{p.data.image}}" alt="">
-              </div>
-              <div class="details">
-                <div class="r-name">
-                  <h3>{{p.data.name}}</h3>
-                  <p>R {{p.data.price}} pp/pn</p>
-                </div>
-                <p>{{p.data.desc}}</p>
-                <h3>{{p.data.productno}}</h3>
-                <h4>{{p.data.items}}</h4>
-                <div class="size">
-                  <h3>Sizes</h3>
-                  <hr>
-                  <div class="fet">
-                    <p *ngFor="let s of p.size">{{s}}</p>
-                  </div>
-                  <p>Created: {{p.data.lastcreated}}</p>
-                </div>
-              </div>
-              <div class="remove">
-                <ion-fab-button color="danger" (click)="delete(p.id)">
-                  <ion-icon name="trash"></ion-icon>
-                </ion-fab-button>
-              </div>
-            </div> -->
+             
             </div>
-
-            
           </div>
         </div>
       </div>

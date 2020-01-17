@@ -24,7 +24,7 @@ export class ProfilePage implements OnInit {
     email: firebase.auth().currentUser.email,
    
     uid: '',
-    // phoneNumber: firebase.auth().currentUser.phoneNumber,
+    
   }
   uploadprogress = 0;
   errtext = '';
@@ -36,8 +36,6 @@ export class ProfilePage implements OnInit {
   admin = {
     uid: '',
     email:''
-
-    // phoneNumber: '',
   }
   
   constructor(public alertCtrl: AlertController,
@@ -122,33 +120,7 @@ export class ProfilePage implements OnInit {
       }
     }
   }
-  // createAccount(){
-    
-  //   if (!this.profile.address||!this.profile.name||!this.profile.phoneNumber){
-  //     console.log("Are we inside");
-  //     this.errtext = 'Fields should not be empty'
-  //     if (!this.profile.image){
-  //       this.errtext = 'Profile image still uploading or not selected';
-  //       this.profile.uid =  this.admin.uid;
-  //       this.db.collection('admins').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => 
-  //         {
-  //         console.log('Profile created');
-  //         this.getProfile();
-  //       }).catch(error => {
-  //         console.log('Error');
-  //       });
-        
-  //     } else {
-  //       this.errtext = 'image not uploaded'
-  //     }
-  //   }
-  //   else {
-     
-  //   }
-  // }
-
-
-  getProfile(){
+   getProfile(){
     this.db.collection('admins').where('uid', '==', this.admin.uid).get().then(snapshot => {
       if (snapshot.empty) {
         this.isprofile = false;

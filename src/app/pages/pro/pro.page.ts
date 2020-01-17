@@ -15,7 +15,6 @@ import { DetailsPage } from '../details/details.page';
 export class ProPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
-  //categories
   listproduct = [];
   Products = []
   event = {
@@ -31,6 +30,7 @@ export class ProPage implements OnInit {
     size:[]
 
   };
+  cardEdited = null
   supplier
   myProduct = false;
   autocompleteItemz: any;
@@ -58,13 +58,10 @@ export class ProPage implements OnInit {
       categories: [this.event.categories, Validators.compose([Validators.required])], 
       name: [this.event.name, Validators.compose([Validators.required])],
       price: [this.event.price, Validators.compose([Validators.required])], 
-      // productno: [this.event.productno, Validators.compose([Validators.required])], 
+       
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
-      // quantity : [this.event.quantity, Validators.compose([Validators.required])], 
-      // small: [this.event.small, Validators.compose([Validators.required])], 
-      // medium: [this.event.medium, Validators.compose([Validators.required])], 
-      // large: [this.event.large, Validators.compose([Validators.required])], 
+      
     });
 
     this.autocompleteItemz = [];
@@ -80,8 +77,7 @@ ionViewDidLoad(){
     ngOnInit() {
       
       this.retrieve();
-      // this.getbookings();
-      // this.getusers();
+      
     }
 
  
@@ -276,7 +272,8 @@ async update(id) {
     this.event.items = event.detail.value;
   }
 
-  edit(val, id){
+  edit(val, id, card){
+    this.cardEdited = card
     this.event = val;
     this.autoId = id;
     console.log('Edit: ', this.event);
