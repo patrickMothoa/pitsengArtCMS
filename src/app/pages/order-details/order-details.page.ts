@@ -87,6 +87,7 @@ export class OrderDetailsPage implements OnInit {
   Orders =[]
   myArray = []
   key: any;
+  totalPrice=0;
   constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
     // this.Orders = this.DataService.myArray;
@@ -112,10 +113,10 @@ export class OrderDetailsPage implements OnInit {
     
     this.db.collection('Order').doc(key).onSnapshot((file) => {
       console.log(file.data(), 'yeyujdsa');
-    
+    this.totalPrice = file.data().totalPrice
       this.Orders.push(file.data())
       })
-    
+    return this.totalPrice
   }
 
   ngOnInit() {
