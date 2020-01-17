@@ -44,31 +44,6 @@ export class UserInvoicesPage implements OnInit {
 
   }
 
-
-  save(){
-
-    this.db.collection("Users").doc("gtd9dtzULGTVmbrbOpNUIDGJIFr2").collection("Cart").doc().set({
-      name : "Msinisi",
-      id : 5346,
-      email : "m@gmail.com"
-    }).then(() => {
-      console.log("data saved");
-      
-    })
-    
-  }
-
-
-  // Pull(){
-
-  //    this.db.collection("Users").doc("gtd9dtzULGTVmbrbOpNUIDGJIFr2").collection("Orders").onSnapshot(w => {
-  //      w.forEach(d => {
-  //        console.log("sssssss ", d.data());
-         
-  //      })
-  //    })
-  // }
-
   ngOnInit() {
 console.log("xxxx");
     this.viewDetails();
