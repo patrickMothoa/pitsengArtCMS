@@ -57,22 +57,8 @@ export class OrderDetailsPage implements OnInit {
   Orders =[]
   myArray = []
   key: any;
-  date:any;
-  name:any;
-  amount =0;
-  total = 0;
-  pdfLink: any;
-  constructor(private router: Router, 
-    public route: ActivatedRoute,
-    public DataService : DataService,
-     private file: File, 
-     private fileOpener: FileOpener,
-      private plt: Platform) {
-        this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
-          console.log(element.data());
-          this.name = element.data().name
-        })
-       
+  totalPrice=0;
+  constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
     // this.Orders = this.DataService.myArray;
     this.route.queryParams.subscribe((data) => {
@@ -97,10 +83,10 @@ export class OrderDetailsPage implements OnInit {
     
     this.db.collection('Order').doc(key).onSnapshot((file) => {
       console.log(file.data(), 'yeyujdsa');
-    
+    this.totalPrice = file.data().totalPrice
       this.Orders.push(file.data())
       })
-    
+    return this.totalPrice
   }
 
   ngOnInit() {
