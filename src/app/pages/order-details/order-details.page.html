@@ -1,7 +1,4 @@
-
- 
- 
- <div class="row">
+<div class="row">
     <div class=" sidebar1  ">
       <div class="logo">
         <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
@@ -32,14 +29,8 @@
         </div>
       </div>
 <ion-content scroll="true" >
-  <div *ngFor="let b of Orders" class="coverContent">
-    
-
-       
+  <div *ngFor="let b of Orders" class="coverContent">  
     <div *ngFor="let li of b.product" class="heading" >
-       <div> 
-      <div class="items" >
-   
         <div class="itemsDetails">
           <div class="itemImage" >
             <img src="{{li.image}}" width="100px" height="100px" alt="">
@@ -49,7 +40,7 @@
           <ion-label> {{li.productCode}}</ion-label>
         </div>
         </div>
-      </div>
+    
       <div class="qty" >
         <ion-title>qty</ion-title>
         <div class="qtyNo">
@@ -72,26 +63,20 @@
         <div class="subtotal" >
           <ion-title>subtotal</ion-title>
           <div class="subtotalNo">
-            <ion-label>{{li.price}}</ion-label>
+            <ion-label>{{li.amount}}</ion-label>
           </div>
         </div>
-        </div>
+       
       </div>
-      <div class="total">
         <div  class="totaldetails" > 
+          <ion-title>Total amount</ion-title>
           <div class="amount" >
-            <ion-label > total amount: R 645 </ion-label>
+            <ion-label >Total :{{totalPrice | currency: '&#82;'}}</ion-label>
           </div>
+            <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
+            <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
+            <ion-button  class="buttons" (click)="downloadUrl()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
         </div>
-        <div class="buttons">
-          
-          <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
-          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
-          <ion-button  class="buttons" (click)="downloadPdf()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
-         
-        </div>
-      </div>
-   
   </div>
 
        

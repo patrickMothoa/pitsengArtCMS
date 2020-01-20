@@ -8,6 +8,14 @@ body {
   right: 0%;
   background-color: red;
 }
+// highlight image for editing
+.edited {
+  background: rgb(211, 120, 84);
+  
+  .itemDetails {
+    color: white;
+  }
+}
 .content {
   height: 100%;
   width: 100%;

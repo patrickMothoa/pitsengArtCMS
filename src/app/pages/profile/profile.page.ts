@@ -24,7 +24,7 @@ export class ProfilePage implements OnInit {
     email: firebase.auth().currentUser.email,
    
     uid: '',
-    // phoneNumber: firebase.auth().currentUser.phoneNumber,
+    
   }
   uploadprogress = 0;
   errtext = '';
@@ -36,8 +36,6 @@ export class ProfilePage implements OnInit {
   admin = {
     uid: '',
     email:''
-
-    // phoneNumber: '',
   }
   
   constructor(public alertCtrl: AlertController,
@@ -122,8 +120,7 @@ export class ProfilePage implements OnInit {
       }
     }
   }
-
-  getProfile(){
+   getProfile(){
     this.db.collection('admins').where('uid', '==', this.admin.uid).get().then(snapshot => {
       if (snapshot.empty) {
         this.isprofile = false;
