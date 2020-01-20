@@ -46,6 +46,7 @@ export class OrderDetailsPage implements OnInit {
     uid: '',
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
+  pdfLink
   pdfObj = null;
   text : boolean = false;
   hideButton : boolean = false;
@@ -60,6 +61,8 @@ export class OrderDetailsPage implements OnInit {
   pdfLink :any;
   date :any;
   totalPrice=0;
+  amount=0;
+  date: any;
   constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
    
