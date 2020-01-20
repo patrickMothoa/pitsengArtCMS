@@ -57,10 +57,12 @@ export class OrderDetailsPage implements OnInit {
   Orders =[]
   myArray = []
   key: any;
+  pdfLink :any;
+  date :any;
   totalPrice=0;
   constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
-    // this.Orders = this.DataService.myArray;
+   
     this.route.queryParams.subscribe((data) => {
       console.log('dsd', data.id);
       this.key = JSON.parse(data.id);
@@ -91,13 +93,8 @@ export class OrderDetailsPage implements OnInit {
 
   ngOnInit() {
     this.getProfile();
-    // this.Orders = this.DataService.myArray;
-    // console.log("Data in the Service ====   ", this.Orders);
+    
   }
-  // ionViewDidLoad(){
-  //   this.Orders = this.DataService.myArray;
-  //   console.log("Data in the Service ====   ", this.Orders);
-  // }
   
   ionViewDidLeave() {
     console.log('this page is not active');
@@ -106,11 +103,6 @@ export class OrderDetailsPage implements OnInit {
   }
   ionViewDidEnter(){
    
-  
-   
-    
-    
-
     this.Orders.forEach(i => {
      
       
@@ -250,22 +242,6 @@ this.Data.push(obj1);
   },
   layout: 'noBorders'
 },
-        // {
-        //   layout: 'lightHorizontalLines',
-        //   table: {
-        //     headerRows: 1,
-        //     widths: [ 'auto', 'auto', 'auto', 'auto' ],
-        //     body: [
-        //       [ 'Description ', 'Quantity', 'Price ', 'Amount' ],
-        //       [ this.checkpdf, this.checkpdf, this.checkpdf, this.checkpdf ],
-        //       [ this.checkpdf, this.checkpdf, this.checkpdf, this.checkpdf ],
-        //       // [ 'NFAL01', this.NFAL01mass ],
-        //       // [ 'PAP005', this.PAP005mass ],
-        //     ]
-            
-        //   }
-          
-        // },
       ],
 ​
       footer: {
@@ -332,10 +308,10 @@ this.Data.push(obj1);
       this.orderNumber=this.key
       let user = firebase.auth().currentUser.email;
       // Save the PDF to the data Directory of our App
-      firebase.storage().ref('Quotations/').child('receipt' + '.pdf').put(blob).then((results) => {
+      firebase.storage().ref('Receipt/').child('receipt' + '.pdf').put(blob).then((results) => {
         console.log('results url: ', results);
         // results.downloadURL
-        firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+        firebase.storage().ref('Receipt/').child(results.metadata.name).getDownloadURL().then((url) => {
           // console.log(results);
          // this.pdfDoc = url;
            this.pdfLink = url;
@@ -355,10 +331,6 @@ this.Data.push(obj1);
 
 
   saveData() {
-
-      // this. dbOrder.doc().collection(this.uid).doc(this.navParams.data.docID).collection("convo").add({ chat: 'receipt', pdf: this.pdfLink, builder: true, id:this.navParams.data.docID }).then((res) => {
-      //   this.pdfLink= '';
-      // })
       console.log("Your key ", this.orderNumber);
      
    firebase.firestore().collection("Order").doc(this.orderNumber).update({
