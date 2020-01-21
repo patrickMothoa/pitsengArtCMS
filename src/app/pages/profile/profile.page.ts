@@ -134,7 +134,6 @@ export class ProfilePage implements OnInit {
           this.profile.phoneNumber=doc.data().phoneNumber
           this.profile.email=doc.data().email
           
-          
         })
       }
     })
