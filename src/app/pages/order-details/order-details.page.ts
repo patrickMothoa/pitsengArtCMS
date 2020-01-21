@@ -42,11 +42,10 @@ export class OrderDetailsPage implements OnInit {
     address: '',
     surname:'',
     email: '',
-   
     uid: '',
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
-  pdfLink
+ 
   pdfObj = null;
   text : boolean = false;
   hideButton : boolean = false;
@@ -60,23 +59,45 @@ export class OrderDetailsPage implements OnInit {
   key: any;
   pdfLink :any;
   date :any;
-  totalPrice=0;
+  totalPrice
   amount=0;
-  date: any;
+  status :any;
+  
   constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
    
     this.route.queryParams.subscribe((data) => {
       console.log('dsd', data.id);
       this.key = JSON.parse(data.id);
-
       this.getProduct(this.key);
       
     })
  
     
    }
+   processOrder(){
+    let status
+    // if(this.item['details']['status'] === 'Order recieved' || this.item['details']['status'] === 'received'){
+      status = 'processed'
+  
+        this.db.collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true},file => {
+          console.log(file.data(), 'checking status');
+        let status = file.data().status
+        this. status =status
 
+          this.Orders.push(file.data())
+          })
+      // firebase.firestore().collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result => {
+      //     let status = result.data().status
+      //     this.status = status
+      //     console.log(status);
+          
+          
+      //   })
+        
+        // this.loadingCtrl.dismiss()
+      
+  }
   
   ChangeText(){
     this.text = !false;
@@ -106,19 +127,19 @@ export class OrderDetailsPage implements OnInit {
   }
   ionViewDidEnter(){
    
-    this.Orders.forEach(i => {
+//     this.Orders.forEach(i => {
      
       
-let obj1 = [];
-obj1 = [];
-obj1.push(i.obj.name);
-obj1.push(i.obj.quantity);
-obj1.push(i.obj.price);
-this.Data.push(obj1);
+// let obj1 = [];
+// obj1 = [];
+// obj1.push(i.obj.name);
+// obj1.push(i.obj.quantity);
+// obj1.push(i.obj.price);
+// this.Data.push(obj1);
      
-    })
+//     })
 
-    console.log("Data in the Service ====   ", this.Data);
+//     console.log("Data in the Service ====   ", this.Data);
    
   }
   getProfile() {
@@ -135,12 +156,14 @@ this.Data.push(obj1);
   goToPDF(){
 
   this.Orders.forEach((item) => {
-
+    this.key =item.orderNumber;
+    this.totalPrice=item.totalPrice;
     this.date = item.date;
-    this.orderNumber =item.key
+    console.log("xxx", this.totalPrice );
+    
      this.items =  item.product.map(element => {
         console.log(element);
-          return [element.product_name, element.quantity, element.price]; 
+          return [element.product_name, element.quantity, element.price, element.amount]; 
       });
   });
     var docDefinition = {
@@ -158,12 +181,12 @@ this.Data.push(obj1);
             
           ]
         },
-        { text: '', style: 'subheader' },
-        { text: this.letterObj.from },
-​
-        { text: '', style: 'subheader' },
-        this.letterObj.to,
-​
+//         { text: '', style: 'subheader' },
+//         { text: this.letterObj.from },
+// ​
+//         { text: '', style: 'subheader' },
+//         this.letterObj.to,
+// ​
         { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
 ​
       { text: '', style: 'subheader'},
@@ -173,45 +196,43 @@ this.Data.push(obj1);
         {
           style: 'invoice',
           table: {
-              widths: ['*', 75, 75],
+              widths: ['*', 75, 75, 75],
               body: [
                   [
                       '',
                       'Invoice No:',
-                      // this.order.orderNumber,
+                       this.key,
                   ],
                   [
                       '',
                       'Invoice Date:',
-                    
-                    
-                      // this.item.date,
+                       this.date,
                   ],
-                  [
-                      '',
-                      'Invoice Name:',
-                      // this.order.name,
-                  ]
+                  // [
+                  //     '',
+                  //     'Invoice Name:',
+                  //     // this.order.name,
+                  // ]
               ]
           },
           layout: 'noBorders'
         },
 ​
-        { text: '', style: 'subheader' },
-        { text: this.letterObj.from },
-​
-        { text: '', style: 'subheader' },
-        this.letterObj.to,
+//         { text: '', style: 'subheader' },
+//         { text: this.letterObj.from },
+// ​
+//         { text: '', style: 'subheader' },
+//         this.letterObj.to,
 ​ {
   style: 'itemsTable',
   table: {
-      widths: ['*', 75, 75 ],
+      widths: ['*', 75, 75, 75 ],
       body: [
           [ 
               { text: 'Name', style: 'itemsTableHeader' },
               { text: 'Quantity', style: 'itemsTableHeader' },
               { text: 'Price', style: 'itemsTableHeader' },
-              // { text: 'Amount', style: 'itemsTableHeader' },
+             { text: 'Amount', style: 'itemsTableHeader' },
           ],
 
           // this.Data
@@ -229,17 +250,13 @@ this.Data.push(obj1);
           [
               '',
               'Subtotal',
-              //  this.item.amount,
+              this.totalPrice
           ],
-          [
-              '',
-              'VAT',
-              // this.order.Shipping,
-          ],
+          
           [
               '',
               'Total',
-              // invoice.Total,
+                this.totalPrice
           ]
       ]
   },
