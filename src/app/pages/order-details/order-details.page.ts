@@ -62,51 +62,77 @@ export class OrderDetailsPage implements OnInit {
   totalPrice
   amount=0;
   status :any;
+
+  ////////////////
+  orderShowbtn : boolean = false;
+  readyBtn : boolean =  false;
+  ///////////////
   
-  constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+  constructor(public dataservice : DataService,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
    
     this.route.queryParams.subscribe((data) => {
       console.log('dsd', data.id);
       this.key = JSON.parse(data.id);
       this.getProduct(this.key);
-      
-    })
- 
-    
-   }
-   processOrder(){
-    let status
-    // if(this.item['details']['status'] === 'Order recieved' || this.item['details']['status'] === 'received'){
-      status = 'processed'
-  
-        this.db.collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true},file => {
-          console.log(file.data(), 'checking status');
-        let status = file.data().status
-        this. status =status
 
-          this.Orders.push(file.data())
-          })
-      // firebase.firestore().collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result => {
-      //     let status = result.data().status
-      //     this.status = status
-      //     console.log(status);
-          
-          
-      //   })
-        
-        // this.loadingCtrl.dismiss()
-      
+      ////////
+      this.orderProcessed();
+      this.orderReady();
+      this.cancel()
+    }) 
+   }
+
+   cancel(){
+      /////
+   }
+
+
+  orderProcessed(){
+   // let status = ''
+    return this.dataservice.processOrder(this.key, 'processed').then(result => {
+      if(result === 'success'){
+ 
+        this.db.collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result =>{
+          let status = result.data().status
+          this.status = status
+          console.log("procesedk1", status); 
+        })
+        this.orderShowbtn  = false;
+        this.readyBtn  = false;
+      }
+    })
   }
+
+  orderReady(){
+
+  return this.dataservice.processOrder(this.key, 'ready').then(result => {
+      if(result === 'success'){
+
+    firebase.firestore().collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result => {
+      let status = result.data().status
+      this.status = status
+      console.log("ordereadyk2", status);
+    });
+    console.log("k2", status);
+   this.orderShowbtn  = false;
+   this.readyBtn  =  false;
+    }
+  })
+}
+
+/////////////////////////////////////////////////////
+receivedOrder(){
+  // this.orderShowbtn  = !false;
+  // this.orderHidebtn  = false;
+ }
   
   ChangeText(){
     this.text = !false;
     this.hideButton=true;
   }
 
-  getProduct(key) {
-    console.log("This is my key", key);
-    
+  getProduct(key) { 
     this.db.collection('Order').doc(key).onSnapshot((file) => {
       console.log(file.data(), 'yeyujdsa');
     this.totalPrice = file.data().totalPrice
@@ -117,6 +143,7 @@ export class OrderDetailsPage implements OnInit {
 
   ngOnInit() {
     this.getProfile(); 
+  
   }
   
   ionViewDidLeave() {
