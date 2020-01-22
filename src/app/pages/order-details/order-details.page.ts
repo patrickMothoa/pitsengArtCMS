@@ -46,7 +46,7 @@ export class OrderDetailsPage implements OnInit {
     uid: '',
     // phoneNumber: firebase.auth().currentUser.phoneNumber,
   }
-  pdfLink
+ // pdfLink
   pdfObj = null;
   text : boolean = false;
   hideButton : boolean = false;
@@ -62,7 +62,7 @@ export class OrderDetailsPage implements OnInit {
   date :any;
   totalPrice=0;
   amount=0;
-  date: any;
+  // date: any;
   constructor(private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
    
@@ -73,9 +73,7 @@ export class OrderDetailsPage implements OnInit {
       this.getProduct(this.key);
       
     })
- 
-    
-   }
+  }
 
   
   ChangeText(){
@@ -95,8 +93,7 @@ export class OrderDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getProfile();
-    
+    this.getProfile(); 
   }
   
   ionViewDidLeave() {
@@ -105,10 +102,8 @@ export class OrderDetailsPage implements OnInit {
     this.Orders = [];
   }
   ionViewDidEnter(){
-   
     this.Orders.forEach(i => {
-     
-      
+          
 let obj1 = [];
 obj1 = [];
 obj1.push(i.obj.name);
