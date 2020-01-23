@@ -46,7 +46,7 @@ export class UserInvoicesPage implements OnInit {
 
   ngOnInit() {
 
-console.log("xxxx");
+console.log("dsdds");
     this.viewDetails();
   let obj = {name : '', uid : ''} ;
   this.db.collection("UserProfile").onSnapshot(data => {
@@ -59,12 +59,10 @@ console.log("xxxx");
       console.log("users ",  this.users);
     })
   })
-  
-  }
+}
 
 
   viewDetails(){
-
     this.loader = true;
     this.db.collection("Order").onSnapshot(data => {
       this.ordersPlaced = [];
@@ -74,8 +72,8 @@ console.log("xxxx");
         }) 
        /*  this.router.navigateByUrl('/order-details'); */
       })
-
   }
+
   userProfiles() {
     this.ordersPlaced.forEach((i)=>{
   
