@@ -83,7 +83,7 @@ export class OrderDetailsPage implements OnInit {
         this.db.collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true},file => {
           console.log(file.data(), 'checking status');
         let status = file.data().status
-        this. status =status
+        this.status =status
 
           this.Orders.push(file.data())
           })

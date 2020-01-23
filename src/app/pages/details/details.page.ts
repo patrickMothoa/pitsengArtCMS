@@ -12,6 +12,7 @@ import { async } from '@angular/core/testing';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
+  dbsale = firebase.firestore().collection('Sale');
   db = firebase.firestore();
   autoId: any;
   updateBtn = false;
@@ -81,6 +82,7 @@ export class DetailsPage implements OnInit {
       }
     })
   }
+  
   
 
   // dismiss(p) {
@@ -180,6 +182,33 @@ export class DetailsPage implements OnInit {
     console.log('Edit: ', this.event);
     this.updateBtn = true;
     this.router.navigateByUrl('/pro');
+  }
+
+  editPercentage
+  editStartDate
+  editEndDate 
+  promoteItem(p){
+   
+ 
+
+let obj ={
+  percentage:this.editPercentage/100,
+  price:parseFloat(p.obj.price),
+  description: p.obj.desc,
+  productCode:p.obj.productCode,
+  name:p.obj.name,
+  image:p.obj.image,
+  totalprice: parseFloat(p.obj.price)-(this.editPercentage/100)*parseFloat(p.obj.price),
+  startDate:this.editStartDate,
+  endDate:this.editEndDate
+}
+
+firebase.firestore().collection('sales').add(obj);
+
+
+
+
+
   }
 
 }

@@ -64,16 +64,11 @@
                   <ion-item>
                     <ion-label color="medium">Categories</ion-label>
                     <ion-select (ionChange)="getCategories($event)">
-                      <ion-select-option value="Vase">Vase</ion-select-option>
-                      <ion-select-option value="Cups ">Cups </ion-select-option>
-                      <ion-select-option value=" Plates"> Plates</ion-select-option>
-                      <ion-select-option value="Photo Frame">Photo Frames</ion-select-option>
                       <ion-select-option value="Decor Pallets">Decor Pallets</ion-select-option>
-                      <ion-select-option value="Wall Deco">Wall Decor</ion-select-option>
-                      <ion-select-option value="Bowls">Bowls </ion-select-option>
-                      <ion-select-option value="Bowls and Pots"> Pots</ion-select-option>
                       <ion-select-option value="Lamps">Lamps</ion-select-option>
-                    </ion-select>
+                      <ion-select-option value="Vase">Vase</ion-select-option>
+                      <ion-select-option value="Cups ">Pottery </ion-select-option>
+                      </ion-select>
                   </ion-item>
                   <ion-item>
                     <ion-textarea placeholder="Description" [(ngModel)]="event.desc"></ion-textarea>
@@ -136,17 +131,14 @@
                       </div> 
                       
                     </div>
-                  <ion-card-content >
-      
-                  </ion-card-content> 
-             
                 </div>
-                
                   <ion-fab class="fabButton" vertical="bottom" horizontal="end" slot="fixed" (click)="delete(p.id)">
                     <ion-fab-button color="danger">
                       <ion-icon name="trash"></ion-icon>
                     </ion-fab-button>
                   </ion-fab>
+                  <div *ngFor="let item "></div>
+                  <ion-button (click)="productDetails(item)">AddPromotion </ion-button>
               </ion-card>
              
             </div>
