@@ -14,7 +14,7 @@
   <div class="firstContainer">
     <div class="info" *ngFor="let p of Products">
       <div class="imageContainer">
-        <img src="{{p. obj.image}}" alt="">
+        <img src="{{p.obj.image}}" alt="">
       </div>
       <div class="rightContainer">
         <div class="ProductDetails">
@@ -48,7 +48,7 @@
         </div>
         <div class="size">
           <div>
-            <div class="sizeContainer">
+            <!-- <div class="sizeContainer">
               <ion-item class="radioBttns" lines="none">
                 <ion-checkbox color="danger" [(ngModel)]="event.small"> </ion-checkbox>
                 <ion-label padding>S</ion-label>
@@ -61,7 +61,7 @@
                 <ion-checkbox color="danger" [(ngModel)]="event.large"> </ion-checkbox>
                 <ion-label padding>L</ion-label>
               </ion-item>
-            </div>
+            </div> -->
 
             <!-- <p *ngFor="let s of p.size">{{f}}</p> -->
           </div>
@@ -70,6 +70,19 @@
           </div>
 
         </div>
+        <input type="number" placeholder="Percentage % " [(ngModel)]='editPercentage'
+          >
+          <p *ngIf="salePrice">Sale Price R {{salePrice}}</p>
+        <div class="gridded-inputs">
+          <input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'
+             /><input [disabled]='!editStartDate' type="date" placeholder="End Date"
+            [(ngModel)]='editEndDate' [min]='endDateLimit' />
+        </div>
+        <div class="gridded-inputs">
+          <ion-button color="danger" (click)="dismissPromo()">Cancel</ion-button>
+          <ion-button color="success" (click)='promoteItem(p)' >Promote</ion-button>
+        </div>
+        
         <!-- <div class="productButtons-Container">
           <ion-button class="ion-button" color="success" (click)="edit(p.id)">
             <ion-icon name="md-create" class="icon1234"></ion-icon>edit
