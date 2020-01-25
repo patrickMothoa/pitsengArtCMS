@@ -153,20 +153,6 @@ receivedOrder(){
   }
   ionViewDidEnter(){
    
-//     this.Orders.forEach(i => {
-     
-      
-// let obj1 = [];
-// obj1 = [];
-// obj1.push(i.obj.name);
-// obj1.push(i.obj.quantity);
-// obj1.push(i.obj.price);
-// this.Data.push(obj1);
-     
-//     })
-
-//     console.log("Data in the Service ====   ", this.Data);
-   
   }
   getProfile() {
     this.dbProfile.doc(this.uid).onSnapshot((res)=>{

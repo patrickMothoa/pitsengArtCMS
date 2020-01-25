@@ -27,7 +27,8 @@ export class ProPage implements OnInit {
     items:'',
     quantity : 1,
     lastcreated: '',
-    size:[]
+    size:[],
+    //onspecial:0
 
   };
   cardEdited = null
