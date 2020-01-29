@@ -1,7 +1,4 @@
-
- 
- 
- <div class="row">
+<div class="row">
     <div class=" sidebar1  ">
       <div class="logo">
         <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
@@ -22,16 +19,6 @@
       <div class="navigation_bar">
         <div class="navigation_bar">
           <div class="navBarItems">
-            <!-- <div class="searchBar">
-              <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
-                (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel">
-              </ion-searchbar>
-              <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened">
-                <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true">
-                  <ion-icon slot="icon-only" name="search"></ion-icon>
-                </ion-button>
-              </ion-item>
-            </div> -->
 
             <div class="profileBar">
               <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
@@ -41,104 +28,66 @@
           </div>
         </div>
       </div>
-      <ion-content scroll="true" >
-      <div class="coverContent">
-        <div>
-
-       
-          <div class="heading">
-            <div class="items" >
-              <ion-title>item</ion-title>
-              <div class="itemsDetails" *ngFor="let li of Orders" >
-                <div class="itemImage" >
-                     <img src="{{li.obj.image}}" width="100px" height="100px" alt="">
-                </div>
-                <div class="itemName" *ngIf="Orders.length>=1">
-                     <ion-label>{{li.obj.name}}</ion-label>
-                <ion-label> {{li.obj.productCode}}</ion-label>
-                </div>
-              </div>
-
-              <!-- <div class="itemsDetails" >
-                  <div class="itemImage" >
-                       <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
-                  </div>
-                  <div class="itemName" >
-                       <ion-label>Item name</ion-label>
-                  <ion-label>product code</ion-label>
-                  </div>
-               
-                </div> -->
-            </div>
-            <div class="qty" >
-                <ion-title>qty</ion-title>
-                <div class="qtyNo" *ngFor="let li of Orders">
-                  <ion-label class="Qno" >{{li.obj.quantity}}</ion-label>
-                </div>
-                <!-- <div class="qtyNo" >
-                    <ion-label>1</ion-label>
-                  </div> -->
-                
-            </div>
-            <div class="size" >
-                <ion-title>size</ion-title>
-                <div class="sizeNo" *ngFor="let li of Orders">
-                  <ion-label>{{li.obj.size}}</ion-label>
-                </div>
-                <!-- <div class="sizeNo" >
-                    <ion-label>1</ion-label>
-                  </div> -->
-                
-            </div>
-            <div class="price" >
-                <ion-title>price</ion-title>
-                <div class="priceNo" *ngFor="let li of Orders">
-                  <ion-label>{{li.obj.price}}</ion-label>
-                </div>
-                <!-- <div class="priceNo">
-                    <ion-label>1</ion-label>
-                  </div> -->
-                
-            </div>
-            <div class="subtotal" >
-                <ion-title>subtotal</ion-title>
-                <div class="subtotalNo" *ngFor="let li of Orders">
-                  <ion-label>{{li.obj.price}}</ion-label>
-                </div>
-                <!-- <div class="subtotalNo" >
-                    <ion-label>1</ion-label>
-                  </div>
-                 -->
-            </div>
+<ion-content scroll="true" >
+  <div *ngFor="let b of Orders" class="coverContent">  
+    <div *ngFor="let li of b.product" class="heading" >
+        <div class="itemsDetails">
+          <div class="itemImage" >
+            <img src="{{li.image}}" width="100px" height="100px" alt="">
           </div>
-            <div class="total">
-            <div  class="totaldetails" > 
-              <div class="amount" >
-                <ion-label > total amount: R 12345 </ion-label>
-              </div>
-              <div>
-                  <!-- <ion-label > {{d.details.total}}</ion-label> -->
-              </div>
-              
+        <div class="itemName">
+          <ion-label>{{li.name}}</ion-label>
+          <ion-label> {{li.productCode}}</ion-label>
+        </div>
+        </div>
+    
+      <div class="qty" >
+        <ion-title>qty</ion-title>
+        <div class="qtyNo">
+          <ion-label class="Qno" >{{li.quantity}}</ion-label>
+        </div>    
+      </div>
+      <div class="size" >
+        <ion-title>size</ion-title>
+          <div class="sizeNo">
+            <ion-label>{{li.size}}</ion-label>
+          </div>
+        </div>
+        <div class="price" >
+          <ion-title>price</ion-title>
+          <div class="priceNo">
+            <ion-label>{{li.price}}</ion-label>
+          </div>
+
+        </div>
+        <div class="subtotal" >
+          <ion-title>subtotal</ion-title>
+          <div class="subtotalNo">
+            <ion-label>{{li.amount}}</ion-label>
+          </div>
+        </div>
+       
+      </div>
+        <div  class="totaldetails" > 
+          <ion-title>Total amount</ion-title>
+          <div class="amount" >
+            <ion-label >Total :{{totalPrice | currency: '&#82;'}}</ion-label>
+          </div>
+          <div>
+            <ion-button class="buttons"  padding  color="warning"  shape="round" expand="full" (click)="cancel()"> Order cancel </ion-button>
+            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
+            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderReady()"> ready for collections </ion-button>
         
-            </div>
-                      <div class="buttons">
-          
+          </div>
             <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
             <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
-          <ion-button  class="buttons" (click)="downloadPdf()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
-         
-            </div>
-          </div>
-         
-        
-  
-      </div>
-    </div>
-       
-        </ion-content>
-    </div>
+            <ion-button  class="buttons" (click)="downloadUrl()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
+        </div>
   </div>
+
+       
+</ion-content>
+  
 
 
 

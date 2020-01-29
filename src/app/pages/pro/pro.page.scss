@@ -8,6 +8,14 @@ body {
   right: 0%;
   background-color: red;
 }
+// highlight image for editing
+.edited {
+  background: rgb(211, 120, 84);
+  
+  .itemDetails {
+    color: white;
+  }
+}
 .content {
   height: 100%;
   width: 100%;
@@ -20,13 +28,13 @@ body {
 .sidebar1 {
   background: #FFAF65;
   // /* For browsers that do not support gradients */
-  // background: -webkit-linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background: -webkit-linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* For Safari 5.1 to 6.0 */
-  background: linear-gradient(#f17153, #f58d63, #f1ab53);
+  background: linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* For Opera 11.1 to 12.0 */
-  // background: -moz-linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background: -moz-linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* For Firefox 3.6 to 15 */
-  // background: linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background: linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* Standard syntax */
   // background-color: blue;
   // text-align: center;
@@ -36,13 +44,13 @@ body {
 .sidebar2 {
   background:#FFAF65;
   // /* For browsers that do not support gradients */
-  background: linear-gradient(#f17153, #f58d63, #f1ab53);
+  background: linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* For Safari 5.1 to 6.0 */
-  // background: -o-linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background: -o-linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* For Opera 11.1 to 12.0 */
-  // background: -moz-linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background: -moz-linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* For Firefox 3.6 to 15 */
-  // background: linear-gradient(#f17153, #f58d63, #f1ab53);
+  // background: linear-gradient(#F17153, #F58D63, #F1AB53);
   // /* Standard syntax */
   // background-color: blue;
   text-align: center;
@@ -56,7 +64,6 @@ body {
 .topnavbar {
   float: left;
 }
-
 .logo {
   max-height: 130px;
 }
@@ -73,12 +80,8 @@ body {
   justify-content: space-between;
   z-index: 999999;
 }
-
-
 .list > li:hover {
 }
-
-
 .listitems {
   position: absolute;
   width: auto; 
@@ -88,7 +91,6 @@ body {
   // min-height: 30px;
   overflow-y: auto;
   z-index: 999999999999999999999999999;
-
   // border: 1px solid gray;
   
 }
@@ -118,7 +120,6 @@ ion-card:hover {
   width: 100%;
   // height: 25%;
 }
-
 .navigation_bar {
   background:#f17153;
   position: relative;
@@ -126,7 +127,6 @@ ion-card:hover {
 }
 .searchBar{
   margin-left: auto;
-
 }
 .deleteAlert{
   background-color: red;
@@ -143,7 +143,6 @@ ion-card:hover {
 }
 ion-searchbar{
   font-weight: bold;
-
 }
 .search{
   --ion-background-color: transparent;
@@ -161,23 +160,22 @@ ion-card-title {
 ion-label {
   --ion-color: red;
 }
-
 ion-title {
-  --color: #989aa2;
+  --color: #989AA2;
   font-weight: lighter;
   font-size: 1.2rem;
   text-transform: capitalize;
   font-family: serif;
 }
 ion-card-title {
-  --color: #989aa2;
+  --color: #989AA2;
   font-weight: bolder;
   font-size: 1.2rem;
   text-transform: capitalize;
   font-family: serif;
 }
 ion-card-subtitle {
-  --color: #989aa2;
+  --color: #989AA2;
   font-weight: lighter;
   text-transform: capitalize;
   font-family: serif;
@@ -187,14 +185,12 @@ ion-card-subtitle {
   --border-radius: 0px 50px 0px 50px;
   // background-color: #FFAF65;
 }
-
 .search {
   --ion-background-color: transparent;
 }
 .inputsContainer {
   padding-top: 16%;
 }
-
 .formContainer {
   margin: auto;
   // border: solid red;
@@ -204,7 +200,6 @@ ion-card-subtitle {
   right: 0%;
   display: flex;
   flex-direction: row;
-
 }
 .formContent {
   // margin: auto;
@@ -215,10 +210,11 @@ ion-card-subtitle {
   right: 0%;
 }
 .card {
-  // border: solid black;
+  // border: solid red;
   display: flex;
   flex-direction: row;
   width: 100%;
+  // height: 20%;
   flex-wrap: wrap;
   justify-content: space-around;
   
@@ -282,7 +278,6 @@ ion-card {
 //   // left: 0%;
 //   // right: 0%;
 // }
-
 .fabButton{
   display: none;
 }
@@ -292,9 +287,13 @@ ion-card {
 .cardInfor:hover .fabButton{
   display: block;
 }
-
 .home{
   background-color: rgba(255, 255, 255, 0.2);
   // background-color: white;
   font-weight: bolder;
 }
+
+
+
+
+

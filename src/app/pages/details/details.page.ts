@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
 import { AlertController, ModalController, LoadingController } from '@ionic/angular';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { AlertController, ModalController, LoadingController } from '@ionic/angu
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
+  dbsale = firebase.firestore().collection('Sale');
   db = firebase.firestore();
   autoId: any;
   updateBtn = false;
@@ -57,7 +59,7 @@ export class DetailsPage implements OnInit {
    ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
   }
-
+  
         // retriving from firebase.firestore
     getProducts(){
     this.db.collection('Products').get().then(snapshot => {
@@ -66,10 +68,10 @@ export class DetailsPage implements OnInit {
       } else {
         this.myProduct = true;
         snapshot.forEach(doc => {
-          this.event.image= doc.data().image;
-          this.event.categories = doc.data().categories
-          this.event.name=doc.data().name
-          this.event.price=doc.data().price
+          this.event.image = doc.data().image;
+          this.event.categories = doc.data().categories;
+          this.event.name =doc.data().name
+          this.event.price = doc.data().price
           this.event.productCode=doc.data().productCode
           this.event.desc=doc.data().desc
           // this.event.small=doc.data().small
@@ -80,6 +82,7 @@ export class DetailsPage implements OnInit {
       }
     })
   }
+  
   
 
   // dismiss(p) {
@@ -114,13 +117,16 @@ export class DetailsPage implements OnInit {
             this.db.collection('Products').doc(value).delete().then(async res => {
              worker.dismiss()
               this.listproduct = [];
-              this.retrieve();
+              // this.retrieve();
            
               const alerter = await this.alertCtrl.create({
               message: 'Product deleted',
               buttons: [
                 {
-                text: 'OK'
+                text: 'OK',
+                handler: async () => {
+                  this.dismiss();
+                }
                 }  
               ], 
             })
@@ -146,7 +152,7 @@ export class DetailsPage implements OnInit {
     });
    
     await alert.present(); 
-    this.dismiss();
+   
   }
   dismiss() {
     this.modalController.dismiss({
@@ -168,6 +174,41 @@ export class DetailsPage implements OnInit {
         })
       }
     })
+  }
+
+  edit(val, id){
+    this.event = val;
+    this.autoId = id;
+    console.log('Edit: ', this.event);
+    this.updateBtn = true;
+    this.router.navigateByUrl('/pro');
+  }
+
+  editPercentage
+  editStartDate
+  editEndDate 
+  promoteItem(p){
+   
+ 
+
+let obj ={
+  percentage:this.editPercentage/100,
+  price:parseFloat(p.obj.price),
+  description: p.obj.desc,
+  productCode:p.obj.productCode,
+  name:p.obj.name,
+  image:p.obj.image,
+  totalprice: parseFloat(p.obj.price)-(this.editPercentage/100)*parseFloat(p.obj.price),
+  startDate:this.editStartDate,
+  endDate:this.editEndDate
+}
+
+firebase.firestore().collection('sales').add(obj);
+
+
+
+
+
   }
 
 }

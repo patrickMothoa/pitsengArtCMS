@@ -57,16 +57,17 @@
               </ion-item>
             </div>
             <div class="invoicesContainer">
-              <ion-card *ngFor = "let item of users">
-                <div class="invoicesList" (click)="viewDetails(item.uid)">
+              <ion-card *ngFor = "let item of ordersPlaced">
+                <div class="invoicesList" (click)="viewDetail(item.ref)">
                   <div>
-                    <ion-label> {{item.name}} </ion-label>
+                    <ion-label>{{item.info.name}}</ion-label>
                   </div>
                   <div>
-                    <ion-label>INV/01/1002</ion-label>
+                    <ion-label>{{item.ref}}</ion-label>
                   </div>
                   <div>
-                    <ion-label>8/NOV/2019</ion-label>
+                 
+                    <ion-label> {{item.info.date }} </ion-label>
                   </div>
                 </div>
               </ion-card>

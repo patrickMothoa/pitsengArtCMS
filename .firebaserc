@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "chat-40e79"
+    "default": "chat-40e79",
+    "hosting": "pitsengdb"
   }
 }
