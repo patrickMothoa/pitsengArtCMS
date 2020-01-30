@@ -141,6 +141,7 @@ ionViewDidLoad(){
           }
         ],
       })
+      alerter.present();
       worker.dismiss();
       alerter.present();
 
