@@ -51,15 +51,16 @@ ion-title {
     background-color: white;
     position: relative;
     padding: 5px 20px;
+    
   }
   
   .nav > .nav-header {
-    display: inline;
+    // display: inline;
   }
   
   .nav > .nav-header > .nav-title {
     display: inline-block;
-    font-size: 22px;
+    // font-size: 22px;
     color: #707070;
     padding: 10px 10px 10px 10px;
     text-align: center;
@@ -129,6 +130,8 @@ ion-title {
     }
     .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
       background-color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
     }
     .nav > .nav-btn > label > span {
       display: block;
@@ -146,14 +149,12 @@ ion-title {
       height: 0px;
       transition: all 0.3s ease-in;
       overflow-y: hidden;
-      // top: 50px;
-      // left: 0px;
+      display: flex;
+      flex-direction: column;
     }
     .nav > .nav-links > div {
       display: block;
       width: 100%;
-      display: flex;
-      flex-direction: column;
     }
     .nav > #nav-check:not(:checked) ~ .nav-links {
       height: 0px;
@@ -191,5 +192,16 @@ ion-title {
     width: 35%;
     // border: solid black;
     margin: 0 auto;
+  }
+  .item {
+    color: #777777;
+    text-decoration: none;
+    list-style-type: none;
+    text-transform: capitalize;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+   display: flex;
+   flex-direction: column;
+  //   border: solid rgb(175, 10, 18);
   }
   }
