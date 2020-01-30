@@ -1,6 +1,213 @@
- <ion-content  >
+<ion-header>
+  <ion-toolbar id="top_bar">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>You have specials up to 75% <ion-button (click)="onClick()">
+      Click Specials
+    </ion-button></ion-title>
+  </ion-toolbar>
 
-<!-- 
+  <ion-toolbar id="bottom_bar">
+    <ion-title>Subheader</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container" id="web_view">
+    <div class="grid">
+      <div class="left">
+        <div class="card">
+          <img src="https://i.pinimg.com/564x/26/9a/b0/269ab05197cf877c8f075265b0b159af.jpg" alt="">
+          <p>Deco (1)</p>
+        </div>
+
+      </div>
+
+      <div class="right">
+
+        <div class="card">
+          <img src="https://i.pinimg.com/564x/3f/40/68/3f40685182bfc3b133f9d5a77c54853f.jpg" alt="">
+          <p>Pottery (45)</p>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.shopify.com/s/files/1/2259/7485/products/product-image-318176513_1200x.jpg?v=1575088438"
+            alt="">
+          <p>Lamps (5)</p>
+        </div>
+
+
+        <div class="card">
+          <img src="https://i.pinimg.com/564x/8e/56/9c/8e569c0858abbc9f7409b9613f7cfb81.jpg" alt="">
+          <p>Vases (10)</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="more_deals">
+      <div class="info">
+        <h1>More Deals</h1>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
+          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
+          veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim 
+          ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia 
+          consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque 
+          porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, 
+          adipiscir</p>
+      </div>
+
+      <ion-item>
+        <ion-label>Sales</ion-label>
+      </ion-item>
+      <div class="sales">
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
+
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
+
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
+
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
+
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
+
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content scroll="true" >
+  <div class="container">
+<!-- <ion-content  >
 <div class="container">
     <div class="content ">
       <div class="row">
@@ -148,117 +355,5 @@
         </div>
       </div>
     </div>
-  </div>  -->
-
- 
-
-  <div class="loader-container" *ngIf="loader">
-    <div class="loader">Loading...</div>
   </div>
-  <div class=" animated bounce 2s">
-    <div class="content-container">
-      <!-- starts landing page content -->
-      <div class="content-section">
-        <div class="mainContent-cover">
-          <div class="landing" >
-            <div class="category-Container">
-              <div class="First-Category-Block" (click)="categorylist('Deco')">
-                <img  src="{{Homescreen.deco}}" alt="">
-                <ion-label class="category-label"><span>Deco</span></ion-label> <br>
-                <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
-                      name="arrow-forward"></ion-icon></span>
-                </ion-label>
-
-              </div>
-
-              <div class="Second-Category-Block" (click)="categorylist('Pottery')">
-                <div class="firstSecond-block">
-                  <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
-                  <img  src="{{Homescreen.pottery}}" alt="">
-                  <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
-                  <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
-                        name="arrow-forward"></ion-icon></span>
-                  </ion-label>
-                </div>
-                <div class="container-bottom2">
-                  <div class="seconSecond-block" (click)="categorylist('Lamps')" >
-                    <img  src="{{Homescreen.lamps}}" alt="">
-                    <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
-                          name="arrow-forward"></ion-icon></span>
-                    </ion-label>
-
-                  </div>
-                  <div class="thirdSecond-block" (click)="categorylist('Vase')">
-                    <img  src="{{Homescreen.vase}}" alt="">
-                    <ion-label class="category-label"><span>Vases</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
-                          name="arrow-forward"></ion-icon></span>
-                    </ion-label>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-            <div class="description-text">
-              <div>
-                <ion-title>With us you get to save!</ion-title>
-              </div>
-              <div>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                  labore et dolore magna aliquyam erat,
-                  sed diam voluptua. At vero eos et accusam et justo duo
-                  dolores et ea rebum. Stet clita kasd gubergren</p>
-              </div>
-            </div>
-            <div class="cards-section" >
-              <div>
-                <ion-title padding class="specials-title">Specials</ion-title>
-              </div>
-              <div class="cards-container"  >
-      
-                      <!-- Fetching all products on special -->
-                <div   class="products-section" *ngFor="let event of proSales; let i=index;" (click)="allSpecials(event)">
-                <div class="cards"  [ngClass]="{'active': active==i}" (click)="showList(i)" >
-                  <div class="percent-off" >
-                    <p>-80%</p>
-  
-                  </div>
-                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
-                  <ion-label class="price"> R{{event.obj.price}} <span class="span-tsrike" >R &nbsp;400</span>  </ion-label>
-                  <ion-label class="name">  {{event.obj.name}} </ion-label>
-                  <div class="stars">
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                  </div>
-                  <div class="icon-wish" >
-                    <ion-icon name="heart" ></ion-icon>
-                  </div>
-               
-                </div>
-              </div>
-              </div>
-
-              <div class="special-section"  (click)="specialsAlso(event)">
-                <div *ngFor="let me of SpecialScrin" >
-                <div class="specials">
-                  <img src="{{me.obj.image}}" alt="">
-                  <ion-title>Up to 50% off </ion-title>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
-          <div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</ion-content>
-
+  </ion-content> -->
