@@ -1,4 +1,6 @@
-<!-- <ion-content  >
+ <ion-content  >
+
+<!-- 
 <div class="container">
     <div class="content ">
       <div class="row">
@@ -146,8 +148,117 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>  -->
+
+ 
+
+  <div class="loader-container" *ngIf="loader">
+    <div class="loader">Loading...</div>
+  </div>
+  <div class=" animated bounce 2s">
+    <div class="content-container">
+      <!-- starts landing page content -->
+      <div class="content-section">
+        <div class="mainContent-cover">
+          <div class="landing" >
+            <div class="category-Container">
+              <div class="First-Category-Block" (click)="categorylist('Deco')">
+                <img  src="{{Homescreen.deco}}" alt="">
+                <ion-label class="category-label"><span>Deco</span></ion-label> <br>
+                <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
+                      name="arrow-forward"></ion-icon></span>
+                </ion-label>
+
+              </div>
+
+              <div class="Second-Category-Block" (click)="categorylist('Pottery')">
+                <div class="firstSecond-block">
+                  <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
+                  <img  src="{{Homescreen.pottery}}" alt="">
+                  <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
+                  <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
+                        name="arrow-forward"></ion-icon></span>
+                  </ion-label>
+                </div>
+                <div class="container-bottom2">
+                  <div class="seconSecond-block" (click)="categorylist('Lamps')" >
+                    <img  src="{{Homescreen.lamps}}" alt="">
+                    <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
+                    <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
+                          name="arrow-forward"></ion-icon></span>
+                    </ion-label>
+
+                  </div>
+                  <div class="thirdSecond-block" (click)="categorylist('Vase')">
+                    <img  src="{{Homescreen.vase}}" alt="">
+                    <ion-label class="category-label"><span>Vases</span></ion-label> <br>
+                    <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
+                          name="arrow-forward"></ion-icon></span>
+                    </ion-label>
+                  </div>
+                </div>
+              </div>
 
 
-</ion-content> 
-  -->
+            </div>
+            <div class="description-text">
+              <div>
+                <ion-title>With us you get to save!</ion-title>
+              </div>
+              <div>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                  labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo
+                  dolores et ea rebum. Stet clita kasd gubergren</p>
+              </div>
+            </div>
+            <div class="cards-section" >
+              <div>
+                <ion-title padding class="specials-title">Specials</ion-title>
+              </div>
+              <div class="cards-container"  >
+      
+                      <!-- Fetching all products on special -->
+                <div   class="products-section" *ngFor="let event of proSales; let i=index;" (click)="allSpecials(event)">
+                <div class="cards"  [ngClass]="{'active': active==i}" (click)="showList(i)" >
+                  <div class="percent-off" >
+                    <p>-80%</p>
+  
+                  </div>
+                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
+                  <ion-label class="price"> R{{event.obj.price}} <span class="span-tsrike" >R &nbsp;400</span>  </ion-label>
+                  <ion-label class="name">  {{event.obj.name}} </ion-label>
+                  <div class="stars">
+                    <ion-icon name="star" color="warning"></ion-icon>
+                    <ion-icon name="star" color="warning"></ion-icon>
+                    <ion-icon name="star" color="warning"></ion-icon>
+                    <ion-icon name="star" color="warning"></ion-icon>
+                    <ion-icon name="star-outline" color="warning"></ion-icon>
+                  </div>
+                  <div class="icon-wish" >
+                    <ion-icon name="heart" ></ion-icon>
+                  </div>
+               
+                </div>
+              </div>
+              </div>
+
+              <div class="special-section"  (click)="specialsAlso(event)">
+                <div *ngFor="let me of SpecialScrin" >
+                <div class="specials">
+                  <img src="{{me.obj.image}}" alt="">
+                  <ion-title>Up to 50% off </ion-title>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ion-content>
+
