@@ -80,8 +80,7 @@ body {
   justify-content: space-between;
   z-index: 999999;
 }
-.list > li:hover {
-}
+
 .listitems {
   position: absolute;
   width: auto; 
@@ -281,9 +280,7 @@ ion-card {
 .fabButton{
   display: none;
 }
-.cardInfor:hover img {
- 
-}
+
 .cardInfor:hover .fabButton{
   display: block;
 }
@@ -293,7 +290,9 @@ ion-card {
   font-weight: bolder;
 }
 
-
+ion-content{
+  top: 30%;
+}
 
 
 
