@@ -1,4 +1,4 @@
-<ion-content scroll="true" >
+<!-- <ion-content scroll="true" >
 
   <div class="loader" *ngIf="loader">
     <div class="loads"></div>
@@ -25,18 +25,7 @@
         <div class="navigation_bar">
           <div class="navigation_bar">
             <div class="navBarItems">
-              <!-- <div class="searchBar">
-                <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
-                  (ionCancel)='isSearchbarOpened=false' showCancelButton="focus" cancelButtonText="Custom Cancel">
-                </ion-searchbar>
-                <ion-item class="search" lines="none" *ngIf="!isSearchbarOpened">
-                  <ion-button fill="clear" color="light" slot="end" (click)="isSearchbarOpened=true">
-                    <ion-icon slot="icon-only" name="search"></ion-icon>
-                  </ion-button>
-                </ion-item>
-              </div> -->
-  
-              <div class="profileBar">
+               <div class="profileBar">
                 <ion-button fill="clear" color="light" (click)="openProfile()" >
                   <ion-icon slot="icon-only" name="contact"></ion-icon>
                 </ion-button>
@@ -49,12 +38,7 @@
             <div class="filterContiner">
               <ion-item>
                 <ion-label><ion-icon name="funnel"></ion-icon> &nbsp; Orders</ion-label>
-                <!-- <ion-select interface="popover">
-                  <ion-select-option value="nes">Not Paid</ion-select-option>
-                  <ion-select-option value="n64">Paid</ion-select-option>
-  
-                </ion-select> -->
-              </ion-item>
+           </ion-item>
             </div>
             <div class="invoicesContainer">
               <ion-card *ngFor = "let item of ordersPlaced">
@@ -66,28 +50,102 @@
                     <ion-label>{{item.ref}}</ion-label>
                   </div>
                   <div>
-                 
                     <ion-label> {{item.info.date }} </ion-label>
                   </div>
                 </div>
-              </ion-card>
-             
-             
-              
-              
-             
-              
-              
-             
-              
-              
-  
-  
+              </ion-card> 
             </div>
-  
           </div>
-  
         </div>
       </div>
     </div>
-  </ion-content>
+  </ion-content>      -->
+
+
+
+  <div class="loader-container" *ngIf="loader">
+    <div class="loader">Loading...</div>
+  </div>
+  <div  class="heading" >
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+   
+      <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+  
+  </ion-fab>
+  <hr>
+  </div>
+
+  <ion-content>
+  
+  <div class="main-content" >
+  <div class="cartTitle" >
+    <ion-title>Orders</ion-title>
+  </div>
+  <div  class="content-cover">
+    <ion-toolbar>
+      <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+    <div class="orders" >
+      <div class="row">
+        <div class="col">    
+          <div class="tabs">
+            <div class="tab">
+              <input type="checkbox" id="chck1">
+              <label class="tab-label" for="chck1">Pending Orders</label>
+              <div class="tab-content">
+                <div class="pedding-oders" >
+                  <div class="invoicesContainer">
+                    <ion-card *ngFor = "let item of ordersPlaced">
+                      <div class="invoicesList" (click)="viewDetail(item.ref)">
+                        <div>
+                          <ion-label class="name" >{{item.info.name}}</ion-label>
+                        </div>
+                        <div>
+                          <ion-label class="reference" >{{item.ref}}</ion-label>
+                        </div>
+                        <div>
+                       
+                          <ion-label class="date" > {{item.info.date }} </ion-label>
+                        </div>
+                      </div>
+                    </ion-card> 
+                    </div>
+                
+                </div>
+               
+               
+               
+              </div>
+            </div>
+            <div class="tab">
+              <input type="checkbox" id="chck2">
+              <label class="tab-label" for="chck2">Order History</label>
+              <div class="tab-content">
+                <div class="pedding-oders">
+                  <div class="invoicesContainer">
+                    <ion-card *ngFor = "let item of ordersPlaced">
+                      <div class="invoicesList" (click)="viewDetail(item.ref)">
+                        <div>
+                          <ion-label class="name" >{{item.info.name}}</ion-label>
+                        </div>
+                        <div>
+                          <ion-label class="reference" >{{item.ref}}</ion-label>
+                        </div>
+                        <div>
+                       
+                          <ion-label class="date" > {{item.info.date }} </ion-label>
+                        </div>
+                      </div>
+                    </ion-card> 
+                    </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </ion-content> 

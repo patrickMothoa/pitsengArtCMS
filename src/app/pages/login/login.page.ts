@@ -34,6 +34,13 @@ export class LoginPage  {
     });
   }
 
+  loader: boolean = true;
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
+
   ngOnInit() {
     firebase.auth().onAuthStateChanged(res => {
       if (res) {
@@ -70,6 +77,7 @@ export class LoginPage  {
           });
         }
       );
+      this.loader
   }
   forgotpassword(email) {
     firebase.auth().sendPasswordResetEmail(email).then(res => {

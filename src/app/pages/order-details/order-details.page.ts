@@ -11,7 +11,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Platform, NavParams } from '@ionic/angular';
+import { Platform, NavParams, ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.page.html',
@@ -68,7 +68,10 @@ export class OrderDetailsPage implements OnInit {
   readyBtn : boolean =  false;
   ///////////////
   
-  constructor(public dataservice : DataService,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+  constructor(public dataservice : DataService,private router: Router,
+     public route: ActivatedRoute,public DataService : DataService,
+      private file: File, private fileOpener: FileOpener,
+       private plt: Platform,public modalController: ModalController) {
 
    
     this.route.queryParams.subscribe((data) => {
@@ -87,6 +90,11 @@ export class OrderDetailsPage implements OnInit {
       /////
    }
 
+   dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
 
   orderProcessed(){
    // let status = ''

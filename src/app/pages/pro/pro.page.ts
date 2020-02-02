@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ToastController, LoadingController, ModalController} from '@ionic/angular';
+import { AlertController, ToastController, LoadingController, ModalController, PopoverController} from '@ionic/angular';
 import { Inject, LOCALE_ID } from '@angular/core';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DetailsPage } from '../details/details.page';
+import { ProfilePage } from '../profile/profile.page';
+import { PopoverComponent } from 'src/app/components/popover/popover.component';
+import { UserInvoicesPage } from '../user-invoices/user-invoices.page';
+import { AddProductPage } from '../add-product/add-product.page';
 
 @Component({
   selector: 'app-pro',
@@ -53,6 +57,7 @@ export class ProPage implements OnInit {
     public productservices : ProductService, 
     public alertCtrl: AlertController,
      public toastController: ToastController,
+     public popoverController: PopoverController,
      @Inject(LOCALE_ID) private locale: string) { 
     this.productForm = formBuilder.group({ 
      image: [this.event.image, Validators.compose([Validators.required])],
@@ -361,12 +366,51 @@ back() {
     openProfile(){
       this.router.navigateByUrl('/profile');
     }
+    dismiss(){
+      this.popoverController.dismiss({
+        'dismissed':true
+      });
+    }
+  
+    async presentPopover(ev) {
+      const popover = await this.popoverController.create({
+        component:PopoverComponent,
+        event: ev,
+        // cssClass: 'pop-over-style',
+        translucent: true,
+      });
+      this.dismiss
+      return await popover.present();
+      
+    }
+
+    async openInvoice() {
+      const modal = await this.modalController.create({
+        component:UserInvoicesPage,
+        cssClass: 'my-add-to-cart',
+        
+      
+      });
+      return await modal.present();
+    }
+
+    
+    async addProduct() {
+      const modal = await this.modalController.create({
+        component:AddProductPage,
+        cssClass: 'add-product',
+        
+      
+      });
+      return await modal.present();
+    }
+
+
+
     openPro(){
       this.router.navigateByUrl('/pro');
     }
-    openInvoice(){
-      this.router.navigateByUrl('/user-invoices');
-    }
+
   
     logOut(){
       firebase.auth().signOut().then(()=> {

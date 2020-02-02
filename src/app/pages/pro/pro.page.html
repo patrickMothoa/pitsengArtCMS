@@ -1,22 +1,54 @@
-<ion-header>
-  <ion-toolbar id="top_bar">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>You have specials up to 75% <ion-button (click)="onClick()">
-      Click Specials
-    </ion-button></ion-title>
-  </ion-toolbar>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>
+        <div class="title">
+          <div class="text" >Special Up to 75%</div>
+          <div >
+            <ion-button fill="outline" color="light" (click)="Allspecials()"> Shop Now </ion-button>
+          </div>
+        </div>
+      </ion-title>
+    </ion-toolbar> 
+    <div class="navigation-bar" >
 
-  <ion-toolbar id="bottom_bar">
-    <ion-title>Subheader</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+    <div class="nav">
+
+ 
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      
+      <div class="nav-links">
+     
+        <ion-button class="item" color="medium"  fill="clear" (click)="openPro()"  slot="end">Home</ion-button>
+        <ion-button class="item" color="medium"  fill="clear" (click)="openInvoice()"  slot="end">Orders</ion-button>             
+        <ion-button class="item" color="medium"  fill="clear" slot="end">Queries</ion-button>
+        <ion-button class="item" color="medium"  fill="clear" slot="end">FAQ's</ion-button>
+        <ion-button class="item" color="medium"  fill="clear" slot="end"(click)="addProduct()"><ion-icon name="add" ></ion-icon>Product</ion-button>
+        <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)="presentPopover($event)" ><ion-icon name="person"></ion-icon></ion-button>
+           <ion-button  class="item" color="medium"  fill="clear" ><ion-searchbar
+             *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false'
+                 showCancelButton="focus" cancelButtonText="Custom Cancel"  (ionChange)='SearchProducts($event);' value="" 
+             ></ion-searchbar
+            > 
+         </ion-button>
+           
+      </div>
+    </div>
+  </div>
+   
+  
+  </ion-header> 
 
 <ion-content>
   <div class="container" id="web_view">
     <div class="grid">
-      <div class="left">
+      <div class="left hvr-grow">
         <div class="card">
           <img src="https://i.pinimg.com/564x/26/9a/b0/269ab05197cf877c8f075265b0b159af.jpg" alt="">
           <p>Deco (1)</p>
@@ -108,13 +140,13 @@
           <div class="item_details">
             <p>Vase</p>
             <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
+              <ion-icon  color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
             </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+            <p>R300 <span id="sale-price" >R600.00</span></p>
           </div>
 
         </div>
@@ -157,6 +189,24 @@
 
         </div>
 
+        <div class="sale_item">
+          <div class="image">
+            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
+            <p>-80%</p>
+          </div>
+          <div class="item_details">
+            <p>Vase</p>
+            <p id="ratings">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </p>
+            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+          </div>
+
+        </div>
         <div class="sale_item">
           <div class="image">
             <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
@@ -207,7 +257,7 @@
 
 <!-- <ion-content scroll="true" >
   <div class="container">
-<!-- <ion-content  >
+ <ion-content  >
 <div class="container">
     <div class="content ">
       <div class="row">
