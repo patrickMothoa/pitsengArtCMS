@@ -116,7 +116,7 @@
 <div padding class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
 
-    <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+    <ion-icon (click)="dismiss()" color="medium" name="close"></ion-icon>
 
   </ion-fab>
   <hr>
@@ -131,8 +131,8 @@
       </div>
       <div class="details-section">
         <div class="upload">
-          <ion-item   colo="medium-tint">
-          <ion-input class="image-upload" type="file" accept="image/*" (change)="changeListener($event)">
+          <ion-item color="dark">
+          <ion-input  lines="none" class="image-upload" type="file" accept="image/*" placeholder="upload image" (change)="changeListener($event)">
           </ion-input>
         </ion-item>
         </div>
@@ -150,35 +150,51 @@
         
         
         <div class="Product-name">
-          <ion-item colo="medium-tint" >
-              <ion-input placeholder="Product Name" [(ngModel)]="event.name"></ion-input>
+          <ion-item  lines="none" color="dark" >
+            <ion-label >Categories</ion-label>
+            <ion-select (ionChange)="getCategories($event)">
+              <ion-select-option value="Vase">Vase</ion-select-option>
+              <ion-select-option value="Cups and Plates">Cups and Plates</ion-select-option>
+              <ion-select-option value="Photo Frame">Photo Frames</ion-select-option>
+              <ion-select-option value="Decor Pallets">Decor Pallets</ion-select-option>
+              <ion-select-option value="Wall Deco">Wall Decor</ion-select-option>
+              <ion-select-option value="Bowls and Pots">Bowls and Pots</ion-select-option>
+              <ion-select-option value="Lamps">Lamps</ion-select-option>
+            </ion-select>
+          </ion-item>
+        
+
+        </div>
+        <div class="Product-name">
+          <ion-item  lines="none" color="dark" >
+              <ion-input placeholder="Product Name"></ion-input>
           </ion-item>
         
 
         </div>
         <div class="prices" >
           <div class="promotion-price" >
-            <ion-item  colo="medium-tint">
-              <ion-input placeholder="promotion price" >
+            <ion-item  lines="none" color="dark">
+              <ion-input placeholder="Price" >
 
               </ion-input></ion-item>
             
 
           </div>
           <div class="normal-price" >
-            <ion-item  colo="medium-tint">
-               <ion-input placeholder="normal-price" [(ngModel)]="event.price"></ion-input>
+            <ion-item lines="none" color="dark">
+               <ion-input placeholder="promotion price" ></ion-input>
               </ion-item>
            
 
           </div>
 
         </div>
-        <div class="product-selection" >
+        <div padding class="product-selection" >
           <div class="product-code" >
             <ion-label>code: : JKH74893234895</ion-label>
           </div>
-          <div class="item" >
+          <div  class="item" >
             <div>
               <input type="radio" name="framework" value="laravel" id="laravel"/>
               <label for="laravel">per item</label>
@@ -193,14 +209,14 @@
         </div>
         <div class="description" >
           <div class="descr" >
-            <ion-item  colo="medium-tint">
-               <ion-textarea  colo="secondary" placeholder="Enter more information about the product here..." [(ngModel)]="event.desc"></ion-textarea>
+            <ion-item color="dark">
+               <ion-textarea  lines="none"  placeholder="Enter more information about the product here..."></ion-textarea>
             </ion-item>
            
           </div>
 
         </div>
-        <div class="Productselection">
+        <div padding class="Productselection">
           <div class="size">
             <p  >size:</p>
 
@@ -230,19 +246,16 @@
               <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
            
           </div>
+         
         </div>
-
-      
+          <div  class="field" id="searchform">
+            <ion-input type="text" id="searchterm" placeholder="promote e.g(30%)"></ion-input>
+            <button type="button" id="search">promote</button>
+          </div>
  <div class="buttons" >
         <div>
-          <ion-button shape="round" expand="full" (click) ="addEvent()">save</ion-button>
+          <ion-button shape="round" expand="outline" color="medium">save</ion-button>
         </div>
-        <div>
-         <ion-button shape="round" expand="full" color="danger" >
-           delete
-         </ion-button>
-         </div>
-
       </div>
       </div>
      

@@ -85,19 +85,41 @@
           <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
           <ion-button  class="buttons" (click)="downloadUrl()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
       </div>
-</div>
-​
-     
-</ion-content>
-Collapse
+        <div  class="totaldetails" > 
+          <ion-title>Total amount</ion-title>
+          <div class="amount" >
+            <ion-label >Total :{{totalPrice | currency: '&#82;'}}</ion-label>
+          </div>
+          <div>
+            <ion-button class="buttons"  padding  color="warning"  shape="round" expand="full" (click)="cancel()"> Order cancel </ion-button>
+            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
+            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderReady()"> ready for collections </ion-button>
+        
+          </div>
+            <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
+            <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
+            <ion-button  class="buttons" (click)="downloadUrl()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
+        </div>
+  </div>
+
+       
+</ion-content> -->
+  
 
 
 
 
 
 
+    <!-- *ngFor="let p of arr; let i=index;"   [ngClass]="{'active': active==i}"
+            (click)="showList(i, p)"-->
+ <!-- *ngIf="trackOrders.image"<img *ngIf="!trackOrders.image" src="../../../assets/2e2fac9d4a392456e511345021592dd2 (1).jpg" width="100%" height="100%" alt=""> -->
+   <!-- Tracking progress (click)="showList()" *ngIf="!list" --> 
+   <!-- boleto__wrapper  *ngIf="!list" -->
 
- -->
+
+
+
  <div class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
 
@@ -115,8 +137,7 @@ Collapse
           <ion-title>Items Ordered</ion-title>
         </div>
         <div class="scroll">
-          <!-- *ngFor="let p of arr; let i=index;"   [ngClass]="{'active': active==i}"
-            (click)="showList(i, p)"-->
+      
           <div class="pedding-oders " >
   
             <div class="image">
@@ -216,7 +237,7 @@ Collapse
             <ion-title>tracking status</ion-title>
           </div>
 
-          <!-- Tracking progress (click)="showList()" *ngIf="!list" -->
+       
           <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
             <div class="tracking-progress-bar">
@@ -241,7 +262,7 @@ Collapse
               <div class="four">delivered</div>
             </div>
 
-          </div> <!-- boleto__wrapper  *ngIf="!list" -->
+          </div>
 
 
         </div>
@@ -255,7 +276,7 @@ Collapse
               <div class="image-container">
 
 
-                <!-- *ngIf="trackOrders.image"<img *ngIf="!trackOrders.image" src="../../../assets/2e2fac9d4a392456e511345021592dd2 (1).jpg" width="100%" height="100%" alt=""> -->
+               
                 <img src="https://i.pinimg.com/564x/26/9a/b0/269ab05197cf877c8f075265b0b159af.jpg" width="100%" height="100%" alt="">
               </div>
             </div>
