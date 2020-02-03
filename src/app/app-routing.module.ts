@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'sow-data',
     loadChildren: () => import('./sow-data/sow-data.module').then( m => m.SowDataPageModule)
+  },  {
+    path: 'categorylist',
+    loadChildren: () => import('./pages/categorylist/categorylist.module').then( m => m.CategorylistPageModule)
   },
+
  
 ];
 

@@ -124,7 +124,7 @@
 <ion-content>
   <div class="content-section">
     <div class="content">
-      <div class="image-section">
+      <div  class="image-section">
         <img src="../../../assets/images.png" alt="">
         
         
@@ -136,6 +136,18 @@
           </ion-input>
         </ion-item>
         </div>
+        <div class ="categoty"> 
+          <ion-item>
+          <ion-label color="medium">Categories</ion-label>
+          <ion-select (ionChange)="getCategories($event)">
+            <ion-select-option value="Deco">Deco</ion-select-option>
+            <ion-select-option value="Lamps">Lamps</ion-select-option>
+            <ion-select-option value="Vase">Vase</ion-select-option>
+            <ion-select-option value="Pottery">Pottery </ion-select-option>
+            </ion-select>
+        </ion-item>
+      </div>
+        
         
         <div class="Product-name">
           <ion-item  lines="none" color="dark" >

@@ -23,14 +23,19 @@ export class AddProductPage implements OnInit {
     categories:'',
     name:'',
     price:null,
-    productno:'',
+    productCode:'',
     desc: null,
     items:'',
     quantity : 1,
-    small:'',
-    medium:'',
-    large: ''
+    lastcreated: '',
+    size:[]
   };
+  sizes = null;
+  productSize = {
+    small: false,
+    medium: false,
+    large: false
+  }
  
   public productForm: FormGroup;
   eventSource = [];
@@ -46,13 +51,12 @@ export class AddProductPage implements OnInit {
       categories: [this.event.categories, Validators.compose([Validators.required])], 
       name: [this.event.name, Validators.compose([Validators.required])],
       price: [this.event.price, Validators.compose([Validators.required])], 
-      productno: [this.event.productno, Validators.compose([Validators.required])], 
+      productCode: [this.event.productCode, Validators.compose([Validators.required])], 
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
       quantity : [this.event.quantity, Validators.compose([Validators.pattern("[^0-9]")])], 
-      small: [this.event.small, Validators.compose([Validators.requiredTrue])], 
-      medium: [this.event.medium, Validators.compose([Validators.requiredTrue])], 
-      large: [this.event.large, Validators.compose([Validators.requiredTrue])], 
+       
+      size: [this.event.size, Validators.compose([Validators.requiredTrue])], 
     });
   }
 
@@ -77,21 +81,123 @@ export class AddProductPage implements OnInit {
       });
     });
   }
-
-  async addEvent() {
-    
-    if (!this.event.desc || !this.event.productno ||!this.event.categories ||!this.event.quantity ||!this.event.items || !this.event.name || !this.event.price) {
-      const alert =  await this.alertCtrl.create({
-        message: 'All Product fields must be filled',
-        
-      });
-      alert.present();
-      
-  
+  async addEvent(){
+    if (!this.event.image){
+      const alerter = await this.alertCtrl.create({
+        message: 'Error saving product. No image selected or has not finnished uploading.'
+      })
+      alerter.present();
     } else {
-      this.productservices.addProduct(this.event);
-      this.openHome()
+      if ( !this.event.desc||!this.event.quantity ||!this.event.size || !this.event.name || !this.event.price|| !this.event.categories) {
+        const alerter = await this.alertCtrl.create({
+          message: 'Error saving product. Some fields not filled'
+        })
+        alerter.present();
+      }else {
+        let num = parseFloat(this.event.price.toString())
+      this.event.price = num;
+        if (this.event.price > 1000) {
+          const alerter = await this.alertCtrl.create({
+            message: 'The price cannot be more than R1000.00 pp/pn'
+          })
+          alerter.present();
+        } else{
+          // this.listproduct = [];
+     /////// generating Random product Code
+    this.event.productCode =  this.stringGen(6);
+    console.log(" product code : ", this.event.productCode );
+    
+    const date = new Date();
+    this.event.lastcreated = date.toDateString();
+    const worker = await this.loadingCtrl.create({
+      message: 'Working',
+      spinner: 'bubbles'
+    })
+    worker.present();
+    this.db.collection('Products').doc().set(this.event).then( async res => {
+      /* this.retrieve(); */
+      worker.dismiss();
+      const alerter = await this.alertCtrl.create({
+        message: 'Product added successful',
+        buttons: [
+          {
+          text: 'OK'
+          }
+        ],
+      })
+      alerter.present();
+      this.dismiss();
+      alerter.present();
+    //   clear()
+    //  this.event = {
+    //   image: '',
+    //   categories:'',
+    //   name:'',
+    //   price:0,
+    //   productCode:'',
+    //   desc: '',
+    //   items:'',
+    //   quantity : 1,
+    //   lastcreated: '',
+    //   size:[]
+  
+    // };
+
+
+
+    }).catch(async err => {
+      const alerter = await this.alertCtrl.create({
+        message: 'Error saving product.'
+      })
+      alerter.present();
+    this.dismiss();
+    })
+        }
+    //**************************** */
+    
+     }
     }
+  }
+  stringGen(len){
+    var text = " ";
+    var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+    for( var i=0; i < len; i++ )
+        text += charset.charAt(Math.floor(Math.random() * charset.length));
+    return text;
+  }
+  selectedSize(size) {
+    let val = size.toElement.value
+    if (this.sizes == val) {
+      this.sizes = null
+    } else {
+      this.sizes = size.toElement.value
+    }
+    console.log(this.sizes);
+
+    switch (val) {
+      case 'S':
+        this.productSize = {
+          small: true,
+          medium: false,
+          large: false
+        }
+        break;
+      case 'M':
+        this.productSize = {
+          small: false,
+          medium: true,
+          large: false
+        }
+        break;
+      case 'L':
+        this.productSize = {
+          small: false,
+          medium: false,
+          large: true
+        }
+        break;
+    }
+
   }
 
   getCategories(event){

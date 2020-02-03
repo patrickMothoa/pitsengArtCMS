@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DetailsPage } from '../details/details.page';
+import {NavigationExtras} from '@angular/router';
 import { ProfilePage } from '../profile/profile.page';
 import { PopoverComponent } from 'src/app/components/popover/popover.component';
 import { UserInvoicesPage } from '../user-invoices/user-invoices.page';
@@ -20,7 +21,8 @@ export class ProPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   listproduct = [];
-  Products = []
+  Products = [];
+  proSales = [];
   event = {
     image: '',
     categories:'',
@@ -39,14 +41,28 @@ export class ProPage implements OnInit {
   supplier
   myProduct = false;
   autocompleteItemz: any;
+  promo:any;
   autocompletez:any;
  updateBtn = false;
+ active: boolean;
+ errtext = '';
+
+ listDiv: any = document.getElementsByClassName('categorySection');
+   list: boolean = false;
+  Homescreen = {
+    deco: null,
+    lamps: null,
+    pottery: null,
+    vase: null
+  }
+  SpecialScrin = []
+
  
   public productForm: FormGroup;
   eventSource = [];
   reviews = [];
   actRoute: any;
-  size = ['small','medium','large']
+  size = ['S','M','L']
   autoId: any;
   constructor(public modalController: ModalController,
     public data : ProductService,
@@ -72,6 +88,8 @@ export class ProPage implements OnInit {
 
     this.autocompleteItemz = [];
     this.autocompletez = { input: '' };
+    this.getPictures();
+    this.getSpecials();
   }
 
 ionViewDidLoad(){
@@ -460,6 +478,23 @@ SearchProducts(ev: CustomEvent){
   }
 }
 
+promotion(ev: CustomEvent){
+  if(this.supplier === '') {
+    this.promo = [];
+    return;
+  }
+ this.promo = this.Products;
+ console.log("ooo", this.promo );
+  this.getProduct();
+
+  // const val = ev.detail.value; 
+  // if (val.trim() !== '') {
+  //   this.autocompleteItemz = this.autocompleteItemz.filter(term => {
+  //     return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+  //   });
+  // }
+}
+
 productDetails(item){
   this.data.data = item;
   // this.router.navigateByUrl('/details');
@@ -480,6 +515,61 @@ async createModal() {
     cssClass: 'my-custom-modal-css'
   });
   return await modal.present();
+}
+categorylist(i){
+  console.log('seko',i);
+  
+  let navigationExtras: NavigationExtras = {
+    state: {
+      parms: i
+    }
+  }
+  this.router.navigate(['categorylist'],navigationExtras)   
+}
+getPictures(){
+  let obj = {id : '', obj : {}};
+  this.db.collection('Pictures').doc('images').get().then(snapshot => {
+    this.Homescreen = {
+      deco: null,
+      lamps: null,
+      pottery: null,
+      vase: null
+    }
+    if (!snapshot.exists) {
+            this.myProduct = false;
+          } else {
+            this.myProduct = true;
+              obj.id = snapshot.id;
+              obj.obj = snapshot.data();
+              this.Homescreen = {
+                deco: snapshot.data().deco,
+                lamps: snapshot.data().lamps,
+                pottery: snapshot.data().pottery,
+                vase: snapshot.data().vase
+              }
+              obj = {id : '', obj : {}};
+            console.log("xxc", this.Homescreen);
+          }
+     });
+}
+getSpecials(){
+  let obj = {id : '', obj : {}};
+this.db.collection('sales').limit(5).get().then(snapshot => {
+  this.proSales = [];
+  if (snapshot.empty) {
+          this.myProduct = false;
+        } else {
+          this.myProduct = true;
+          snapshot.forEach(doc => {
+            obj.id = doc.id;
+            obj.obj = doc.data();
+            this.proSales.push(obj);
+            obj = {id : '', obj : {}};
+            
+          });
+          this.SpecialScrin.push(this.proSales[0])
+        }
+   });
 }
 
 }

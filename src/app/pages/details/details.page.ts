@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
-import { AlertController, ModalController, LoadingController } from '@ionic/angular';
+import { AlertController, ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { async } from '@angular/core/testing';
 
 
@@ -42,6 +42,7 @@ export class DetailsPage implements OnInit {
     public data : ProductService,
     public alertCtrl: AlertController,
     private router: Router,
+    public toastCtrl: ToastController,
     public modalController: ModalController) { }
 
   ngOnInit() {
@@ -192,23 +193,29 @@ export class DetailsPage implements OnInit {
  
 
 let obj ={
-  percentage:this.editPercentage/100,
+  percentage:this.editPercentage,
   price:parseFloat(p.obj.price),
-  description: p.obj.desc,
+  desc: p.obj.desc,
   productCode:p.obj.productCode,
   name:p.obj.name,
   image:p.obj.image,
-  totalprice: parseFloat(p.obj.price)-(this.editPercentage/100)*parseFloat(p.obj.price),
+  totalprice:(p.obj.price)-((this.editPercentage/100)*(p.obj.price)),
   startDate:this.editStartDate,
   endDate:this.editEndDate
 }
 
-firebase.firestore().collection('sales').add(obj);
+firebase.firestore().collection('sales').add(obj).then(() => {
+  this.toastController('promotion added')
+  //this.router.navigateByUrl('basket');
+});
 
 
-
+this.dismiss();
 
 
   }
-
+  async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+  }
 }

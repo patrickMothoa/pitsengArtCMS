@@ -18,6 +18,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  
 
   isShow = false;
   public isSearchbarOpened = false;
@@ -38,6 +39,15 @@ export class HomePage implements OnInit {
   };
 
   Products = [];
+  categories
+   listDiv: any = document.getElementsByClassName('categorySection');
+   list: boolean = false;
+  Homescreen = {
+    deco: null,
+    lamps: null,
+    pottery: null,
+    vase: null
+  }
 
   thisSearches = []
   public searchTerm: string = '';
@@ -61,6 +71,7 @@ export class HomePage implements OnInit {
 
     this.autocompleteItemz = [];
     this.autocompletez = { input: '' };
+    this.getPictures();
 
   }
 
@@ -175,6 +186,33 @@ export class HomePage implements OnInit {
                 }
         });
       }
+      getPictures(){
+        let obj = {id : '', obj : {}};
+        this.db.collection('Pictures').doc('images').get().then(snapshot => {
+          this.Homescreen = {
+            deco: null,
+            lamps: null,
+            pottery: null,
+            vase: null
+          }
+          if (!snapshot.exists) {
+                  this.myProduct = false;
+                } else {
+                  this.myProduct = true;
+                    obj.id = snapshot.id;
+                    obj.obj = snapshot.data();
+                    this.Homescreen = {
+                      deco: snapshot.data().deco,
+                      lamps: snapshot.data().lamps,
+                      pottery: snapshot.data().pottery,
+                      vase: snapshot.data().vase
+                    }
+                    obj = {id : '', obj : {}};
+                  console.log("xxc", this.Homescreen);
+                }
+           });
+      }
+      
 
   navDetails = []
 
