@@ -23,7 +23,7 @@ import { SowDataPage } from 'src/app/sow-data/sow-data.page';
 export class UserInvoicesPage implements OnInit {
 
   db = firebase.firestore();
-
+  public isSearchbarOpened = false;
   users = []
 
   public item =[];
@@ -60,6 +60,11 @@ console.log("dsdds");
     })
   })
 }
+dismiss(){
+  this.modalController.dismiss({
+    'dismissed':true
+  });
+}
 
 
   viewDetails(){
@@ -70,7 +75,10 @@ console.log("dsdds");
          this.ordersPlaced.push({ref:item.id,info:item.data()})
          this.loader = false;
         }) 
-       /*  this.router.navigateByUrl('/order-details'); */
+     
+        // this.router.navigateByUrl('/order-details'); 
+
+
       })
   }
 
@@ -79,8 +87,16 @@ console.log("dsdds");
   
     })
   }
-
-  viewDetail(value) {
+// async details() {
+//   const modal = await this.modalController.create({
+//     component:OrderDetailsPage,
+//     cssClass: 'my-add-to-cart',
+    
+  
+//   });
+//   return await modal.present();
+// }
+  async viewDetail(value) {
     console.log(value);
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -88,6 +104,15 @@ console.log("dsdds");
       }
     };  
     this.router.navigate(['order-details'], navigationExtras);
+    const modal = await this.modalController.create({
+      component:OrderDetailsPage,
+      cssClass: 'track-order ',
+      
+    
+    });
+    return await modal.present();
+
+
   }
 
   openPro(){

@@ -1,27 +1,4 @@
-<div class="navigation_bar">
-  <div class="left-icons">
-    <ion-button fill="clear" color="light" (click)="openHome()" slot="end">Home</ion-button>
-    <!-- <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">Profile</ion-button> -->
-    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">Add Product</ion-button>
-    <ion-button fill="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
-  </div>
-
-  <div class="avatar-image">
-
-    <img src="../../../assets/icon/1.svg" class="logo">
-
-  </div>
-
-
-  <div class="right-icons">
-    <ion-button fill="clear" color="light" (click)="openUploads()" slot="end">
-      <ion-icon slot="icon-only" name="search"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" color="light" (click)="openProfile()"slot="end">
-      <ion-icon slot="icon-only" name="contact"></ion-icon>
-    </ion-button>
-  </div>
-</div>
+<!-- 
 
 <ion-content>
   <div class="main-container-main">
@@ -101,11 +78,6 @@
               </div>
             </div>
           </div>
-
-          
-         
-
-           
             <ion-radio-group>
               <div class="Quanity">
 
@@ -126,142 +98,144 @@
                   <div class="downIcon"  >
                     <ion-icon color="medium-tint"name="arrow-dropdown" (click)="decrement()"></ion-icon>
                   </div>
-                 
-                  
+    
                 </div>
               </div>
             </div>
             </ion-radio-group> 
-          
-          
-
-
-
-
-
-
-          <!-- <ion-item>
-                          <ion-checkbox color="primary" name="checkings[]"  [(ngModel)]="event.small"> </ion-checkbox><br>
-                          <ion-label>S</ion-label>
-                          <ion-checkbox color="secondary" name="checkings[]"  [(ngModel)]="event.medium"> </ion-checkbox>
-                          <ion-label>M</ion-label>
-                          <ion-checkbox color="danger" name="checkings[]"  [(ngModel)]="event.large"> </ion-checkbox>
-                          <ion-label>L</ion-label>
-                        </ion-item> -->
           <ion-button class="buttons" color="warning" (click)="addEvent()">Upload</ion-button>
-
-
-
-
         </div>
       </div>
     </div>
 
   </div>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title color="light" size="small"> @ 2019 Pitseng Arts and Crafts. All right reserved. Privacy Policy
-    </ion-title>
-  </ion-toolbar>
-</ion-footer>
+ -->
 
-<!-- quantity -->
-<!-- <ion-list>
-                          <ion-radio-group (ionChange)="getQuantity($event)">
- <ion-content >
-    <div class=".main-container-main" > 
 
-   
-    <div class="main-container">
+<div padding class="heading">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
 
-   <div>
-          <ion-item *ngIf="!event.image">
-          <ion-label position="stacked" id="profile_image" color="primary">Select Product image</ion-label>
-          <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+    <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+
+  </ion-fab>
+  <hr>
+</div>
+<ion-content>
+  <div class="content-section">
+    <div class="content">
+      <div class="image-section">
+        <img src="../../../assets/images.png" alt="">
+        
+        
+      </div>
+      <div class="details-section">
+        <div class="upload">
+          <ion-item   colo="medium-tint">
+          <ion-input class="image-upload" type="file" accept="image/*" (change)="changeListener($event)">
+          </ion-input>
         </ion-item>
-        <ion-item *ngIf="event.image"><img  src="{{event.image}}" height="80" width="80"></ion-item> 
-   </div>
+        </div>
+        
+        <div class="Product-name">
+          <ion-item colo="medium-tint" >
+              <ion-input placeholder="Product Name"></ion-input>
+          </ion-item>
+        
 
-    
-   <div class=" .enter-detail-container" >
-      <h2>New Product </h2>
-       
+        </div>
+        <div class="prices" >
+          <div class="promotion-price" >
+            <ion-item  colo="medium-tint">
+              <ion-input placeholder="promotion price" >
+
+              </ion-input></ion-item>
+            
+
+          </div>
+          <div class="normal-price" >
+            <ion-item  colo="medium-tint">
+               <ion-input placeholder="normal-price" ></ion-input>
+              </ion-item>
+           
+
+          </div>
+
+        </div>
+        <div class="product-selection" >
+          <div class="product-code" >
+            <ion-label>code: : JKH74893234895</ion-label>
+          </div>
+          <div class="item" >
+            <div>
+              <input type="radio" name="framework" value="laravel" id="laravel"/>
+              <label for="laravel">per item</label>
+            </div>
+            <div>
+              <input type="radio" name="framework" value="yii" id="yii" checked="checked"/>
+              <label for="yii">per pack</label>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="description" >
+          <div class="descr" >
+            <ion-item  colo="medium-tint">
+               <ion-textarea  colo="secondary" placeholder="Enter more information about the product here..."></ion-textarea>
+            </ion-item>
+           
+          </div>
+
+        </div>
+        <div class="Productselection">
+          <div class="size">
+            <p  >size:</p>
+
+            <div >
+              <label  class="container">S
+                <input type="checkbox" value="S" [(ngModel)]="productSize.small" (click)="selectedSize($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div >
+              <label class="container">M
+                <input type="checkbox" value="M" [(ngModel)]="productSize.medium" (click)="selectedSize($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div >
+            <label class="container">L
+              <input type="checkbox" value="L" [(ngModel)]="productSize.large" (click)="selectedSize($event)">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+
+          </div>
+          <div class="quantity">
+            <div  ><p>Qty:{{currentNumber}}</p></div>
+            <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
+           
+          </div>
+        </div>
+
       
-        <ion-item >
-                <ion-label>Categories</ion-label>
-                <ion-select  (ionChange) = "getCategories($event)">
-                  <ion-select-option value="Vase" >Vase</ion-select-option>
-                  <ion-select-option value="Cups and Plates" >Cups and Plates</ion-select-option>
-                  <ion-select-option value="Photo Frame" >Photo Frames</ion-select-option>
-                  <ion-select-option value="Decor Pallets" >Decor Pallets</ion-select-option>
-                  <ion-select-option value="Wall Deco" >Wall Decor</ion-select-option>
-                  <ion-select-option value="Bowls and Pots" >Bowls and Pots</ion-select-option>
-                  <ion-select-option value="Lamps" >Lamps</ion-select-option>
-        </ion-select>
-        </ion-item>
-        <ion-item>
-            <ion-textarea placeholder="Description" [(ngModel)]="event.desc"></ion-textarea>
-        </ion-item>
-          <ion-item>
-                <ion-input type="text" placeholder="Name" [(ngModel)]="event.name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input type="text" placeholder="Product Number" [(ngModel)]="event.productno"></ion-input>
-          </ion-item>
-          <ion-item>
-              <ion-input type="text" placeholder="Price" [(ngModel)]="event.price"></ion-input>
-          </ion-item>
-  
-        
-              <ion-radio-group (ionChange) = "getOption($event)">
-                <ion-item>
-                  <ion-label>per Item</ion-label>
-                  <ion-radio slot="start" value="perItem" checked></ion-radio>
-                </ion-item>
-            
-                <ion-item>
-                  <ion-label>per Package</ion-label>
-                  <ion-radio slot="start" value="perPackage"></ion-radio>
-                </ion-item>
-              </ion-radio-group>
-         
-  
-            
-                <ion-radio-group >
-                    <ion-list-header>
-                      <ion-label><strong><b>Quantity</b></strong></ion-label>
-                    </ion-list-header>
-        
-                    <h1><b>
-                      <ion-icon color="primary" name="remove-circle" (click)="decrement()"></ion-icon>
-                      {{ event.quantity }}
-                    <ion-icon color="primary" name="add-circle" (click)="increment()"></ion-icon><br>
-                    </b></h1>
-                </ion-radio-group>
-            
-         
-          <ion-item>
-            <ion-checkbox color="primary" [(ngModel)]="event.small"> </ion-checkbox><br>
-            <ion-label>S</ion-label>
-            <ion-checkbox color="secondary" [(ngModel)]="event.medium"> </ion-checkbox>
-            <ion-label>M</ion-label>
-            <ion-checkbox color="danger" [(ngModel)]="event.large"> </ion-checkbox>
-            <ion-label>L</ion-label>
-          </ion-item>
-  
-           <ion-button color="primary" (click)="addEvent()" [disabled]="event.large == ''" >Upload</ion-button> -->
+ <div class="buttons" >
+        <div>
+          <ion-button shape="round" expand="full" >save</ion-button>
+        </div>
+        <div>
+         <ion-button shape="round" expand="full" color="danger" >
+           delete
+         </ion-button>
+         </div>
 
-<!-- 
-          <ion-button color="primary" (click)="addEvent()" >Save Product</ion-button> 
-   </div>
-        
-    
-        </div>
-        </div>
-  </ion-content>
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title color="light" size="small" >  @ 2019  Pitseng Arts and Crafts.  All right reserved. Privacy Policy</ion-title>
-    </ion-toolbar>
-  </ion-footer> -->
+      </div>
+      </div>
+     
+
+    </div>
+
+  </div>
+</ion-content>

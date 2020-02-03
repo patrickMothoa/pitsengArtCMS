@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ToastController, LoadingController} from '@ionic/angular';
+import { AlertController, ToastController, LoadingController, ModalController} from '@ionic/angular';
 import { Inject, LOCALE_ID } from '@angular/core';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class AddProductPage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
-
+   currentNumber: number = 1;
   event = {
      id: '',
     image: '',
@@ -37,7 +37,10 @@ export class AddProductPage implements OnInit {
   reviews = [];
   actRoute: any;
  
-  constructor(public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController, @Inject(LOCALE_ID) private locale: string) { 
+  constructor(public   formBuilder: FormBuilder,
+    private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, 
+    public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController,
+     @Inject(LOCALE_ID) private locale: string,public modalController: ModalController,) { 
     this.productForm = formBuilder.group({ 
      image: [this.event.image, Validators.compose([Validators.required])],
       categories: [this.event.categories, Validators.compose([Validators.required])], 
@@ -98,29 +101,11 @@ export class AddProductPage implements OnInit {
   getOption(event){
     this.event.items = event.detail.value;
   }
-
-  // validating checkboxs
-  // document.getElementById('productForm').onsubmit =  (e) => {
-  //   var checkbox = document.getElementsByName("del[]"),
-  //       i,
-  //       checked;
-  //   for (i = 0; i < checkbox.length; i += 1) {
-  //     checked = (checkbox[i].checked||checked===true)?true:false;
-  //   }
-  
-  //   if (checked == false) {
-  //     alert('Check Something!');
-  //     e.preventDefault();
-  //     return false;
-  //   } else if(confirm('confirm submit?')) {
-  //     alert('done!');
-  //     return true;
-  //   }
-  // }
-
-  // getQuantity(event){
-  //   this.event.quantity = event.detail.value;
-  // }
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
 
 back() {
   var swiper = document.querySelector('.swiper-container')['swiper'];
@@ -152,13 +137,25 @@ back() {
     }
 
   // Quantinty code (Increment, decrement, quantinty)
-  increment() {
-    this.event.quantity++;
-   }
-  decrement() {
-    if (this.event.quantity > 1) {
-    this.event.quantity--;
-    }
-   }
+  // increment() {
+  //   this.event.quantity++;
+  //  }
+  // decrement() {
+  //   if (this.event.quantity > 1) {
+  //   this.event.quantity--;
+  //   }
+  //  }
 
+   increment(p) {
+    this.currentNumber = this.currentNumber + 1;
+    this.event.quantity = this.currentNumber
+  }
+
+   decrement(p) {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.event.quantity = this.currentNumber;
+    }
+    return this.currentNumber;
+  }
 }

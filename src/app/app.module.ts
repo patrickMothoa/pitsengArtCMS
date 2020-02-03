@@ -14,6 +14,10 @@ import { OrderDetailsPageModule } from './pages/order-details/order-details.modu
 import { SowDataPageModule } from './sow-data/sow-data.module';
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { PopoverComponent } from './components/popover/popover.component';
+import { ProfilePageModule } from './pages/profile/profile.module';
+import { UserInvoicesPageModule } from './pages/user-invoices/user-invoices.module';
+import { AddProductPageModule } from './pages/add-product/add-product.module';
 
 
   // Your web app's Firebase configuration
@@ -32,9 +36,10 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
   firebase.analytics();
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule,OrderDetailsPageModule, SowDataPageModule],
+  declarations: [AppComponent,PopoverComponent],
+  entryComponents: [PopoverComponent],
+  imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule,OrderDetailsPageModule, 
+    SowDataPageModule,ProfilePageModule,UserInvoicesPageModule,AddProductPageModule],
   providers: [
     StatusBar,
     SplashScreen,
