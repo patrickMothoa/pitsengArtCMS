@@ -48,9 +48,9 @@
 <ion-content>
   <div class="container" id="web_view">
     <div class="grid">
-      <div class="left hvr-grow">
+      <div class="left hvr-grow"(click)="categorylist('Deco')">
         <div class="card">
-          <img src="https://i.pinimg.com/564x/26/9a/b0/269ab05197cf877c8f075265b0b159af.jpg" alt="">
+          <img src="{{Homescreen.deco}}" alt="">
           <p>Deco (1)</p>
         </div>
 
@@ -58,20 +58,20 @@
 
       <div class="right">
 
-        <div class="card">
-          <img src="https://i.pinimg.com/564x/3f/40/68/3f40685182bfc3b133f9d5a77c54853f.jpg" alt="">
+        <div class="card" (click)="categorylist('Pottery')">
+          <img src="{{Homescreen.pottery}}" alt="">
           <p>Pottery (45)</p>
         </div>
 
-        <div class="card">
-          <img src="https://cdn.shopify.com/s/files/1/2259/7485/products/product-image-318176513_1200x.jpg?v=1575088438"
+        <div class="card" (click)="categorylist('Lamps')">
+          <img src="{{Homescreen.lamps}}"
             alt="">
           <p>Lamps (5)</p>
         </div>
 
 
-        <div class="card">
-          <img src="https://i.pinimg.com/564x/8e/56/9c/8e569c0858abbc9f7409b9613f7cfb81.jpg" alt="">
+        <div class="card" (click)="categorylist('Vase')">
+          <img src="{{Homescreen.vase}}" alt="">
           <p>Vases (10)</p>
         </div>
 
@@ -93,11 +93,11 @@
       <ion-item>
         <ion-label>Sales</ion-label>
       </ion-item>
-      <div class="sales">
-        <div class="sale_item">
+      <div class="sales" *ngFor="let event of proSales; let i=index;">
+        <div class="sale_item" [ngClass]="{'active': active==i}">
           <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
+            <img src="{{event.obj.image}}">
+            <p>{{event.obj.percentage}} %</p>
           </div>
           <div class="item_details">
             <p>Vase</p>
@@ -111,122 +111,7 @@
             <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
           </div>
 
-        </div>
-
-        <div class="sale_item">
-          <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
-          </div>
-
-        </div>
-
-        <div class="sale_item">
-          <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon  color="warning" name="star"></ion-icon>
-              <ion-icon color="warning" name="star"></ion-icon>
-              <ion-icon color="warning" name="star"></ion-icon>
-              <ion-icon color="warning" name="star"></ion-icon>
-              <ion-icon color="warning" name="star"></ion-icon>
-            </p>
-            <p>R300 <span id="sale-price" >R600.00</span></p>
-          </div>
-
-        </div>
-
-        <div class="sale_item">
-          <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
-          </div>
-
-        </div>
-
-        <div class="sale_item">
-          <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
-          </div>
-
-        </div>
-
-        <div class="sale_item">
-          <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
-          </div>
-
-        </div>
-        <div class="sale_item">
-          <div class="image">
-            <img src="https://i.pinimg.com/564x/fe/7a/bd/fe7abd8ae88b5b5dc41711ca2aa88ea7.jpg">
-            <p>-80%</p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
-          </div>
-
-        </div>
-
-        
+        </div>        
       </div>
     </div>
   </div>
