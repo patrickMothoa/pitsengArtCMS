@@ -86,7 +86,7 @@
   </div>
 
        
-</ion-content>
+</ion-content> -->
   
 
 
@@ -94,7 +94,15 @@
 
 
 
- -->
+    <!-- *ngFor="let p of arr; let i=index;"   [ngClass]="{'active': active==i}"
+            (click)="showList(i, p)"-->
+ <!-- *ngIf="trackOrders.image"<img *ngIf="!trackOrders.image" src="../../../assets/2e2fac9d4a392456e511345021592dd2 (1).jpg" width="100%" height="100%" alt=""> -->
+   <!-- Tracking progress (click)="showList()" *ngIf="!list" --> 
+   <!-- boleto__wrapper  *ngIf="!list" -->
+
+
+
+
  <div class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
 
@@ -112,8 +120,7 @@
           <ion-title>Items Ordered</ion-title>
         </div>
         <div class="scroll">
-          <!-- *ngFor="let p of arr; let i=index;"   [ngClass]="{'active': active==i}"
-            (click)="showList(i, p)"-->
+      
           <div class="pedding-oders " >
   
             <div class="image">
@@ -213,7 +220,7 @@
             <ion-title>tracking status</ion-title>
           </div>
 
-          <!-- Tracking progress (click)="showList()" *ngIf="!list" -->
+       
           <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
             <div class="tracking-progress-bar">
@@ -238,7 +245,7 @@
               <div class="four">delivered</div>
             </div>
 
-          </div> <!-- boleto__wrapper  *ngIf="!list" -->
+          </div>
 
 
         </div>
@@ -252,7 +259,7 @@
               <div class="image-container">
 
 
-                <!-- *ngIf="trackOrders.image"<img *ngIf="!trackOrders.image" src="../../../assets/2e2fac9d4a392456e511345021592dd2 (1).jpg" width="100%" height="100%" alt=""> -->
+               
                 <img src="https://i.pinimg.com/564x/26/9a/b0/269ab05197cf877c8f075265b0b159af.jpg" width="100%" height="100%" alt="">
               </div>
             </div>

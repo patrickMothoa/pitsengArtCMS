@@ -103,7 +103,7 @@ dismiss(){
         id: JSON.stringify(value)
       }
     };  
-    this.router.navigate(['order-details'], navigationExtras);
+    // this.router.navigate(['order-details'], navigationExtras);
     const modal = await this.modalController.create({
       component:OrderDetailsPage,
       cssClass: 'track-order ',
