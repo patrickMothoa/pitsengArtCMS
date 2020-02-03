@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ModalController, ToastController, PopoverController } from '@ionic/angular';
+import { DetailsPage } from '../details/details.page';
 
 @Component({
   selector: 'app-categorylist',
@@ -75,16 +76,16 @@ adminInfo(){
     })
   }
   
-  // async createViewProduct(event) {
+  async createViewProduct(event) {
     
-  //   this.data.data = event
-  //   const modal = await this.modalController.create({
-  //     component:ViewProductDetailsPage,
-  //     cssClass: 'my-custom-modal-css'
+    this.data.data = event
+    const modal = await this.modalController.create({
+      component:DetailsPage,
+      cssClass: 'my-custom-modal-css'
     
-  //   });
-  //   return await modal.present();
-  // }
+    });
+    return await modal.present();
+  }
   // async createAddToWishList() {
   //   const modal = await this.modalController.create({
   //     component:AddToWishListPage,

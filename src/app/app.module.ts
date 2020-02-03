@@ -39,7 +39,7 @@ import { AddProductPageModule } from './pages/add-product/add-product.module';
   declarations: [AppComponent,PopoverComponent],
   entryComponents: [PopoverComponent],
   imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule,OrderDetailsPageModule, 
-    SowDataPageModule,ProfilePageModule,UserInvoicesPageModule,AddProductPageModule],
+    SowDataPageModule,ProfilePageModule,UserInvoicesPageModule,AddProductPageModule,DetailsPageModule],
   providers: [
     StatusBar,
     SplashScreen,

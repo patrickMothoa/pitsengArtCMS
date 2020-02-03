@@ -39,4 +39,8 @@ export class AppComponent {
       }
     })
   }
+
+  // if (this.router.url === '/login') {
+  //   this.showComponent = false
+  //   }
 }

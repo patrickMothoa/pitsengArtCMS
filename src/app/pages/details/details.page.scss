@@ -1,124 +1,296 @@
-ion-content{
-    margin: auto;
-}
-.firstContainer{
-    display: flex;
-    flex-direction: row;
-    // border: solid black;
-    // background-color:red;
-    justify-content: center;
-    width: 100%;
-   margin-top: 15%;
-    padding: 16px;
-
-}
-.info{
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    // border: solid black;
-    // background-color:red;
-    
-    width: 100%;
-
-}
-
-.ProductDetails{
-    // border: solid green;
-
-}
-.productButtons-Container{
-    margin-top: 15%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    // border: solid orangered;
-    padding-left: 8px;
-}
-.size{
-    margin: 0%;
-    padding: 0%;
-
-}
-
-.prod{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
-}
-.priceandName{
-    margin-top: -20px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    
-   
-}
-.price >h4{
-    padding-top: 5%;
-    margin: 0%;
-    color: #504e4e;
-}
-h5{
-    padding: 0%;
-    margin: 0%;
-    color: #504e4e;
-
-}
-p{
-    padding: 0%;
-    margin: 0%;
-    font-size: small;
+.heading{
+    // border:  solid blue;
+    height: 8%;
   
-}
-.ItemNo{
-    float: right;
-}
-.ion-button{
-    width: 50%;
-    --border-radius:0px 50px 0px 50px;
-}
-.sizeContainer{
+  }
+  .heading > ion-fab > ion-icon {
+    font-size: xx-large;
+  }
+  .content-section{
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    // border: solid red;
     display: flex;
-    flex-direction: row;
-    justify-content: left; 
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    .content{
+      // border: solid black;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      justify-items: center;
+      align-items: center;
+      // margin-bottom: 200px;
   
     }
-    .my-custom-modal-css .modal-wrapper {
-        height: 20%;
-        top: 80%;
-        background-color: yellow;
-        
-     }
-.radioBttns{
-    // height: 100%;
-}
-.rightContainer{
-
-  display: flex;
-    flex-direction: column;
+    .image-section{
+      width: 500px;
+      height:300px ;
+      // border: solid blue;
+      margin: 0 auto;
+    
+    }
+    .image-section > img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    .details-section{
+      // border: solid rgb(128, 35, 1);
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      justify-items: center;
+      align-items: center;
+  
+  
+    }
+    .Product-name,.description,.upload{
+      width: 100%;
+      // border: solid lime;
+    }
+    .field {
+      display:flex;
+      position:realtive;
+      // margin:5em auto;
+      margin-bottom: 16px;
+      width:500px;
+      flex-direction:row;
+      -moz-box-shadow:    0px 0px 2px 0px rgba(0,0,0,0.2);
+      -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+      box-shadow:         0px 0px 2px 0px rgba(0,0,0,0.2);
+      background-color: #ebebeb;
+    }
+    
+    .field>input[type=text],
+    .field>button {
+      display:block;
+      font:1.2em;
+    }
+    
+    .field>input[type=text] {
+      flex:1;
+      padding:0.6em;
+      border:0.2em solid green;
+      border-left: none;
+      border-top: none;
+    }
+    
+    .field>button {
+      padding:0.6em 0.8em;
+      background-color: #34BB54;
+      color: #fff;
+      border:none;
+    }
+    .prices,.product-selection,.size-no-of-items {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      margin: 0 auto;
+      // border: solid rgb(14, 148, 201) ;
+    }
+   .product-selection{
+     padding-bottom: 8px;
+   }
+     .size-no-of-items > div {
+      width: 45%;
+      margin: 0 auto;
+      // border:  solid black;
+    }
+  }
+  .Productselection{
+    width: 100%;
     // border: solid blue;
-    // background-color:purple;
-    justify-content: center;
-    width: 100%;
-    // margin-left: 5%;
-}
-.imageContainer{
-    // border: solid blueviolet;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-transform: capitalize;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .size{
+    // border: solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    // width: 50%;
+  }
+  .item{
+    // margin-top: 8px;
+    margin-bottom: 8px;
+  
+    div {
+      display: inline-block;
+    }
+    
+    label {
+      background: linear-gradient(-180deg, #FFFFFF 0%, #EAF1F5 97%);
+      box-shadow: 0px 1px 5px 0px rgba(93,145,171,0.6);
+      border-radius: 3px;
+      padding: 5px ;
+      cursor: pointer;
+    }
+    
+    input[type=radio] {
+      display:none;
+      
+      &:checked + label {
+        background: #707070;
+        box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.6);
+        color: #fff;
+        cursor: default;
+      }
+    }
+  }
+  .size > p {
+  margin-top: 1%;
+  }
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .promotion{
     width: 100%;
-    // height: 35vh;
-}
-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #b9b6b6;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color:rgba(183, 49, 37, 0.226);
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #B73225;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .quantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    // border: solid rgb(16, 196, 151);
+    // width: 50%;
+  
+    
+  }
+  .quantity > div >  ion-icon {
+    font-size: xx-large;
+    // justify-content: baseline;
+    
+  }
+  
+  .quantity > div > p {
+    font-size: large;
+   text-align: center;
+   color: #707070;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   text-transform: capitalize;
+   padding: 0%;
+   margin-top: 1.5%;
+  
+  }
+  
+  .buttons{
     width: 100%;
-    height: 32vh;
-}
-.closeButton{
-// margin-left: 0 auto;
-// border: solid red;
-
-}
+    // border:  solid violet;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    margin-bottom:50px;
+  }
+  .buttons > div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    // border: solid green;
+    width: 45%;
+  }
+  .buttons > div > ion-button {
+    width: 100%;
+    // border-radius: 15px;
+    // height: 50px;
+  }
+  ion-item{
+    // margin: 8px;
+    color: #707070;
+    // height: 32px;
+   
+  }
+  ion-input, ion-textarea, ion-label {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  //  margin-bottom: 2006px;
+  text-transform: inherit;
+    
+  }
+  .text-field{
+      height: 35px;
+      border-radius: 4px;
+    //   padding-left: 8px;
+  }

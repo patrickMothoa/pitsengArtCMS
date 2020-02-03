@@ -27,7 +27,7 @@
      
         <ion-button class="item" color="medium"  fill="clear" (click)="openPro()"  slot="end">Home</ion-button>
         <ion-button class="item" color="medium"  fill="clear" (click)="openInvoice()"  slot="end">Orders</ion-button>             
-        <ion-button class="item" color="medium"  fill="clear" slot="end">Queries</ion-button>
+        <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="queries()" >Queries</ion-button>
         <ion-button class="item" color="medium"  fill="clear" slot="end">FAQ's</ion-button>
         <ion-button class="item" color="medium"  fill="clear" slot="end"(click)="addProduct()"><ion-icon name="add" ></ion-icon>Product</ion-button>
         <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)="presentPopover($event)" ><ion-icon name="person"></ion-icon></ion-button>
@@ -93,8 +93,8 @@
       <ion-item>
         <ion-label>Sales</ion-label>
       </ion-item>
-      <div class="sales" *ngFor="let event of proSales; let i=index;">
-        <div class="sale_item" [ngClass]="{'active': active==i}">
+      <div class="sales">
+        <div class="sale_item" *ngFor="let event of proSales; let i=index;" [ngClass]="{'active': active==i}">
           <div class="image">
             <img src="{{event.obj.image}}">
             <p>{{event.obj.percentage}} %</p>
