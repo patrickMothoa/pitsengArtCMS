@@ -98,8 +98,10 @@
     margin: 0 auto;
     // border: solid rgb(14, 148, 201) ;
   }
- 
-  .price, .size-no-of-items > div {
+ .product-selection{
+   padding-bottom: 8px;
+ }
+   .size-no-of-items > div {
     width: 45%;
     margin: 0 auto;
     // border:  solid black;
@@ -125,8 +127,9 @@
   // width: 50%;
 }
 .item{
-  margin-top: 8px;
+  // margin-top: 8px;
   margin-bottom: 8px;
+
   div {
     display: inline-block;
   }
