@@ -103,22 +103,38 @@ export class OrderDetailsPage implements OnInit {
       }
     })
   }
-
+  orderStatus: number = 1;
   orderReady(){
-
-  return this.dataservice.processOrder(this.key, 'ready').then(result => {
-      if(result === 'success'){
-
-    firebase.firestore().collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result => {
-      let status = result.data().status
-      this.status = status
-      console.log("ordereadyk2", status);
-    });
-    console.log("k2", status);
-   this.orderShowbtn  = false;
-   this.readyBtn  =  false;
+    if (this.orderStatus == 1){
+      this.orderStatus = 2
+      // Order is being prepared
     }
-  })
+    else if (this.orderStatus == 2){
+      this.orderStatus = 3
+      // Ready for collection / isendleleni
+    }
+    else if (this.orderStatus == 3){
+      this.orderStatus = 4
+      // delivered / collected
+    }
+  // return this.dataservice.processOrder(this.key, 'ready').then(result => {
+  //     if(result === 'success'){
+
+  //   firebase.firestore().collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result => {
+  //     let status = result.data().status
+  //     this.status = status
+  //     console.log("ordereadyk2", status);
+  //   });
+  //   console.log("k2", status);
+  //  this.orderShowbtn  = false;
+  //  this.readyBtn  =  false;
+  //   }
+  // })
+
+
+}
+orderCancelled(){
+  this.orderStatus = 0
 }
 
 /////////////////////////////////////////////////////
@@ -153,20 +169,6 @@ receivedOrder(){
   }
   ionViewDidEnter(){
    
-//     this.Orders.forEach(i => {
-     
-      
-// let obj1 = [];
-// obj1 = [];
-// obj1.push(i.obj.name);
-// obj1.push(i.obj.quantity);
-// obj1.push(i.obj.price);
-// this.Data.push(obj1);
-     
-//     })
-
-//     console.log("Data in the Service ====   ", this.Data);
-   
   }
   getProfile() {
     this.dbProfile.doc(this.uid).onSnapshot((res)=>{
@@ -189,7 +191,7 @@ receivedOrder(){
     
      this.items =  item.product.map(element => {
         console.log(element);
-          return [element.product_name, element.quantity, element.price, element.amount]; 
+          return [element.prod.product_name, element.prod.quantity,element.prod.size, element.prod.price, element.prod.amount]; 
       });
   });
     var docDefinition = {
@@ -222,7 +224,7 @@ receivedOrder(){
         {
           style: 'invoice',
           table: {
-              widths: ['*', 75, 75, 75],
+              widths: ['*', 75, 75, 75 ],
               body: [
                   [
                       '',
@@ -252,11 +254,12 @@ receivedOrder(){
 ​ {
   style: 'itemsTable',
   table: {
-      widths: ['*', 75, 75, 75 ],
+      widths: ['*', 75, 75, 75 , 75 , 75 , 75],
       body: [
           [ 
               { text: 'Name', style: 'itemsTableHeader' },
               { text: 'Quantity', style: 'itemsTableHeader' },
+              { text: 'Size', style: 'itemsTableHeader' },
               { text: 'Price', style: 'itemsTableHeader' },
              { text: 'Amount', style: 'itemsTableHeader' },
           ],

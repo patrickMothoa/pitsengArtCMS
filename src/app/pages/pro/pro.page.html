@@ -64,10 +64,10 @@
                   <ion-item>
                     <ion-label color="medium">Categories</ion-label>
                     <ion-select (ionChange)="getCategories($event)">
-                      <ion-select-option value="Decor Pallets">Decor Pallets</ion-select-option>
+                      <ion-select-option value="Deco">Deco</ion-select-option>
                       <ion-select-option value="Lamps">Lamps</ion-select-option>
                       <ion-select-option value="Vase">Vase</ion-select-option>
-                      <ion-select-option value="Cups ">Pottery </ion-select-option>
+                      <ion-select-option value="Pottery">Pottery </ion-select-option>
                       </ion-select>
                   </ion-item>
                   <ion-item>
@@ -111,9 +111,11 @@
               <ion-card no-padding class="cardInfor" *ngFor="let p of listproduct;let i = index" [ngClass]="{'edited':cardEdited==i}" (click)="edit(p.data, p.id, i)">
                 
                 <div class="itemImage">
+                  
                   <img class="cardImage"  src="{{p.data.image}}" alt="" height="500px" >
                  
                 </div>
+                
                 <div class="itemDetails" >
                   <div> <ion-title text-wrap >{{p.data.name}}</ion-title>
                 
@@ -131,17 +133,24 @@
                       </div> 
                       
                     </div>
+                    
                 </div>
+               
+               
                   <ion-fab class="fabButton" vertical="bottom" horizontal="end" slot="fixed" (click)="delete(p.id)">
                     <ion-fab-button color="danger">
                       <ion-icon name="trash"></ion-icon>
                     </ion-fab-button>
                   </ion-fab>
-                  <div *ngFor="let item "></div>
-                  <ion-button (click)="productDetails(item)">AddPromotion </ion-button>
+                  
+                 
               </ion-card>
-             
+              <div *ngFor="let item of promo">
+                <ion-button  (click)="productDetails(item)">AddPromotion </ion-button>
+              </div>
             </div>
+            
+            
           </div>
         </div>
       </div>

@@ -72,14 +72,14 @@
         </div>
         <input type="number" placeholder="Percentage % " [(ngModel)]='editPercentage'
           >
-          <p *ngIf="salePrice">Sale Price R {{salePrice}}</p>
+          <p *ngIf="salePrice">Sale Price R {{totalprice}}</p>
         <div class="gridded-inputs">
           <input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'
              /><input [disabled]='!editStartDate' type="date" placeholder="End Date"
             [(ngModel)]='editEndDate' [min]='endDateLimit' />
         </div>
         <div class="gridded-inputs">
-          <ion-button color="danger" (click)="dismissPromo()">Cancel</ion-button>
+          <!-- <ion-button color="danger" (click)="dismissPromo()">Cancel</ion-button> -->
           <ion-button color="success" (click)='promoteItem(p)' >Promote</ion-button>
         </div>
         

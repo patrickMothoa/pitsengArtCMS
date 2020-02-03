@@ -34,6 +34,7 @@ export class ProPage implements OnInit {
   supplier
   myProduct = false;
   autocompleteItemz: any;
+  promo:any;
   autocompletez:any;
  updateBtn = false;
  
@@ -41,7 +42,7 @@ export class ProPage implements OnInit {
   eventSource = [];
   reviews = [];
   actRoute: any;
-  size = ['small','medium','large']
+  size = ['S','M','L']
   autoId: any;
   constructor(public modalController: ModalController,
     public data : ProductService,
@@ -412,6 +413,23 @@ SearchProducts(ev: CustomEvent){
       return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
     });
   }
+}
+
+promotion(ev: CustomEvent){
+  if(this.supplier === '') {
+    this.promo = [];
+    return;
+  }
+ this.promo = this.Products;
+ console.log("ooo", this.promo );
+  this.getProduct();
+
+  // const val = ev.detail.value; 
+  // if (val.trim() !== '') {
+  //   this.autocompleteItemz = this.autocompleteItemz.filter(term => {
+  //     return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+  //   });
+  // }
 }
 
 productDetails(item){

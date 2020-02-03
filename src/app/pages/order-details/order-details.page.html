@@ -1,187 +1,99 @@
 <div class="row">
-    <div class=" sidebar1  ">
-      <div class="logo">
-        <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
+  <div class=" sidebar1  ">
+    <div class="logo">
+      <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
+    </div>
+    <br>
+    <div class="left-navigation">
+      <div class="list">
+​
+        <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
+        <br>
+        <ion-button  class="invoice" expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
+        <br>
+        <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
       </div>
-      <br>
-      <div class="left-navigation">
-        <div class="list">
-
-          <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
-          <br>
-          <ion-button  class="invoice" expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
-          <br>
-          <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="navigation_bar">
+      <div class="navigation_bar">
+        <div class="navBarItems">
+​
+          <div class="profileBar">
+            <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
+              <ion-icon slot="icon-only" name="contact"></ion-icon>
+            </ion-button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="main-content">
-      <div class="navigation_bar">
-        <div class="navigation_bar">
-          <div class="navBarItems">
-
-            <div class="profileBar">
-              <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
-                <ion-icon slot="icon-only" name="contact"></ion-icon>
-              </ion-button>
-            </div>
-          </div>
+<ion-content scroll="true" >
+<div *ngFor="let b of Orders" class="coverContent">  
+  <div *ngFor="let li of b.product" class="heading" >
+      <div class="itemsDetails">
+        <div class="itemImage" >
+          <img src="{{li.prod.image}}" width="100px" height="100px" alt="">
+        </div>
+      <div class="itemName">
+        <ion-label>{{li.prod.name}}</ion-label>
+        <ion-label> {{li.prod.productCode}}</ion-label>
+      </div>
+      </div>
+  
+    
+    <div class="size" >
+      <ion-title>size</ion-title>
+        <div class="sizeNo">
+          <ion-label>{{li.prod.size}}</ion-label>
         </div>
       </div>
-<ion-content scroll="true" >
-  <div *ngFor="let b of Orders" class="coverContent">  
-    <div *ngFor="let li of b.product" class="heading" >
-        <div class="itemsDetails">
-          <div class="itemImage" >
-            <img src="{{li.image}}" width="100px" height="100px" alt="">
-          </div>
-        <div class="itemName">
-          <ion-label>{{li.name}}</ion-label>
-          <ion-label> {{li.productCode}}</ion-label>
+      <div class="price" >
+        <ion-title>price</ion-title>
+        <div class="priceNo">
+          <ion-label>{{li.prod.price}}</ion-label>
         </div>
-        </div>
-    
+​
+      </div>
       <div class="qty" >
         <ion-title>qty</ion-title>
         <div class="qtyNo">
-          <ion-label class="Qno" >{{li.quantity}}</ion-label>
+          <ion-label class="Qno" >{{li.prod.quantity}}</ion-label>
         </div>    
       </div>
-      <div class="size" >
-        <ion-title>size</ion-title>
-          <div class="sizeNo">
-            <ion-label>{{li.size}}</ion-label>
-          </div>
-        </div>
-        <div class="price" >
-          <ion-title>price</ion-title>
-          <div class="priceNo">
-            <ion-label>{{li.price}}</ion-label>
-          </div>
-
-        </div>
-        <div class="subtotal" >
-          <ion-title>subtotal</ion-title>
-          <div class="subtotalNo">
-            <ion-label>{{li.amount}}</ion-label>
-          </div>
-        </div>
-       
-      </div>
-        <div  class="totaldetails" > 
-          <ion-title>Total amount</ion-title>
-          <div class="amount" >
-            <ion-label >Total :{{totalPrice | currency: '&#82;'}}</ion-label>
-          </div>
-          <div>
-            <ion-button class="buttons"  padding  color="warning"  shape="round" expand="full" (click)="cancel()"> Order cancel </ion-button>
-            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
-            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderReady()"> ready for collections </ion-button>
-        
-          </div>
-            <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
-            <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
-            <ion-button  class="buttons" (click)="downloadUrl()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
-        </div>
-  </div>
-
-       
-</ion-content>
-  
-
-
-
-
-
-
-
-<!-- <ion-header>
-<ion-toolbar>
-  <ion-title>Tab Two</ion-title>
-</ion-toolbar>
-</ion-header>
-<ion-content class="ion-padding">
-<div class="coverContent">
-  <div class="heading">
-    <div class="items">
-      <ion-title>item</ion-title>
-      <div class="itemsDetails" >
-        <div class="itemImage" >
-             <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
-        </div>
-        <div class="itemName" >
-             <ion-label>Item name</ion-label>
-        <ion-label>product code</ion-label>
-        </div>
-     
-      </div>
-      <div class="itemsDetails" >
-          <div class="itemImage" >
-               <img src="../../../assets/f77392832f13b428f45dd4b7b43ebe6f.jpg" width="100px" height="100px" alt="">
-          </div>
-          <div class="itemName" >
-               <ion-label>Item name</ion-label>
-          <ion-label>product code</ion-label>
-          </div>
-       
-        </div>
-    </div>
-    <div class="qty" >
-        <ion-title>qty</ion-title>
-        <div class="qtyNo" >
-          <ion-label class="Qno" >1</ion-label>
-        </div>
-        <div class="qtyNo" >
-            <ion-label>1</ion-label>
-          </div>
-        
-    </div>
-    <div class="size" >
-        <ion-title>size</ion-title>
-        <div class="sizeNo" >
-          <ion-label>1</ion-label>
-        </div>
-        <div class="sizeNo" >
-            <ion-label>1</ion-label>
-          </div>
-        
-    </div>
-    <div class="price" >
-        <ion-title>price</ion-title>
-        <div class="priceNo">
-          <ion-label>1</ion-label>
-        </div>
-        <div class="priceNo">
-            <ion-label>1</ion-label>
-          </div>
-        
-    </div>
-    <div class="subtotal" >
+      <div class="subtotal" >
         <ion-title>subtotal</ion-title>
-        <div class="subtotalNo" >
-          <ion-label>1</ion-label>
+        <div class="subtotalNo">
+          <ion-label>{{li.prod.amount}}</ion-label>
         </div>
-        <div class="subtotalNo" >
-            <ion-label>1</ion-label>
-          </div>
-        
+      </div>
+     
     </div>
-  </div>
-  <div class="total">
-    <div class="totaldetails" > 
-      <div>
-        <ion-label > total amount </ion-label>
-      </div>
-      <div>
-          <ion-label > R &nbsp; 5000</ion-label>
-      </div>
+      <div  class="totaldetails" > 
+        <ion-title>Total amount</ion-title>
+        <div class="amount" >
+          <ion-label >Total :{{totalPrice | currency: '&#82;'}}</ion-label>
+        </div>
+        <div>
+          <ion-button class="buttons"  padding  color="warning"  shape="round" expand="full" (click)="cancel()"> Order cancel </ion-button>
+          <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> Process Order </ion-button>
+          <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderReady()"> ready for collections </ion-button>
       
-    
-    </div>
-    <div class="buttons" >
-  <ion-button *ngIf= "!isPaymentRecieved" padding  color="warning"  shape="round" expand="full" >Payment Recieved</ion-button>
-        <ion-button *ngIf= "isPaymentRecieved" padding color="warning" expand="full" shape="round" fill="outline">send reciept</ion-button>
-    </div>
-  </div>
+        </div>
+          <ion-button class="buttons" *ngIf= "!text" padding  color="warning"  shape="round" expand="full" (click)="ChangeText()">Payment Recieved</ion-button>
+          <ion-button class="buttons" *ngIf= "text" padding  color="warning"  shape="round" expand="full" (click)="goToPDF()" >send reciept</ion-button><br> 
+          <ion-button  class="buttons" (click)="downloadUrl()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
+      </div>
 </div>
-</ion-content> -->
+​
+     
+</ion-content>
+Collapse
+
+
+
+
+
+
+
+
