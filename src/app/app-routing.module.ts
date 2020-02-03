@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'categorylist',
     loadChildren: () => import('./pages/categorylist/categorylist.module').then( m => m.CategorylistPageModule)
   },
+  {
+    path: 'quries',
+    loadChildren: () => import('./pages/quries/quries.module').then( m => m.QuriesPageModule)
+  },
 
  
 ];

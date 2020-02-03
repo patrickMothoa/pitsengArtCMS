@@ -389,6 +389,9 @@ back() {
         'dismissed':true
       });
     }
+    openHome(){
+      this.router.navigateByUrl('/pro');
+    }
   
     async presentPopover(ev) {
       const popover = await this.popoverController.create({
@@ -428,7 +431,9 @@ back() {
     openPro(){
       this.router.navigateByUrl('/pro');
     }
-
+    queries(){
+      this.router.navigateByUrl('/quries')
+    }
   
     logOut(){
       firebase.auth().signOut().then(()=> {

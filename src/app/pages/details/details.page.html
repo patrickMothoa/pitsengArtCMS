@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="closeButton" align="right">
   <div class="closeButton">
     <ion-button fill="clear" color="medium" float="right" (click)="dismiss()" slot="end">
@@ -55,15 +55,197 @@
           >
           <p *ngIf="salePrice">Sale Price R {{totalprice}}</p>
         <div class="gridded-inputs">
-          <input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'
-             /><input [disabled]='!editStartDate' type="date" placeholder="End Date"
-            [(ngModel)]='editEndDate' [min]='endDateLimit' />
+
+
+          <input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'/>
+             
+             <input [disabled]='!editStartDate' type="date" placeholder="End Date" [(ngModel)]='editEndDate' [min]='endDateLimit' />
+
+
         </div>
         <div class="gridded-inputs">
-          <!-- <ion-button color="danger" (click)="dismissPromo()">Cancel</ion-button> -->
           <ion-button color="success" (click)='promoteItem(p)' >Promote</ion-button>
         </div>
       </div>
     </div>
   </div>
 </ion-content>
+ -->
+
+
+
+
+<!-- new design -->
+
+
+<div padding class="heading">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+
+    <ion-icon (click)="dismiss()" color="medium" name="close"></ion-icon>
+
+  </ion-fab>
+  <hr>
+</div>
+<ion-content>
+  <div class="content-section">
+    <div class="content">
+      <div class="image-section">
+        <img src="../../../assets/images.png" alt="">
+
+
+      </div>
+      <div class="details-section">
+        <div class="upload">
+          <ion-item color="dark">
+            <ion-input lines="none" class="image-upload" type="file" accept="image/*" placeholder="upload image"
+              (change)="changeListener($event)">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="Product-name">
+             <ion-label position="fixed"  >Product Name</ion-label>
+          <ion-item  lines="none" color="dark" class="text-field" >
+         
+            <ion-input ></ion-input>
+          </ion-item>
+
+
+        </div>
+        <!-- <div class="Product-name">
+          <ion-item lines="none" color="dark">
+            <ion-input placeholder="Price"></ion-input>
+          </ion-item>
+
+
+        </div> -->
+        <div class="prices">
+          <div class="normal-price">
+            <ion-label position="floating"  >Price</ion-label>
+            <ion-item lines="none" color="dark" class="text-field" >
+              
+              <ion-input ></ion-input>
+            </ion-item>
+          </div>
+          <div class="promo-peice">
+            <ion-label position="floating"  >promo-Price</ion-label>
+            <ion-item lines="none" color="dark" class="text-field" >
+              
+              <ion-input ></ion-input>
+            </ion-item>
+          </div>
+
+        </div>
+        <div class="product-selection">
+          <div class="product-code">
+            <ion-label>code: : JKH74893234895</ion-label>
+          </div>
+          <div class="item">
+            <div>
+              <input type="radio" name="framework" value="laravel" id="laravel" />
+              <label for="laravel">per item</label>
+            </div>
+            <div>
+              <input type="radio" name="framework" value="yii" id="yii" checked="checked" />
+              <label for="yii">per pack</label>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="description">
+          <div class="descr">  
+             <ion-label position="floating"  >Prodect destription</ion-label>
+            <ion-item color="dark">
+           
+              <ion-textarea lines="none" placeholder="Enter more information about the product here..."></ion-textarea>
+            </ion-item>
+
+          </div>
+
+        </div>
+        <div padding class="Productselection">
+          <div class="size">
+            <p>size:</p>
+
+            <div>
+              <label class="container">S
+                <input type="checkbox" value="S" [(ngModel)]="productSize.small" (click)="selectedSize($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div>
+              <label class="container">M
+                <input type="checkbox" value="M" [(ngModel)]="productSize.medium" (click)="selectedSize($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div>
+              <label class="container">L
+                <input type="checkbox" value="L" [(ngModel)]="productSize.large" (click)="selectedSize($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+          </div>
+          <div class="quantity">
+            <div>
+              <p>Qty:{{currentNumber}}</p>
+            </div>
+            <div>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="field" id="searchform">
+          <ion-input type="text" id="searchterm" placeholder="promote e.g(30%)"[(ngModel)]='editPercentage'></ion-input>
+          <button type="button" id="search"  (click)='promoteItem(p)'>promote</button>
+        </div>
+        <div class="prices">
+          <div class="normal-price">
+            <ion-label position="floating" >start date</ion-label>
+            <ion-item lines="none" color="dark" class="text-field" >
+              
+              <ion-input  type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'></ion-input>
+            </ion-item>
+          </div>
+          <div class="promo-peice">
+          <ion-label position="floating" >end date</ion-label>
+            <ion-item lines="none" color="dark" class="text-field" >
+              <ion-input  [disabled]='!editStartDate' type="date" placeholder="End Date" [(ngModel)]='editEndDate' [min]='endDateLimit'></ion-input>
+            </ion-item>
+          </div>
+
+        </div>
+      
+        <!-- <div class="Product-name">
+          <ion-item lines="none" color="dark">
+            <ion-input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'></ion-input>
+          </ion-item>
+
+
+        </div> -->
+               <!-- <div class="Product-name">
+          <ion-item lines="none" color="dark">
+            <ion-input  [disabled]='!editStartDate' type="date" placeholder="End Date" [(ngModel)]='editEndDate' [min]='endDateLimit'></ion-input>
+          </ion-item>
+
+
+        </div> -->
+        <div class="buttons">
+          <div>
+            <ion-button shape="round" expand="outline" color="medium">save</ion-button>
+          </div>
+          <div>
+            <ion-button shape="round" expand="full" color="danger">delete</ion-button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</ion-content> 
