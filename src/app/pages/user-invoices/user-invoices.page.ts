@@ -21,11 +21,11 @@ import { SowDataPage } from 'src/app/sow-data/sow-data.page';
   styleUrls: ['./user-invoices.page.scss'],
 })
 export class UserInvoicesPage implements OnInit {
-
+  dbOrder = firebase.firestore().collection('Order');
   db = firebase.firestore();
   public isSearchbarOpened = false;
   users = []
-
+  Allorders = [];
   public item =[];
   conArray = []
   Orders =[]
@@ -47,6 +47,7 @@ export class UserInvoicesPage implements OnInit {
   ngOnInit() {
 
 console.log("dsdds");
+this.GetOrders();
     this.viewDetails();
   let obj = {name : '', uid : ''} ;
   this.db.collection("UserProfile").onSnapshot(data => {
@@ -81,6 +82,7 @@ dismiss(){
 
       })
   }
+  
 
   userProfiles() {
     this.ordersPlaced.forEach((i)=>{
@@ -97,24 +99,22 @@ dismiss(){
 //   return await modal.present();
 // }
   async viewDetail(value) {
-    console.log(value);
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        id: JSON.stringify(value)
-      }
-    };  
-    // this.router.navigate(['order-details'], navigationExtras);
+    // console.log(value.ref);
     const modal = await this.modalController.create({
       component:OrderDetailsPage,
-      cssClass: 'track-order ',
-      
+      cssClass: 'track-order',
+      componentProps: { totalPrice: value.info.totalPrice,
+      ref: value.ref,
+      name: value.info.product[0].prod.product_name,
+      price: value.info.product[0].prod.price,
+      quantity: value.info.product[0].prod.quantity,
+      image: value.info.product[0].prod.image,
+      arr:value.info.product}
     
     });
     return await modal.present();
-
-
   }
-
+  
   openPro(){
     this.router.navigateByUrl('/pro');
   }
@@ -131,6 +131,32 @@ dismiss(){
     }).catch((error)=> {
       // An error happened.
     });
+  }
+  GetOrders(){
+    this.dbOrder.where('userID','==',firebase.auth().currentUser.uid).onSnapshot((data)=>{
+            console.log("olx", data);
+            this.Allorders = [];
+              data.forEach((item)=>{
+                this.Allorders.push({ref:item.id,info:item.data(), total:item.data()})
+              })
+              console.log("ccc", this.Allorders);
+  
+        }) 
+    }
+  async createTrackOder(item) {
+    console.log('My item ',item)
+    /* const modal = await this.modalController.create({
+      component:OrderDetailsPage,
+      cssClass: 'track-order',
+      componentProps: { ref: item.ref,
+        totalPrice: item.info.totalPrice,
+        name: item.info.product[0].prod.product_name,
+        price: item.info.product[0].prod.price,
+        quantity: item.info.product[0].prod.quantity,
+        image: item.info.product[0].prod.image,
+      arr:item.info.product },
+    },);
+    return await modal.present(); */
   }
 
 }

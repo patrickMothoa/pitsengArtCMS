@@ -11,7 +11,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Platform, NavParams, ModalController } from '@ionic/angular';
+import { Platform, NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.page.html',
@@ -59,42 +59,52 @@ export class OrderDetailsPage implements OnInit {
   key: any;
   pdfLink :any;
   date :any;
-  totalPrice
-  amount=0;
+  
   status :any;
-
+  docID;
+  ref;
+  name;
+  amount;
+  quantity;
+  image;
+  arr;
+  price;
+  totalPrice;
+  active: any;
   ////////////////
   orderShowbtn : boolean = false;
   readyBtn : boolean =  false;
   ///////////////
-  
-  constructor(public dataservice : DataService,private router: Router,
-     public route: ActivatedRoute,public DataService : DataService,
-      private file: File, private fileOpener: FileOpener,
-       private plt: Platform,public modalController: ModalController) {
+  trackOrders =  {
+    product_name: '',
+    size: '',
+    quantity: 0,
+    total: 0,
+    image: '',
+    productCode: '',
+    desc: '',
+    amount: ''
+  }
 
-   
-    this.route.queryParams.subscribe((data) => {
-      console.log('dsd', data.id);
-      this.key = JSON.parse(data.id);
-      this.getProduct(this.key);
+  constructor(public dataservice : DataService,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
-      ////////
-      this.orderProcessed();
-      this.orderReady();
-      this.cancel()
-    }) 
+    
+    this.name = `${this.name}`;
+    this.amount = `${this.amount}`;
+    this.quantity = `${this.quantity}`;
+    this.image=`${this.image}`;
+    this.arr = `${this.arr}`;
+    this.price = `${this.price}`;
+    this.totalPrice = `${this.totalPrice}`;
+    
+     
+     
    }
 
    cancel(){
       /////
    }
 
-   dismiss(){
-    this.modalController.dismiss({
-      'dismissed':true
-    });
-  }
 
   orderProcessed(){
    // let status = ''
@@ -157,17 +167,48 @@ receivedOrder(){
   }
 
   getProduct(key) { 
-    this.db.collection('Order').doc(key).onSnapshot((file) => {
+    console.log('my key ', key);
+    
+   /*  this.db.collection('Order').doc(key).onSnapshot((file) => {
       console.log(file.data(), 'yeyujdsa');
-    this.totalPrice = file.data().totalPrice
       this.Orders.push(file.data())
-      })
-    return this.totalPrice
+      }) */
   }
 
   ngOnInit() {
+    this.arr.forEach((i)=>{
+      console.log('My info ', i.prod);
+    })
+    console.log(`${this.ref} ${this.name}`)
     this.getProfile(); 
-  
+    // setTimeout(() => {
+    //   this.name = `${this.name}`;
+    //   this.amount = `${this.amount}`;
+    //   this.quantity = `${this.quantity}`;
+    //   this.image=`${this.image}`;
+    //   this.arr = `${this.arr}`;
+    //   this.price = `${this.price}`;
+    //   this.totalPrice = `${this.totalPrice}`;
+    // }, 1000);
+    this.getProduct(this.ref);
+    // this.orderProcessed();
+    // this.orderReady();
+    // this.cancel()
+  }
+  showList(i, p) {
+    this.active = i;
+
+    console.log('year', p);
+
+
+    this.trackOrders.product_name = p.prod.product_name;
+    this.trackOrders.quantity = p.prod.quantity;
+    this.trackOrders.size = p.prod.size;
+    this.trackOrders.total = p.prod.total;
+    this.trackOrders.image = p.prod.image;
+    this.trackOrders.productCode = p.prod.productCode;
+    this.trackOrders.desc = p.prod.desc;
+    this.trackOrders.amount =p.prod.amount;
   }
   
   ionViewDidLeave() {
@@ -199,7 +240,7 @@ receivedOrder(){
     
      this.items =  item.product.map(element => {
         console.log(element);
-          return [element.prod.product_name, element.prod.quantity,element.prod.size, element.prod.price, element.prod.amount]; 
+          return [element.product_name, element.quantity, element.price, element.amount]; 
       });
   });
     var docDefinition = {
@@ -232,7 +273,7 @@ receivedOrder(){
         {
           style: 'invoice',
           table: {
-              widths: ['*', 75, 75, 75 ],
+              widths: ['*', 75, 75, 75],
               body: [
                   [
                       '',
@@ -262,12 +303,11 @@ receivedOrder(){
 ​ {
   style: 'itemsTable',
   table: {
-      widths: ['*', 75, 75, 75 , 75 , 75 , 75],
+      widths: ['*', 75, 75, 75 ],
       body: [
           [ 
               { text: 'Name', style: 'itemsTableHeader' },
               { text: 'Quantity', style: 'itemsTableHeader' },
-              { text: 'Size', style: 'itemsTableHeader' },
               { text: 'Price', style: 'itemsTableHeader' },
              { text: 'Amount', style: 'itemsTableHeader' },
           ],
@@ -411,5 +451,4 @@ receivedOrder(){
       // An error happened.
     });
   }
-  
 }

@@ -96,7 +96,7 @@
                 <div class="pedding-oders" >
                   <div class="invoicesContainer">
                     <ion-card *ngFor = "let item of ordersPlaced">
-                      <div class="invoicesList" (click)="viewDetail(item.ref)">
+                      <div class="invoicesList" (click)="viewDetail(item)">
                         <div>
                           <ion-label class="name" >{{item.info.name}}</ion-label>
                         </div>
@@ -123,8 +123,8 @@
               <div class="tab-content">
                 <div class="pedding-oders">
                   <div class="invoicesContainer">
-                    <ion-card *ngFor = "let item of ordersPlaced">
-                      <div class="invoicesList" (click)="viewDetail(item.ref)">
+                    <ion-card *ngFor = "let item of Orders">
+                      <div class="invoicesList" (click)="createTrackOder(item)">
                         <div>
                           <ion-label class="name" >{{item.info.name}}</ion-label>
                         </div>
