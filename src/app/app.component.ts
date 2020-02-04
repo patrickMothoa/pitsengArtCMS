@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import * as firebase from 'firebase';
+
 
 
 @Component({
@@ -13,6 +14,7 @@ import * as firebase from 'firebase';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  showHead: boolean = false;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -21,8 +23,26 @@ export class AppComponent {
   ) {
     this.initializeApp();
     this.getAuth(); 
+     // on route change to '/login', set the variable showHead to false
+     routes.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if (event['url'] == '/login') {
+          this.showHead = false;
+        } else {
+          // console.log("NU")
+          this.showHead = true;
+        }
+      }
+    });
+
+
   }
 
+  // ngOnInit(){
+  //   if (this.routes.url === '/login') {
+  //     this.showHead = false
+  //     }
+  // }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

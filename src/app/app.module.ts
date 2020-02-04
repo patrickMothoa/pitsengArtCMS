@@ -18,6 +18,7 @@ import { PopoverComponent } from './components/popover/popover.component';
 import { ProfilePageModule } from './pages/profile/profile.module';
 import { UserInvoicesPageModule } from './pages/user-invoices/user-invoices.module';
 import { AddProductPageModule } from './pages/add-product/add-product.module';
+import { MenuComponent } from './components/menu/menu.component';
 
 
   // Your web app's Firebase configuration
@@ -36,8 +37,8 @@ import { AddProductPageModule } from './pages/add-product/add-product.module';
   firebase.analytics();
 
 @NgModule({
-  declarations: [AppComponent,PopoverComponent],
-  entryComponents: [PopoverComponent],
+  declarations: [AppComponent,PopoverComponent,MenuComponent],
+  entryComponents: [PopoverComponent,MenuComponent],
   imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule,OrderDetailsPageModule, 
     SowDataPageModule,ProfilePageModule,UserInvoicesPageModule,AddProductPageModule,DetailsPageModule],
   providers: [
