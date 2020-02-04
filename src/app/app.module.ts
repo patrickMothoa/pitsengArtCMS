@@ -19,6 +19,7 @@ import { ProfilePageModule } from './pages/profile/profile.module';
 import { UserInvoicesPageModule } from './pages/user-invoices/user-invoices.module';
 import { AddProductPageModule } from './pages/add-product/add-product.module';
 import { MenuComponent } from './components/menu/menu.component';
+import { FaqsPageModule } from './pages/faqs/faqs.module';
 
 
   // Your web app's Firebase configuration
@@ -40,7 +41,7 @@ import { MenuComponent } from './components/menu/menu.component';
   declarations: [AppComponent,PopoverComponent,MenuComponent],
   entryComponents: [PopoverComponent,MenuComponent],
   imports: [BrowserModule,FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, DetailsPageModule,OrderDetailsPageModule, 
-    SowDataPageModule,ProfilePageModule,UserInvoicesPageModule,AddProductPageModule,DetailsPageModule],
+    SowDataPageModule,ProfilePageModule,UserInvoicesPageModule,AddProductPageModule,DetailsPageModule, FaqsPageModule],
   providers: [
     StatusBar,
     SplashScreen,
