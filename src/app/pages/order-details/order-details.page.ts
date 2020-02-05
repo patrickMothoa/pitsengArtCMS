@@ -88,7 +88,7 @@ export class OrderDetailsPage implements OnInit {
     desc: '',
     amount: ''
   }
-  process: any;
+  
 
   constructor(public dataservice : DataService,public modalController: ModalController,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
@@ -116,15 +116,7 @@ ngOnINi
     }
       }
 
-  orderProcessed(){
-    console.log("Your key ",this.ref);
-   
- firebase.firestore().collection("Order").doc(this.ref).update({
-    process : 'prepared' })
-   
-
-
- }
+  
 // orderCancelled(){
 //   this.orderStatus = 0
 // }
@@ -162,6 +154,7 @@ receivedOrder(){
     console.log("my ref",this.ref);
     
       this.orderProcessed();
+      this.orderPrepared()
       this.orderReady();
       this.orderCollect()
     this.dismiss();
@@ -419,22 +412,45 @@ receivedOrder(){
       pdfLink : this.pdfLink })
   
   }
+  orderProcessed(){
+    console.log("Your key ",this.ref);
+   
+ firebase.firestore().collection("Order").doc(this.ref).update({
+  status : 'process' })
+  
+  
+   
+
+
+ }
+ orderPrepared() { 
+ 
+  console.log("Your key ",this.ref);
+ 
+firebase.firestore().collection("Order").doc(this.ref).update({
+  status : 'prepared' })
+  
+
+}
   orderReady() {
     console.log("Your key ",this.ref);
    
  firebase.firestore().collection("Order").doc(this.ref).update({
-    process : 'orderReady' })
-
+  status : 'orderReady' })
 }
+
+
 orderCollect() {
   this.dbOrder.doc(this.ref).onSnapshot((res) => {
-    if (res.data().process === 'ready') {
+    // console.log("My status", res.data().status);
+    
+    if (res.data().status === 'orderReady') {
       //console.log('Collect');
       this.dbHistory.doc(this.ref).set({ date: new Date().getTime(), reciept: null }).then(() => {
-        this.dbOrder.doc(this.ref).delete();
+        // this.dbOrder.doc(this.ref).delete();
       })
     } else {
-      console.log('Wait until it is');
+      console.log('collection',res.data().status);
     }
   })
 }
