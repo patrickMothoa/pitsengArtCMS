@@ -5,6 +5,7 @@ import { UserInvoicesPage } from 'src/app/pages/user-invoices/user-invoices.page
 import { AddProductPage } from 'src/app/pages/add-product/add-product.page';
 import * as firebase from 'firebase';
 import { PopoverComponent } from '../popover/popover.component';
+import { FaqsPage } from 'src/app/pages/faqs/faqs.page';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,9 @@ export class MenuComponent implements OnInit {
     private router: Router,) { }
 
   ngOnInit() {}
-
+  openAboutUS(){
+    this.router.navigateByUrl('/aobut-us')
+  }
   
   openProfile(){
     this.router.navigateByUrl('/profile');
@@ -84,5 +87,14 @@ export class MenuComponent implements OnInit {
     }).catch((error)=> {
       // An error happened.
     });
+  }
+  async createFaqs() {
+    const modal = await this.modalController.create({
+      component:FaqsPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
   }
 }

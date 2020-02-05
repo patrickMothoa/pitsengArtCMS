@@ -55,6 +55,14 @@ const routes: Routes = [
     path: 'quries',
     loadChildren: () => import('./pages/quries/quries.module').then( m => m.QuriesPageModule)
   },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./pages/faqs/faqs.module').then( m => m.FaqsPageModule)
+  },
+  {
+    path: 'aobut-us',
+    loadChildren: () => import('./pages/aobut-us/aobut-us.module').then( m => m.AobutUsPageModule)
+  },
 
  
 ];

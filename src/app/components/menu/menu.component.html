@@ -28,7 +28,8 @@
       <ion-button class="item" color="medium"  fill="clear" (click)="openPro()"  slot="end">Home</ion-button>
       <ion-button class="item" color="medium"  fill="clear" (click)="openInvoice()"  slot="end">Orders</ion-button>             
       <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="queries()" >Queries</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end">FAQ's</ion-button>
+      <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="openAboutUS()" >About Us </ion-button>
+      <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createFaqs()" >FAQ's</ion-button>
       <ion-button class="item" color="medium"  fill="clear" slot="end"(click)="addProduct()"><ion-icon name="add" ></ion-icon>Product</ion-button>
       <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)="presentPopover($event)" ><ion-icon name="person"></ion-icon></ion-button>
          <ion-button  class="item" color="medium"  fill="clear" ><ion-searchbar
