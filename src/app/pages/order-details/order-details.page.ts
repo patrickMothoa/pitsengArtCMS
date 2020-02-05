@@ -183,7 +183,7 @@ receivedOrder(){
     this.trackOrders.desc = p.desc;
     this.trackOrders.amount =p.amount;
 
-    this.selectedValueIndex = p
+    // this.selectedValueIndex = p
   }
   
   ionViewDidLeave() {
