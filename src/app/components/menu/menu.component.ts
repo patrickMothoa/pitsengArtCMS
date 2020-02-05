@@ -18,12 +18,15 @@ export class MenuComponent implements OnInit {
     public popoverController: PopoverController,
     public modalController: ModalController,
     private router: Router,) { }
-
+    public showSearchBar = false;
+    public isSearchbarOpened = false;
   ngOnInit() {}
   openAboutUS(){
     this.router.navigateByUrl('/aobut-us')
   }
-  
+  clickedSearchIcon(event: Event) {
+    this.showSearchBar = !this.showSearchBar;
+  }
   openProfile(){
     this.router.navigateByUrl('/profile');
   }

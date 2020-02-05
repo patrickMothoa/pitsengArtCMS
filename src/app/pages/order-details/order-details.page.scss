@@ -706,9 +706,15 @@ z-index: 2;
 color: #fff  ;
 }
 .active {
-transform: scaleX(1.2);
-background-color: #eeeeee3a;
-  color: #fff;
+  -webkit-transition: all 200ms ease-in;
+      -webkit-transform: scale(0.9);
+      -ms-transition: all 200ms ease-in;
+      -ms-transform: scale(0.9);   
+      -moz-transition: all 200ms ease-in;
+      -moz-transform: scale(0.9);
+      transition: all 200ms ease-in;
+      transform: scale(0.9);
+      background-color: #f7f7f7;
 }
 
 .total-amount{

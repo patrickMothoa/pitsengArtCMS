@@ -99,7 +99,9 @@ ion-title {
   //   border: solid rgb(175, 10, 18);
   }
   
-
+.messages{
+  margin-bottom: 200px;
+}
 
 
 
@@ -206,6 +208,9 @@ ion-title {
 
   ion-content{
     overflow: hidden;
+    top: 20%;
+    // bottom: 5600px;
+    // margin-bottom: 500px;
   }
   .content-section{
     width: 100%;
@@ -227,6 +232,7 @@ ion-title {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+
     // border: solid blue;
     justify-content: space-between;
     // overflow: hidden;
@@ -237,6 +243,8 @@ ion-title {
          letter-spacing: 5px;
          font-size: 20px;
          border-bottom: 0.5px solid #a0a0a0;
+         padding: 8px;
+        //  padding-bottom: 10px;
        }
      width: 60%;
     //  border: solid black;
@@ -253,9 +261,9 @@ ion-title {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     width: 35%;
     padding: 16px;
-    // border: solid darkgoldenrod;
     height: 100%;
-    // background-color: #F3F3F3;
+    margin: 0 auto;
+    bottom: 0;
     h1{
       text-transform: uppercase;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -263,6 +271,7 @@ ion-title {
       font-size: 20px;
       border-bottom: 0.5px solid #a0a0a0;
       text-align: center;
+      // padding: 8px;
     }
     .response{
       width: 100%;
@@ -307,6 +316,18 @@ ion-title {
     // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin: 0 auto;
     // height: 200px;
+    &:hover {
+      // box-shadow: 0px 0px 150px #000000;
+  z-index: 2;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(0.9);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(0.9);   
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(0.9);
+  transition: all 200ms ease-in;
+  transform: scale(0.9);
+    }
   }
   ion-card{
     background-color: white;
@@ -315,5 +336,16 @@ ion-title {
     }
   }
   }
+  .active {
+    -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(0.9);
+        -ms-transition: all 200ms ease-in;
+        -ms-transform: scale(0.9);   
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(0.9);
+        transition: all 200ms ease-in;
+        transform: scale(0.9);
+        background-color: #f7f7f7;
+    }
 
  

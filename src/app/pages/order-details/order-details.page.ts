@@ -18,7 +18,7 @@ import { Platform, NavParams, ModalController } from '@ionic/angular';
   styleUrls: ['./order-details.page.scss'],
 })
 export class OrderDetailsPage implements OnInit {
-
+  loader: boolean = true;
 
   @Input() id: any;
 
@@ -104,7 +104,12 @@ export class OrderDetailsPage implements OnInit {
      
      
    }
-ngOnINi
+   ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
+
    showMovementReport() {
     if(this.toggled){
          this.buttonColor = '#345465';
@@ -138,6 +143,8 @@ receivedOrder(){
   }
 
   ngOnInit() {
+    console.log('bla =>',this.arr);
+    
     this.arr.forEach((i)=>{
       console.log('My info ', i);
     })
@@ -149,7 +156,7 @@ receivedOrder(){
     // this.orderReady();
     // this.cancel()
   setTimeout(() => {
-    this.showList(0, this.trackOrders);
+    this.showList(0, this.arr[0]);
   }, 1000);
     console.log("my ref",this.ref);
     

@@ -37,6 +37,8 @@ export class UserInvoicesPage implements OnInit {
   myArray = []
   ordersPlaced = [];
   loader: boolean = false;
+  active: any;
+  myProduct = false;
   constructor(public DataService : DataService, public modalController: ModalController, public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController) {
 
   
@@ -67,6 +69,17 @@ dismiss(){
   });
 }
 
+showList(i) {
+  this.active = i;
+  
+  
+  console.log('year');
+
+
+
+
+  // this.selectedValueIndex = p
+}
 
   viewDetails(){
     this.loader = true;
@@ -140,14 +153,20 @@ dismiss(){
     });
   }
   GetOrders(){
+
     this.dbOrder.where('userID','==',firebase.auth().currentUser.uid).onSnapshot((data)=>{
             console.log("olx", data);
-            this.Allorders = [];
+            if( this.Allorders = []){
+              this.myProduct =  true
               data.forEach((item)=>{
                 this.Allorders.push({ref:item.id,info:item.data(), total:item.data()})
               })
               console.log("ccc", this.Allorders);
   
+            }else{
+              this.myProduct = false
+            }
+          
         }) 
     }
   async createTrackOder(item) {

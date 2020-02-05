@@ -1,104 +1,27 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      <div class="title">
-        <div class="text" >Special Up to 75%</div>
-        <div >
-          <ion-button fill="outline" color="light" (click)="Allspecials()"> Shop Now </ion-button>
-        </div>
-      </div>
-    </ion-title>
-  </ion-toolbar> 
-  <div class="navigation-bar" >
 
-
-  <div class="nav">
-
-
-    <div class="nav-btn">
-      <label for="nav-check">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-    </div>
-    
-    <div class="nav-links">
-   
-      <ion-button class="item" color="medium"  fill="clear" (click)="openPro()"  slot="end">Home</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" (click)="openInvoice()"  slot="end">Orders</ion-button>             
-      <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="queries()" >Queries</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end">FAQ's</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end"(click)="addProduct()"><ion-icon name="add" ></ion-icon>Product</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)="presentPopover($event)" ><ion-icon name="person"></ion-icon></ion-button>
-         <ion-button  class="item" color="medium"  fill="clear" ><ion-searchbar
-           *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false'
-               showCancelButton="focus" cancelButtonText="Custom Cancel"  (ionChange)='SearchProducts($event);' value="" 
-           ></ion-searchbar
-          > 
-       </ion-button>
-         
-    </div>
-  </div>
-</div>
- 
-
-</ion-header> 
 <ion-content>
-  <div class="content-section" >
-    <div class="content" >
-      <div class="message-section" >
-        <h1 padding >Messages</h1>
-        <div class="messages" >
-          <div class="message-card" *ngFor="let m of message">
-          <ion-card padding >
-            <div>
-              <h2>{{ m.name}}</h2>
-              <ion-note>
-              {{m.email}}
-              </ion-note>
+  <div class="content-section">
+    <div class="content">
+      <div class="message-section">
+        <h1>Messages</h1>
+        <div class="messages">
+          <div class="message-card" *ngFor="let m of message let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)">
+            <div *ngIf="!myProduct" class="empty">
+              <ion-title> no sent messages at the moment</ion-title>
             </div>
-            <ion-card-content>
-              <p>
-                {{m.message}}
-              </p>
-            </ion-card-content>
-                    
-            <ion-row>
-              <ion-col>
-              </ion-col>
-              <ion-col>
-              </ion-col>
-              <ion-col align-self-center text-center>
-                <ion-note>
-                  22/01/2020
-                </ion-note>
-              </ion-col>
-            </ion-row>
-          </ion-card>
-          </div>
-          <!-- <div class="message-card" >
-            <ion-card padding >
+            <ion-card padding>
               <div>
-                <h2>Marty McFly</h2>
+                <h2>{{ m.name}}</h2>
                 <ion-note>
-                  martymcfly@gmail.com
+                  {{m.email}}
                 </ion-note>
               </div>
               <ion-card-content>
                 <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                  sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                  magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                   justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                     takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                    sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                     ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                  et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                   est Lorem ipsum dolor sit amet. 
+                  {{m.message}}
                 </p>
               </ion-card-content>
-                      
+
               <ion-row>
                 <ion-col>
                 </ion-col>
@@ -111,316 +34,43 @@
                 </ion-col>
               </ion-row>
             </ion-card>
-            </div> -->
-             <div class="message-card" >
-              <ion-card padding >
-                <div>
-                  <h2>Marty McFly</h2>
-                  <ion-note>
-                    martymcfly@gmail.com
-                  </ion-note>
-                </div>
-                <ion-card-content>
-                  <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                    sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                     justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                       takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                      sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                       ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                    et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                     est Lorem ipsum dolor sit amet. 
-                  </p>
-                </ion-card-content>
-                        
-                <ion-row>
-                  <ion-col>
-                  </ion-col>
-                  <ion-col>
-                  </ion-col>
-                  <ion-col align-self-center text-center>
-                    <ion-note>
-                      22/01/2020
-                    </ion-note>
-                  </ion-col>
-                </ion-row>
-              </ion-card>
-              </div> -->
-              <div class="message-card" >
-                <ion-card padding >
-                  <div>
-                    <h2>Marty McFly</h2>
-                    <ion-note>
-                      martymcfly@gmail.com
-                    </ion-note>
-                  </div>
-                  <ion-card-content>
-                    <p>
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                      magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                       justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                         takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                        sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                         ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                      et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                       est Lorem ipsum dolor sit amet. 
-                    </p>
-                  </ion-card-content>
-                          
-                  <ion-row>
-                    <ion-col>
-                    </ion-col>
-                    <ion-col>
-                    </ion-col>
-                    <ion-col align-self-center text-center>
-                      <ion-note>
-                        22/01/2020
-                      </ion-note>
-                    </ion-col>
-                  </ion-row>
-                </ion-card>
-                </div> -->
-             <div class="message-card" >
-                  <ion-card padding >
-                    <div>
-                      <h2>Marty McFly</h2>
-                      <ion-note>
-                        martymcfly@gmail.com
-                      </ion-note>
-                    </div>
-                    <ion-card-content>
-                      <p>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                         justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                           takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                          sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                           ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                         est Lorem ipsum dolor sit amet. 
-                      </p>
-                    </ion-card-content>
-                            
-                    <ion-row>
-                      <ion-col>
-                      </ion-col>
-                      <ion-col>
-                      </ion-col>
-                      <ion-col align-self-center text-center>
-                        <ion-note>
-                          22/01/2020
-                        </ion-note>
-                      </ion-col>
-                    </ion-row>
-                  </ion-card>
-                  </div>
-                  <div class="message-card" >
-                    <ion-card padding >
-                      <div>
-                        <h2>Marty McFly</h2>
-                        <ion-note>
-                          martymcfly@gmail.com
-                        </ion-note>
-                      </div>
-                      <ion-card-content>
-                        <p>
-                          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                          sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                          magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                           justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                             takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                            sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                             ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                           est Lorem ipsum dolor sit amet. 
-                        </p>
-                      </ion-card-content>
-                              
-                      <ion-row>
-                        <ion-col>
-                        </ion-col>
-                        <ion-col>
-                        </ion-col>
-                        <ion-col align-self-center text-center>
-                          <ion-note>
-                            22/01/2020
-                          </ion-note>
-                        </ion-col>
-                      </ion-row>
-                    </ion-card>
-                    </div> -->
-                    <div class="message-card" >
-                      <ion-card padding >
-                        <div>
-                          <h2>Marty McFly</h2>
-                          <ion-note>
-                            martymcfly@gmail.com
-                          </ion-note>
-                        </div>
-                        <ion-card-content>
-                          <p>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                            sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                             justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                               takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                               ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                             est Lorem ipsum dolor sit amet. 
-                          </p>
-                        </ion-card-content>
-                                
-                        <ion-row>
-                          <ion-col>
-                          </ion-col>
-                          <ion-col>
-                          </ion-col>
-                          <ion-col align-self-center text-center>
-                            <ion-note>
-                              22/01/2020
-                            </ion-note>
-                          </ion-col>
-                        </ion-row>
-                      </ion-card>
-                      </div>
-                      <div class="message-card" >
-                        <ion-card padding >
-                          <div>
-                            <h2>Marty McFly</h2>
-                            <ion-note>
-                              martymcfly@gmail.com
-                            </ion-note>
-                          </div>
-                          <ion-card-content>
-                            <p>
-                              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                              sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                               justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                                 takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                                sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                 ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                              et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                               est Lorem ipsum dolor sit amet. 
-                            </p>
-                          </ion-card-content>
-                                  
-                          <ion-row>
-                            <ion-col>
-                            </ion-col>
-                            <ion-col>
-                            </ion-col>
-                            <ion-col align-self-center text-center>
-                              <ion-note>
-                                22/01/2020
-                              </ion-note>
-                            </ion-col>
-                          </ion-row>
-                        </ion-card>
-                        </div> -->
-                      <div class="message-card" >
-                          <ion-card padding >
-                            <div>
-                              <h2>Marty McFly</h2>
-                              <ion-note>
-                                martymcfly@gmail.com
-                              </ion-note>
-                            </div>
-                            <ion-card-content>
-                              <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                                sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                 justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                                   takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                                  sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                   ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                                et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                                 est Lorem ipsum dolor sit amet. 
-                              </p>
-                            </ion-card-content>
-                                    
-                            <ion-row>
-                              <ion-col>
-                              </ion-col>
-                              <ion-col>
-                              </ion-col>
-                              <ion-col align-self-center text-center>
-                                <ion-note>
-                                  22/01/2020
-                                </ion-note>
-                              </ion-col>
-                            </ion-row>
-                          </ion-card>
-                          </div>
-                          <div class="message-card" >
-                            <ion-card padding >
-                              <div>
-                                <h2>Marty McFly</h2>
-                                <ion-note>
-                                  martymcfly@gmail.com
-                                </ion-note>
-                              </div>
-                              <ion-card-content>
-                                <p>
-                                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                                  sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-                                  magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                                   justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                                     takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor 
-                                    sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                                     ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                                  et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                                   est Lorem ipsum dolor sit amet. 
-                                </p>
-                              </ion-card-content>
-                                      
-                              <ion-row>
-                                <ion-col>
-                                </ion-col>
-                                <ion-col>
-                                </ion-col>
-                                <ion-col align-self-center text-center>
-                                  <ion-note>
-                                    22/01/2020
-                                  </ion-note>
-                                </ion-col>
-                              </ion-row>
-                            </ion-card>
-                            </div> 
-                            
+          </div>
+
+
 
         </div>
 
       </div>
-      <div  class="replay-section" >
-        <h1  >
+      <div class="replay-section">
+        <h1>
           Replay to messages
         </h1>
-        <div class="response" >
-          <ion-label  >Replay to:  <p  > martymcfly@gmail.com</p > </ion-label>
+        <div class="response">
+          <ion-label>Replay to: <p> martymcfly@gmail.com</p>
+          </ion-label>
         </div>
-        <div class="response-as" >
-          <ion-label  >Replay as:  <p  > martymcfly@pitseng.com</p> </ion-label>
+        <div class="response-as">
+          <ion-label>Replay as: <p> martymcfly@pitseng.com</p>
+          </ion-label>
         </div>
-        <div class="write-message" >
-     <textarea placeholder="Message" name="" id="" cols="60" rows="20"></textarea>
+        <div class="write-message">
+          <textarea placeholder="Message" name="" id="" cols="60" rows="18"></textarea>
 
         </div>
-        <div class="btn" >
-     <ion-button shape="round" expand="outline" color="medium">send response</ion-button>
+        <div class="btn">
+          <ion-button shape="round" expand="outline" color="medium">send response</ion-button>
         </div>
-         
-       
-          
-       
+
+
+
+
       </div>
 
     </div>
 
   </div>
+
+
 </ion-content>
+
+<!--  -->

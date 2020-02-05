@@ -18,6 +18,7 @@ import { AddProductPage } from '../add-product/add-product.page';
   styleUrls: ['./pro.page.scss'],
 })
 export class ProPage implements OnInit {
+ 
   db = firebase.firestore();
   storage = firebase.storage().ref();
   listproduct = [];
@@ -46,7 +47,7 @@ export class ProPage implements OnInit {
  updateBtn = false;
  active: boolean;
  errtext = '';
-
+ loader: boolean = true;
  listDiv: any = document.getElementsByClassName('categorySection');
    list: boolean = false;
   Homescreen = {
@@ -98,6 +99,12 @@ ionViewDidLoad(){
  
 }
  
+ionViewWillEnter() {
+  setTimeout(() => {
+    this.loader = false;
+  }, 2000);
+}
+
     ngOnInit() {
       
       this.retrieve();

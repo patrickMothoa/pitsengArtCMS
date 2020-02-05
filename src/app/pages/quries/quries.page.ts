@@ -9,22 +9,53 @@ import * as firebase from 'firebase';
 export class QuriesPage implements OnInit {
   db = firebase.firestore();
   message = [];
+  myProduct = false;
+  active: any;
+
+  // userMessage ={
+
+
+  // }
   constructor() { }
 
   ngOnInit() {
     this.getMessage()
+    setTimeout(() => {
+      this.showList(0);
+      console.log('index',  )
+    }, 1000);
   }
   
   getMessage(){
    
     this.db.collection('Messages').get().then(snapshot => {
-      this.message = [];
-        
-        snapshot.forEach(doc => {
+      console.log('messges', this.message);
+      
+      if( this.message = []){
+snapshot.forEach(doc => {
           this.message.push(doc.data());
+          console.log('messges', doc.data());
         });
+        this.myProduct = true
+      }else{
+        this.myProduct = false
+      }
+     
+        
+        
     })
       
+  }
+  showList(i) {
+    this.active = i;
+    
+    
+    console.log('year',this. message);
+  
+  
+  
+  
+    // this.selectedValueIndex = p
   }
 }
 
