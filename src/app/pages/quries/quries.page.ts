@@ -12,10 +12,10 @@ export class QuriesPage implements OnInit {
   myProduct = false;
   active: any;
 
-  // userMessage ={
+  userMessage ={
+    mail:""
 
-
-  // }
+  }
   constructor() { }
 
   ngOnInit() {
