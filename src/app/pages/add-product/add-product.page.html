@@ -136,30 +136,15 @@
           </ion-input>
         </ion-item>
         </div>
-        <div class ="categoty"> 
-          <ion-item>
-          <ion-label color="medium">Categories</ion-label>
-          <ion-select (ionChange)="getCategories($event)">
-            <ion-select-option value="Deco">Deco</ion-select-option>
-            <ion-select-option value="Lamps">Lamps</ion-select-option>
-            <ion-select-option value="Vase">Vase</ion-select-option>
-            <ion-select-option value="Pottery">Pottery </ion-select-option>
-            </ion-select>
-        </ion-item>
-      </div>
-        
-        
         <div class="Product-name">
           <ion-item  lines="none" color="dark" >
             <ion-label >Categories</ion-label>
             <ion-select (ionChange)="getCategories($event)">
-              <ion-select-option value="Vase">Vase</ion-select-option>
-              <ion-select-option value="Cups and Plates">Cups and Plates</ion-select-option>
-              <ion-select-option value="Photo Frame">Photo Frames</ion-select-option>
-              <ion-select-option value="Decor Pallets">Decor Pallets</ion-select-option>
-              <ion-select-option value="Wall Deco">Wall Decor</ion-select-option>
-              <ion-select-option value="Bowls and Pots">Bowls and Pots</ion-select-option>
-              <ion-select-option value="Lamps">Lamps</ion-select-option>
+              <ion-select-option value="Vase">Deco</ion-select-option>
+              <ion-select-option value="Cups and Plates">Lamps</ion-select-option>
+              <ion-select-option value="Decor Pallets">Vase</ion-select-option>
+              <ion-select-option value="Wall Deco">Pottery</ion-select-option>
+              
             </ion-select>
           </ion-item>
         
@@ -248,7 +233,7 @@
           </div> -->
  <div class="buttons" >
         <div>
-          <ion-button shape="round" expand="outline" color="medium">save</ion-button>
+          <ion-button shape="round" expand="outline" color="medium"  (click)="addEvent()">save</ion-button>
         </div>
       </div>
       </div>

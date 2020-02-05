@@ -11,7 +11,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Platform, NavParams } from '@ionic/angular';
+import { Platform, NavParams, ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.page.html',
@@ -34,6 +34,7 @@ export class OrderDetailsPage implements OnInit {
   dbUser = firebase.firestore().collection('UserProfile');
   dbProfile = firebase.firestore().collection('admins');
   dbOrder = firebase.firestore().collection('Order');
+  dbHistory = firebase.firestore().collection('orderHistory');
   uid = firebase.auth().currentUser.uid;
   profile = {
     image: '',
@@ -71,6 +72,7 @@ export class OrderDetailsPage implements OnInit {
   price;
   totalPrice;
   active: any;
+  Allorders = [];
   ////////////////
   orderShowbtn : boolean = false;
   readyBtn : boolean =  false;
@@ -85,8 +87,9 @@ export class OrderDetailsPage implements OnInit {
     desc: '',
     amount: ''
   }
+  process: any;
 
-  constructor(public dataservice : DataService,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+  constructor(public dataservice : DataService,public modalController: ModalController,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
 
     
     this.name = `${this.name}`;
@@ -107,53 +110,17 @@ export class OrderDetailsPage implements OnInit {
 
 
   orderProcessed(){
-   // let status = ''
-    return this.dataservice.processOrder(this.key, 'processed').then(result => {
-      if(result === 'success'){
- 
-        this.db.collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result =>{
-          let status = result.data().status
-          this.status = status
-          console.log("procesedk1", status); 
-        })
-        this.orderShowbtn  = false;
-        this.readyBtn  = false;
-      }
-    })
-  }
-  orderStatus: number = 1;
-  orderReady(){
-    if (this.orderStatus == 1){
-      this.orderStatus = 2
-      // Order is being prepared
-    }
-    else if (this.orderStatus == 2){
-      this.orderStatus = 3
-      // Ready for collection / isendleleni
-    }
-    else if (this.orderStatus == 3){
-      this.orderStatus = 4
-      // delivered / collected
-    }
-  // return this.dataservice.processOrder(this.key, 'ready').then(result => {
-  //     if(result === 'success'){
-
-  //   firebase.firestore().collection('Order').doc(this.key).onSnapshot({includeMetadataChanges: true}, result => {
-  //     let status = result.data().status
-  //     this.status = status
-  //     console.log("ordereadyk2", status);
-  //   });
-  //   console.log("k2", status);
-  //  this.orderShowbtn  = false;
-  //  this.readyBtn  =  false;
-  //   }
-  // })
+    console.log("Your key ",this.ref);
+   
+ firebase.firestore().collection("Order").doc(this.ref).update({
+    process : 'prepared' })
+   
 
 
-}
-orderCancelled(){
-  this.orderStatus = 0
-}
+ }
+// orderCancelled(){
+//   this.orderStatus = 0
+// }
 
 /////////////////////////////////////////////////////
 receivedOrder(){
@@ -168,32 +135,23 @@ receivedOrder(){
 
   getProduct(key) { 
     console.log('my key ', key);
-    
-   /*  this.db.collection('Order').doc(key).onSnapshot((file) => {
-      console.log(file.data(), 'yeyujdsa');
-      this.Orders.push(file.data())
-      }) */
+   
   }
 
   ngOnInit() {
     this.arr.forEach((i)=>{
-      console.log('My info ', i.prod);
+      console.log('My info ', i);
     })
     console.log(`${this.ref} ${this.name}`)
     this.getProfile(); 
-    // setTimeout(() => {
-    //   this.name = `${this.name}`;
-    //   this.amount = `${this.amount}`;
-    //   this.quantity = `${this.quantity}`;
-    //   this.image=`${this.image}`;
-    //   this.arr = `${this.arr}`;
-    //   this.price = `${this.price}`;
-    //   this.totalPrice = `${this.totalPrice}`;
-    // }, 1000);
+    
     this.getProduct(this.ref);
-    // this.orderProcessed();
-    // this.orderReady();
-    // this.cancel()
+    console.log("my ref",this.ref);
+    
+      this.orderProcessed();
+      this.orderReady();
+      this.orderCollect()
+    this.dismiss();
   }
   showList(i, p) {
     this.active = i;
@@ -201,14 +159,14 @@ receivedOrder(){
     console.log('year', p);
 
 
-    this.trackOrders.product_name = p.prod.product_name;
-    this.trackOrders.quantity = p.prod.quantity;
-    this.trackOrders.size = p.prod.size;
-    this.trackOrders.total = p.prod.total;
-    this.trackOrders.image = p.prod.image;
-    this.trackOrders.productCode = p.prod.productCode;
-    this.trackOrders.desc = p.prod.desc;
-    this.trackOrders.amount =p.prod.amount;
+    this.trackOrders.product_name = p.product_name;
+    this.trackOrders.quantity = p.quantity;
+    this.trackOrders.size = p.size;
+    this.trackOrders.total = p.total;
+    this.trackOrders.image = p.image;
+    this.trackOrders.productCode = p.productCode;
+    this.trackOrders.desc = p.desc;
+    this.trackOrders.amount =p.amount;
   }
   
   ionViewDidLeave() {
@@ -379,6 +337,11 @@ receivedOrder(){
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
   }
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
  
   downloadPdf() {
     if (this.plt.is('cordova')) {
@@ -434,6 +397,38 @@ receivedOrder(){
       pdfLink : this.pdfLink })
   
   }
+  orderReady() {
+    console.log("Your key ",this.ref);
+   
+ firebase.firestore().collection("Order").doc(this.ref).update({
+    process : 'orderReady' })
+
+}
+orderCollect() {
+  this.dbOrder.doc(this.ref).onSnapshot((res) => {
+    if (res.data().process === 'ready') {
+      //console.log('Collect');
+      this.dbHistory.doc(this.ref).set({ date: new Date().getTime(), reciept: null }).then(() => {
+        this.dbOrder.doc(this.ref).delete();
+      })
+    } else {
+      console.log('Wait until it is');
+    }
+  })
+}
+GetOrders(){
+  firebase.firestore().collection('Order').onSnapshot((data)=>{
+          console.log("checking my data", data);
+          this.Allorders = [];
+            data.forEach((item)=>{
+              this.Allorders.push({ref:item.id,info:item.data(), total:item.data()})
+            })
+            console.log("ccc", this.Allorders);
+
+      }) 
+  }
+
+  
   openPro(){
     this.router.navigateByUrl('/pro');
   }

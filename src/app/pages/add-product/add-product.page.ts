@@ -88,7 +88,7 @@ export class AddProductPage implements OnInit {
       })
       alerter.present();
     } else {
-      if ( !this.event.desc||!this.event.quantity ||!this.event.size || !this.event.name || !this.event.price|| !this.event.categories) {
+      if ( !this.event.desc||!this.event.quantity ||!this.event.size || !this.event.name || !this.event.price|| !this.event.categories || !this.event.items) {
         const alerter = await this.alertCtrl.create({
           message: 'Error saving product. Some fields not filled'
         })

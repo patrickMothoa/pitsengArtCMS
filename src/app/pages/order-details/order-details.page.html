@@ -123,7 +123,7 @@
  <div class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
 
-    <ion-icon color="dark" name="close"></ion-icon>
+    <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
 
   </ion-fab>
   <hr>
@@ -142,22 +142,22 @@
           (click)="showList(i, p)">
   
             <div class="image">
-              <img src="{{p.prod.image}}" alt="">
+              <img src="{{p.image}}" alt="">
             </div>
             <div class="details">
               <div class="invoice">
-                <ion-label>{{p.prod.product_name}}</ion-label>
+                <ion-label>{{p.product_name}}</ion-label>
               </div>
               <div class="price">
-                <ion-label>{{p.prod.total | currency : '&#82;'}}</ion-label>
+                <ion-label>{{p.price | currency : '&#82;'}}</ion-label>
               </div>
               <div class="size">
                 <ion-label>Size: </ion-label>
-                <ion-label>{{p.prod.size}}</ion-label>
+                <ion-label>{{p.size}}</ion-label>
               </div>
               <div class="quantity">
                 <ion-label>quantity: </ion-label>
-                <ion-label>{{p.prod.quantity}}</ion-label>
+                <ion-label>{{p.quantity}}</ion-label>
               </div>
             </div>
 
@@ -169,7 +169,7 @@
           
         </div>
 <div class="total-amount">
-            <ion-title>{{totalPrice}} </ion-title>
+            <ion-title>Total :{{totalPrice | currency : '&#82;'}} </ion-title>
           </div>
         <div class="tracking">
           <div class="tacking-heading">
@@ -179,27 +179,34 @@
        
           <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
-            <div class="tracking-progress-bar">
+            <!-- <div class="tracking-progress-bar">
               <div
-                class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active">
+                class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active" (click)="orderReady()">
                 1</div>
 
               <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
-              <div class="tracking-progress-bar__item tracking-progress-bar__item--active">2</div>
+              <div class="tracking-progress-bar__item tracking-progress-bar__item--active"(click)="orderReady()">2</div>
 
               <span class="tracking-progress-bar__item__bar"></span>
-              <div class="tracking-progress-bar__item">3</div>
+              <div class="tracking-progress-bar__item" (click)="orderReady()">3</div>
 
               <span class="tracking-progress-bar__item__bar"></span>
-              <div class="tracking-progress-bar__item">4</div>
-            </div>
+              <div class="tracking-progress-bar__item" (click)="orderReady()">4</div>
+            </div> -->
 
-            <div class="tracking-oder-labels">
-              <div class="one">oder recieved</div>
-              <div class="two">being prepared</div>
-              <div class="three">oder is ready</div>
+            <!-- <div class="tracking-oder-labels">
+              <div class="one" >order recieved</div>
+              <div class="two" >being prepared</div>
+              <div class="three" >order is ready</div>
               <div class="four">delivered</div>
-            </div>
+            </div> -->
+            <div class="status">
+            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
+            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderReady()"> being prepared </ion-button>
+            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> order is ready </ion-button>
+            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderReady()"> ready for collections </ion-button>
+        
+          </div>
 
           </div>
 
