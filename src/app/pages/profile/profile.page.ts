@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ProfileService } from '../../services/profile.service';
 import { Router } from '@angular/router';
 
@@ -40,7 +40,7 @@ export class ProfilePage implements OnInit {
   
   constructor(public alertCtrl: AlertController,
     private router: Router,
-     private profileServ: ProfileService) { 
+     private profileServ: ProfileService,public modalController: ModalController) { 
     this.uid = firebase.auth().currentUser.uid;
     
   }
@@ -58,6 +58,12 @@ export class ProfilePage implements OnInit {
       }
     })
   }
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
+  
   async getImage(image){
     let imagetosend = image.item(0);
     if (!imagetosend) {

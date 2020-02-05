@@ -29,7 +29,8 @@ export class OrderDetailsPage implements OnInit {
     from: '',
     text: '' 
   };
-
+  toggled: boolean;
+  buttonColor: string;
   checkpdf = 'yeah im working';
   dbUser = firebase.firestore().collection('UserProfile');
   dbProfile = firebase.firestore().collection('admins');
@@ -103,11 +104,17 @@ export class OrderDetailsPage implements OnInit {
      
      
    }
-
-   cancel(){
-      /////
-   }
-
+ngOnINi
+   showMovementReport() {
+    if(this.toggled){
+         this.buttonColor = '#345465';
+         this.toggled = false;
+    }
+    else{
+         this.buttonColor = '#ffffff'; //hex code for previous color
+         this.toggled = true;
+    }
+      }
 
   
 // orderCancelled(){
@@ -138,6 +145,12 @@ receivedOrder(){
     this.getProfile(); 
     
     this.getProduct(this.ref);
+    // this.orderProcessed();
+    // this.orderReady();
+    // this.cancel()
+  setTimeout(() => {
+    this.showList(0, this.trackOrders);
+  }, 1000);
     console.log("my ref",this.ref);
     
       this.orderProcessed();
@@ -146,9 +159,11 @@ receivedOrder(){
       this.orderCollect()
     this.dismiss();
   }
+  selectedValueIndex;
   showList(i, p) {
     this.active = i;
-
+    
+    
     console.log('year', p);
 
 
@@ -160,6 +175,8 @@ receivedOrder(){
     this.trackOrders.productCode = p.productCode;
     this.trackOrders.desc = p.desc;
     this.trackOrders.amount =p.amount;
+
+    this.selectedValueIndex = p
   }
   
   ionViewDidLeave() {
@@ -170,6 +187,11 @@ receivedOrder(){
   ionViewDidEnter(){
    
   }
+  // dismiss(){
+  //   this.modalController.dismiss({
+  //     'dismissed':true
+  //   });
+  // }
   getProfile() {
     this.dbProfile.doc(this.uid).onSnapshot((res)=>{
     this.profile.name = res.data().name;

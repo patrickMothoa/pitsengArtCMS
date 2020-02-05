@@ -43,6 +43,13 @@
   height: 100%;
   --width: 500px;
 }
+
+.profile .modal-wrapper{
+  position: absolute;
+    right: 0;
+  height: 100%;
+  --width: 400px;
+}
 .login-register{
 
   --width: 50%;

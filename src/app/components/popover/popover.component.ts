@@ -19,7 +19,7 @@ export class PopoverComponent implements OnInit {
   async createProfile() {
     const modal = await this.modalController.create({
       component:ProfilePage,
-      cssClass: 'my-add-to-cart',
+      cssClass: 'profile',
       
     
     });
