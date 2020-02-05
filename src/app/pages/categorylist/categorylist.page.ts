@@ -67,11 +67,14 @@ adminInfo(){
     this.db.collection('Products').where('categories', '==', this.value).get().then((snapshot) =>{
       this.Products = []
       if(snapshot.size > 0){
+        this.myProduct= true
         snapshot.forEach(doc =>{
           this.Products.push(doc.data())
           console.log(this.Products);
           
         })
+      }else{
+        this.myProduct =false
       }
     })
   }

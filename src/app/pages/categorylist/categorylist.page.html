@@ -21,13 +21,13 @@
                   <ion-icon name="star-half" color="warning"></ion-icon>
                   <ion-icon name="star-outline" color="warning"></ion-icon>
                 </div>
-                
-                
               </div> 
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+      <div *ngIf="!myProduct" class="empty" >
+        <ion-title >This product is not available  currently.</ion-title>
+      </div>
 </ion-content>

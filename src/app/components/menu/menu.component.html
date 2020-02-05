@@ -2,45 +2,58 @@
   <ion-toolbar color="primary">
     <ion-title>
       <div class="title">
-        <div class="text" >Special Up to 75%</div>
-        <div >
+        <div class="text">Special Up to 75%</div>
+        <div>
           <ion-button fill="outline" color="light" (click)="Allspecials()"> Check Specials </ion-button>
         </div>
       </div>
     </ion-title>
-  </ion-toolbar> 
-  <div class="navigation-bar" >
+  </ion-toolbar>
+  <div class="navigation-bar">
 
-  <div class="nav">
+    <div class="nav">
 
- <img src="../../assets/Group 60.png" alt="" (click)="openHome()" class="logo" >
-    <div class="nav-btn">
-      <label for="nav-check">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-    </div>
+      <img src="../../assets/Group 60.png" alt="" (click)="openHome()" class="logo">
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
 
-    <div class="nav-links">
-     
-      <ion-button class="item" color="medium"  fill="clear" (click)="openPro()"  slot="end">Home</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" (click)="openInvoice()"  slot="end">Orders</ion-button>             
-      <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="queries()" >Queries</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="openAboutUS()" >About Us </ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createFaqs()" >FAQ's</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end"(click)="addProduct()"><ion-icon name="add" ></ion-icon>Product</ion-button>
-      <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)="presentPopover($event)" ><ion-icon name="person"></ion-icon></ion-button>
-         <ion-button  class="item" color="medium"  fill="clear" ><ion-searchbar
-           *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionCancel)='isSearchbarOpened=false'
-               showCancelButton="focus" cancelButtonText="Custom Cancel"  (ionChange)='SearchProducts($event);' value="" 
-           ></ion-searchbar
-          > 
-       </ion-button>
-         
+      <div class="nav-links">
+
+
+
+        <ion-button class="item" color="medium" fill="clear" (click)="openPro()" slot="end">Home</ion-button>
+        <ion-button class="item" color="medium" fill="clear" (click)="openInvoice()" slot="end">Orders</ion-button>
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="queries()">Queries</ion-button>
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="openAboutUS()">About Us </ion-button>
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="createFaqs()">FAQ's</ion-button>
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="addProduct()"><ion-icon name="add"></ion-icon>Product</ion-button>
+
+        <ion-button class="item" color="medium" fill="clear" slot="end"><ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
+            (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products" value="" style='min-width: 10px;'>
+          </ion-searchbar>
+          <div no-padding fill="clear" class="search" lines="none" *ngIf="!isSearchbarOpened">
+            
+              <ion-icon slot="icon-only" color="medium" name="search" (click)="isSearchbarOpened=true"></ion-icon>
+            
+          </div></ion-button>
+  
+    
+    
+        
+      
+       
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="presentPopover($event)"><ion-icon name="person"></ion-icon></ion-button>
+
+
+
+      </div>
     </div>
   </div>
-</div>
- 
+
 
 </ion-header>

@@ -129,9 +129,14 @@
   <hr>
 </div>
 
+<div class="loader-container" *ngIf="loader">
+  <div class="loader">Loading...</div>
+</div>
+
 <ion-content>
   <div class="main-container">
     <div class="main-content">
+
       <div class="itemList">
         <div class="heading-title" >
           <ion-title>Items Ordered</ion-title>
@@ -140,10 +145,6 @@
       
           <div class="pedding-oders " *ngFor="let p of arr; let i=index;" [ngClass]="{'active': active==i}"  
           (click)="showList(i, p)">
-          <!-- <option  *ngFor="let p of arr; let i=index;"
-          [ngValue]="value"
-          [attr.selected]="!i"
-      >{{item}}</option> -->
             <div class="image">
               <img src="{{p.image}}" alt="">
             </div>
@@ -163,13 +164,7 @@
                 <ion-label>{{p.quantity}}</ion-label>
               </div>
             </div>
-
           </div>
-         
-        
-
-         
-          
         </div>
 <div class="total-amount">
             <ion-title>Total :{{totalPrice | currency : '&#82;'}} </ion-title>
@@ -178,8 +173,7 @@
           <div class="tacking-heading">
             <ion-title>tracking status</ion-title>
           </div>
- <!-- *ngIf="toggled" -->
-       
+
           <div  class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
             <!-- <div class="tracking-progress-bar">

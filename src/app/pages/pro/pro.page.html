@@ -1,4 +1,6 @@
-
+<div class="loader-container" *ngIf="loader">
+  <div class="loader">Loading...</div>
+</div>
 <ion-content>
   <div class="container" id="web_view">
     <div class="grid">
@@ -51,16 +53,16 @@
         <div class="sale_item" *ngFor="let event of proSales; let i=index;" [ngClass]="{'active': active==i}">
           <div class="image">
             <img src="{{event.obj.image}}">
-            <p>{{event.obj.percentage}} %</p>
+            <p>{{event.obj.percentage}} % off </p>
           </div>
           <div class="item_details">
             <p>Vase</p>
             <p id="ratings">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning"  name="star"></ion-icon>
+              <ion-icon  color="warning" name="star"></ion-icon>
+              <ion-icon  color="warning" name="star"></ion-icon>
+              <ion-icon color="warning"  name="star"></ion-icon>
             </p>
             <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
           </div>

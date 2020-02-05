@@ -63,28 +63,29 @@
 
 
 
-  <div class="loader-container" *ngIf="loader">
-    <div class="loader">Loading...</div>
-  </div>
-  <div  class="heading" >
+ 
+ 
   <ion-fab vertical="top" horizontal="end" slot="fixed">
    
       <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
   
   </ion-fab>
-  <hr>
-  </div>
-
   <ion-content>
-  
-  <div class="main-content" >
-  <div class="cartTitle" >
-    <ion-title>Orders</ion-title>
+   <div class="loader-container" *ngIf="loader">
+    <div class="loader">Loading...</div>
   </div>
+  <div class="main-content" >
+    <div class="search-section">
+      <div class="faq-heading">
+
+        <ion-title>Orders</ion-title>
+      </div>
+      <div class="search">
+
+        <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+      </div>
+    </div>
   <div  class="content-cover">
-    <ion-toolbar>
-      <ion-searchbar></ion-searchbar>
-    </ion-toolbar>
     <div class="orders" >
       <div class="row">
         <div class="col">    
@@ -95,7 +96,7 @@
               <div class="tab-content">
                 <div class="pedding-oders" >
                   <div class="invoicesContainer">
-                    <ion-card *ngFor = "let item of ordersPlaced">
+                    <ion-card *ngFor = "let item of ordersPlaced, let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)" >
                       <div class="invoicesList" (click)="viewDetail(item)">
                         <div>
                           <ion-label class="name" >{{item.info.name}}</ion-label>
@@ -147,5 +148,8 @@
       </div>
     </div>
   </div>
+  </div>
+  <div *ngIf="!myProduct" class="empty" >
+    <ion-title >no placed orders currently, come and check later on </ion-title>
   </div>
   </ion-content> 
