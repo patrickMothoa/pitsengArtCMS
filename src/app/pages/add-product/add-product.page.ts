@@ -28,7 +28,7 @@ export class AddProductPage implements OnInit {
     items:'',
     quantity : 1,
     lastcreated: '',
-    size:[]
+    sizes:''
   };
   sizes = null;
   productSize = {
@@ -56,7 +56,7 @@ export class AddProductPage implements OnInit {
       items: [this.event.items, Validators.compose([Validators.required])], 
       quantity : [this.event.quantity, Validators.compose([Validators.pattern("[^0-9]")])], 
        
-      size: [this.event.size, Validators.compose([Validators.requiredTrue])], 
+      size: [this.event.sizes, Validators.compose([Validators.requiredTrue])], 
     });
   }
 
@@ -81,14 +81,39 @@ export class AddProductPage implements OnInit {
       });
     });
   }
+
   async addEvent(){
+   
+    // console.log("ffff ", this.event.items);
+    
+
+    // setTimeout(() => {
+      
+    //   firebase.firestore().collection("Products").doc().set({
+    //     categories: this.event.categories,
+    //     desc : this.event.desc,
+    //     image: this.event.image,
+    //     items: this.event.items,
+    //     lastcreated: '',
+    //     name : this.event.name ,
+    //     price: this.event.price,
+    //     productCode: this.stringGen(6),
+    //     quantity:this.event.quantity,
+    //     size : this.sizes
+  
+    //   })
+
+      
+    // }, 1000);
+ 
+
     if (!this.event.image){
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product. No image selected or has not finnished uploading.'
       })
       alerter.present();
     } else {
-      if ( !this.event.desc||!this.event.quantity ||!this.event.size || !this.event.name || !this.event.price|| !this.event.categories || !this.event.items) {
+      if ( !this.event.desc||!this.event.quantity ||!this.event.sizes ||!this.event.name ||!this.event.price||!this.event.categories ||!this.event.items) {
         const alerter = await this.alertCtrl.create({
           message: 'Error saving product. Some fields not filled'
         })
@@ -201,11 +226,22 @@ export class AddProductPage implements OnInit {
   }
 
   getCategories(event){
+    
+    
     this.event.categories = event.detail.value;
   }
 
   getOption(event){
-    this.event.items = event.detail.value;
+  
+    if(event == 0){
+      // this.event.items = "per item"
+      console.log("per item ");
+      this.event.items = "per item"
+    }else{
+      console.log("per package ");
+      this.event.items = "per package "
+    }
+  
   }
   dismiss(){
     this.modalController.dismiss({

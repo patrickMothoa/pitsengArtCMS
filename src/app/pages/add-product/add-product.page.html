@@ -131,19 +131,25 @@
       </div>
       <div class="details-section">
         <div class="upload">
-          <ion-item color="dark">
+          <!-- <ion-item color="dark" *ngIf="!event.image">
+          <ion-input  lines="none" class="image-upload" type="file" accept="image/*" placeholder="upload image" (change)="changeListener($event)">
+          </ion-input>
+        </ion-item> -->
+        <ion-item *ngIf="!event.image">
+          <ion-label color="dark" position="stacked" id="profile_image">Upload Product Image</ion-label>
           <ion-input  lines="none" class="image-upload" type="file" accept="image/*" placeholder="upload image" (change)="changeListener($event)">
           </ion-input>
         </ion-item>
+        <ion-item *ngIf="event.image"><img src="{{event.image}}" height="80" width="80"></ion-item>
         </div>
         <div class="Product-name">
           <ion-item  lines="none" color="dark" >
             <ion-label >Categories</ion-label>
             <ion-select (ionChange)="getCategories($event)">
-              <ion-select-option value="Vase">Deco</ion-select-option>
-              <ion-select-option value="Cups and Plates">Lamps</ion-select-option>
-              <ion-select-option value="Decor Pallets">Vase</ion-select-option>
-              <ion-select-option value="Wall Deco">Pottery</ion-select-option>
+              <ion-select-option value="Deco">Deco</ion-select-option>
+              <ion-select-option value="Lamps">Lamps</ion-select-option>
+              <ion-select-option value="Vase">Vase</ion-select-option>
+              <ion-select-option value="Pottery">Pottery</ion-select-option>
               
             </ion-select>
           </ion-item>
@@ -152,14 +158,14 @@
         </div>
         <div class="Product-name">
           <ion-item  lines="none" color="dark" >
-              <ion-input placeholder="Product Name"></ion-input>
+              <ion-input placeholder="Product Name" [(ngModel)]="event.name"></ion-input>
           </ion-item>
         
 
         </div>
         <div class="Product-name">
           <ion-item  lines="none" color="dark">
-            <ion-input placeholder="Price" ></ion-input>
+            <ion-input placeholder="Price" [(ngModel)]="event.price"></ion-input>
           </ion-item>
         
 
@@ -171,11 +177,11 @@
           </div>
           <div  class="item" >
             <div>
-              <input type="radio" name="framework" value="laravel" id="laravel"/>
+              <input type="radio" (input)=" getOption(0)" name="framework" value="per item" id="laravel"/>
               <label for="laravel">per item</label>
             </div>
             <div>
-              <input type="radio" name="framework" value="yii" id="yii" checked="checked"/>
+              <input type="radio" (input)=" getOption(1)" name="framework" value="per pack" id="yii" checked="checked"/>
               <label for="yii">per pack</label>
             </div>
 
@@ -185,7 +191,7 @@
         <div class="description" >
           <div class="descr" >
             <ion-item color="dark">
-               <ion-textarea  lines="none"  placeholder="Enter more information about the product here..."></ion-textarea>
+               <ion-textarea  lines="none"  placeholder="Enter more information about the product here..." [(ngModel)]="event.desc"></ion-textarea>
             </ion-item>
            
           </div>
@@ -217,9 +223,9 @@
           </div>
           <div class="quantity">
             <div  ><p>Qty:{{currentNumber}}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
-           
+            <div> <ion-icon name="remove-circle" color="danger"  (click)="decrement(p)"></ion-icon>
+              <ion-icon name="add-circle" color="success"   (click)="increment(p)"></ion-icon></div>
+              
           </div>
          
         </div>
