@@ -105,7 +105,7 @@ dismiss(){
       cssClass: 'track-order',
       componentProps: { totalPrice: value.info.totalPrice,
       ref: value.ref,
-      name: value.info.product[0].prod.product_name,
+      name: value.info.product[0].prod.name,
       price: value.info.product[0].prod.price,
       quantity: value.info.product[0].prod.quantity,
       image: value.info.product[0].prod.image,

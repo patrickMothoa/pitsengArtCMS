@@ -123,7 +123,7 @@
  <div class="heading">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
 
-    <ion-icon color="dark" name="close"></ion-icon>
+    <ion-icon color="dark" name="close" (click)="dismiss()" ></ion-icon>
 
   </ion-fab>
   <hr>
@@ -139,14 +139,17 @@
         <div class="scroll">
       
           <div class="pedding-oders " *ngFor="let p of arr; let i=index;" [ngClass]="{'active': active==i}"  
-          (click)="showList(i, p)">
-  
+          (click)="showList(i, p.prod)">
+          <!-- <option  *ngFor="let p of arr; let i=index;"
+          [ngValue]="value"
+          [attr.selected]="!i"
+      >{{item}}</option> -->
             <div class="image">
               <img src="{{p.prod.image}}" alt="">
             </div>
             <div class="details">
               <div class="invoice">
-                <ion-label>{{p.prod.product_name}}</ion-label>
+                <ion-label>{{p.prod.name}}</ion-label>
               </div>
               <div class="price">
                 <ion-label>{{p.prod.total | currency : '&#82;'}}</ion-label>
@@ -175,13 +178,13 @@
           <div class="tacking-heading">
             <ion-title>tracking status</ion-title>
           </div>
-
+ <!-- *ngIf="toggled" -->
        
-          <div class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+          <div  class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
 
-            <div class="tracking-progress-bar">
+            <div  class="tracking-progress-bar">
               <div
-                class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active">
+                class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active"  >
                 1</div>
 
               <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
@@ -222,7 +225,7 @@
             <div class="product-details">
               <div class="firstItems">
                 <div class="product-name">
-                  <ion-label>{{trackOrders.product_name}} </ion-label>
+                  <ion-label>{{trackOrders.name}} </ion-label>
                 </div>
                
               </div>

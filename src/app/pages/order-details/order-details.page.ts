@@ -11,7 +11,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Platform, NavParams } from '@ionic/angular';
+import { Platform, NavParams, ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.page.html',
@@ -29,7 +29,8 @@ export class OrderDetailsPage implements OnInit {
     from: '',
     text: '' 
   };
-
+  toggled: boolean;
+  buttonColor: string;
   checkpdf = 'yeah im working';
   dbUser = firebase.firestore().collection('UserProfile');
   dbProfile = firebase.firestore().collection('admins');
@@ -86,7 +87,9 @@ export class OrderDetailsPage implements OnInit {
     amount: ''
   }
 
-  constructor(public dataservice : DataService,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
+  constructor(public dataservice : DataService,private router: Router, 
+    public route: ActivatedRoute,public DataService : DataService,
+     private file: File, private fileOpener: FileOpener, private plt: Platform,public modalController: ModalController) {
 
     
     this.name = `${this.name}`;
@@ -100,14 +103,20 @@ export class OrderDetailsPage implements OnInit {
      
      
    }
-
-   cancel(){
-      /////
-   }
-
+ngOnINi
+   showMovementReport() {
+    if(this.toggled){
+         this.buttonColor = '#345465';
+         this.toggled = false;
+    }
+    else{
+         this.buttonColor = '#ffffff'; //hex code for previous color
+         this.toggled = true;
+    }
+      }
 
   orderProcessed(){
-   // let status = ''
+   
     return this.dataservice.processOrder(this.key, 'processed').then(result => {
       if(result === 'success'){
  
@@ -119,6 +128,7 @@ export class OrderDetailsPage implements OnInit {
         this.orderShowbtn  = false;
         this.readyBtn  = false;
       }
+      // let status = ''ngOnInit(){
     })
   }
   orderStatus: number = 1;
@@ -194,10 +204,15 @@ receivedOrder(){
     // this.orderProcessed();
     // this.orderReady();
     // this.cancel()
+  // setTimeout(() => {
+  //   this.showList(0, this.trackOrders);
+  // }, 1000);
   }
+  selectedValueIndex;
   showList(i, p) {
     this.active = i;
-
+    
+    
     console.log('year', p);
 
 
@@ -209,6 +224,8 @@ receivedOrder(){
     this.trackOrders.productCode = p.prod.productCode;
     this.trackOrders.desc = p.prod.desc;
     this.trackOrders.amount =p.prod.amount;
+
+    this.selectedValueIndex = p
   }
   
   ionViewDidLeave() {
@@ -218,6 +235,11 @@ receivedOrder(){
   }
   ionViewDidEnter(){
    
+  }
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
   }
   getProfile() {
     this.dbProfile.doc(this.uid).onSnapshot((res)=>{

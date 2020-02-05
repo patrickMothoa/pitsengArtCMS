@@ -161,6 +161,34 @@ ion-content {
          border-radius: 100px;
      }
      
+
+     .fileInput {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+    .fileInput   label {
+        color: #717171;
+        background-color: white;
+        display: inline-block;
+        cursor: pointer;
+        padding: .5em 1em;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        
+    }
+    .edit-image{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 9999999999999999999999999;
+    }
+    .edit-image-icon{
+        font-size: x-large;
+    }
   
   
 

@@ -1,136 +1,231 @@
-<ion-content scroll="true" >
+<!-- 
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-icon color="light" (click)="dismiss()" name="close"></ion-icon>
+  </ion-fab>
 
 
-    <div class="row">
-      <div class=" sidebar1  ">
-        <div class="logo">
-          <img src="../../../assets/logo2.jpg" class="img-responsive center-block" alt="Logo" width="80" height="80">
+<ion-content>
+  <div class="content-section" >
+    <div class="content" *ngIf="isprofile" >
+      <div class="image-section" >
+        <img class="imageCover" src="{{profile.image}}"  alt="">
+      </div>
+      <div class="overlay" ></div>
+      <div class="admin-details" >
+        <div class="name" >
+          <h1>{{profile.name}} {{profile.surname}}</h1>
+
         </div>
-        <br>
-        <div class="left-navigation">
-          <div class="list">
-  
-            <ion-button expand="clear" color="light" (click)="openPro()" slot="end">Home</ion-button>
-            <br>
-            <ion-button expand="clear" color="light" (click)="openInvoice()" slot="end">Invoices</ion-button>
-            <br>
-            <ion-button expand="clear" color="light" (click)="logOut()" slot="end">Logout</ion-button>
+        <div class="email" >
+          <ion-title>{{profile.email}}</ion-title>
+        </div>
+        <div class="contact-number" >
+          <ion-title>{{profile.phoneNumber}}</ion-title>
+        </div>
+        <div class="address" >
+          <ion-title>{{profile.address}}</ion-title>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+
+<!-- 
+  <div class="itemsContainer">
+    <div *ngIf="!isprofile" class="">
+      <div>
+        <div class="coverImage">
+          <br><br>
+          <div class="CprofilePictureContainer">
+            <ion-label position="floating">cover image</ion-label>
+            <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
+              (change)="getImage($event.target.files)"></ion-input>
+         
+          </div>
+          <div class="ppic">
+            <div class="profilePictureContainer">
+              <div>
+                <ion-button class="button" color="warning"  expand="full" shape="full"
+                  (click)="createAccount()">Done</ion-button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="main-content">
-        <div class="navigation_bar">
-          <div class="navigation_bar">
-            <div class="navBarItems">
-  
-              <div class="profileBar">
-                <ion-button fill="clear" color="light" (click)="openProfile()" slot="end">
-                  <ion-icon slot="icon-only" name="contact"></ion-icon>
-                </ion-button>
-              </div>
-            </div>
-          </div>
+      <div class="adminDetails">
+        <div class="label">
+          <ion-item>
+            <ion-label color="medium" position="floating">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="medium" position="floating">Surname</ion-label>
+            <ion-input type="text" [(ngModel)]="profile.surname"></ion-input>
+          </ion-item>
         </div>
-        <div class="itemsContainer">
-          <div *ngIf="!isprofile" class="content">
-            <div>
-              <div class="coverImage">
-                <br><br>
-                <div class="CprofilePictureContainer">
-                  <ion-label position="floating">cover image</ion-label>
-                  <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
-                    (change)="getImage($event.target.files)"></ion-input>
-               
-                </div>
-                <div class="ppic">
-                  <div class="profilePictureContainer">
-                    <div>
-                      <ion-button class="button" color="warning"  expand="full" shape="full"
-                        (click)="createAccount()">Done</ion-button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="adminDetails">
-              <div class="label">
-                <ion-item>
-                  <ion-label color="medium" position="floating">Name</ion-label>
-                  <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label color="medium" position="floating">Surname</ion-label>
-                  <ion-input type="text" [(ngModel)]="profile.surname"></ion-input>
-                </ion-item>
-              </div>
-              <div class="contact">
-    
-                <ion-item>
-                  <ion-label position="floating" color="medium">Contact Number</ion-label>
-                  <ion-input  type="tel" maxlength="10" [(ngModel)]="profile.phoneNumber"></ion-input>
-                </ion-item>
-              </div>
-              <div class="address">
-                <ion-item text-align="center">
-                  <ion-label color="medium" position="floating">Address</ion-label>
-                  <ion-input type="text" [(ngModel)]="profile.address"></ion-input>
-                </ion-item>
-                <ion-item class="upload" text-align="center">
-                  <ion-label position="floating">Profile picture</ion-label>
-                  <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
-                    (change)="getImage($event.target.files)"></ion-input>
-                 
-                </ion-item>
-              </div>
-            </div>
-          </div>
-        
-          <div *ngIf="isprofile" class="content">
-            <div>
-              <div class="coverImage">
-                <div>
-                  <img class="imageCover" src="{{profile.image}}" alt="">
-                </div>
-                <div class="ppic">
-                  <div>
-                  </div>
-                  <div class="profilePictureContainer">
-                    <div>
-                      <img class="profilePicture" src="{{profile.image}}" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="adminDetails">
-              <div class="label">
-                <ion-item>
-                  <ion-title>{{profile.name}}</ion-title>
-                </ion-item>
-                <ion-item>
-                  <ion-title>{{profile.surname}}</ion-title>
-                </ion-item>
-              </div>
-              <div class="contact">
-                <ion-item>
-                  <ion-title>{{profile.email}}</ion-title>
-                </ion-item>
-                <ion-item>
-                  <ion-title>{{profile.phoneNumber}}</ion-title>
-                </ion-item>
-              </div>
-              <div class="address">
-                <ion-item text-align="center">
-                  <ion-title>{{profile.address}}</ion-title>
-                </ion-item>
-                <ion-button class="button" padding color="warning" expand="full" shape="full" (click)="edit()">
-                  Edit
-                </ion-button>
-              </div>
-            </div>
-          </div>
+        <div class="contact">
+
+          <ion-item>
+            <ion-label position="floating" color="medium">Contact Number</ion-label>
+            <ion-input  type="tel" maxlength="10" [(ngModel)]="profile.phoneNumber"></ion-input>
+          </ion-item>
         </div>
-  
+        <div class="address">
+          <ion-item text-align="center">
+            <ion-label color="medium" position="floating">Address</ion-label>
+            <ion-input type="text" [(ngModel)]="profile.address"></ion-input>
+          </ion-item>
+          <ion-item class="upload" text-align="center">
+            <ion-label position="floating">Profile picture</ion-label>
+            <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
+              (change)="getImage($event.target.files)"></ion-input>
+           
+          </ion-item>
         </div>
+      </div>
     </div>
-  </ion-content>
+  
+    <div *ngIf="isprofile" class="">
+      <div>
+        <div class="coverImage">
+          <div>
+            <img class="imageCover" src="{{profile.image}}" alt="">
+          </div>
+          <div class="ppic">
+            <div>
+            </div>
+            <div class="profilePictureContainer">
+              <div>
+                <img class="profilePicture" src="{{profile.image}}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="adminDetails">
+        <div class="label">
+          <ion-item>
+            <ion-title>{{profile.name}}</ion-title>
+          </ion-item>
+          <ion-item>
+            <ion-title>{{profile.surname}}</ion-title>
+          </ion-item>
+        </div>
+        <div class="contact">
+          <ion-item>
+            <ion-title>{{profile.email}}</ion-title>
+          </ion-item>
+          <ion-item>
+            <ion-title>{{profile.phoneNumber}}</ion-title>
+          </ion-item>
+        </div>
+        <div class="address">
+          <ion-item text-align="center">
+            <ion-title>{{profile.address}}</ion-title>
+          </ion-item>
+          <ion-button class="button" padding color="warning" expand="full" shape="full" (click)="edit()">
+            Edit
+          </ion-button>
+        </div>
+      </div>
+    </div> --> 
+
+
+   
+    <ion-content>
+    <!-- <div class="loader-container" *ngIf="loader">
+      <div class="loader">Loading...</div>
+    </div> -->
+<!--   
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+     
+        <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+    
+    </ion-fab> -->
+   
+    
+    <div class="main-content" >
+    <!-- <div padding class="cartTitle" >
+      <ion-title>Profile</ion-title>
+    </div> -->
+ 
+
+    <div  class="content-cover">
+      <!-- create profile -->
+      <div *ngIf="!isprofile" class="profile-section-edit" >
+        <div class="profile-picture-edit" >
+          <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
+          (change)="getImage($event.target.files)"></ion-input>
+     
+        </div>
+        <div class="profile-details" >
+          <ion-list>
+          <div class="edit-names" >
+              <ion-item>
+                     <ion-input placeholder="name" type="text" [(ngModel)]="profile.name" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input placeholder="surname" type="text" [(ngModel)]="profile.surname" ></ion-input>
+         </ion-item>
+          </div>
+          <!-- <div class="" >
+              <ion-item>
+                <ion-input placeholder="email address"  [(ngModel)]='email.address' ></ion-input>
+              </ion-item>
+          </div> -->
+          <div class="" >
+              <ion-item>
+                 <ion-input type="text" placeholder="address" [(ngModel)]="profile.address"></ion-input>
+              </ion-item>
+          </div>
+          <div class="edit-number" >
+              <ion-item>
+                 <ion-input placeholder="contact Number" type="number" min="0" max="10" [(ngModel)]="profile.phoneNumber"></ion-input>
+              </ion-item>
+          </div>
+        </ion-list>
+        </div>
+        <div class="edit-button" >
+          <div>
+            <ion-button  color="primary"  expand="full" shape="full"
+              (click)="createAccount()">Done</ion-button>
+          </div>
+        </div>
+    
+      </div>
+      <!-- display profile --> 
+       
+      <div *ngIf="isprofile" class="profile-section" > 
+        <div class=" background-cover" >
+  <div class="overlay"></div>
+      </div>
+        <div class="profile-picture" >
+          <ion-avatar>
+            <img src="{{profile.image}}">
+          </ion-avatar>
+        </div>
+        <ion-card padding class="profile-details" >
+          <div class="name" >
+             <ion-label>{{profile.name}}  </ion-label>  <ion-label> {{profile.surname}}</ion-label>
+          </div>
+          <div class="email" >
+             <ion-note>{{profile.email}}</ion-note> 
+          </div>
+          <div class="contacts" >
+            <ion-label>{{profile.phoneNumber}} </ion-label> 
+         </div>
+          <div class="address" >
+            <ion-label>{{profile.address}}</ion-label>
+          </div>
+        <div class="edit" >
+          
+            <ion-icon color="primary" name="create" (click)="edit()"></ion-icon>
+        </div>
+        </ion-card>
+      
+      </div>
+    </div>
+    </div>
+    </ion-content>
