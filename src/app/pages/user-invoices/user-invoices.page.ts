@@ -72,15 +72,22 @@ dismiss(){
     this.loader = true;
     this.db.collection("Order").onSnapshot(data => {
       this.ordersPlaced = [];
+      console.log(data);
+      
         data.forEach(item => {       
          this.ordersPlaced.push({ref:item.id,info:item.data()})
+         console.log(item.data().orderNumber);
+         
          this.loader = false;
+              //console.log("my data",this.ordersPlaced);
         }) 
      
         // this.router.navigateByUrl('/order-details'); 
 
 
       })
+
+      
   }
   
 
@@ -99,16 +106,16 @@ dismiss(){
 //   return await modal.present();
 // }
   async viewDetail(value) {
-    // console.log(value.ref);
+    console.log(value.ref);
     const modal = await this.modalController.create({
       component:OrderDetailsPage,
       cssClass: 'track-order',
       componentProps: { totalPrice: value.info.totalPrice,
       ref: value.ref,
-      name: value.info.product[0].prod.name,
-      price: value.info.product[0].prod.price,
-      quantity: value.info.product[0].prod.quantity,
-      image: value.info.product[0].prod.image,
+      name: value.info.product[0].product_name,
+      price: value.info.product[0].price,
+      quantity: value.info.product[0].quantity,
+      image: value.info.product[0].image,
       arr:value.info.product}
     
     });
