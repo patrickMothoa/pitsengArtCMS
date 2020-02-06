@@ -114,6 +114,8 @@ export class AddProductPage implements OnInit {
       alerter.present();
     } else {
       if ( !this.event.desc||!this.event.quantity ||!this.event.sizes ||!this.event.name ||!this.event.price||!this.event.categories ||!this.event.items) {
+        console.log(this.event);
+        
         const alerter = await this.alertCtrl.create({
           message: 'Error saving product. Some fields not filled'
         })
@@ -201,6 +203,7 @@ export class AddProductPage implements OnInit {
 
     switch (val) {
       case 'S':
+        this.event.sizes = 'S'
         this.productSize = {
           small: true,
           medium: false,
@@ -208,6 +211,7 @@ export class AddProductPage implements OnInit {
         }
         break;
       case 'M':
+        this.event.sizes = 'M'
         this.productSize = {
           small: false,
           medium: true,
@@ -215,6 +219,7 @@ export class AddProductPage implements OnInit {
         }
         break;
       case 'L':
+        this.event.sizes = 'L'
         this.productSize = {
           small: false,
           medium: false,
