@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-product.page.scss'],
 })
 export class AddProductPage implements OnInit {
-
+  progress: number = 0;
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
@@ -71,8 +71,10 @@ export class AddProductPage implements OnInit {
     console.log(i);
     const upload = this.storage.child(i.name).put(i);
     upload.on('state_changed', snapshot => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('upload is: ', progress , '% done.');
+
+
+      this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('upload is: ', this.progress , '% done.');
     }, err => {
     }, () => {
       upload.snapshot.ref.getDownloadURL().then(dwnURL => {

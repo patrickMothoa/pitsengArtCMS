@@ -21,7 +21,7 @@ export class QuriesPage implements OnInit {
   ngOnInit() {
     this.getMessage()
     setTimeout(() => {
-      this.showList(0);
+      this.showList(0, this.message[0]);
       console.log('index',  )
     }, 1000);
   }
@@ -46,10 +46,10 @@ snapshot.forEach(doc => {
     })
       
   }
-  showList(i) {
+  showList(i, m) {
     this.active = i;
    
-    
+    this.userMessage.mail = m.email;
     
     
     console.log('year',this. message);

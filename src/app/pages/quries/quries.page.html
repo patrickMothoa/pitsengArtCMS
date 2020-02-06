@@ -5,7 +5,7 @@
       <div class="message-section">
         <h1>Messages</h1>
         <div class="messages">
-          <div class="message-card" *ngFor="let m of message let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)">
+          <div class="message-card" *ngFor="let m of message; let i=index " [ngClass]="{'active': active==i}" (click)="showList(i, m)">
             <div *ngIf="!myProduct" class="empty">
               <ion-title> no sent messages at the moment</ion-title>
             </div>
@@ -46,7 +46,7 @@
           Replay to messages
         </h1>
         <div class="response">
-          <ion-label>Replay to: <p> martymcfly@gmail.com</p>
+          <ion-label>Replay to: <p> {{userMessage.mail}}</p>
           </ion-label>
         </div>
         <div class="response-as">

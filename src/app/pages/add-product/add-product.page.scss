@@ -1,4 +1,6 @@
-
+ion-content{
+  --overflow:hidden
+}
 .heading{
   // border:  solid blue;
   height: 8%;
@@ -289,4 +291,10 @@ ion-input, ion-textarea, ion-label {
 //  margin-bottom: 2006px;
 text-transform: capitalize;
   
+}
+.item-progress{
+  width: 485px;
+  p{
+    padding-right: 8px;
+  }
 }
