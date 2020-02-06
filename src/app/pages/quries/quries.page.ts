@@ -48,6 +48,8 @@ snapshot.forEach(doc => {
   }
   showList(i) {
     this.active = i;
+   
+    
     
     
     console.log('year',this. message);

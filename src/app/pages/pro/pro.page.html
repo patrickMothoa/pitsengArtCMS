@@ -49,34 +49,53 @@
       <ion-item>
         <ion-label>Sales</ion-label>
       </ion-item>
-      <div class="sales">
-        <div class="sale_item" *ngFor="let event of proSales; let i=index;" [ngClass]="{'active': active==i}">
-          <div class="image">
-            <img src="{{event.obj.image}}">
-            <p>{{event.obj.percentage}} % off </p>
-          </div>
-          <div class="item_details">
-            <p>Vase</p>
-            <p id="ratings">
-              <ion-icon color="warning" name="star"></ion-icon>
-              <ion-icon color="warning"  name="star"></ion-icon>
-              <ion-icon  color="warning" name="star"></ion-icon>
-              <ion-icon  color="warning" name="star"></ion-icon>
-              <ion-icon color="warning"  name="star"></ion-icon>
-            </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
-          </div>
-
-        </div>        
+      
+      <div class="special-section" *ngIf="!myProduct"  >
+        <div class="specials-overlay" ></div>
+        <div *ngFor="let me of SpecialScrin" >
+        <div class="specials">
+          <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png">
+         <ion-title>There are currently no specials!</ion-title> <ion-title>stay tuned theres more specials to come <ion-icon name="smile" color=" warmning"></ion-icon> </ion-title>
+        </div>
       </div>
     </div>
+   
+        <div class="cards-container"  >
+      
+          <!-- Fetching all products on special -->
+    <div   class="products-section" *ngFor="let event of proSales; let i=index;" >
+    <div class="cards"  [ngClass]="{'active': active==i}"  >
+      <div class="percent-off" >
+        <p>{{event.obj.percentage}} % off</p>
+
+      </div>
+      <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
+      <ion-label class="price"> R 300<span class="span-tsrike" >R 600</span>  </ion-label>
+      <ion-label class="name"> name </ion-label>
+      <div class="stars">
+        <ion-icon name="star" color="warning"></ion-icon>
+        <ion-icon name="star" color="warning"></ion-icon>
+        <ion-icon name="star" color="warning"></ion-icon>
+        <ion-icon name="star" color="warning"></ion-icon>
+        <ion-icon name="star-outline" color="warning"></ion-icon>
+      </div>
+      <!-- <div class="icon-wish" >
+        <ion-icon name="heart"  (click)="addWishlist()" ></ion-icon>
+      </div> -->
+   
+    </div>
   </div>
+  </div>
+      </div>
+    </div>
+  <!-- </div> -->
 </ion-content>
 
 
 
 
 
+<!--  *ngFor="let event of proSales; let i=index;" [ngClass]="{'active': active==i}" -->
 
  <!-- <ion-content scroll="true" >
   <div class="container">
