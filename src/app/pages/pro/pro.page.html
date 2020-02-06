@@ -56,7 +56,7 @@
             <p>{{event.obj.percentage}} % off </p>
           </div>
           <div class="item_details">
-            <p>Vase</p>
+            <p>{{event.obj.name}}</p>
             <p id="ratings">
               <ion-icon color="warning" name="star"></ion-icon>
               <ion-icon color="warning"  name="star"></ion-icon>
@@ -64,7 +64,7 @@
               <ion-icon  color="warning" name="star"></ion-icon>
               <ion-icon color="warning"  name="star"></ion-icon>
             </p>
-            <p>R300 <span style="  text-decoration: line-through; ">R600.00</span></p>
+            <p>{{event.obj.totalPrice | currency: '&#82;'}}<span style="  text-decoration: line-through; ">{{event.obj.price | currency: '&#82;'}}</span></p>
           </div>
 
         </div>        

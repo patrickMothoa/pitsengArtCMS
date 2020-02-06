@@ -22,6 +22,20 @@ export class ProductService {
     large: ''
   };
 
+  Deco = []
+  Vase = []
+
+  Detail = {
+    image : "",
+    price : "",
+    name : "",
+    desc : "",
+    size : "",
+    items : "",
+    category : "",
+    key : ""
+  }
+
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
   }
 ​

@@ -12,6 +12,7 @@ import { PopoverComponent } from 'src/app/components/popover/popover.component';
 import { UserInvoicesPage } from '../user-invoices/user-invoices.page';
 import { AddProductPage } from '../add-product/add-product.page';
 
+
 @Component({
   selector: 'app-pro',
   templateUrl: './pro.page.html',
@@ -528,16 +529,97 @@ async createModal() {
   });
   return await modal.present();
 }
+
+
 categorylist(i){
+
+ 
+if(i == "Deco"){
   console.log('seko',i);
+  firebase.firestore().collection("Products").onSnapshot(data => {
+    this.data.Deco = []
+    let obj = {data : {}, key : ""}
+    data.forEach(item => {
+      
+      if(item.data().categories == "Deco"){
+      obj.data = item.data()
+      obj.key = item.id
+        this.data.Deco.push(obj)
+        obj = {data : {}, key : ""}
+        
+      }
+    })
+
+    this.router.navigateByUrl("categorylist")
+  })
+
+}else if(i == "Vase"){
+
+  console.log('seko',i);
+  firebase.firestore().collection("Products").onSnapshot(data => {
+    this.data.Deco = []
+    let obj = {data : {}, key : ""}
+    data.forEach(item => {
+      
+      if(item.data().categories == "Vase"){
+      obj.data = item.data()
+      obj.key = item.id
+        this.data.Deco.push(obj)
+        obj = {data : {}, key : ""}
+        
+      }
+    })
+
+    this.router.navigateByUrl("categorylist")
+  })
+
+}else if(i == "Lamps"){
+
+  console.log('seko',i);
+  firebase.firestore().collection("Products").onSnapshot(data => {
+    this.data.Deco = []
+    let obj = {data : {}, key : ""}
+    data.forEach(item => {
+      
+      if(item.data().categories == "Lamps"){
+      obj.data = item.data()
+      obj.key = item.id
+        this.data.Deco.push(obj)
+        obj = {data : {}, key : ""}
+        
+      }
+    })
+
+    this.router.navigateByUrl("categorylist")
+  })
+
+
   
-  let navigationExtras: NavigationExtras = {
-    state: {
-      parms: i
-    }
-  }
-  this.router.navigate(['categorylist'],navigationExtras)   
+}else if(i == "Pottery"){
+  console.log('seko',i);
+  firebase.firestore().collection("Products").onSnapshot(data => {
+    this.data.Deco = []
+    let obj = {data : {}, key : ""}
+    data.forEach(item => {
+      
+      if(item.data().categories == "Pottery"){
+      obj.data = item.data()
+      obj.key = item.id
+        this.data.Deco.push(obj)
+        obj = {data : {}, key : ""}
+        
+      }
+    })
+
+    this.router.navigateByUrl("categorylist")
+  })
+
 }
+ 
+ 
+}
+
+
 getPictures(){
   let obj = {id : '', obj : {}};
   this.db.collection('Pictures').doc('images').get().then(snapshot => {
@@ -566,7 +648,7 @@ getPictures(){
 }
 getSpecials(){
   let obj = {id : '', obj : {}};
-this.db.collection('sales').limit(5).get().then(snapshot => {
+this.db.collection('Sales').limit(5).get().then(snapshot => {
   this.proSales = [];
   if (snapshot.empty) {
           this.myProduct = false;

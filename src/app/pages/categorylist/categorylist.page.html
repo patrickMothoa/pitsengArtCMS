@@ -1,6 +1,6 @@
-<div class="loader-container" *ngIf="loader">
+<!-- <div class="loader-container" *ngIf="loader">
   <div class="loader">Loading...</div>
-</div>
+</div> -->
 
 <ion-content>
     <div class="content-container">
@@ -9,11 +9,11 @@
           <div class=" categoryList">
             <div class="cards-container" >
              
-              <div  class="products-section" *ngFor="let event of Products; let i=index;">
-              <div *ngIf="Products" class="cards"(click)=" createViewProduct(event)"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
-                <img class="animated fadeInDown 2s" src="{{event.image}}" alt="">
-                <ion-label class="price">R &nbsp; {{event.price}}</ion-label>
-                <ion-label class="name"> {{event.name}} </ion-label>
+              <div  class="products-section" *ngFor="let event of Deco; let i=index;">
+              <div  class="cards"(click)=" createViewProduct(event.data, event.key)"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
+                <img class="animated fadeInDown 2s" src="{{event.data.image}}" alt="">
+                <ion-label class="price">R &nbsp; {{event.data.price}}</ion-label>
+                <ion-label class="name"> {{event.data.name}} </ion-label>
                 <div class="stars">
                   <ion-icon name="star" color="warning"></ion-icon>
                   <ion-icon name="star" color="warning"></ion-icon>
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!myProduct" class="empty" >
+      <div *ngIf="Deco.length == 0" class="empty" >
         <ion-title >This product is not available  currently.</ion-title>
       </div>
 </ion-content>
