@@ -3,6 +3,7 @@ import { PopoverController, ModalController } from '@ionic/angular';
 import { ProfilePage } from 'src/app/pages/profile/profile.page';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popover',
@@ -31,6 +32,7 @@ export class PopoverComponent implements OnInit {
     });
   }
   logOut(){
+    this.ConfirmationAlert();
     firebase.auth().signOut().then(()=> {
       // Sign-out successful.
       this.router.navigateByUrl('/login');
@@ -38,4 +40,30 @@ export class PopoverComponent implements OnInit {
       // An error happened.
     });
   }
+
+
+  ConfirmationAlert(){
+    Swal.fire({
+      title: 'Are you sure you want to logout?',
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      },
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#06A94D',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Logout!',
+          'Your have logged out .',
+          'success'
+        )
+      }
+    })
+   }
 }
