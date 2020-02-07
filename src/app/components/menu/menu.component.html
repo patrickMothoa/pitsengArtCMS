@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary"  *ngIf="!myProduct" >
+  <ion-toolbar color="primary" *ngIf="!myProduct">
     <ion-title>
       <div class="title">
         <div class="text">Special Up to 75%</div>
@@ -14,13 +14,16 @@
     <div class="nav">
 
       <img src="../../assets/Group 60.png" alt="" (click)="openHome()" class="logo">
-      <div class="nav-btn">
+      <!-- <div class="nav-btn">
         <label for="nav-check">
           <span></span>
           <span></span>
           <span></span>
         </label>
-      </div>
+      </div> -->
+      <ion-button id="optsToggle" icon-only fill="clear" (click)="showOptions()"> 
+        <ion-icon name="{{menuToggle}}"></ion-icon>
+      </ion-button>
 
       <div class="nav-links">
 
@@ -31,24 +34,43 @@
         <ion-button class="item" color="medium" fill="clear" slot="end" (click)="queries()">Queries</ion-button>
         <ion-button class="item" color="medium" fill="clear" slot="end" (click)="openAboutUS()">About Us </ion-button>
         <ion-button class="item" color="medium" fill="clear" slot="end" (click)="createFaqs()">FAQ's</ion-button>
-        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="addProduct()"><ion-icon name="add"></ion-icon>Product</ion-button>
-
-        <ion-button class="item" color="medium" fill="clear" slot="end"><ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()"
-            (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products" value="" style='min-width: 10px;'>
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="addProduct()">
+          <ion-icon name="add"></ion-icon>Product
+        </ion-button>
+        <ion-button class="item" color="medium" fill="clear" slot="end">
+          <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products" value="" style='min-width: 10px;'>
           </ion-searchbar>
           <div no-padding fill="clear" class="search" lines="none" *ngIf="!isSearchbarOpened">
-            
-              <ion-icon slot="icon-only" color="medium" name="search" (click)="isSearchbarOpened=true"></ion-icon>
-            
-          </div></ion-button>
-  
-    
-    
-        
-      
-       
-        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="presentPopover($event)"><ion-icon name="person"></ion-icon></ion-button>
+            <ion-icon slot="icon-only" color="medium" name="search" (click)="isSearchbarOpened=true"></ion-icon>
+          </div>
+        </ion-button>
+        <ion-button class="item" color="medium" fill="clear" slot="end" (click)="presentPopover($event)">
+          <ion-icon name="person"></ion-icon>
+        </ion-button>
 
+
+
+      </div>
+      <div class="floating-links" id="opts">
+
+        <ion-button class="itemF" color="medium" fill="clear" (click)="openProS()" slot="end">Home</ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" (click)="openInvoiceS()" slot="end">Orders</ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="queriesS()">Queries</ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="openAboutUSS()">About Us </ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="createFaqsS()">FAQ's</ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="addProductS()">
+          <ion-icon name="add"></ion-icon>Product
+        </ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" slot="end">
+          <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionClear)="removeSearchList()" (ionClear)="resetChanges()" (ionCancel)='isSearchbarOpened=false' placeholder="Search Products" value="" style='min-width: 10px;'>
+          </ion-searchbar>
+          <div no-padding fill="clear" class="search" lines="none" *ngIf="!isSearchbarOpened">
+            <ion-icon slot="icon-only" color="medium" name="search" (click)="isSearchbarOpened=true"></ion-icon>
+          </div>
+        </ion-button><br>
+        <ion-button class="itemF" color="medium" fill="clear" slot="end" (click)="presentPopover($event)">
+          <ion-icon name="person"></ion-icon>
+        </ion-button>
 
 
       </div>
