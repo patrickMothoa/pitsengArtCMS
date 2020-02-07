@@ -25,7 +25,7 @@ export class QuriesPage implements OnInit {
       console.log('index',  )
     }, 1000);
   }
-  
+  //   this.userMessage.mail = m.email; this.selectedValueIndex = p
   getMessage(){
    
     this.db.collection('Messages').get().then(snapshot => {
@@ -57,8 +57,9 @@ snapshot.forEach(doc => {
   
   
   
-    // this.selectedValueIndex = p
-  }
+ 
+   }
 }
 
 
+ 

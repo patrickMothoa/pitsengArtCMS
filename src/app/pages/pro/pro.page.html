@@ -2,8 +2,8 @@
   <div class="loader">Loading...</div>
 </div>
 <ion-content>
-  <div class="container" id="web_view">
-    <div class="grid">
+  <div class="container">
+    <!-- <div class="grid">
       <div class="left hvr-grow"(click)="categorylist('Deco')">
         <div class="card">
           <img src="{{Homescreen.deco}}" alt="">
@@ -32,8 +32,33 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
+    <div class="category-Container">
+      <div class="First-Category-Block"(click)="categorylist('Deco')">
+        <img  src="{{Homescreen.deco}}" alt="">
+        <ion-label class="category-label"><span>Deco (1)</span></ion-label>
+      </div>
 
+      <div class="Second-Category-Block" (click)="categorylist('Pottery')">
+        <div class="firstSecond-block">
+          <img  src="{{Homescreen.pottery}}" alt="">
+          <ion-label class="category-label"><span>Pottery (45)</span></ion-label> 
+
+        </div>
+        <div class="container-bottom2">
+          <div class="seconSecond-block" (click)="categorylist('Lamps')" >
+            <img  src="{{Homescreen.lamps}}" alt="">
+            <ion-label class="category-label"><span>Lamps (5)</span></ion-label> 
+          </div>
+          <div class="thirdSecond-block" (click)="categorylist('Vase')">
+            <img  src="{{Homescreen.vase}}" alt="">
+            <ion-label class="category-label"><span>Vases (10)</span></ion-label> 
+          </div>
+        </div>
+      </div>
+
+
+    </div>
     <div class="more_deals">
       <div class="info">
         <h1>More Deals</h1>
@@ -51,18 +76,17 @@
       </ion-item>
       
       <div class="special-section" *ngIf="!myProduct"  >
-        <div class="specials-overlay" ></div>
-        <div *ngFor="let me of SpecialScrin" >
-        <div class="specials">
+        <div class="specials"> 
+           <div class="specials-overlay" ></div>
           <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png">
-         <ion-title>There are currently no specials!</ion-title> <ion-title>stay tuned theres more specials to come <ion-icon name="smile" color=" warmning"></ion-icon> </ion-title>
+         <ion-title class="ion-text-wrap" >There are currently no specials!</ion-title>
+          <ion-title class="ion-text-wrap" >stay tuned the is more  to come</ion-title>
         </div>
-      </div>
     </div>
    
         <div class="cards-container"  >
       
-          <!-- Fetching all products on special -->
+          <!-- Fetching all products on special *ngFor="let me of SpecialScrin"-->
     <div   class="products-section" *ngFor="let event of proSales; let i=index;" >
     <div class="cards"  [ngClass]="{'active': active==i}"  >
       <div class="percent-off" >
