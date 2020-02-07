@@ -167,7 +167,7 @@
           </div>
         </div>
 <div class="total-amount" *ngFor="let p of arr; let i=index;">
-            <ion-title>Total :{{totalPrice | currency : '&#82;'}} </ion-title>
+            <!-- <ion-title>Total :{{totalPrice | currency : '&#82;'}} </ion-title> -->
           </div>
         <div class="tracking" *ngFor="let p of arr; let i=index;">
           <div class="tacking-heading">
@@ -218,10 +218,10 @@
             <ion-button class="buttons" *ngIf="status === 'delivered'"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> Close Order</ion-button> -->
         
               
-            <ion-button class="buttons" *ngIf="status === 'received'" (click)="cancelOrder()">Cancel</ion-button>
-            <ion-button class="buttons"  *ngIf="status === 'received'" (click)="processOrder()">Process Order</ion-button>
-            <ion-button class="buttons"  *ngIf="status === 'processed'" (click)="orderIsReady()">Ready for Collection</ion-button>
-            <ion-button class="buttons"  *ngIf="status === 'ready'" (click)="closeOrder()">Collected</ion-button>
+            <ion-button class="buttons" *ngIf="p.obj.status === 'received'" (click)="cancelOrder()">Cancel</ion-button>
+            <ion-button class="buttons"  *ngIf="p.obj.status === 'received'" (click)="processOrder()">Process Order</ion-button>
+            <ion-button class="buttons"  *ngIf="p.obj.status === 'processed'" (click)="orderIsReady()">Ready for Collection</ion-button>
+            <ion-button class="buttons"  *ngIf="p.obj.status === 'ready'" (click)="closeOrder()">Collected</ion-button>
           </div>
 
           </div>
