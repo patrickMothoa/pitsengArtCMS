@@ -31,7 +31,7 @@ export class UserInvoicesPage implements OnInit {
   Orders =[]
   public display;
   public postSort='recent';
-  public userID;
+  public userID;z
   public userTransact: any;
   myArr = []
   myArray = []

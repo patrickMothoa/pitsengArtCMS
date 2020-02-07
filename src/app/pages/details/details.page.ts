@@ -74,6 +74,7 @@ export class DetailsPage implements OnInit {
     this.obj.size =  this.data.Detail.size
     this.obj.items =  this.data.Detail.items
     this.obj.category= this.data.Detail .category
+
     this.key = this.data.Detail.key
     this.obj.productCode = this.data.Detail.productCode
   
@@ -150,7 +151,7 @@ firebase.firestore().collection("Sales").doc().set({
  size : this.obj.size,
  items  : this.obj.items,
  productCode:this.obj.productCode,
- category :  this.obj.category,
+ categories :  this.obj.category,
    startDate:this.editStartDate,
    endDate:this.editEndDate,
    percentage:this.editPercentage,
