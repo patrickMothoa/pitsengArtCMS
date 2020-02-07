@@ -97,6 +97,7 @@ adminInfo(){
     this.data.Detail.name = event.name
     this.data.Detail.price = event.price
     this.data.Detail.size = event.sizes
+    this.data.Detail.productCode = event.productCode
     this.data.Detail.key = key
 
 

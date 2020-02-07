@@ -46,7 +46,8 @@ export class DetailsPage implements OnInit {
     desc : "",
     size : "",
     items : "",
-    category : ""
+    category : "",
+    productCode:""
   }
   
   key = ""
@@ -74,6 +75,7 @@ export class DetailsPage implements OnInit {
     this.obj.items =  this.data.Detail.items
     this.obj.category= this.data.Detail .category
     this.key = this.data.Detail.key
+    this.obj.productCode = this.data.Detail.productCode
   
     this.value = parseFloat(this.obj.price)
   this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
@@ -147,6 +149,7 @@ firebase.firestore().collection("Sales").doc().set({
  desc : this.obj.desc,
  size : this.obj.size,
  items  : this.obj.items,
+ productCode:this.obj.productCode,
  category :  this.obj.category,
    startDate:this.editStartDate,
    endDate:this.editEndDate,

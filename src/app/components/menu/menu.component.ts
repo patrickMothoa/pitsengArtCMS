@@ -20,6 +20,8 @@ export class MenuComponent implements OnInit {
     private router: Router,) { }
     public showSearchBar = false;
     public isSearchbarOpened = false;
+
+    myProduct = false;
   ngOnInit() {}
   openAboutUS(){
     this.router.navigateByUrl('/aobut-us')

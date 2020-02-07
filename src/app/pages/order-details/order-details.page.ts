@@ -85,7 +85,9 @@ export class OrderDetailsPage implements OnInit {
     image: '',
     productCode: '',
     desc: '',
-    amount: ''
+    amount:'',
+    orderStatus:'',
+    
   }
   
 
@@ -99,6 +101,7 @@ export class OrderDetailsPage implements OnInit {
     this.arr = `${this.arr}`;
     this.price = `${this.price}`;
     this.totalPrice = `${this.totalPrice}`;
+    this.orderStatus = `${this.orderStatus}`;
     
      
      
@@ -159,11 +162,11 @@ receivedOrder(){
   }, 1000);
     console.log("my ref",this.ref);
     
-      this.orderProcessed();
-      this.orderPrepared()
-      this.orderReady();
-      this.orderCollect()
-    this.dismiss();
+    //   this.processOrder();
+    //   this.orderPrepared()
+    //   this.orderReady();
+    //   this.orderCollect()
+    // this.dismiss();
   }
   showList(i, p) {
     this.active = i;
@@ -179,6 +182,7 @@ receivedOrder(){
     this.trackOrders.productCode = p.productCode;
     this.trackOrders.desc = p.desc;
     this.trackOrders.amount =p.amount;
+    this.trackOrders.orderStatus =p.orderStatus;
 
     // this.selectedValueIndex = p
   }
@@ -403,6 +407,7 @@ receivedOrder(){
     this.pdfObj.download();
   }
 
+  orderStatus;
 
   saveData() {
       console.log("Your key ", this.orderNumber);
@@ -411,39 +416,44 @@ receivedOrder(){
       pdfLink : this.pdfLink })
   
   }
-  orderProcessed(){
+  processOrder(){
     console.log("Your key ",this.ref);
    
  firebase.firestore().collection("Order").doc(this.ref).update({
-  status : 'process' })
+  status : 'processed' })
   
-  
-   
-
-
  }
- orderPrepared() { 
+ orderIsReady() { 
  
   console.log("Your key ",this.ref);
  
 firebase.firestore().collection("Order").doc(this.ref).update({
-  status : 'prepared' })
+  status : 'ready' })
   
 
 }
-  orderReady() {
+closeOrder() {
     console.log("Your key ",this.ref);
    
  firebase.firestore().collection("Order").doc(this.ref).update({
-  status : 'orderReady' })
+  status : 'delivered' })
 }
 
+cancelOrder(){
+  
+  console.log("Your key ",this.ref);
+   
+  firebase.firestore().collection("Order").doc(this.ref).update({
+   status : 'cancelled' })
+
+   
+}
 
 orderCollect() {
   this.dbOrder.doc(this.ref).onSnapshot((res) => {
     console.log("My status", res.data().status);
     
-    if (res.data().status === 'ready') {
+    if (res.data().status === 'delivered' || res.data().status === 'cancelled') {
       //console.log('Collect');
       this.dbHistory.doc(this.ref).set({ date: new Date().getTime(), reciept: null }).then(() => {
         // this.dbOrder.doc(this.ref).delete();

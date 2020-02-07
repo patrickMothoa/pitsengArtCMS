@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-product.page.scss'],
 })
 export class AddProductPage implements OnInit {
-
+  progress: number = 0;
   db = firebase.firestore();
   storage = firebase.storage().ref();
   //categories
@@ -41,6 +41,36 @@ export class AddProductPage implements OnInit {
   eventSource = [];
   reviews = [];
   actRoute: any;
+
+
+  get Image() {
+    return this.productForm.get('image');
+  }
+  get Categories() {
+    return this.productForm.get('categories');
+  }
+  get Name() {
+    return this.productForm.get('name');
+  }
+  get price() {
+    return this.productForm.get('price');
+  }
+  get productCode() {
+    return this.productForm.get('productCode');
+  }
+  get desc() {
+    return this.productForm.get('desc');
+  }
+  get items() {
+    return this.productForm.get('items');
+  }
+  get quantity() {
+    return this.productForm.get('quantity');
+  }
+  get size() {
+    return this.productForm.get('size');
+  }
+
  
   constructor(public   formBuilder: FormBuilder,
     private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, 
@@ -55,7 +85,6 @@ export class AddProductPage implements OnInit {
       desc: [this.event.desc, Validators.compose([Validators.required])], 
       items: [this.event.items, Validators.compose([Validators.required])], 
       quantity : [this.event.quantity, Validators.compose([Validators.pattern("[^0-9]")])], 
-       
       size: [this.event.sizes, Validators.compose([Validators.requiredTrue])], 
     });
   }
@@ -71,8 +100,10 @@ export class AddProductPage implements OnInit {
     console.log(i);
     const upload = this.storage.child(i.name).put(i);
     upload.on('state_changed', snapshot => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('upload is: ', progress , '% done.');
+
+
+      this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('upload is: ', this.progress , '% done.');
     }, err => {
     }, () => {
       upload.snapshot.ref.getDownloadURL().then(dwnURL => {

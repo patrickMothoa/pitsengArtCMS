@@ -33,7 +33,8 @@ export class ProductService {
     size : "",
     items : "",
     category : "",
-    key : ""
+    key : "",
+    productCode:""
   }
 
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {

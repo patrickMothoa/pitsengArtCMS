@@ -535,11 +535,13 @@ categorylist(i){
 
  
 if(i == "Deco"){
-  console.log('seko',i);
+  
   firebase.firestore().collection("Products").onSnapshot(data => {
+    
     this.data.Deco = []
     let obj = {data : {}, key : ""}
     data.forEach(item => {
+      console.log("dddd ", item.data());
       
       if(item.data().categories == "Deco"){
       obj.data = item.data()

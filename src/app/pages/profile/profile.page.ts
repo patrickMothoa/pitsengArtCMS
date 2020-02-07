@@ -37,12 +37,18 @@ export class ProfilePage implements OnInit {
     uid: '',
     email:''
   }
+  loader: boolean = true;
   
   constructor(public alertCtrl: AlertController,
     private router: Router,
      private profileServ: ProfileService,public modalController: ModalController) { 
     this.uid = firebase.auth().currentUser.uid;
     
+  }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
   }
  
   ngOnInit() {

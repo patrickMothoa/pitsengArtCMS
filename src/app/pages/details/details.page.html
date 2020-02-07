@@ -136,7 +136,7 @@
         </div>
         <div class="product-selection">
           <div class="product-code">
-            <ion-label>code: : JKH74893234895</ion-label>
+            <p>code:{{obj.productCode}}</p>
           </div>
           <div class="item">
             <div>
@@ -202,7 +202,7 @@
 
         </div>
         <div class="field" id="searchform">
-          <ion-input type="text" id="searchterm"  [(ngModel)]='editPercentage' placeholder="promote e.g(30%)"></ion-input>
+          <ion-input type="tel" id="searchterm" max="100" maxlength="2" [(ngModel)]='editPercentage' placeholder="promote e.g(30%)"></ion-input>
           <button type="button" id="search" (click)="promoteItem()"  >promote</button>
         </div>
         <div class="prices">

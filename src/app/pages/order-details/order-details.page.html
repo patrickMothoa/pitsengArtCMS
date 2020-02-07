@@ -171,10 +171,23 @@
           </div>
         <div class="tracking">
           <div class="tacking-heading">
-            <ion-title>tracking status</ion-title>
+            <ion-title>tracking status: {{status}}</ion-title>
           </div>
 
-          <div  class="boleto__wrapper boleto__wrapper--tracking-progress-bar">
+          <div  class=" oders">
+            <div class="recieved" >
+              <p>{{status}}</p>
+            </div>
+            <div class="processed" >
+              <p></p>
+            </div>
+            <div class="ready" >
+              <p></p>
+
+            </div>
+            <div class="delivered" >
+              <p></p>
+            </div>
 
             <!-- <div class="tracking-progress-bar">
               <div
@@ -198,11 +211,17 @@
               <div class="four">delivered</div>
             </div> -->
             <div class="status">
-            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
-            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderPrepared()"> being prepared </ion-button>
-            <ion-button class="buttons" *ngIf="!orderShowbtn"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> order is ready </ion-button>
-            <ion-button class="buttons" *ngIf="!readyBtn"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> ready for collections </ion-button>
+            <!-- <ion-button class="buttons" *ngIf="status === 'received'">Cancel Order</ion-button>
+            <ion-button class="buttons" *ngIf="status === 'received'"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
+            <ion-button class="buttons" *ngIf="status === 'processed'"  padding  color="secondary"  shape="round" expand="full" (click)="orderPrepared()"> Order Ready</ion-button>
+            <ion-button class="buttons" *ngIf="status === 'ready'"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> order is ready </ion-button>
+            <ion-button class="buttons" *ngIf="status === 'delivered'"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> Close Order</ion-button> -->
         
+              
+            <ion-button class="buttons" *ngIf="status === 'received'" (click)="cancelOrder()">Cancel</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'received'" (click)="processOrder()">Process Order</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'processed'" (click)="orderIsReady()">Ready for Collection</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'ready'" (click)="closeOrder()">Collected</ion-button>
           </div>
 
           </div>
