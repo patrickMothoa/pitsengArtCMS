@@ -74,29 +74,12 @@
       <ion-item>
         <ion-label>Sales</ion-label>
       </ion-item>
-      <div class="sales">
-        <div class="sale_item" *ngFor="let event of proSales; let i=index;" [ngClass]="{'active': active==i}">
-          <div class="image">
-            <img src="{{event.obj.image}}">
-            <p>{{event.obj.percentage}} % off </p>
-          </div>
-          <div class="item_details">
-            <p>{{event.obj.name}}</p>
-            <p id="ratings">
-              <ion-icon color="warning" name="star"></ion-icon>
-              <ion-icon color="warning"  name="star"></ion-icon>
-              <ion-icon  color="warning" name="star"></ion-icon>
-              <ion-icon  color="warning" name="star"></ion-icon>
-              <ion-icon color="warning"  name="star"></ion-icon>
-            </p>
-            <p>{{event.obj.totalPrice | currency: '&#82;'}}<span style="  text-decoration: line-through; ">{{event.obj.price | currency: '&#82;'}}</span></p>
-          </div>
       
       <div class="special-section" *ngIf="!myProduct"  >
         <div class="specials"> 
            <div class="specials-overlay" ></div>
           <img src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png">
-         <ion-title class="ion-text-wrap" >The are currently no specials!</ion-title>
+         <ion-title class="ion-text-wrap" >There are currently no specials!</ion-title>
           <ion-title class="ion-text-wrap" >stay tuned the is more  to come</ion-title>
         </div>
     </div>
