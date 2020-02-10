@@ -14,5 +14,5 @@ export class AobutUsPage implements OnInit {
   }
 
 
-  
+
 }
