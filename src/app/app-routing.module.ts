@@ -63,6 +63,10 @@ const routes: Routes = [
     path: 'aobut-us',
     loadChildren: () => import('./pages/aobut-us/aobut-us.module').then( m => m.AobutUsPageModule)
   },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
 
  
 ];

@@ -20,6 +20,11 @@ import { AddProductPage } from '../add-product/add-product.page';
 })
 export class ProPage implements OnInit {
  
+
+  decoLength = 0
+  vaseLength = 0
+  lampsLength = 0
+  potteryLength = 0
   db = firebase.firestore();
   storage = firebase.storage().ref();
   listproduct = [];
@@ -107,6 +112,21 @@ ionViewWillEnter() {
 }
 
     ngOnInit() {
+
+      this.db.collection('Products').where('categories', '==', 'Vase').onSnapshot((data) => {
+        this.vaseLength = data.size;
+      })
+      this.db.collection('Products').where('categories', '==', 'Lamps').onSnapshot((data) => {
+        this.lampsLength = data.size;
+      })
+      this.db.collection('Products').where('categories', '==', 'Deco').onSnapshot((data) => {
+        this.decoLength = data.size;
+      })
+      this.db.collection('Products').where('categories', '==', 'Pottery').onSnapshot((data) => {
+        this.potteryLength = data.size;
+      })
+
+
       
       this.retrieve();
       
@@ -540,14 +560,17 @@ if(i == "Deco"){
     
     this.data.Deco = []
     let obj = {data : {}, key : ""}
+    this.decoLength = 0;
     data.forEach(item => {
       console.log("dddd ", item.data());
       
       if(item.data().categories == "Deco"){
+
       obj.data = item.data()
       obj.key = item.id
         this.data.Deco.push(obj)
         obj = {data : {}, key : ""}
+        this.decoLength += 1
         
       }
     })
@@ -561,6 +584,7 @@ if(i == "Deco"){
   firebase.firestore().collection("Products").onSnapshot(data => {
     this.data.Deco = []
     let obj = {data : {}, key : ""}
+    this.vaseLength = 0;
     data.forEach(item => {
       
       if(item.data().categories == "Vase"){
@@ -568,6 +592,7 @@ if(i == "Deco"){
       obj.key = item.id
         this.data.Deco.push(obj)
         obj = {data : {}, key : ""}
+        this.vaseLength += 1
         
       }
     })
@@ -581,6 +606,7 @@ if(i == "Deco"){
   firebase.firestore().collection("Products").onSnapshot(data => {
     this.data.Deco = []
     let obj = {data : {}, key : ""}
+    this.lampsLength = 0;
     data.forEach(item => {
       
       if(item.data().categories == "Lamps"){
@@ -588,6 +614,7 @@ if(i == "Deco"){
       obj.key = item.id
         this.data.Deco.push(obj)
         obj = {data : {}, key : ""}
+        this.lampsLength += 1
         
       }
     })
@@ -602,6 +629,7 @@ if(i == "Deco"){
   firebase.firestore().collection("Products").onSnapshot(data => {
     this.data.Deco = []
     let obj = {data : {}, key : ""}
+    this.potteryLength = 0;
     data.forEach(item => {
       
       if(item.data().categories == "Pottery"){
@@ -609,6 +637,7 @@ if(i == "Deco"){
       obj.key = item.id
         this.data.Deco.push(obj)
         obj = {data : {}, key : ""}
+        this.potteryLength += 1
         
       }
     })

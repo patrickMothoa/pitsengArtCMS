@@ -421,6 +421,9 @@ receivedOrder(){
    
  firebase.firestore().collection("Order").doc(this.ref).update({
   status : 'processed' })
+
+  console.log(status);
+  
  }
  orderIsReady() { 
  

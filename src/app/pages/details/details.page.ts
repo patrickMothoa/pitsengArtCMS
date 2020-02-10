@@ -85,6 +85,8 @@ export class DetailsPage implements OnInit {
 
   delete(){
     firebase.firestore().collection("Products").doc(this.key).delete()
+    this.dismiss();
+    
   }
 
   save(){
