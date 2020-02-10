@@ -89,7 +89,7 @@
   <div class="content-section">
     <div class="content">
       <div class="image-section">
-        <img src="../../../assets/images.png" alt="">
+        <img src="{{obj.image }}" alt="">
 
 
       </div>
@@ -105,7 +105,7 @@
              <ion-label position="fixed"  >Product Name</ion-label>
           <ion-item  lines="none" color="dark" class="text-field" >
          
-            <ion-input ></ion-input>
+            <ion-input [(ngModel)]="obj.name"></ion-input>
           </ion-item>
 
 
@@ -122,29 +122,29 @@
             <ion-label position="floating"  >Price</ion-label>
             <ion-item lines="none" color="dark" class="text-field" >
               
-              <ion-input ></ion-input>
+              <ion-input type="number" min="1"  [(ngModel)]="obj.price" ></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
             <ion-label position="floating"  >promo-Price</ion-label>
-            <ion-item lines="none" color="dark" class="text-field" >
+            <ion-item lines="none" color="dark"    class="text-field" >
               
-              <ion-input ></ion-input>
+              <ion-input [(ngModel)]="discountedPrice" (ionInput)="update()"></ion-input>
             </ion-item>
           </div>
 
         </div>
         <div class="product-selection">
           <div class="product-code">
-            <ion-label>code: : JKH74893234895</ion-label>
+            <p>code:{{obj.productCode}}</p>
           </div>
           <div class="item">
             <div>
-              <input type="radio" name="framework" value="laravel" id="laravel" />
+              <input type="radio" name="framework" [(ngModel)]="obj.items" value="laravel" id="laravel" />
               <label for="laravel">per item</label>
             </div>
             <div>
-              <input type="radio" name="framework" value="yii" id="yii" checked="checked" />
+              <input type="radio" name="framework" [(ngModel)]="obj.price"  value="yii" id="yii" checked="checked" />
               <label for="yii">per pack</label>
             </div>
 
@@ -156,7 +156,7 @@
              <ion-label position="floating"  >Prodect destription</ion-label>
             <ion-item color="dark">
            
-              <ion-textarea lines="none" placeholder="Enter more information about the product here..."></ion-textarea>
+              <ion-textarea lines="none" [(ngModel)]="obj.desc"  placeholder="Enter more information about the product here..."></ion-textarea>
             </ion-item>
 
           </div>
@@ -164,31 +164,34 @@
         </div>
         <div padding class="Productselection">
           <div class="size">
-            <p>size:</p>
+            <p>size</p>
 
             <div>
               <label class="container">S
-                <input type="checkbox" value="S" [(ngModel)]="productSize.small" (click)="selectedSize($event)">
+                <input type="checkbox" [(ngModel)]="obj.size" value="S">
                 <span class="checkmark"></span>
               </label>
             </div>
             <div>
               <label class="container">M
-                <input type="checkbox" value="M" [(ngModel)]="productSize.medium" (click)="selectedSize($event)">
+                <input type="checkbox" value="M">
                 <span class="checkmark"></span>
               </label>
             </div>
             <div>
               <label class="container">L
-                <input type="checkbox" value="L" [(ngModel)]="productSize.large" (click)="selectedSize($event)">
+                <input type="checkbox" value="L" >
                 <span class="checkmark"></span>
               </label>
             </div>
 
+            <p>Product Size: {{obj.size}}</p>
+        
+
           </div>
           <div class="quantity">
             <div>
-              <p>Qty:{{currentNumber}}</p>
+              <p>Qty:</p>
             </div>
             <div>
               <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
@@ -199,21 +202,21 @@
 
         </div>
         <div class="field" id="searchform">
-          <ion-input type="text" id="searchterm" placeholder="promote e.g(30%)"[(ngModel)]='editPercentage'></ion-input>
-          <button type="button" id="search"  (click)='promoteItem(p)'>promote</button>
+          <ion-input type="tel" id="searchterm" max="100" maxlength="2" [(ngModel)]='editPercentage' placeholder="promote e.g(30%)"></ion-input>
+          <button type="button" id="search" (click)="promoteItem()"  >promote</button>
         </div>
         <div class="prices">
           <div class="normal-price">
             <ion-label position="floating" >start date</ion-label>
             <ion-item lines="none" color="dark" class="text-field" >
               
-              <ion-input  type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'></ion-input>
+              <ion-input  type="date"  [(ngModel)]="editStartDate"  placeholder="Start Date"  [min]='today'></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
           <ion-label position="floating" >end date</ion-label>
             <ion-item lines="none" color="dark" class="text-field" >
-              <ion-input  [disabled]='!editStartDate' type="date" placeholder="End Date" [(ngModel)]='editEndDate' [min]='endDateLimit'></ion-input>
+              <ion-input   type="date" placeholder="End Date"  [(ngModel)]="editEndDate" [min]='endDateLimit'></ion-input>
             </ion-item>
           </div>
 
@@ -235,10 +238,10 @@
         </div> -->
         <div class="buttons">
           <div>
-            <ion-button shape="round" expand="outline" color="medium">save</ion-button>
+            <ion-button shape="round" expand="outline" color="medium" (click)="save()">save</ion-button>
           </div>
           <div>
-            <ion-button shape="round" expand="full" color="danger">delete</ion-button>
+            <ion-button shape="round" expand="full" color="danger" (click)="delete()">delete</ion-button>
           </div>
         </div>
       </div>

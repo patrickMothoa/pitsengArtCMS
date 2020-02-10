@@ -15,6 +15,8 @@ export class CategorylistPage implements OnInit {
   db = firebase.firestore();
  value
 
+ Deco = []
+
  Sales = [];
   Products = [];
   myProduct = false;
@@ -25,6 +27,8 @@ export class CategorylistPage implements OnInit {
     email: '',
     message:''
  }
+
+ key = ""
 
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute,
@@ -38,11 +42,14 @@ export class CategorylistPage implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRouter.queryParams.subscribe(params =>{
-      console.log('value', this.router.getCurrentNavigation().extras.state.parms);
-      this.value = this.router.getCurrentNavigation().extras.state.parms;
-    })
-    this.getProducts(); 
+
+   
+    console.log("Decos Products in Categori page ",  this.data.Deco);
+    this.Deco = this.data.Deco
+
+    
+
+
   }
 
   Info = []
@@ -79,9 +86,22 @@ adminInfo(){
     })
   }
   
-  async createViewProduct(event) {
+  async createViewProduct(event, key) {
     
-    this.data.data = event
+    this.key = key
+    // console.log("dddd ", event);
+    this.data.Detail.category = event.categories
+    this.data.Detail.desc = event.desc
+    this.data.Detail.image = event.image
+    this.data.Detail.items = event.items
+    this.data.Detail.name = event.name
+    this.data.Detail.price = event.price
+    this.data.Detail.size = event.sizes
+    this.data.Detail.productCode = event.productCode
+    this.data.Detail.key = key
+
+
+  
     const modal = await this.modalController.create({
       component:DetailsPage,
       cssClass: 'my-custom-modal-css'
@@ -89,43 +109,14 @@ adminInfo(){
     });
     return await modal.present();
   }
-  // async createAddToWishList() {
-  //   const modal = await this.modalController.create({
-  //     component:AddToWishListPage,
-  //     cssClass: 'my-add-to-cart',
-      
-    
-  //   });
-  //   return await modal.present();
-  // }
-  // async createAddToCart() {
-  //   const modal = await this.modalController.create({
-  //     component:AddToCartPage,
-  //     cssClass: 'my-add-to-cart',
-      
-    
-  //   });
-  //   return await modal.present();
-  // }
-  // async createProfile() {
-  //   const modal = await this.modalController.create({
-  //     component:ProfilePage,
-  //     cssClass: 'my-add-to-cart',
-      
-    
-  //   });
-  //   return await modal.present();
-  // }
+  
   openHome(){
     this.router.navigateByUrl('/')
   }
   openAboutUS(){
     this.router.navigateByUrl('/about-us')
   }
-  // openCart(){
-  //   this.router.navigateByUrl('/add-to-cart')
-  // }
-
+  
   showList(i) {
     this.active = i;
    
@@ -135,30 +126,5 @@ adminInfo(){
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
     return toast.present();
 }
-  // addMessage() {
-  //   if(firebase.auth().currentUser){
-  //    let customerUid = firebase.auth().currentUser.uid;
-  //    this.dbMessages.add({
-  //      customerUid: customerUid,
-  //      name : this.message.fullname,
-  //      email : this.message.email,
-  //      message : this.message.message
   
-       
-  //     }).then(() => {
-  //       this.toastController('Message Sent!')
-  //    }).catch(err => {
-  //             console.error(err);
-  //    });
-
-  //    this.message = {
-  //     fullname: '',
-  //     email: '',
-  //     message:''
-  //  }
-
-  //   }else{
-  //     //this.createModalLogin();
-  //   }
-  // }
 }

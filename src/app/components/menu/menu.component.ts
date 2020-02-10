@@ -158,4 +158,7 @@ export class MenuComponent implements OnInit {
     });
     return await modal.present();
   }
+
+
+  Allspecials
 }

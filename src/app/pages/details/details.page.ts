@@ -18,6 +18,8 @@ export class DetailsPage implements OnInit {
   updateBtn = false;
   listproduct = [];
   MyObj = [];
+
+
   event = {
     image: '',
     categories:'',
@@ -36,6 +38,22 @@ export class DetailsPage implements OnInit {
   cart = [];
   Products = [];
   myProduct = false;
+
+  obj = {
+    image : "",
+    price : "",
+    name : "",
+    desc : "",
+    size : "",
+    items : "",
+    category : "",
+    productCode:""
+  }
+  
+  key = ""
+  value : any 
+  discountedPrice : number = 0; 
+
   constructor(
     public loadingCtrl: LoadingController,
     public productService: ProductService, 
@@ -46,172 +64,104 @@ export class DetailsPage implements OnInit {
     public modalController: ModalController) { }
 
   ngOnInit() {
-    this.getProducts();
+
+
+   
+    this.obj.image =  this.data.Detail.image
+    this.obj.price =  this.data.Detail.price
+    this.obj.name =  this.data.Detail.name
+    this.obj.desc =  this.data.Detail.desc
+    this.obj.size =  this.data.Detail.size
+    this.obj.items =  this.data.Detail.items
+    this.obj.category= this.data.Detail .category
+
+    this.key = this.data.Detail.key
+    this.obj.productCode = this.data.Detail.productCode
+  
+    this.value = parseFloat(this.obj.price)
+  this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
+    // this.getProducts();
+  }
+
+  delete(){
+    firebase.firestore().collection("Products").doc(this.key).delete()
+    this.dismiss();
+  }
+
+  save(){
+
+
+    firebase.firestore().collection("Products").doc(this.key).update({
+      categories : this.obj.category,
+      desc : this.obj.desc,
+      id : this.key,
+      image : this.obj.image,
+      items : this.obj.items,
+      name : this.obj.name,
+      price : this.obj.price,
+      quantity : 7,
+      sizes : this.obj.size
+    })
+    this.dismiss();
   }
 
 
-  Home() {
-   this.router.navigateByUrl('/pro');
-  }
+  
 
   ionViewWillEnter(){
-    this.Products.push(this.data.data)  
+    
   }
    ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductPage');
+  
   }
   
-        // retriving from firebase.firestore
-    getProducts(){
-    this.db.collection('Products').get().then(snapshot => {
-      if (snapshot.empty) {
-        this.myProduct = false;
-      } else {
-        this.myProduct = true;
-        snapshot.forEach(doc => {
-          this.event.image = doc.data().image;
-          this.event.categories = doc.data().categories;
-          this.event.name =doc.data().name
-          this.event.price = doc.data().price
-          this.event.productCode=doc.data().productCode
-          this.event.desc=doc.data().desc
-          // this.event.small=doc.data().small
-          // this.event.medium=doc.data().medium
-          // this.event.large=doc.data().large
-          
-        })
-      }
-    })
-  }
-  
-  
-
-  // dismiss(p) {
-  //   this.data.data = p;
-  //   this.modalController.dismiss({
-  //     'dismissed': true
-  //   });
-  // }
-
-  async Deleteproduct(value){
-    console.log('item =>',value);
-    
-    const alert = await this.alertCtrl.create({
-      header: 'Confirm!',
-      message: 'Are you sure you want to delete? This action is ireversable.!',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Okay',
-          handler: async () => {
-            const worker = await this.loadingCtrl.create({
-              message: 'Working',
-              spinner: 'bubbles'
-            })
-            worker.present();
-            this.db.collection('Products').doc(value).delete().then(async res => {
-             worker.dismiss()
-              this.listproduct = [];
-              // this.retrieve();
-           
-              const alerter = await this.alertCtrl.create({
-              message: 'Product deleted',
-              buttons: [
-                {
-                text: 'OK',
-                handler: async () => {
-                  this.dismiss();
-                }
-                }  
-              ], 
-            })
-           alerter.present();
-            this.event = {
-              image: '',
-              categories:'',
-              name:'',
-              price:null,
-              productCode:"",
-              desc: '',
-              items:'',
-              quantity : 1,
-              lastcreated: '',
-              size:[]
-              
-            };
-            })
-          }
-        }
-      ]
       
-    });
-   
-    await alert.present(); 
-   
-  }
+
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
     });
     }
 
-  retrieve(){
-    this.listproduct = [];
-    this.db.collection('Products').onSnapshot(snapshot => {
-      if (snapshot.empty) {
-        console.log('No documents');
-      } else {
-        snapshot.forEach(doc => {
-          
-          this.listproduct.push({id : doc.id, data : doc.data()});
-          console.log(this.listproduct);
-          
-        })
-      }
-    })
-  }
+  
+ 
 
-  edit(val, id){
-    this.event = val;
-    this.autoId = id;
-    console.log('Edit: ', this.event);
-    this.updateBtn = true;
-    this.router.navigateByUrl('/pro');
-  }
-
-  editPercentage
+  editPercentage : number = 0
   editStartDate
   editEndDate 
-  promoteItem(p){
+
+  update(){
+    this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
+  }
+
+  promoteItem(){
    
  
 
-let obj ={
-  percentage:this.editPercentage,
-  price:parseFloat(p.obj.price),
-  desc: p.obj.desc,
-  productCode:p.obj.productCode,
-  name:p.obj.name,
-  image:p.obj.image,
-  totalprice:(p.obj.price)-((this.editPercentage/100)*(p.obj.price)),
-  startDate:this.editStartDate,
-  endDate:this.editEndDate
-}
-
-firebase.firestore().collection('sales').add(obj).then(() => {
-  this.toastController('promotion added')
-  //this.router.navigateByUrl('basket');
-});
 
 
+console.log("Data in the Details ", (  this.value )-((this.editPercentage/100)*( this.value)));
+console.log("ddd ", this.value );
+this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
+
+firebase.firestore().collection("Sales").doc().set({
+ image  : this.obj.image,
+ price  : this.obj.price,
+ name : this.obj.name,
+ desc : this.obj.desc,
+ size : this.obj.size,
+ items  : this.obj.items,
+ productCode:this.obj.productCode,
+ categories :  this.obj.category,
+   startDate:this.editStartDate,
+   endDate:this.editEndDate,
+   percentage:this.editPercentage,
+   totalPrice : (  this.value )-((this.editPercentage/100)*( this.value))
+
+   
+ 
+})
 this.dismiss();
-
 
   }
   async toastController(message) {
