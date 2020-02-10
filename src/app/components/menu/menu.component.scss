@@ -5,14 +5,15 @@ ion-title {
   text-align: center;
   // padding-right: 16px;
 }
+
 .title {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
 }
-//   .text{
-//     padding-top: 8px;
-//   }
+  .text{
+    padding-top: 8px;
+  }
 
 .header-md:after {
   left: 0;
@@ -42,6 +43,15 @@ body {
 .navigation-bar {
   width: 75%;
   margin: auto;
+}
+@media screen and (max-width: 1310px){
+  .navigation-bar{
+    width: 100%;
+    // border: 2px solid red;
+  }
+  .logo{
+    width: 120px !important;
+  }
 }
 .nav {
   height: 50px;
@@ -77,14 +87,15 @@ body {
 
 .nav > .nav-links {
   display: inline;
-  float: right;
   font-size: 18px;
   margin-top: 20px;
+  width: 100%;
+  
 }
 
 .nav > .nav-links > div {
   display: inline-block;
-  padding: 13px 10px 13px 10px;
+  padding: 30px 10px 13px 10px;
   text-decoration: none;
   color: #707070;
 }
@@ -135,6 +146,40 @@ ion-button {
 
 
 
+.floating-links{
+  background: white;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  animation: faderIn 300ms;
+  border-top: 1px solid rgba(0, 0, 0, 0.185);
+}
+#opts{
+  display: none;
+}
+#optsToggle{
+  float: right;
+  display: none;
+}
+
+@keyframes faderIn {
+  0%{
+    opacity: 0;
+  } 
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes faderOut {
+  0%{
+    opacity: 1;
+  } 
+  100%{
+    opacity: 0;
+  }
+}
 
 
 
@@ -146,11 +191,10 @@ ion-button {
 
 
 
-
-@media (max-width: 600px) {
+@media (max-width: 1177px) {
 
   ion-toolbar{
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     margin: 0 auto;
@@ -158,6 +202,9 @@ ion-button {
     justify-content: space-between;
     align-items: baseline;
 
+  }
+  #optsToggle{
+    display: block
   }
   .text {
     display: none;
@@ -338,13 +385,13 @@ ion-button {
     width: 100px;
     position: absolute;
     z-index: 9999999999;
-    margin-top: -25%;
-    left: -15%;
+    margin-top: 0%;
+    left: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-top: 10px;
+    // padding-top: 10px;
   }
 }
 

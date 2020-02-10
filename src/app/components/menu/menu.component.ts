@@ -167,10 +167,66 @@ export class MenuComponent implements OnInit {
       // An error happened.
     });
   }
+  menuToggle = 'menu';
+  showOptions(){
+    if(this.menuToggle === 'menu'){
+    this.menuToggle = 'close';
+    document.getElementById('opts').style.display = 'block';
+    } else {
+      this.menuToggle = 'menu';
+        document.getElementById('opts').style.display = 'none';
+    }
+  }
   async createFaqs() {
     const modal = await this.modalController.create({
       component:FaqsPage,
       cssClass: 'my-add-to-cart',
+    });
+    return await modal.present();
+  }
+
+
+
+
+
+
+
+
+  openProS() {
+    this.showOptions();
+    this.router.navigateByUrl('/pro');
+  }
+
+
+  async openInvoiceS() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:UserInvoicesPage,
+      cssClass: 'my-add-to-cart'
+    });
+    return await modal.present();
+  }
+  queriesS(){
+    this.showOptions();
+    this.router.navigateByUrl('/quries')
+  }
+  openAboutUSS(){
+    this.showOptions();
+    this.router.navigateByUrl('/aobut-us')
+  }
+  async createFaqsS() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:FaqsPage,
+      cssClass: 'my-add-to-cart',
+    });
+    return await modal.present();
+  }
+  async addProductS() {
+    this.showOptions();
+    const modal = await this.modalController.create({
+      component:AddProductPage,
+      cssClass: 'add-product',
       
     
     });

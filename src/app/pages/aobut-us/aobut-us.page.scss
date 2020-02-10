@@ -24,6 +24,7 @@ ion-content {
     width: 70%;
     height: 100%;
     margin: 0 auto;
+    transition: 300ms;
     // border: solid black;
     display: flex;
     justify-items:center ;
@@ -190,7 +191,8 @@ ion-content {
         font-size: x-large;
     }
   
-  
-
-
-     
+    @media screen and (max-width: 1036px){
+      .main-cover{
+        width: 100%;
+      }
+    }
