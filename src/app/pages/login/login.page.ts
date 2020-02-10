@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from 'services/auth.service';
 import * as firebase from 'firebase'
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
+import { ResetPasswordPage } from '../reset-password/reset-password.page';
 declare var window
 
 @Component({
@@ -22,6 +23,7 @@ export class LoginPage  {
     public alertCtrl: AlertController,
     private authService: AuthService,
     private router: Router,
+    public modalController:ModalController,
     private formBuilder: FormBuilder,
     private profileService: ProfileService
   ) {
@@ -84,6 +86,14 @@ export class LoginPage  {
       console.log(res);
     });
   }
+  async resetPassword(){
+    let modal = await this.modalController.create({
+      component : ResetPasswordPage,
+      cssClass: 'resetModal'
+    })
+    
+    return await modal.present();
+   }
 async  register() {
     const alert = await this.alertCtrl.create({
       header: 'Enter your email',

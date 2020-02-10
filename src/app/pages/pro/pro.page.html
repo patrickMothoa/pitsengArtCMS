@@ -36,23 +36,23 @@
     <div class="category-Container">
       <div class="First-Category-Block"(click)="categorylist('Deco')">
         <img  src="{{Homescreen.deco}}" alt="">
-        <ion-label class="category-label"><span>Deco (1)</span></ion-label>
+        <ion-label class="category-label"><span>Deco ({{decoLength}})</span></ion-label>
       </div>
 
       <div class="Second-Category-Block" (click)="categorylist('Pottery')">
         <div class="firstSecond-block">
           <img  src="{{Homescreen.pottery}}" alt="">
-          <ion-label class="category-label"><span>Pottery (45)</span></ion-label> 
+          <ion-label class="category-label"><span>Pottery ({{potteryLength}})</span></ion-label> 
 
         </div>
         <div class="container-bottom2">
           <div class="seconSecond-block" (click)="categorylist('Lamps')" >
             <img  src="{{Homescreen.lamps}}" alt="">
-            <ion-label class="category-label"><span>Lamps (5)</span></ion-label> 
+            <ion-label class="category-label"><span>Lamps ({{lampsLength}})</span></ion-label> 
           </div>
           <div class="thirdSecond-block" (click)="categorylist('Vase')">
             <img  src="{{Homescreen.vase}}" alt="">
-            <ion-label class="category-label"><span>Vases (10)</span></ion-label> 
+            <ion-label class="category-label"><span>Vases ({{vaseLength}})</span></ion-label> 
           </div>
         </div>
       </div>
@@ -94,8 +94,8 @@
 
       </div>
       <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
-      <ion-label class="price"> R 300<span class="span-tsrike" >R 600</span>  </ion-label>
-      <ion-label class="name"> name </ion-label>
+      <ion-label class="price"> {{event.obj.totalPrice | currency: '&#82;'}}  <span class="span-tsrike" >{{event.obj.price | currency: '&#82;'}}</span>  </ion-label>
+      <ion-label class="name"> {{event.obj.name}} </ion-label>
       <div class="stars">
         <ion-icon name="star" color="warning"></ion-icon>
         <ion-icon name="star" color="warning"></ion-icon>

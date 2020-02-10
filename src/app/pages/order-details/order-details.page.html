@@ -175,19 +175,10 @@
           </div>
 
           <div  class=" oders">
-            <div class="recieved" >
-              <p>{{status}}</p>
-            </div>
-            <div class="processed" >
-              <p></p>
-            </div>
-            <div class="ready" >
-              <p></p>
-
-            </div>
-            <div class="delivered" >
-              <p></p>
-            </div>
+            
+            
+            
+           
 
             <!-- <div class="tracking-progress-bar">
               <div
@@ -216,8 +207,7 @@
             <ion-button class="buttons" *ngIf="status === 'processed'"  padding  color="secondary"  shape="round" expand="full" (click)="orderPrepared()"> Order Ready</ion-button>
             <ion-button class="buttons" *ngIf="status === 'ready'"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> order is ready </ion-button>
             <ion-button class="buttons" *ngIf="status === 'delivered'"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> Close Order</ion-button> -->
-        
-              
+         
             <ion-button class="buttons" *ngIf="p.obj.status === 'received'" (click)="cancelOrder()">Cancel</ion-button>
             <ion-button class="buttons"  *ngIf="p.obj.status === 'received'" (click)="processOrder()">Process Order</ion-button>
             <ion-button class="buttons"  *ngIf="p.obj.status === 'processed'" (click)="orderIsReady()">Ready for Collection</ion-button>
