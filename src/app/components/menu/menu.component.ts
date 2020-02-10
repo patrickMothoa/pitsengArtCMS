@@ -20,7 +20,9 @@ export class MenuComponent implements OnInit {
   autocompleteItemz: any;
   autocompletez:any;
   Products = [];
-  key = ""
+  key = "";
+  isShow = false;
+  myDest: any;
   constructor(public toastController: ToastController,
     public popoverController: PopoverController,
     public modalController: ModalController,
@@ -49,6 +51,11 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  toggleDisplay() {
+    this.isShow = !this.isShow;
+    
+  }
+  
   
   async openInvoice() {
     const modal = await this.modalController.create({
@@ -118,13 +125,13 @@ export class MenuComponent implements OnInit {
     this.data.Detail.productCode = event.productCode
     this.data.Detail.key = key
 
-
-  
+this.myDest = ''
     const modal = await this.modalController.create({
       component:DetailsPage,
       cssClass: 'my-custom-modal-css'
     
     });
+    
     return await modal.present();
   }
   removeSearchList(){
@@ -177,6 +184,8 @@ export class MenuComponent implements OnInit {
         document.getElementById('opts').style.display = 'none';
     }
   }
+  close = 'closeList'
+ 
   async createFaqs() {
     const modal = await this.modalController.create({
       component:FaqsPage,
@@ -184,6 +193,7 @@ export class MenuComponent implements OnInit {
     });
     return await modal.present();
   }
+
 
 
 
