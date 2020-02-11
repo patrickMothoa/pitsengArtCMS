@@ -1,12 +1,15 @@
 <ion-content>
   <div class="content">
     <div class="main-cover">
+
+
       <div class="whoWeAre">
         <div class="image-section">
           <div class="edit-image">
+            
             <input type="file" name="file" id="file" class="fileInput" (change)="changeListener($event)"/>
             <label for="file">
-              <ion-icon name="create" color="light" class="edit-image-icon"></ion-icon>
+              <ion-icon name="create" color="light" class="edit-image-icon" ></ion-icon>
             </label>
           </div>
           <img  *ngIf="!about.image" src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
@@ -83,6 +86,7 @@
 
           <div>
             <ion-item color="dark" class="items" lines="none">
+              
               <ion-input placeholder="My services" [(ngModel)]="services.service"> </ion-input>
               <ion-icon name="create"></ion-icon>
             </ion-item>
@@ -112,10 +116,11 @@
 
         </div>
         <div class="services-image-section">
-          <img  *ngIf="!services.image" src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
-          <img *ngIf="services.image" src="{{services.image}}" alt="">
+          <img  *ngIf="!services.MyImage " src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+          <img *ngIf="services.MyImage " src="{{services.MyImage}}" alt="">
           <div class="edit-image">
-            <input type="file" name="file" id="file" class="fileInput"  (change)="serviceImage($event)"/>
+            
+            <input type="file" name="file" id="file" class="fileInput"  (change)="serviceImage($ev)"/>
             <label for="file">
               <ion-icon name="create" color="light" class="edit-image-icon"></ion-icon>
             </label>
