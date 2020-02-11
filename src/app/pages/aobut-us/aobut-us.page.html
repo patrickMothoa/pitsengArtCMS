@@ -7,10 +7,12 @@
         <div class="image-section">
           <div class="edit-image">
             
-            <input type="file" name="file" id="file" class="fileInput" (change)="changeListener($event)"/>
-            <label for="file">
+            <!-- <input type="file" name="file" id="file" class="fileInput" (change)="changeListener($event)"/> -->
+            <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
+            (change)="changeListener($event)"></ion-input>
+            <!-- <ion-label for="file"  >
               <ion-icon name="create" color="light" class="edit-image-icon" ></ion-icon>
-            </label>
+            </ion-label > -->
           </div>
           <img  *ngIf="!about.image" src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
           <img *ngIf="about.image" src="{{about.image}}" alt="">
@@ -119,11 +121,13 @@
           <img  *ngIf="!services.MyImage " src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
           <img *ngIf="services.MyImage " src="{{services.MyImage}}" alt="">
           <div class="edit-image">
+            <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
+            (change)="serviceImage($event)"></ion-input>
+            <!-- <input type="file"  class="fileInput"  (change)="serviceImage($event.target.files)"/>
             
-            <input type="file" name="file" id="file" class="fileInput"  (change)="serviceImage($ev)"/>
             <label for="file">
               <ion-icon name="create" color="light" class="edit-image-icon"></ion-icon>
-            </label>
+            </label> -->
           </div>
 
 
