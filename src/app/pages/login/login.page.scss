@@ -10,7 +10,7 @@
   display: flex;
 align-items: center;
   justify-content: center;
-//   border: solid red;
+  border: solid red;
 }
 .content {
   width: 70%;
@@ -20,7 +20,7 @@ align-items: center;
   top: 0;
   bottom: 0;
   margin: 0 auto;
-//   border: solid blue;
+  border: solid blue;
   display: flex;
   justify-content: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ align-items: center;
     position: absolute;
     width: 60%;
     height: 70%;
-    // border: solid black;
+    border: solid black;
     margin: 0 auto;
     z-index: 999999;
     left: 0;
@@ -68,7 +68,7 @@ align-items: center;
 .logo-side{
     width: 50%;
     height: 100%;
-    // border: solid gray;
+    border: solid gray;
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -216,4 +216,31 @@ ion-icon{
 .error-message{
     color: red;
     font-size: medium;
+}
+
+@media screen and(min-width:600px) and (max-width : 1050px){
+.content{
+    width: 95%;
+}
+.top-side{
+    // height: 100%;
+    width: 80%;
+}
+    // width: 95%;
+}
+
+@media screen and (max-height : 650px){
+    .content{
+        width: 80%;
+        height: 100%;
+        
+    }
+    .top-side{
+        height: 100%;
+        width: 65%;
+    }
+    .left-side{
+        background-color: white;
+    }
+
 }
