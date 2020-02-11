@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-  import { from } from 'rxjs';
+import { from } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { ProductDetailService } from 'src/app/product-detail.service';
 import { ProductService } from 'src/app/services/product.service';
 
 import { ModalController, LoadingController, AlertController, ToastController } from '@ionic/angular';
-import{ OrderDetailsPage } from '../../pages/order-details/order-details.page'
+import { OrderDetailsPage } from '../../pages/order-details/order-details.page'
 import * as firebase from 'firebase';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
@@ -13,7 +13,7 @@ import { SowDataPage } from 'src/app/sow-data/sow-data.page';
 
 
 
-  
+
 
 @Component({
   selector: 'app-user-invoices',
@@ -22,16 +22,17 @@ import { SowDataPage } from 'src/app/sow-data/sow-data.page';
 })
 export class UserInvoicesPage implements OnInit {
   dbOrder = firebase.firestore().collection('Order');
-  db = firebase.firestore();
+  dbHistory = firebase.firestore().collection('orderHistory');
+  dbUser = firebase.firestore().collection("UserProfile");
   public isSearchbarOpened = false;
   users = []
   Allorders = [];
-  public item =[];
+  public item = [];
   conArray = []
-  Orders =[]
+  Orders = []
   public display;
-  public postSort='recent';
-  public userID;z
+  public postSort = 'recent';
+  public userID; z
   public userTransact: any;
   myArr = []
   myArray = []
@@ -39,138 +40,146 @@ export class UserInvoicesPage implements OnInit {
   loader: boolean = false;
   active: any;
   myProduct = false;
-  constructor(public DataService : DataService, public modalController: ModalController, public   formBuilder: FormBuilder,private router: Router,public route : ActivatedRoute,public loadingCtrl: LoadingController, public productservices : ProductService, public alertCtrl: AlertController, public toastController: ToastController) {
+  orderHistory = [];
+  myProfile = [];
+  constructor(public DataService: DataService, public modalController: ModalController, public formBuilder: FormBuilder, private router: Router, public route: ActivatedRoute, public loadingCtrl: LoadingController, public productservices: ProductService, public alertCtrl: AlertController, public toastController: ToastController) {
 
-  
-    this.db.collection("Users")
+
+    // this.db.collection("Users")
 
   }
 
   ngOnInit() {
 
-console.log("dsdds");
-this.GetOrders();
+    // console.log("dsdds");
+    this.GetOrders();
     this.viewDetails();
-  let obj = {name : '', uid : ''} ;
-  this.db.collection("UserProfile").onSnapshot(data => {
-    data.forEach(item => {
-     
-      obj.name = item.data().email;
-      obj.uid = item.data().uid
-      this.users.push(obj);
-      obj = {name : '', uid : ''} ;
-      console.log("users ",  this.users);
-    })
-  })
-}
-dismiss(){
-  this.modalController.dismiss({
-    'dismissed':true
-  });
-}
-
-showList(i) {
-  this.active = i;
-  
-  
-  console.log('year');
-
-
-
-
-  // this.selectedValueIndex = p
-}
-
-  viewDetails(){
-    this.loader = true;
-    this.db.collection("Order").onSnapshot(data => {
-      this.ordersPlaced = [];
-      console.log(data);
-      
-        data.forEach(item => {       
-         this.ordersPlaced.push({ref:item.id,info:item.data()})
-         console.log(item.data().orderNumber);
-         
-         this.loader = false;
-              //console.log("my data",this.ordersPlaced);
-        }) 
-     
-        // this.router.navigateByUrl('/order-details'); 
-
-
+    this.getOrderHistory()
+    let obj = { name: '', uid: '' };
+    this.dbUser.onSnapshot(data => {
+      data.forEach(item => {
+        this.myProfile.push({data:item.data().name, id : item.id});
+        obj.name = item.data().email;
+        obj.uid = item.data().uid
+        this.users.push(obj);
+        obj = { name: '', uid: '' };
+        // console.log("users ",  this.users);
       })
-
-      
+    })
+    
   }
-  
+  getOrderHistory() {
+    this.dbHistory.onSnapshot((res) => {
+      this.orderHistory = [];
+      res.forEach((doc) => {
+        this.dbUser.doc(doc.data().userID).onSnapshot((item)=>{
+          this.orderHistory.push({info:doc.data(), user: item.data().name, ref: doc.id});
+        })
+      })
+    })
+  }
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
+
+  showList(i) {
+    this.active = i;
+    // console.log('year');
+    // this.selectedValueIndex = p
+  }
+
+  viewDetails() {
+    this.loader = true;
+    this.dbOrder.onSnapshot(data => {
+      this.ordersPlaced = [];
+      // console.log(data);
+      data.forEach(item => {
+        this.ordersPlaced.push({ ref: item.id, info: item.data() })
+        //  console.log(item.data().orderNumber);
+        this.loader = false;
+        //console.log("my data",this.ordersPlaced);
+      })
+      // this.router.navigateByUrl('/order-details'); 
+
+
+    })
+
+
+  }
+
 
   userProfiles() {
-    this.ordersPlaced.forEach((i)=>{
-  
+    this.ordersPlaced.forEach((i) => {
+
     })
   }
-// async details() {
-//   const modal = await this.modalController.create({
-//     component:OrderDetailsPage,
-//     cssClass: 'my-add-to-cart',
-    
-  
-//   });
-//   return await modal.present();
-// }
-  async viewDetail(value) {
-    console.log(value.ref);
+  // async details() {
+  //   const modal = await this.modalController.create({
+  //     component:OrderDetailsPage,
+  //     cssClass: 'my-add-to-cart',
+
+
+  //   });
+  //   return await modal.present();
+  // }
+  async viewDetail(value, page) {
+    //  console.log("My data ",value, "My id");
     const modal = await this.modalController.create({
-      component:OrderDetailsPage,
+      component: OrderDetailsPage,
       cssClass: 'track-order',
-      componentProps: { totalPrice: value.info.totalPrice,
-      ref: value.ref,
-      name: value.info.product[0].product_name,
-      price: value.info.product[0].price,
-      quantity: value.info.product[0].quantity,
-      image: value.info.product[0].image,
-      arr:value.info.product}
-    
+      componentProps: {
+        pageName: page,
+        totalPrice: value.info.totalPrice,
+        ref: value.ref,
+        name: value.info.product[0].product_name,
+        price: value.info.product[0].price,
+        quantity: value.info.product[0].quantity,
+        image: value.info.product[0].image,
+        arr: value.info.product
+      }
+
     });
     return await modal.present();
   }
-  
-  openPro(){
+
+  openPro() {
     this.router.navigateByUrl('/pro');
   }
-  openInvoice(){
+  openInvoice() {
     this.router.navigateByUrl('/user-invoices');
   }
-  openProfile(){
+  openProfile() {
     this.router.navigateByUrl('/profile');
   }
-  logOut(){
-    firebase.auth().signOut().then(()=> {
+  logOut() {
+    firebase.auth().signOut().then(() => {
       // Sign-out successful.
       this.router.navigateByUrl('/login');
-    }).catch((error)=> {
+    }).catch((error) => {
       // An error happened.
     });
   }
-  GetOrders(){
+  GetOrders() {
 
-    this.dbOrder.where('userID','==',firebase.auth().currentUser.uid).onSnapshot((data)=>{
-            console.log("olx", data);
-            if( this.Allorders = []){
-              this.myProduct =  true
-              data.forEach((item)=>{
-                this.Allorders.push({ref:item.id,info:item.data(), total:item.data()})
-              })
-              console.log("ccc", this.Allorders);
-  
-            }else{
-              this.myProduct = false
-            }
-          
-        }) 
-    }
-  async createTrackOder(item) {
-    console.log('My item ',item)
+    this.dbOrder.onSnapshot((data) => {
+      // console.log("olx", data);
+      if (this.Allorders = []) {
+        this.myProduct = true
+        data.forEach((item) => {
+          this.Allorders.push({ ref: item.id, info: item.data(), total: item.data() })
+        })
+        // console.log("ccc", this.Allorders);
+        // 
+      } else {
+        this.myProduct = false
+      }
+
+    })
+  }
+  createTrackOder(item) {
+    console.log('My item ', item)
     /* const modal = await this.modalController.create({
       component:OrderDetailsPage,
       cssClass: 'track-order',
