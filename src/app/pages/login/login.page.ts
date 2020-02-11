@@ -6,6 +6,8 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ResetPasswordPage } from '../reset-password/reset-password.page';
+import Swal from 'sweetalert2';
+
 declare var window
 
 @Component({
@@ -35,7 +37,8 @@ export class LoginPage  {
       ]
     });
   }
-
+  email="";
+  message: any = "";
   loader: boolean = true;
   ionViewWillEnter() {
     setTimeout(() => {
@@ -94,6 +97,46 @@ export class LoginPage  {
     
     return await modal.present();
    }
+
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
+  // alertPassword(){
+  //   var auth = firebase.auth();
+  //   console.log("email sent")
+  //   Swal.fire({
+  //     title: 'Submit your Github username',
+  //     input: 'text',
+  //     inputAttributes: {
+  //       autocapitalize: 'off'
+  //     },
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Look up',
+  //     showLoaderOnConfirm: true,
+      
+  //     preConfirm: () => {
+  //       return auth.sendPasswordResetEmail(this.email)
+
+  //         // .then(response => {
+  //         //   if (!response.ok) {
+  //         //     throw new Error(response.statusText)
+  //         //   }
+  //         //   return response.json()
+  //         // })
+  //         // .catch(error => {
+  //         //   Swal.showValidationMessage(
+  //         //     `Request failed: ${error}`
+  //         //   )
+  //         // })
+  //     },
+  //     allowOutsideClick: () => !Swal.isLoading()
+      
+  //   })  .catch((error) => {
+  //     this.message = error.message;
+  //   })
+  // }
 async  register() {
     const alert = await this.alertCtrl.create({
       header: 'Enter your email',
