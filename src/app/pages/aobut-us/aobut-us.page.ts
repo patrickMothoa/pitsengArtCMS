@@ -96,6 +96,7 @@ console.log("Method called");
   //     image :''
   //  }
 
+
     }else{
       //this.createModalLogin();
     }

@@ -44,6 +44,7 @@
   --width: 500px;
 }
 
+
 .profile .modal-wrapper{
   position: absolute;
     right: 0;
@@ -207,4 +208,19 @@
 
  
   
+
+
+
+
+
+
+// Media query for modals
   
+@media screen and (max-width: 500px){
+  .modal-wrapper{
+    --width: 100% !important;
+    --height: 100% !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+}

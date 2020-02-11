@@ -136,9 +136,12 @@
           
         <ion-item class="item-progress"    >
           <ion-label color="dark" position="stacked" id="profile_image">Upload Product Image</ion-label>
-          <ion-input  lines="none" class="image-upload" type="file" accept="image/*" placeholder="upload image" (change)="changeListener($event)">
+          <input  lines="none" class="image-upload" type="file" accept="image/*" id="file-upload" placeholder="upload image" (change)="changeListener($event)">
+          <label for="file-upload">
+            Upload File
+          </label>
             <p  >progress:  {{progress / 100 | percent}}</p>
-          </ion-input> 
+          
         </ion-item>
       <!-- *ngIf="!event.image" style="width:500px, padding-left:16px"-->
         <div class="Product-name">
