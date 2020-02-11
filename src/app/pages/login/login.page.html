@@ -55,15 +55,19 @@
       </div>
       <div class="top-side">
         <div class="logo-side">
-          <img src="../../../assets/pitseng Logo.png" alt="">
+          <img class="logo" src="../../../assets/pitseng Logo.png" alt="">
 
 
         </div>
         <div class="form-side ">
           <form class="form" #adminLogin="ngForm" (ngSubmit)="loginAdmin(adminLogin.value)">
+            <div class="logoImage" >
+              <img class="logo" src="../../../assets/pitseng Logo.png" alt="">
+            </div>
             <div class="title">
               <ion-title>welcome back</ion-title>
             </div>
+           
             <div class="text-field">
               <ion-item  class="first">
                 <ion-input placeholder="Email address" type="text" ngModel name="email">
