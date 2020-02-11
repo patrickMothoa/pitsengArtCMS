@@ -207,7 +207,7 @@ ion-title {
 
 
   ion-content{
-    overflow: hidden;
+    overflow: auto;
     top: 20%;
     // bottom: 5600px;
     // margin-bottom: 500px;
@@ -222,7 +222,7 @@ ion-title {
     margin: 0 auto;
     display: flex;
     // border: solid red;
-    overflow: hidden;
+    // overflow: hidden;
   }
   .content{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

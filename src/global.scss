@@ -60,9 +60,17 @@
 
 }
 .track-order .modal-wrapper{
-  --width: 808px;
-  --height:760px;
+  --width: 45%;
+  --height:100%;
 
+}
+@media screen  and (max-width : 1350px){
+  .track-order .modal-wrapper{
+    --width: 80%  !important;
+    --height:100%  !important;
+  // border: solid red !important ;
+  
+  }
 }
 .add-product .modal-wrapper{
   --width: 35%;

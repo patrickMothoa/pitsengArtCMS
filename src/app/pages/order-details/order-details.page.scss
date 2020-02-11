@@ -347,7 +347,9 @@
 //   font-weight: bolder;
 
 // }
-
+ion-content{
+  // --overflow:auto
+}
 .heading-title > ion-title {
   font-weight: 600;
   font-size: 25px;
@@ -645,7 +647,7 @@ margin-top: 1%;
   // margin-bottom: 1100px;
 }
 ion-content{
-  --overflow:hidden;
+  --overflow:auto;
 }
 
 .tracking-progress-bar{
@@ -729,7 +731,7 @@ color: #fff  ;
   margin-top: 8px;
 }
 .pdf{
-width: 40%;
+width: 50%;
 margin: 0 auto;
 text-align: center;
 }
