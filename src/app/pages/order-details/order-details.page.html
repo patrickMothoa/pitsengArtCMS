@@ -134,6 +134,7 @@
 </div>
 
 <ion-content>
+<div *ngIf="pageName==='pending'">
   <div class="main-container">
     <div class="main-content">
 
@@ -166,12 +167,12 @@
             </div>
           </div>
         </div>
-<div class="total-amount" *ngFor="let p of arr; let i=index;">
+   <div class="total-amount">
             <!-- <ion-title>Total :{{totalPrice | currency : '&#82;'}} </ion-title> -->
           </div>
-        <div class="tracking" *ngFor="let p of arr; let i=index;">
+        <div class="tracking">
           <div class="tacking-heading">
-            <ion-title>tracking status: {{p.obj.status}}</ion-title>
+            <ion-title>tracking status: {{status}}</ion-title>
           </div>
 
           <div  class=" oders">
@@ -207,11 +208,11 @@
             <ion-button class="buttons" *ngIf="status === 'processed'"  padding  color="secondary"  shape="round" expand="full" (click)="orderPrepared()"> Order Ready</ion-button>
             <ion-button class="buttons" *ngIf="status === 'ready'"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> order is ready </ion-button>
             <ion-button class="buttons" *ngIf="status === 'delivered'"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> Close Order</ion-button> -->
-         
-            <ion-button class="buttons" *ngIf="p.obj.status === 'received'" (click)="cancelOrder()">Cancel</ion-button>
-            <ion-button class="buttons"  *ngIf="p.obj.status === 'received'" (click)="processOrder()">Process Order</ion-button>
-            <ion-button class="buttons"  *ngIf="p.obj.status === 'processed'" (click)="orderIsReady()">Ready for Collection</ion-button>
-            <ion-button class="buttons"  *ngIf="p.obj.status === 'ready'" (click)="closeOrder()">Collected</ion-button>
+          
+            <ion-button class="buttons" (click)="cancelOrder('order cancelled')">Cancel</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'received'" (click)="processOrder('processed')">Process Order</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'processed'" (click)="orderIsReady('ready')">Ready for Collection</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'ready'" (click)="closeOrder('collected')">Collected</ion-button>
           </div>
 
           </div>
@@ -266,5 +267,144 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="pageName==='history'">
+  <div class="main-container">
+    <div class="main-content">
+
+      <div class="itemList">
+        <div class="heading-title" >
+          <ion-title>Items Ordered</ion-title>
+        </div>
+        <div class="scroll">
+      
+          <div class="pedding-oders " *ngFor="let p of arr; let i=index;" [ngClass]="{'active': active==i}"  
+          (click)="showList(i, p)">
+            <div class="image">
+              <img src="{{p.image}}" alt="">
+            </div>
+            <div class="details">
+              <div class="invoice">
+                <ion-label>{{p.product_name}}</ion-label>
+              </div>
+              <div class="price">
+                <ion-label>{{p.price | currency : '&#82;'}}</ion-label>
+              </div>
+              <div class="size">
+                <ion-label>Size: </ion-label>
+                <ion-label>{{p.size}}</ion-label>
+              </div>
+              <div class="quantity">
+                <ion-label>quantity: </ion-label>
+                <ion-label>{{p.quantity}}</ion-label>
+              </div>
+            </div>
+          </div>
+        </div>
+   <div class="total-amount">
+            <!-- <ion-title>Total :{{totalPrice | currency : '&#82;'}} </ion-title> -->
+          </div>
+        <div class="tracking">
+          <div class="tacking-heading">
+            <ion-title>tracking status: {{historyStatus}}</ion-title>
+          </div>
+
+          <div  class=" oders">
+            
+            
+            
+           
+
+            <!-- <div class="tracking-progress-bar">
+              <div
+                class="tracking-progress-bar__item tracking-progress-bar__item--first tracking-progress-bar__item--active" (click)="orderReady()">
+                1</div>
+
+              <span class="tracking-progress-bar__item__bar tracking-progress-bar__item__bar--active"></span>
+              <div class="tracking-progress-bar__item tracking-progress-bar__item--active"(click)="orderReady()">2</div>
+
+              <span class="tracking-progress-bar__item__bar"></span>
+              <div class="tracking-progress-bar__item" (click)="orderReady()">3</div>
+
+              <span class="tracking-progress-bar__item__bar"></span>
+              <div class="tracking-progress-bar__item" (click)="orderReady()">4</div>
+            </div> -->
+
+            <!-- <div class="tracking-oder-labels">
+              <div class="one" >order recieved</div>
+              <div class="two" >being prepared</div>
+              <div class="three" >order is ready</div>
+              <div class="four">delivered</div>
+            </div> -->
+            <div class="status">
+            <!-- <ion-button class="buttons" *ngIf="status === 'received'">Cancel Order</ion-button>
+            <ion-button class="buttons" *ngIf="status === 'received'"  padding  color="warning"  shape="round" expand="full" (click)="orderProcessed()"> Process Order </ion-button>
+            <ion-button class="buttons" *ngIf="status === 'processed'"  padding  color="secondary"  shape="round" expand="full" (click)="orderPrepared()"> Order Ready</ion-button>
+            <ion-button class="buttons" *ngIf="status === 'ready'"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> order is ready </ion-button>
+            <ion-button class="buttons" *ngIf="status === 'delivered'"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> Close Order</ion-button> -->
+          
+         <!--
+
+            <ion-button class="buttons" (click)="cancelOrder('order cancelled')">Cancel</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'received'" (click)="processOrder('processed')">Process Order</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'processed'" (click)="orderIsReady('ready')">Ready for Collection</ion-button>
+            <ion-button class="buttons"  *ngIf="status === 'ready'" (click)="closeOrder('collected')">Collected</ion-button>
+         -->  
+          </div>
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="item-dsiplay">
+        <div>
+          <div class="content">
+            <div class="image-section">
+
+
+              <div class="image-container">
+
+
+               
+                <img src="{{trackOrders.image}}" width="100%" height="100%" alt="">
+              </div>
+            </div>
+            <div class="product-details">
+              <div class="firstItems">
+                <div class="product-name">
+                  <ion-label>{{trackOrders.product_name}} </ion-label>
+                </div>
+               
+              </div>
+              <div class="productcode">
+                <div>
+                  <ion-label> Code: {{trackOrders.productCode}}</ion-label>
+                </div>
+                 <div class="product-price">
+                  <ion-label>amount : {{trackOrders.amount}} </ion-label>
+
+                </div>
+    
+              </div>
+              <div class="productDescription">
+                <p>{{trackOrders.desc}}  
+                </p>
+              </div>
+              <div class="pdf">
+                
+               
+
+                <ion-button color="primary" expand="block" (click)="goToPDF()">send reciept Pdf</ion-button>
+                <ion-button  class="buttons" (click)="downloadPdf()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </ion-content>

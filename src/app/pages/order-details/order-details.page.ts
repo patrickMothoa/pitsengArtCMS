@@ -89,27 +89,27 @@ export class OrderDetailsPage implements OnInit {
     status:'',
     
   }
-  
-
+  myHistory = [];
+  pageName = '';
+  historyStatus = '';
   constructor(public dataservice : DataService,public modalController: ModalController,private router: Router, public route: ActivatedRoute,public DataService : DataService, private file: File, private fileOpener: FileOpener, private plt: Platform) {
-
-    
+    this.ref = `${this.ref}`
     this.name = `${this.name}`;
-    this.amount = `${this.amount}`;
-    this.quantity = `${this.quantity}`;
-    this.image=`${this.image}`;
+    this.pageName = `${this.pageName}`
+    // this.amount = `${this.amount}`;
+    // this.quantity = `${this.quantity}`;
+    // this.image=`${this.image}`;
     this.arr = `${this.arr}`;
-    this.price = `${this.price}`;
-    this.totalPrice = `${this.totalPrice}`;
-    this.status = `${this.status}`;
-    
-     
-     
+    // this.price = `${this.price}`;
+    // this.totalPrice = `${this.totalPrice}`;
+    // this.status = `${this.status}`;
    }
    ionViewWillEnter() {
     setTimeout(() => {
       this.loader = false;
     }, 2000);
+    
+
   }
 
   //  showMovementReport() {
@@ -140,27 +140,35 @@ receivedOrder(){
   }
 
   getProduct(key) { 
-    console.log('my key ', key);
-   
+    // console.log('my key ', key);
+   this.dbOrder.doc(key).onSnapshot((res)=>{
+     this.status = res.data().status;
+     this.totalPrice = res.data().totalPrice;
+   })
   }
 
   ngOnInit() {
-    console.log('bla =>',this.arr);
-    
-    this.arr.forEach((i)=>{
+    //console.log('bla =>',this.pageName);
+    // console.log("My array ", this.arr);
+  /*   this.arr.forEach((i)=>{
       console.log('My info ', i);
-    })
-    console.log(`${this.ref} ${this.name}`)
+    }) */
+    if (this.pageName==='history') {
+      this.getOrderHistory();
+    } else {
+      this.getProduct(this.ref);
+    }
+    // console.log(`${this.ref} ${this.name}`)
     this.getProfile(); 
     
-    this.getProduct(this.ref);
+    
     // this.orderProcessed();
     // this.orderReady();
     // this.cancel()
   setTimeout(() => {
     this.showList(0, this.arr[0]);
   }, 1000);
-    console.log("my ref",this.ref);
+    // console.log("my ref",this.ref);
     
     //   this.processOrder();
     //   this.orderPrepared()
@@ -168,13 +176,28 @@ receivedOrder(){
     //   this.orderCollect()
     // this.dismiss();
   }
+  getOrderHistory() {
+     this.dbHistory.doc(this.ref).onSnapshot((res)=>{
+       this.historyStatus = res.data().status;
+    }) 
+  }
   showList(i, p) {
     this.active = i;
 
     console.log('year', p);
 
-
-    this.trackOrders.product_name = p.obj.product_name;
+    if(this.pageName==='history') {
+      this.trackOrders.product_name = p.product_name;
+      this.trackOrders.quantity = p.quantity;
+      this.trackOrders.size = p.size;
+      this.trackOrders.total = p.total;
+      this.trackOrders.image = p.image;
+      this.trackOrders.productCode = p.productCode;
+      this.trackOrders.desc = p.desc;
+      this.trackOrders.amount =p.amount;
+      this.trackOrders.status =p.status;
+    } else {
+         this.trackOrders.product_name = p.obj.product_name;
     this.trackOrders.quantity = p.obj.quantity;
     this.trackOrders.size = p.obj.size;
     this.trackOrders.total = p.obj.total;
@@ -183,6 +206,8 @@ receivedOrder(){
     this.trackOrders.desc = p.obj.desc;
     this.trackOrders.amount =p.obj.amount;
     this.trackOrders.status =p.obj.status;
+    }
+ 
 
     // this.selectedValueIndex = p
   }
@@ -207,17 +232,25 @@ receivedOrder(){
   // date: any;
   orderNumber :any;
   goToPDF(){
-
-  this.Orders.forEach((item) => {
-    this.key =item.orderNumber;
-    this.totalPrice=item.totalPrice;
-    this.date = item.date;
-    console.log("xxx", this.totalPrice );
+    let tot = 0;
+    this.dbHistory.doc(this.ref).onSnapshot((doc)=>{
+      // this.Orders.forEach((item) => {
+    this.key =doc.id;
+    doc.data().product.forEach((i)=>{
+      tot = i.price * i .quantity;
+    })
+    this.totalPrice = tot;
+    // this.totalPrice=item;
+    this.date = new Date(doc.data().date);
+    // console.log("xxx", this.totalPrice );
+    // console.log("My doc ", doc.data());
     
-     this.items =  item.product.map(element => {
-        console.log(element);
+     this.items =  doc.data().product.map(element => {
+        // console.log(element);
           return [element.product_name, element.quantity, element.price, element.amount]; 
       });
+   // })
+ 
   });
     var docDefinition = {
       content: [
@@ -379,7 +412,6 @@ receivedOrder(){
     }
   }
   downloadUrl() {
-
     this.pdfObj.getBuffer((buffer) => {
       var blob = new Blob([buffer], { type: 'application/pdf' });
       let date = Date();
@@ -393,10 +425,8 @@ receivedOrder(){
           // console.log(results);
          // this.pdfDoc = url;
            this.pdfLink = url;
-           this.saveData();
-          //console.log('pdf link from storage............:', this.pdfDoc);
-          
-        
+          //  this.saveData();
+          console.log('pdf link from storage............:', this.pdfLink);
         })
       })
       // this.file.writeFile(this.file.dataDirectory, 'receipt.pdf', blob, { replace: true }).then(fileEntry => {
@@ -410,43 +440,57 @@ receivedOrder(){
   orderStatus;
 
   saveData() {
-      console.log("Your key ", this.orderNumber);
+      // console.log("Your key ", this.orderNumber);
      
-   firebase.firestore().collection("Order").doc(this.orderNumber).update({
+   this.dbOrder.doc(this.orderNumber).update({
       pdfLink : this.pdfLink })
   
   }
-  processOrder(){
-    console.log("Your key ",this.ref);
-   
- firebase.firestore().collection("Order").doc(this.ref).update({
-  status : 'processed' })
-
-  console.log(status);
-  
+  processOrder(msg){
+ console.log("Your key ",this.ref);
+ this.dbOrder.doc(this.ref).update({
+  status : msg })
+  // console.log("My status is ", msg);
  }
- orderIsReady() { 
+ orderIsReady(msg) { 
  
   console.log("Your key ",this.ref);
  
-firebase.firestore().collection("Order").doc(this.ref).update({
-  status : 'ready' })
+this.dbOrder.doc(this.ref).update({
+  status : msg })
   
 
 }
-closeOrder() {
-    console.log("Your key ",this.ref);
-   
- firebase.firestore().collection("Order").doc(this.ref).update({
-  status : 'delivered' })
+closeOrder(msg) {
+  this.getProduct(this.ref);
+  // this.downloadUrl();
+  let prod = [];
+  this.arr.forEach((i)=>{
+    prod.push(i.obj)
+  }) 
+  // console.log("My name ",this.name);
+ this.dbOrder.doc(this.ref).update({
+  status : msg }).then(()=>{
+   this.dbHistory.doc(this.ref).set({
+    // reciept: this.pdfLink,
+    date: new Date().getTime(),
+    product: prod,
+    userID: prod[0].customerUid,
+    status: msg,
+    totalPrice: this.totalPrice
+  //  name: this.name
+   }).then(()=>{
+     this.dbOrder.doc(this.ref).delete();
+   })
+  })
 }
 
-cancelOrder(){
+cancelOrder(msg){
   
-  console.log("Your key ",this.ref);
-   
-  firebase.firestore().collection("Order").doc(this.ref).update({
-   status : 'cancelled' })
+ // console.log("Your key ",this.ref);
+  
+  this.dbOrder.doc(this.ref).update({
+   status : msg })
 
    
 }
