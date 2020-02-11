@@ -133,7 +133,7 @@
   <div class="loader">Loading...</div>
 </div>
 
-<ion-content>
+<ion-content scroll="true">
 <div *ngIf="pageName==='pending'">
   <div class="main-container">
     <div class="main-content">
@@ -395,7 +395,7 @@
                 
                
 
-                <ion-button color="primary" expand="block" (click)="goToPDF()">send reciept Pdf</ion-button>
+                <ion-button class="ion-text-nowrap" color="primary" expand="block" (click)="goToPDF()">send reciept Pdf</ion-button>
                 <ion-button  class="buttons" (click)="downloadPdf()" *ngIf="hideButton" color="secondary" [disabled]="!pdfObj">VIEW RECEIPT</ion-button>
               </div>
             </div>

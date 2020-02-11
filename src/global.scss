@@ -28,8 +28,8 @@
 
 
 .my-custom-modal-css .modal-wrapper{
-  --width: 608px;
-  --height:860px;
+  --width: 35%;
+  --height: 95%;
   z-index: 99999999999;
   position: absolute;
   // right: 0;
@@ -43,6 +43,7 @@
   height: 100%;
   --width: 500px;
 }
+
 
 .profile .modal-wrapper{
   position: absolute;
@@ -59,13 +60,21 @@
 
 }
 .track-order .modal-wrapper{
-  --width: 808px;
-  --height:760px;
+  --width: 45%;
+  --height:100%;
 
 }
+@media screen  and (max-width : 1350px){
+  .track-order .modal-wrapper{
+    --width: 80%  !important;
+    --height:100%  !important;
+  // border: solid red !important ;
+  
+  }
+}
 .add-product .modal-wrapper{
-  --width: 708px;
-  --height: 915px;
+  --width: 35%;
+  --height: 95%;
 }
 // .pop-over-style .modal-wrapper{
 //   // position: absolute;
@@ -207,4 +216,19 @@
 
  
   
+
+
+
+
+
+
+// Media query for modals
   
+@media screen and (max-width: 500px){
+  .modal-wrapper{
+    --width: 100% !important;
+    --height: 100% !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+}
