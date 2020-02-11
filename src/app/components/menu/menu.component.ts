@@ -6,6 +6,8 @@ import { AddProductPage } from 'src/app/pages/add-product/add-product.page';
 import * as firebase from 'firebase';
 import { PopoverComponent } from '../popover/popover.component';
 import { FaqsPage } from 'src/app/pages/faqs/faqs.page';
+import { ProductService } from 'src/app/services/product.service';
+import { DetailsPage } from 'src/app/pages/details/details.page';
 
 @Component({
   selector: 'app-menu',
@@ -13,11 +15,22 @@ import { FaqsPage } from 'src/app/pages/faqs/faqs.page';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-
+  db = firebase.firestore();
+  supplier
+  autocompleteItemz: any;
+  autocompletez:any;
+  Products = [];
+  key = "";
+  isShow = false;
+  myDest: any;
   constructor(public toastController: ToastController,
     public popoverController: PopoverController,
     public modalController: ModalController,
-    private router: Router,) { }
+    private data: ProductService, 
+    private router: Router,) { 
+      this.autocompleteItemz = [];
+    this.autocompletez = { input: '' };
+    }
     public showSearchBar = false;
     public isSearchbarOpened = false;
 
@@ -38,6 +51,11 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  toggleDisplay() {
+    this.isShow = !this.isShow;
+    
+  }
+  
   
   async openInvoice() {
     const modal = await this.modalController.create({
@@ -58,6 +76,69 @@ export class MenuComponent implements OnInit {
     
     });
     return await modal.present();
+  }
+  getProduct(){
+    let obj = {id : '', obj : {}};
+    this.db.collection('Products').get().then(snapshot => {
+      this.Products = [];
+      if (snapshot.empty) {
+              this.myProduct = false;
+            } else {
+              this.myProduct = true;
+              snapshot.forEach(doc => {
+                obj.id = doc.id;
+                obj.obj = doc.data();
+                this.Products.push(obj);
+                obj = {id : '', obj : {}};
+                console.log("herererer", this.Products);
+              });
+              return this.Products;
+            }
+    });
+  }
+  SearchProducts(ev: CustomEvent){
+    if(this.supplier === '') {
+      this.autocompleteItemz = [];
+      return;
+    }
+   this.autocompleteItemz = this.Products;
+   console.log("ooo", this.autocompleteItemz );
+    this.getProduct();
+    const val = ev.detail.value; 
+    if (val.trim() !== '') {
+      this.autocompleteItemz = this.autocompleteItemz.filter(term => {
+        return term.obj.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+      });
+    }
+  }
+  async createViewProduct(event, key) {
+    
+    this.key = key
+    // console.log("dddd ", event);
+    this.data.Detail.category = event.categories
+    this.data.Detail.desc = event.desc
+    this.data.Detail.image = event.image
+    this.data.Detail.items = event.items
+    this.data.Detail.name = event.name
+    this.data.Detail.price = event.price
+    this.data.Detail.size = event.sizes
+    this.data.Detail.productCode = event.productCode
+    this.data.Detail.key = key
+
+this.myDest = ''
+    const modal = await this.modalController.create({
+      component:DetailsPage,
+      cssClass: 'my-custom-modal-css'
+    
+    });
+    
+    return await modal.present();
+  }
+  removeSearchList(){
+
+  }
+  resetChanges(){
+
   }
 
 
@@ -103,6 +184,8 @@ export class MenuComponent implements OnInit {
         document.getElementById('opts').style.display = 'none';
     }
   }
+  close = 'closeList'
+ 
   async createFaqs() {
     const modal = await this.modalController.create({
       component:FaqsPage,
@@ -110,6 +193,7 @@ export class MenuComponent implements OnInit {
     });
     return await modal.present();
   }
+
 
 
 

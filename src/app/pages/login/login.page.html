@@ -65,7 +65,7 @@
               <ion-title>welcome back</ion-title>
             </div>
             <div class="text-field">
-              <ion-item class="first">
+              <ion-item  class="first">
                 <ion-input placeholder="Email address" type="text" ngModel name="email">
                   <ion-icon name="mail" color="dark" slot="end"></ion-icon>
                 </ion-input>
@@ -78,7 +78,7 @@
                     </div>
                   </ng-container>
                 </div> -->
-              <ion-item>
+              <ion-item  class="first" >
                 <ion-input placeholder="password" type="password" ngModel name="password">
                   <ion-icon name="lock" color="dark" slot="end" class="lock"></ion-icon>
                 </ion-input>
@@ -93,7 +93,8 @@
                   </ng-container>
                 </div> -->
 
-              <ion-label color="primary">forget Password?</ion-label>
+                <ion-button no-padding float-right class="password" color="primary" fill="clear" slot="end"(click)="resetPassword()" >forgot Password?</ion-button>
+              <!-- <ion-label color="primary" ></ion-label> -->
             </div>
             <div class="buttons">
               <div>
@@ -114,7 +115,7 @@
                 <ion-title>or</ion-title>
               </div>
               <div class="social">
-                <div> <img src="../../../assets/icons8-facebook-96.png" alt=""></div>
+                <!-- <div> <img src="../../../assets/icons8-facebook-96.png" alt=""></div> -->
                 <div><img src="../../../assets/icons8-google-96.png" alt="" (click)="googleSignin()"></div>
 
 
