@@ -10,7 +10,7 @@
   display: flex;
 align-items: center;
   justify-content: center;
-  border: solid red;
+//   border: solid red;
 }
 .content {
   width: 70%;
@@ -20,7 +20,7 @@ align-items: center;
   top: 0;
   bottom: 0;
   margin: 0 auto;
-  border: solid blue;
+//   border: solid blue;
   display: flex;
   justify-content: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ align-items: center;
     position: absolute;
     width: 60%;
     height: 70%;
-    border: solid black;
+    // border: solid black;
     margin: 0 auto;
     z-index: 999999;
     left: 0;
@@ -68,12 +68,13 @@ align-items: center;
 .logo-side{
     width: 50%;
     height: 100%;
-    border: solid gray;
+    // border: solid gray;
     display: flex;
     align-items: center;
     margin: 0 auto;
     justify-content: center;
     background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
    
 }
 .logo-side > img{
@@ -86,7 +87,7 @@ align-items: center;
     width: 50%;
     height: 100%;
    background-color: #E9E9E9;
-    border: solid green;
+    // border: solid green;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +113,7 @@ align-items: center;
 }
 .text-field{
 width: 100%;
-border: solid red;
+// border: solid red;
 
 }
 .text-field > ion-item{

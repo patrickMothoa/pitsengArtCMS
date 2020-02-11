@@ -264,6 +264,7 @@ ion-title {
     height: 100%;
     margin: 0 auto;
     bottom: 0;
+    // overflow: auto;
     h1{
       text-transform: uppercase;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -348,4 +349,8 @@ ion-title {
         background-color: #f7f7f7;
     }
 
- 
+    // @media screen and (max-height : 800px){
+    // .response{
+    //   height: 80%;
+    // }
+    @media 
