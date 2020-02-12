@@ -67,14 +67,21 @@
   --height:100%;
 
 }
-@media screen  and (max-width : 1350px){
+@media screen and (max-width : 1350px){
   .track-order .modal-wrapper{
     --width: 80%  !important;
     --height:100%  !important;
   // border: solid red !important ;
   
   }
+
+ 
+  .my-custom-modal-css .modal-wrapper{
+    --width: 80%  !important;
+    --height:100%  !important;
+  }
 }
+
 .add-product .modal-wrapper{
   --width: 35%;
   --height: 95%;
@@ -227,9 +234,9 @@
 
 // Media query for modals
   
-@media screen and (max-width: 500px){
+@media screen and (min-width:300px) and (max-width: 800px){
   .modal-wrapper{
-    --width: 100% !important;
+    --width: 80% !important;
     --height: 100% !important;
     height: 100% !important;
     width: 100% !important;
