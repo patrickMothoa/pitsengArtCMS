@@ -464,4 +464,78 @@ GetOrders(){
       // An error happened.
     });
   }
+  // from old code
+  // { text: '', style: 'subheader'},
+  // this.profile.address,
+  // this.profile.phoneNumber,
+
+  // style: 'invoice',
+
+  // layout: 'headerLineOnly',
+  // table: {
+  //     widths: ['*', 75, 75, 75],
+  //     body: [
+  //         [
+  //             '',
+  //             'Invoice No:',
+  //              this.key,
+  //         ],
+  //         [
+  //             '',
+  //             'Invoice Date:',
+  //              this.date,
+  //         ],
+  //         // [
+  //         //     '',
+  //         //     'Invoice Name:',
+  //         //     // this.order.name,
+  //         // ]
+  //     ]
+  // },
+  // layout: 'noBorders'
+
+  // { text: '', style: 'subheader' },
+  //         { text: this.letterObj.from },
+  // ​
+  //         { text: '', style: 'subheader' },
+  //         this.letterObj.to,
+  // ​ {
+  //   style: 'itemsTable',
+  //   table: {
+  //       widths: ['*', 75, 75, 75 ],
+  //       body: [
+  //           [ 
+  //               { text: 'Name', style: 'itemsTableHeader' },
+  //               { text: 'Quantity', style: 'itemsTableHeader' },
+  //               { text: 'Price', style: 'itemsTableHeader' },
+  //              { text: 'Amount', style: 'itemsTableHeader' },
+  //           ],
+  
+  //           // this.Data
+            
+  //       ].concat(this.items)
+  //       // .concat(items)
+  //   }
+  // },
+  
+  // {
+  //   style: 'totalsTable',
+  //   table: {
+  //       widths: ['*', 75, 75],
+  //       body: [
+  //           [
+  //               '',
+  //               'Subtotal',
+  //               this.totalPrice
+  //           ],
+            
+  //           [
+  //               '',
+  //               'Total',
+  //                 this.totalPrice
+  //           ]
+  //       ]
+  //   },
+  //   layout: 'noBorders'
+  // },
 }
