@@ -13,10 +13,18 @@
           <ion-title>FAQ's</ion-title>
         </div>
         <div class="search">
-
+          <!-- code for auto complete -->
+          <div class="results">
+            <p *ngFor="let g of searchResults" (click)="selectLocation(g)" (click)="nextClick()"> {{ g }} </p>
+            <div class='count' *ngIf="searchResults.length > 0" >
+              {{ searchResults.length }}
+            </div>
+          </div>
+           <!-- <ion-input type="text" placeholder="MyLocation" [(ngModel)]="myLocation" type="number"></ion-input> -->
+          <ion-searchbar (ionInput)="getItems($event)" placeholder="ask a question"></ion-searchbar>
 
           
-           <ion-searchbar showCancelButton="focus" placeholder="ask a question" cancelButtonText="Custom Cancel"></ion-searchbar> 
+           <!-- <ion-searchbar showCancelButton="focus" placeholder="ask a question" cancelButtonText="Custom Cancel"></ion-searchbar>  -->
         </div>
       </div>
       <div class="orders">

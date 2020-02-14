@@ -16,7 +16,8 @@ export class QuriesPage implements OnInit {
     mail:""
 
   }
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
     this.getMessage()
@@ -32,7 +33,7 @@ export class QuriesPage implements OnInit {
       console.log('messges', this.message);
       
       if( this.message = []){
-snapshot.forEach(doc => {
+      snapshot.forEach(doc => {
           this.message.push(doc.data());
           console.log('messges', doc.data());
         });

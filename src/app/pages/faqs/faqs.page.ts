@@ -9,6 +9,10 @@ import * as firebase from 'firebase'
 export class FaqsPage implements OnInit {
 
   dbFaq = firebase.firestore();
+
+  SearchInfor = [];
+  searchResults = [];
+
    firstQues = {
      question1: '',
      answer1: ''
@@ -112,12 +116,54 @@ this. technical1Ques.question2 = data.data().question2;
 
 // })
 
+// this.dbFaq.collection('FAQS').get().then((data) => {
+//   this.SearchInfor.push(data.data())
+// })
+
+// this.firstQues.answer1 = data.data().answer;
+//     this.firstQues.question1 = data.data().question1;
+
+    this.SearchInfor.push({
+      answer1: "hahahaha you good",
+      question1: 'bad luck'
+    })
+
+console.log(this.SearchInfor);
+
   }
   
 dismiss(){
   this.modalController.dismiss({
     'dismissed':true
   });
+}
+
+getItems(ev: any) {
+  // Reset items back to all of the items
+  // set val to the value of the searchbar
+  const val = ev.target.value;
+​
+  // if the value is an empty string don't filter the items
+  // console.log(val);
+  if (val && val.trim() != "") {
+    this.searchResults = this.SearchInfor.filter(item => {
+      return item.toString().indexOf(val.toString().toLowerCase()) > -1;
+    });
+    // console.log('Results = ',this.searchResults);
+  } else if (val != " ") {
+    // this.testArrays = this.SearchInfor.filter(item => {
+    //   return item.toLowerCase().indexOf(val.toLowerCase()) > -1;
+    // });
+    this.searchResults = this.SearchInfor.filter(item => {
+      return item.toLowerCase().indexOf(val.toLowerCase()) > -1;
+    });
+  } else if (val == "") {
+    this.searchResults = [];
+  }
+​
+  console.log(this.SearchInfor);
+  console.log(this.searchResults);
+  
 }
 
 
