@@ -3,6 +3,7 @@
     <div class="main-cover">
 
 
+      <button (click)="Button()">Button</button>
       <div class="whoWeAre">
         <div class="image-section">
           <div class="edit-image">
@@ -14,8 +15,11 @@
               <ion-icon name="create" color="light" class="edit-image-icon" ></ion-icon>
             </ion-label > -->
           </div>
-          <img  *ngIf="!about.image" src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
-          <img *ngIf="about.image" src="{{about.image}}" alt="">
+          <img  *ngIf="!about.image " src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+          <img *ngIf="about.MyImage " src="{{about.image}}" alt="">
+          <!-- <img  *ngIf="!about.image" src="../../../assets/canva-man-making-clay-pot-MADGvul2Slk.png" alt="">
+        
+          <img src="{{Image}}" alt=""> -->
 
         </div>
         <div class="description-section">
