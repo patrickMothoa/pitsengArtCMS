@@ -26,8 +26,8 @@ exports.sendEmailToClient = functions.firestore.document('AdminReply/{docid}').o
     const mailOptions = {
         from: 'Pitseng Art <sharonshaz449@gmail.com>',
         to: dataR.email,
-        subject: 'anything',
-        html: `<p style="font-size: 16px;">Good day <b>${dataR.fullName}</b></p>
+        subject: `${dataR.subject}`,
+        html: `<p style="font-size: 16px;">Good day <b>${dataR.nameOfClient}</b></p>
                 <br />
                 <p style="font-size: 15px;">${dataR.message} </p>
                 <p style="font-size: 16px;">Until then,<b>HAPPY WAITING!!</b> </p>

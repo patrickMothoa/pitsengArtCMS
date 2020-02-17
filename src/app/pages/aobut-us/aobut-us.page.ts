@@ -15,7 +15,7 @@ export class AobutUsPage implements OnInit {
     fullname: '',
     subject: '',
     textMessage: '',
-    image :''
+    MyImage :''
   }
   services ={
     service: '',
@@ -32,7 +32,7 @@ export class AobutUsPage implements OnInit {
       data.forEach(data => {
         if(data.data().customerUid === firebase.auth().currentUser.uid){
 
-        this.about.image = data.data().image;
+        this.about.MyImage = data.data().image;
         this.about.fullname = data.data().name;
         this.about.subject = data.data().subject;
         this.about.textMessage = data.data().message;
@@ -78,7 +78,7 @@ export class AobutUsPage implements OnInit {
     }, () => {
       upload.snapshot.ref.getDownloadURL().then(dwnURL => {
         console.log('File avail at: ', dwnURL);
-        this.about.image = dwnURL;
+        this.about.MyImage = dwnURL;
       });
     });
 
@@ -94,7 +94,7 @@ export class AobutUsPage implements OnInit {
        name : this.about.fullname,
        subject : this.about.subject,
        message : this.about.textMessage,
-       image :this.about.image
+       image :this.about.MyImage
   
        
       }).then(() => {
