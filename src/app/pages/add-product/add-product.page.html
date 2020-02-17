@@ -160,14 +160,15 @@
         </div>
         <div class="Product-name">
           <ion-item  lines="none" color="dark" >
-              <ion-input placeholder="Product Name" [(ngModel)]="event.name"></ion-input>
+              <ion-input placeholder="Product Name" [(ngModel)]="event.name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
           </ion-item>
         
 
         </div>
         <div class="Product-name">
           <ion-item  lines="none" color="dark">
-            <ion-input  type="tel" placeholder="Price" [(ngModel)]="event.price"></ion-input>
+            <ion-input  type="number" placeholder="Price" [(ngModel)]="event.price" 
+ onKeyPress="if(this.value.length==5) return false;" ></ion-input>
           </ion-item>
         
 

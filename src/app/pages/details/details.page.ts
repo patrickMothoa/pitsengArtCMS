@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import { ProductService } from 'src/app/services/product.service';
 import { AlertController, ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { async } from '@angular/core/testing';
+import * as moment from 'moment';
+
 
 
 @Component({
@@ -61,6 +63,7 @@ export class DetailsPage implements OnInit {
     public alertCtrl: AlertController,
     private router: Router,
     public toastCtrl: ToastController,
+    public alertController: AlertController,
     public modalController: ModalController) { }
 
   ngOnInit() {
@@ -128,22 +131,29 @@ export class DetailsPage implements OnInit {
  
 
   editPercentage : number = 0
-  editStartDate
-  editEndDate 
+  editStartDate : String
+  editEndDate  : String
 
   update(){
     this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
   }
 
-  promoteItem(){
+  async promoteItem(){
    
- 
+    let date = moment().format()
+ let value1 : boolean = this.editStartDate >= date.slice(0, 10)
+ let value2 : boolean = this.editEndDate >= date.slice(0, 10)
+let finalValue : boolean = value1 && value2 ;
 
 
 
-console.log("Data in the Details ", (  this.value )-((this.editPercentage/100)*( this.value)));
-console.log("ddd ", this.value );
-this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
+
+
+
+if(finalValue && this.editStartDate <= this.editEndDate){
+
+
+  this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
 
 firebase.firestore().collection("Sales").doc().set({
  image  : this.obj.image,
@@ -163,8 +173,25 @@ firebase.firestore().collection("Sales").doc().set({
  
 })
 this.dismiss();
+}else{
+
+
+  const alert = await this.alertController.create({
+    header: '',
+    subHeader: '',
+    message: 'Please enter the correct dates',
+    buttons: ['OK']
+  });
+
+  await alert.present();
+
+}
+
+
 
   }
+
+
   async toastController(message) {
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
     return toast.present();
