@@ -409,17 +409,20 @@
 // 
 @media only screen and (max-width:600px) {
 
-
+  .cards-container {
+    margin-bottom: 100px;
+  }
   ion-content {
-    margin-top: 50%;
+    // margin-top: 10%;
   }
 
   .container {
     position: relative;
-    top: 30px;
+    // top: 30px;
     padding: 8px;
     // display: none;
     min-width: 100%;
+    // border: solid blue;
   }
 
   .category-Container {
@@ -429,6 +432,7 @@
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
+    // border: solid red;
 
     .First-Category-Block {
       padding: 0;
@@ -489,7 +493,9 @@
   }
 }
 
-@media screen and(min-width:600px) and (max-width : 1080px){}
+@media screen and(min-width:600px) and (max-width : 869px){
+
+}
 
 @media screen and(min-width:100px) and (max-width : 599px){}
 
@@ -499,7 +505,7 @@
 
 
 ion-content {
-  top: 15%;
+  top: 10%;
   // bottom: 10%;
 }
 

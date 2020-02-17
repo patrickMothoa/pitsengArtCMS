@@ -13,12 +13,19 @@ export class QuriesPage implements OnInit {
   active: any;
 
   userMessage ={
-    mail:""
-
+    mail:"",
+    name:""
   }
-  constructor() { }
+  admin = {
+    uid: '',
+    email: firebase.auth().currentUser.email
+  }
+  msg
+  constructor(
+  ) { }
 
   ngOnInit() {
+   
     this.getMessage()
     setTimeout(() => {
       this.showList(0, this.message[0]);
@@ -32,7 +39,7 @@ export class QuriesPage implements OnInit {
       console.log('messges', this.message);
       
       if( this.message = []){
-snapshot.forEach(doc => {
+      snapshot.forEach(doc => {
           this.message.push(doc.data());
           console.log('messges', doc.data());
         });
@@ -48,17 +55,22 @@ snapshot.forEach(doc => {
   }
   showList(i, m) {
     this.active = i;
-   
     this.userMessage.mail = m.email;
-    
-    
+    this.userMessage.name = m.name
     console.log('year',this. message);
-  
-  
-  
-  
- 
    }
+
+   sendReply(){
+     this.db.collection("AdminReply").add({
+          message: this.msg,
+          email : this.userMessage.mail,
+          nameOfClient: this.userMessage.name,
+          subject : ''
+     })
+     console.log('ss',this.msg);
+     
+   }
+ 
 }
 
 

@@ -67,79 +67,78 @@
  
   <ion-fab vertical="top" horizontal="end" slot="fixed">
    
-      <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
-  
-  </ion-fab>
-  <ion-content>
-   <div class="loader-container" *ngIf="loader">
-    <div class="loader">Loading...</div>
-  </div>
-  <div class="main-content" >
-    <div class="search-section">
-      <div class="faq-heading">
+    <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
 
-        <ion-title>Orders</ion-title>
-      </div>
-      <div class="search">
+</ion-fab>
+<ion-content>
+ <!-- <div class="loader-container" *ngIf="loader">
+  <div class="loader">Loading...</div>
+</div> -->
+<div class="main-content" >
+  <div class="search-section">
+    <div class="faq-heading">
 
-        <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
-      </div>
+      <ion-title>Orders</ion-title>
     </div>
-  <div  class="content-cover">
-    <div class="orders" >
-      <div class="row">
-        <div class="col">    
-          <div class="tabs">
-            <div class="tab">
-              <input type="checkbox" id="chck1">
-              <label class="tab-label" for="chck1">Pending Orders</label>
-              <div class="tab-content">
-                <div class="pedding-oders" >
-                  <div class="invoicesContainer">
-                    <ion-card *ngFor = "let item of ordersPlaced, let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)" >
-                      <div class="invoicesList" (click)="viewDetail(item,'pending')">
-                        <div>
-                          <ion-label class="name" >{{item.info.name}}</ion-label>
-                        </div>
-                        <div>
-                          <ion-label class="reference" >{{item.ref}}</ion-label>
-                        </div>
-                        <div>
-                       
-                          <ion-label class="date" > {{item.info.date }} </ion-label>
-                        </div>
+    <div class="search">
+
+      <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+    </div>
+  </div>
+<div  class="content-cover">
+  <div class="orders" >
+    <div class="row">
+      <div class="col">    
+        <div class="tabs">
+          <div class="tab">
+            <input type="checkbox" id="chck1">
+            <label class="tab-label" for="chck1">Pending Orders</label>
+            <div class="tab-content">
+              <div class="pedding-oders" >
+                <div class="invoicesContainer">
+                  <ion-card *ngFor = "let item of ordersPlaced, let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)" >
+                    <div class="invoicesList" (click)="viewDetail(item,'pending')">
+                      <div>
+                        <ion-label class="name" >{{item.info.name}}</ion-label>
                       </div>
-                    </ion-card> 
+                      <div>
+                        <ion-label class="reference" >{{item.ref}}</ion-label>
+                      </div>
+                      <div>
+                     
+                        <ion-label class="date" > {{item.info.date }} </ion-label>
+                      </div>
                     </div>
-                
-                </div>
-               
-               
-               
+                  </ion-card> 
+                  </div>
+              
               </div>
+             
+             
+             
             </div>
-            <div class="tab">
-              <input type="checkbox" id="chck2">
-              <label class="tab-label" for="chck2">Order History</label>
-              <div class="tab-content">
-                <div class="pedding-oders">
-                  <div class="invoicesContainer">
-                    <ion-card *ngFor="let item of orderHistory, let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)">
-                      <div class="invoicesList" (click)="viewDetail(item,'history')">
-                        <div>
-                          <ion-label class="name" >{{item.user}}</ion-label>
-                        </div>
-                        <div>
-                          <ion-label class="reference" >{{item.ref}}</ion-label>
-                        </div>
-                        <div>
-                          <ion-label class="date" > {{item.info.date | date:"medium"}} </ion-label>
-                        </div>
+          </div>
+          <div class="tab">
+            <input type="checkbox" id="chck2">
+            <label class="tab-label" for="chck2">Order History</label>
+            <div class="tab-content">
+              <div class="pedding-oders">
+                <div class="invoicesContainer">
+                  <ion-card *ngFor="let item of orderHistory, let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)">
+                    <div class="invoicesList" (click)="viewDetail(item,'history')">
+                      <div>
+                        <ion-label class="name" >{{item.user}}</ion-label>
                       </div>
-                    </ion-card> 
+                      <div>
+                        <ion-label class="reference" >{{item.ref}}</ion-label>
+                      </div>
+                      <div>
+                        <ion-label class="date" > {{item.info.date}} </ion-label>
+                      </div>
                     </div>
-                
-                </div>
+                  </ion-card> 
+                  </div>
+              
               </div>
             </div>
           </div>
@@ -147,8 +146,9 @@
       </div>
     </div>
   </div>
-  </div>
-  <div *ngIf="!myProduct" class="empty" >
-    <ion-title >no placed orders currently, come and check later on </ion-title>
-  </div>
-  </ion-content> 
+</div>
+</div>
+<div *ngIf="!myProduct" class="empty" >
+  <ion-title >no placed orders currently, come and check later on </ion-title>
+</div>
+</ion-content> 
