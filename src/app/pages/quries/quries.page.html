@@ -1,11 +1,11 @@
-
 <ion-content>
   <div class="content-section">
     <div class="content">
       <div class="message-section">
         <h1>Messages</h1>
         <div class="messages">
-          <div class="message-card" *ngFor="let m of message; let i=index " [ngClass]="{'active': active==i}" (click)="showList(i, m)">
+          <div class="message-card" *ngFor="let m of message; let i=index " [ngClass]="{'active': active==i}"
+            (click)="showList(i,m)">
             <div *ngIf="!myProduct" class="empty">
               <ion-title> no sent messages at the moment</ion-title>
             </div>

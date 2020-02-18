@@ -3,54 +3,31 @@
 </div>
 <ion-content>
   <div class="container">
-    <!-- <div class="grid">
-      <div class="left hvr-grow"(click)="categorylist('Deco')">
-        <div class="card">
-          <img src="{{Homescreen.deco}}" alt="">
-          <p>Deco (1)</p>
-        </div>
 
-      </div>
-
-      <div class="right">
-
-        <div class="card" (click)="categorylist('Pottery')">
-          <img src="{{Homescreen.pottery}}" alt="">
-          <p>Pottery (45)</p>
-        </div>
-
-        <div class="card" (click)="categorylist('Lamps')">
-          <img src="{{Homescreen.lamps}}"
-            alt="">
-          <p>Lamps (5)</p>
-        </div>
-
-
-        <div class="card" (click)="categorylist('Vase')">
-          <img src="{{Homescreen.vase}}" alt="">
-          <p>Vases (10)</p>
-        </div>
-
-      </div>
-    </div> -->
     <div class="category-Container">
       <div class="First-Category-Block"(click)="categorylist('Deco')">
         <img  src="{{Homescreen.deco}}" alt="">
-        <ion-label class="category-label"><span>Deco ({{decoLength}})</span></ion-label>
+        <div class="overlay" >
+     <ion-label class="category-label"><span>Deco ({{decoLength}})</span></ion-label>
+        </div>
+   
       </div>
 
       <div class="Second-Category-Block" (click)="categorylist('Pottery')">
         <div class="firstSecond-block">
+          <div class="overlay" >
           <img  src="{{Homescreen.pottery}}" alt="">
           <ion-label class="category-label"><span>Pottery ({{potteryLength}})</span></ion-label> 
 
         </div>
         <div class="container-bottom2">
           <div class="seconSecond-block" (click)="categorylist('Lamps')" >
+            <div class="overlay" >
             <img  src="{{Homescreen.lamps}}" alt="">
             <ion-label class="category-label"><span>Lamps ({{lampsLength}})</span></ion-label> 
           </div>
           <div class="thirdSecond-block" (click)="categorylist('Vase')">
+            <div class="overlay" >
             <img  src="{{Homescreen.vase}}" alt="">
             <ion-label class="category-label"><span>Vases ({{vaseLength}})</span></ion-label> 
           </div>
@@ -112,6 +89,9 @@
   </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
   <!-- </div> -->
 </ion-content>
 

@@ -180,6 +180,19 @@
             <div class="">
               <ion-item>
                 <ion-input type="text" placeholder="address" [(ngModel)]="profile.address"></ion-input>
+
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="street" [(ngModel)]="profile.streetAddress"></ion-input>
+                
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="city/reagion" [(ngModel)]="profile.city"></ion-input>
+                
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="code" [(ngModel)]="profile.code"></ion-input>
+                
               </ion-item>
             </div>
             <div class="edit-number">
@@ -229,9 +242,15 @@
           <div class="address">
             <ion-item>
               <ion-label class="ion-text-wrap" >{{profile.address}}</ion-label> <ion-icon name="pin" ></ion-icon>
-            </ion-item>
+              <!-- <ion-label class="ion-text-wrap" >{{profile.streetAddress}}</ion-label> <ion-icon name="pin" ></ion-icon>
+              <ion-label class="ion-text-wrap" >{{profile.city}}</ion-label> <ion-icon name="pin" ></ion-icon>
+              <ion-label class="ion-text-wrap" >{{profile.code}}</ion-label> <ion-icon name="pin" ></ion-icon>-->
+            </ion-item> 
             
           </div>
+      
+
+          
           <div class="edit">
 
             <ion-icon color="primary" name="create" (click)="edit()"></ion-icon>
