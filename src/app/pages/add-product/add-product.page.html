@@ -150,39 +150,39 @@
 
             <div>
               <div class="views">
-                <img *ngIf="!event.image" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
+                <img *ngIf="!event.imageSide" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
                   alt="">
-                <img *ngIf="event.image" class="sideview" src="{{event.image}}" width="100px" height="100px">
+                <img *ngIf="event.imageSide" class="sideview" src="{{event.imageSide}}" width="100px" height="100px">
               </div>
               <div class="views">
 
-                <img *ngIf="!event.image" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
+                <img *ngIf="!event.imageBack" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
                   alt="">
-                <img *ngIf="event.image" class="sideview" src="{{event.image}}" width="100px" height="100px">
+                <img *ngIf="event.imageBack" class="sideview" src="{{event.imageBack}}" width="100px" height="100px">
               </div>
               <div class="views">
-                <img *ngIf="!event.image" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
+                <img *ngIf="!event.imageTop" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
                   alt="">
-                <img *ngIf="event.image" class="sideview" src="{{event.image}}" width="100px" height="100px">
+                <img *ngIf="event.imageTop" class="sideview" src="{{event.imageTop}}" width="100px" height="100px">
               </div>
 
 
             </div>
             <div class="upload-side-images">
               <div class="first-side-image">
-                <label for="file-upload"> side view </label>
-                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
-                  placeholder="upload image" (change)="changeListener($event)">
+                <label for="file-uploadSide">Upload side</label>
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-uploadSide"
+                  placeholder="upload image" (change)="Side($event)">
               </div>
               <div class="second-side-image">
-                <label for="file-upload" color="primary" > side view</label>
-                <input color="primary"  lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
-                  placeholder="upload image" (change)="changeListener($event)">
+                <label for="file-uploadBack">Upload back</label>
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-uploadBack"
+                  placeholder="upload image" (change)="Back($event)">
               </div>
               <div class="third-side-image">
-                <label for="file-upload">side view</label>
-                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
-                  placeholder="upload image" (change)="changeListener($event)">
+                <label for="file-uploadTop"> Upload Top</label>
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-uploadTop"
+                  placeholder="upload image" (change)="Top($event)">
               </div>
 
 

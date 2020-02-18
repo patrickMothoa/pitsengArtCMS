@@ -20,6 +20,9 @@ export class AddProductPage implements OnInit {
   event = {
      id: '',
     image: '',
+    imageSide:'',
+    imageBack:'',
+    imageTop:'',
     categories:'',
     name:'',
     price:null,
@@ -45,6 +48,13 @@ export class AddProductPage implements OnInit {
 
   get Image() {
     return this.productForm.get('image');
+  }
+  get ImageOne() {
+    return this.productForm.get('imageSide');
+  }get ImagTwo() {
+    return this.productForm.get('imageBack');
+  }get ImageThree() {
+    return this.productForm.get('imageTop');
   }
   get Categories() {
     return this.productForm.get('categories');
@@ -78,6 +88,9 @@ export class AddProductPage implements OnInit {
      @Inject(LOCALE_ID) private locale: string,public modalController: ModalController,) { 
     this.productForm = formBuilder.group({ 
      image: [this.event.image, Validators.compose([Validators.required])],
+     imageSide: [this.event.image, Validators.compose([Validators.required])],
+     imageBack: [this.event.image, Validators.compose([Validators.required])],
+     imageTop: [this.event.image, Validators.compose([Validators.required])],
       categories: [this.event.categories, Validators.compose([Validators.required])], 
       name: [this.event.name, Validators.compose([Validators.required])],
       price: [this.event.price, Validators.compose([Validators.required])], 
@@ -91,8 +104,6 @@ export class AddProductPage implements OnInit {
 
 
   ngOnInit() {
-    // const date = new Date();
-   //  this.event.lastcreated = date.toDateString();
 
   }
   changeListener(event): void {
@@ -112,32 +123,59 @@ export class AddProductPage implements OnInit {
       });
     });
   }
+  Side(event): void {
+    const i = event.target.files[0];
+    console.log(i);
+    const upload = this.storage.child(i.name).put(i);
+    upload.on('state_changed', snapshot => {
+
+
+      this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('upload is: ', this.progress , '% done.');
+    }, err => {
+    }, () => {
+      upload.snapshot.ref.getDownloadURL().then(dwnURL => {
+        console.log('File avail at: ', dwnURL);
+        this.event.imageSide = dwnURL;
+      });
+    });
+  }
+  Back(event): void {
+    const i = event.target.files[0];
+    console.log(i);
+    const upload = this.storage.child(i.name).put(i);
+    upload.on('state_changed', snapshot => {
+
+
+      this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('upload is: ', this.progress , '% done.');
+    }, err => {
+    }, () => {
+      upload.snapshot.ref.getDownloadURL().then(dwnURL => {
+        console.log('File avail at: ', dwnURL);
+        this.event.imageBack = dwnURL;
+      });
+    });
+  }
+  Top(event): void {
+    const i = event.target.files[0];
+    console.log(i);
+    const upload = this.storage.child(i.name).put(i);
+    upload.on('state_changed', snapshot => {
+
+
+      this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('upload is: ', this.progress , '% done.');
+    }, err => {
+    }, () => {
+      upload.snapshot.ref.getDownloadURL().then(dwnURL => {
+        console.log('File avail at: ', dwnURL);
+        this.event.imageTop = dwnURL;
+      });
+    });
+  }
 
   async addEvent(){
-   
-    // console.log("ffff ", this.event.items);
-    
-
-    // setTimeout(() => {
-      
-    //   firebase.firestore().collection("Products").doc().set({
-    //     categories: this.event.categories,
-    //     desc : this.event.desc,
-    //     image: this.event.image,
-    //     items: this.event.items,
-    //     lastcreated: '',
-    //     name : this.event.name ,
-    //     price: this.event.price,
-    //     productCode: this.stringGen(6),
-    //     quantity:this.event.quantity,
-    //     size : this.sizes
-  
-    //   })
-
-      
-    // }, 1000);
- 
-
     if (!this.event.image){
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product. No image selected or has not finnished uploading.'
