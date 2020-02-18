@@ -42,12 +42,15 @@ export class OrderDetailsPage implements OnInit {
     name: '',
     phoneNumber:'',
     address: '',
+    streetAddress:'',
+    city:'',   
+    code:'',
     surname:'',
-    email: '',
+    // email: firebase.auth().currentUser.email,
+   
     uid: '',
-    // phoneNumber: firebase.auth().currentUser.phoneNumber,
+    
   }
- 
   pdfObj = null;
   text : boolean = false;
   hideButton : boolean = false;
@@ -235,7 +238,10 @@ receivedOrder(){
     this.profile.surname = res.data().surname;
     this.profile.phoneNumber = res.data().phoneNumber;
     this.profile.address = res.data().address;
-    })
+    this.profile.streetAddress =res.data().streetAddress;
+    this.profile.city =res .data().city;
+    this.profile.code = res.data().code;
+   })
   }
   items: any;
   // date: any;
@@ -276,6 +282,9 @@ receivedOrder(){
         { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
         { text: 'FROM', style: 'subheader'},
         this.profile.address,
+        this.profile.streetAddress,
+        this.profile.city,
+        this.profile.code,
         this.profile.phoneNumber,
 
         // { text: 'From', style: 'subheader', color: "gray", bold: true, alignment: "left", fontFamily: 'Roboto', },
