@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ResetPasswordPage } from '../reset-password/reset-password.page';
 import Swal from 'sweetalert2';
+import { ProfilePage } from '../profile/profile.page';
 
 declare var window
 
@@ -67,7 +68,7 @@ export class LoginPage  {
                             this.router.navigateByUrl('/pro')
                            
                           }else{
-                            this.router.navigateByUrl('/profile')
+                           this.createProfile()
                           }
                         })
           });
@@ -102,6 +103,15 @@ export class LoginPage  {
     this.modalController.dismiss({
       'dismissed': true
     });
+  }
+  async createProfile() {
+    const modal = await this.modalController.create({
+      component:ProfilePage,
+      cssClass: 'profile',
+      
+    
+    });
+    return await modal.present();
   }
   // alertPassword(){
   //   var auth = firebase.auth();
