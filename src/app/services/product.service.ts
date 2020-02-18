@@ -27,6 +27,9 @@ export class ProductService {
 
   Detail = {
     image : "",
+    imageSide:"",
+    imageBack:"",
+    imageTop:"",
     price : "",
     name : "",
     desc : "",

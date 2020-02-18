@@ -24,6 +24,9 @@ export class DetailsPage implements OnInit {
 
   event = {
     image: '',
+    imageSide:'',
+    imageBack:'',
+    imageTop:'',
     categories:'',
     name:'',
     price:null,
@@ -43,6 +46,9 @@ export class DetailsPage implements OnInit {
 
   obj = {
     image : "",
+    imageSide:"",
+    imageBack:"",
+    imageTop:"",
     price : "",
     name : "",
     desc : "",
@@ -71,6 +77,9 @@ export class DetailsPage implements OnInit {
 
    
     this.obj.image =  this.data.Detail.image
+    this.obj.imageSide =  this.data.Detail.imageSide
+    this.obj.imageBack =  this.data.Detail.imageBack
+    this.obj.imageTop =  this.data.Detail.imageTop
     this.obj.price =  this.data.Detail.price
     this.obj.name =  this.data.Detail.name
     this.obj.desc =  this.data.Detail.desc
@@ -97,6 +106,9 @@ export class DetailsPage implements OnInit {
 
     firebase.firestore().collection("Products").doc(this.key).update({
       categories : this.obj.category,
+      imageSide:this.obj.imageSide,
+      imageBack:this.obj.imageBack,
+      imageTop:this.obj.imageTop,
       desc : this.obj.desc,
       id : this.key,
       image : this.obj.image,
@@ -157,6 +169,9 @@ if(finalValue && this.editStartDate <= this.editEndDate){
 
 firebase.firestore().collection("Sales").doc().set({
  image  : this.obj.image,
+ imageSide  : this.obj.imageSide,
+ imageBack  : this.obj.imageBack,
+ imageTop  : this.obj.imageTop,
  price  : this.obj.price,
  name : this.obj.name,
  desc : this.obj.desc,
