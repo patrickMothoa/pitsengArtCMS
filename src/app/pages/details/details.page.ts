@@ -50,6 +50,7 @@ export class DetailsPage implements OnInit {
     imageBack:"",
     imageTop:"",
     price : "",
+    quantity: "",
     name : "",
     desc : "",
     size : "",
@@ -80,6 +81,7 @@ export class DetailsPage implements OnInit {
     this.obj.imageSide =  this.data.Detail.imageSide
     this.obj.imageBack =  this.data.Detail.imageBack
     this.obj.imageTop =  this.data.Detail.imageTop
+    this.obj.quantity =this.data.Detail.quantity
     this.obj.price =  this.data.Detail.price
     this.obj.name =  this.data.Detail.name
     this.obj.desc =  this.data.Detail.desc
@@ -138,10 +140,6 @@ export class DetailsPage implements OnInit {
       'dismissed': true
     });
     }
-
-  
- 
-
   editPercentage : number = 0
   editStartDate : String
   editEndDate  : String
@@ -157,11 +155,6 @@ export class DetailsPage implements OnInit {
  let value2 : boolean = this.editEndDate >= date.slice(0, 10)
 let finalValue : boolean = value1 && value2 ;
 
-
-
-
-
-
 if(finalValue && this.editStartDate <= this.editEndDate){
 
 
@@ -169,6 +162,7 @@ if(finalValue && this.editStartDate <= this.editEndDate){
 
 firebase.firestore().collection("Sales").doc().set({
  image  : this.obj.image,
+ quantity: this.obj.quantity,
  imageSide  : this.obj.imageSide,
  imageBack  : this.obj.imageBack,
  imageTop  : this.obj.imageTop,
@@ -184,12 +178,9 @@ firebase.firestore().collection("Sales").doc().set({
    percentage:this.editPercentage,
    totalPrice : (  this.value )-((this.editPercentage/100)*( this.value))
 
-   
- 
 })
- this.dismiss();
+ 
 }else{
-
 
   const alert = await this.alertController.create({
     header: '',
@@ -199,6 +190,7 @@ firebase.firestore().collection("Sales").doc().set({
   });
 
   await alert.present();
+  this.dismiss();
 
 }
 

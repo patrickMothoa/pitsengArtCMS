@@ -133,7 +133,7 @@ export class UserInvoicesPage implements OnInit {
         pageName: page,
         totalPrice: value.info.totalPrice,
         ref: value.ref,
-        name: value.info.product[0].product_name,
+        name: value.info.product[0].name,
         price: value.info.product[0].price,
         quantity: value.info.product[0].quantity,
         image: value.info.product[0].image,

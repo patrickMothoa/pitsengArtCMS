@@ -83,7 +83,7 @@ export class OrderDetailsPage implements OnInit {
   readyBtn : boolean =  false;
   ///////////////
   trackOrders =  {
-    product_name: '',
+    name: '',
     size: '',
     quantity: 0,
     total: 0,
@@ -195,7 +195,7 @@ receivedOrder(){
     console.log('year', p);
 
     if(this.pageName==='history') {
-      this.trackOrders.product_name = p.product_name;
+      this.trackOrders.name = p.name;
       this.trackOrders.date = p.date;
       this.trackOrders.quantity = p.quantity;
       this.trackOrders.price = p.price;
@@ -207,7 +207,7 @@ receivedOrder(){
       this.trackOrders.amount =p.amount;
       this.trackOrders.status =p.status;
     } else {
-    this.trackOrders.product_name = p.obj.product_name;
+    this.trackOrders.name = p.obj.name;
     this.trackOrders.date = p.obj.date;
     this.trackOrders.quantity = p.obj.quantity;
     this.trackOrders.price = p.price;
@@ -256,13 +256,13 @@ receivedOrder(){
       //console.log('Extras in table...', item);
       if (this.arr.length >= 0) {
 
-        return [item.product_name, item.quantity, 'R' + item.price + '.00','R' + item.amount + '.00'];
+        return [item.name, item.quantity, 'R' + item.price + '.00','R' + item.amount + '.00'];
       } else {
         return ['*********', 0, 'R0.00']
       }
     });
     this.arr.forEach((item) => {
-      name.push(item.product_name);
+      name.push(item.name);
       // cost.push(item.cost);
       quantity.push(item.quantity);
       amount.push(item.amount);
