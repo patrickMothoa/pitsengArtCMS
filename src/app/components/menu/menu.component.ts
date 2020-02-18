@@ -125,14 +125,16 @@ export class MenuComponent implements OnInit {
     this.data.Detail.productCode = event.productCode
     this.data.Detail.key = key
 
-this.myDest = ''
-    const modal = await this.modalController.create({
-      component:DetailsPage,
-      cssClass: 'my-custom-modal-css'
+this.myDest = '';
+this.router.navigateByUrl('/details');
+console.log('clieck search')
+    // const modal = await this.modalController.create({
+    //   component:DetailsPage,
+    //   cssClass: 'my-custom-modal-css'
     
-    });
+    // });
     
-    return await modal.present();
+    // return await modal.present();
   }
   removeSearchList(){
 

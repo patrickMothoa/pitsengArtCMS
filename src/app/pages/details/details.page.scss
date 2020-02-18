@@ -82,6 +82,19 @@
       width: 100%;
       // border: solid lime;
     }
+    // .Product-name > ion-label {
+    //   font-size: 15px;
+    //   font-weight: 500;
+    //   color: #6A6A6A;
+    // }
+    // .normal-price > ion-label {
+    //   font-size: 25px;
+    //   color: black;
+  
+    // }
+    .product-code > p{
+      color: #6A6A6A;
+    }
     .field {
       display:flex;
       position:realtive;
@@ -299,6 +312,8 @@
 // }
   .buttons{
     width: 100%;
+    margin-top: 50px;
+    position: relative;
     // border:  solid violet;
     display: flex;
     flex-direction: column;
