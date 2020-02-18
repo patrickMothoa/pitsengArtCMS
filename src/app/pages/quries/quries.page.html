@@ -1,11 +1,11 @@
-
 <ion-content>
   <div class="content-section">
     <div class="content">
       <div class="message-section">
         <h1>Messages</h1>
         <div class="messages">
-          <div class="message-card" *ngFor="let m of message; let i=index " [ngClass]="{'active': active==i}" (click)="showList(i, m)">
+          <div class="message-card" *ngFor="let m of message; let i=index " [ngClass]="{'active': active==i}"
+            (click)="showList(i,m)">
             <div *ngIf="!myProduct" class="empty">
               <ion-title> no sent messages at the moment</ion-title>
             </div>
@@ -15,6 +15,7 @@
                 <ion-note>
                   {{m.email}}
                 </ion-note>
+                <h3>{{ m.subject}}</h3>
               </div>
               <ion-card-content>
                 <p>
@@ -29,7 +30,7 @@
                 </ion-col>
                 <ion-col align-self-center text-center>
                   <ion-note>
-                    22/01/2020
+                 {{m.date}}
                   </ion-note>
                 </ion-col>
               </ion-row>
@@ -50,20 +51,19 @@
           </ion-label>
         </div>
         <div class="response-as">
-          <ion-label>Reply as: <p> martymcfly@pitseng.com</p>
+          <ion-label>Reply as: <p>{{admin.email}}</p>
+          </ion-label>
+        </div>
+        <div class="response-as">
+          <ion-label>Subject: <p>{{userMessage.subject}}</p>
           </ion-label>
         </div>
         <div class="write-message">
-          <textarea placeholder="Message" name="" id="" cols="60"></textarea>
-<div class="btn">
-          <ion-button shape="round" expand="outline" color="medium">send response</ion-button>
+          <textarea placeholder="Message" name="" [(ngModel)]="msg" id="" cols="60"></textarea>
+        <div class="btn">
+          <ion-button shape="round" (click)="sendReply()" expand="outline" color="medium" >send response</ion-button>
         </div>
         </div>
-        
-
-
-
-
       </div>
 
     </div>
@@ -72,5 +72,3 @@
 
 
 </ion-content>
-
-<!--  -->

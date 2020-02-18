@@ -32,10 +32,10 @@
             </div>
             <div class="edit-names">
               <ion-item>
-                <ion-input placeholder="name" type="text" [(ngModel)]="profile.name"></ion-input>
+                <ion-input placeholder="name" type="text" [(ngModel)]="profile.name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input placeholder="surname" type="text" [(ngModel)]="profile.surname"></ion-input>
+                <ion-input placeholder="surname" type="text" [(ngModel)]="profile.surname" onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
               </ion-item>
             </div>
             <!-- <div class="" >
@@ -46,11 +46,24 @@
             <div class="">
               <ion-item>
                 <ion-input type="text" placeholder="address" [(ngModel)]="profile.address"></ion-input>
+
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="street" [(ngModel)]="profile.streetAddress"></ion-input>
+                
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="city/reagion" [(ngModel)]="profile.city"></ion-input>
+                
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="code" [(ngModel)]="profile.code"></ion-input>
+                
               </ion-item>
             </div>
             <div class="edit-number">
               <ion-item>
-                <ion-input placeholder="contact Number" type="number" min="0" max="10"
+                <ion-input placeholder="contact Number" type="tel" minlength=10 maxlength=10 onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));"
                   [(ngModel)]="profile.phoneNumber"></ion-input>
               </ion-item>
             </div>
@@ -95,9 +108,15 @@
           <div class="address">
             <ion-item>
               <ion-label class="ion-text-wrap" >{{profile.address}}</ion-label> <ion-icon name="pin" ></ion-icon>
-            </ion-item>
+              <!-- <ion-label class="ion-text-wrap" >{{profile.streetAddress}}</ion-label> <ion-icon name="pin" ></ion-icon>
+              <ion-label class="ion-text-wrap" >{{profile.city}}</ion-label> <ion-icon name="pin" ></ion-icon>
+              <ion-label class="ion-text-wrap" >{{profile.code}}</ion-label> <ion-icon name="pin" ></ion-icon>-->
+            </ion-item> 
             
           </div>
+      
+
+          
           <div class="edit">
 
             <ion-icon color="primary" name="create" (click)="edit()"></ion-icon>

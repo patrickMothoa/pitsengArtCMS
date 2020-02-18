@@ -24,6 +24,7 @@ import {ResetPasswordPageModule } from './pages/reset-password/reset-password.mo
 
 
 
+
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",

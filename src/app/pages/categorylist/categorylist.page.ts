@@ -101,13 +101,13 @@ adminInfo(){
     this.data.Detail.key = key
 
 
-  
-    const modal = await this.modalController.create({
-      component:DetailsPage,
-      cssClass: 'my-custom-modal-css'
+    this.router.navigateByUrl('/details')
+  //   const modal = await this.modalController.create({
+  //     component:DetailsPage,
+  //     cssClass: 'my-custom-modal-css'
     
-    });
-    return await modal.present();
+  //   });
+  //   return await modal.present();
   }
   
   openHome(){

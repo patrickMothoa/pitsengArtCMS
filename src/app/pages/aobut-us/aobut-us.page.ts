@@ -15,7 +15,7 @@ export class AobutUsPage implements OnInit {
     fullname: '',
     subject: '',
     textMessage: '',
-    image :''
+    MyImage :''
   }
   services ={
     service: '',
@@ -28,31 +28,45 @@ export class AobutUsPage implements OnInit {
 
   ngOnInit() {
 
-    if(firebase.auth().currentUser){
-      this.dbAboutUs.doc(firebase.auth().currentUser.uid).get().then((data) => {
-        this.about.image = data.data().image;
+    firebase.firestore().collection("AboutUs").onSnapshot(data => {
+      data.forEach(data => {
+        if(data.data().customerUid === firebase.auth().currentUser.uid){
+
+        this.about.MyImage = data.data().image;
         this.about.fullname = data.data().name;
         this.about.subject = data.data().subject;
         this.about.textMessage = data.data().message;
-      })
-    }
 
-    if(firebase.auth().currentUser){
-      this.dbService.doc(firebase.auth().currentUser.uid).get().then((data) => {
-        this.services.MyImage = data.data().image;
-        this.services.service = data.data().service;
-        this.services.history = data.data().history;
-        this.services.job = data.data().job;
+        }
+        
       })
-    }
-   
+    })
+
+
+
+    firebase.firestore().collection("Service").onSnapshot(data => {
+      data.forEach(data => {
+        if(data.data().customerUid === firebase.auth().currentUser.uid){
+
+          this.services.MyImage = data.data().image;
+          this.services.service = data.data().service;
+          this.services.history = data.data().history;
+          this.services.job = data.data().job;
+
+        }
+        
+      })
+    })
+
+
+ 
 
   }
 
 
   changeListener(event): void {
 
-console.log("Method called");
+
 
     const i = event.target.files[0];
     console.log(i);
@@ -64,7 +78,7 @@ console.log("Method called");
     }, () => {
       upload.snapshot.ref.getDownloadURL().then(dwnURL => {
         console.log('File avail at: ', dwnURL);
-        this.about.image = dwnURL;
+        this.about.MyImage = dwnURL;
       });
     });
 
@@ -80,7 +94,7 @@ console.log("Method called");
        name : this.about.fullname,
        subject : this.about.subject,
        message : this.about.textMessage,
-       image :this.about.image
+       image :this.about.MyImage
   
        
       }).then(() => {

@@ -9,28 +9,21 @@
           <img src="{{Homescreen.deco}}" alt="">
           <p>Deco (1)</p>
         </div>
-
       </div>
-
       <div class="right">
-
         <div class="card" (click)="categorylist('Pottery')">
           <img src="{{Homescreen.pottery}}" alt="">
           <p>Pottery (45)</p>
         </div>
-
         <div class="card" (click)="categorylist('Lamps')">
           <img src="{{Homescreen.lamps}}"
             alt="">
           <p>Lamps (5)</p>
         </div>
-
-
         <div class="card" (click)="categorylist('Vase')">
           <img src="{{Homescreen.vase}}" alt="">
           <p>Vases (10)</p>
         </div>
-
       </div>
     </div> -->
     <div class="category-Container">
@@ -38,12 +31,10 @@
         <img  src="{{Homescreen.deco}}" alt="">
         <ion-label class="category-label"><span>Deco ({{decoLength}})</span></ion-label>
       </div>
-
       <div class="Second-Category-Block" (click)="categorylist('Pottery')">
         <div class="firstSecond-block">
           <img  src="{{Homescreen.pottery}}" alt="">
           <ion-label class="category-label"><span>Pottery ({{potteryLength}})</span></ion-label> 
-
         </div>
         <div class="container-bottom2">
           <div class="seconSecond-block" (click)="categorylist('Lamps')" >
@@ -56,12 +47,10 @@
           </div>
         </div>
       </div>
-
-
     </div>
     <div class="more_deals">
       <div class="info">
-        <h1>More Deals</h1>
+        <h1>check your sales</h1>
         <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
           doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
           veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim 
@@ -70,7 +59,6 @@
           porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, 
           adipiscir</p> -->
       </div>
-
       <ion-item>
         <ion-label>Sales</ion-label>
       </ion-item>
@@ -91,11 +79,11 @@
     <div class="cards"  [ngClass]="{'active': active==i}"  >
       <div class="percent-off" >
         <p>{{event.obj.percentage}} % off</p>
-
       </div>
       <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
-      <ion-label class="price"> {{event.obj.totalPrice | currency: '&#82;'}}  <span class="span-tsrike" >{{event.obj.price | currency: '&#82;'}}</span>  </ion-label>
       <ion-label class="name"> {{event.obj.name}} </ion-label>
+      <ion-label class="price"> {{event.obj.totalPrice | currency: '&#82;'}}  <span class="span-tsrike" >{{event.obj.price | currency: '&#82;'}}</span>  </ion-label>
+     
       <div class="stars">
         <ion-icon name="star" color="warning"></ion-icon>
         <ion-icon name="star" color="warning"></ion-icon>
@@ -114,4 +102,3 @@
     </div>
   <!-- </div> -->
 </ion-content>
-

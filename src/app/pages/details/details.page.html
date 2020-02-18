@@ -78,16 +78,52 @@
 
 
 <div padding class="heading">
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="top" horizontal="end" slot="fixed">
 
     <ion-icon (click)="dismiss()" color="medium" name="close"></ion-icon>
 
-  </ion-fab>
+  </ion-fab> -->
   <hr>
 </div>
 <ion-content>
   <div class="content-section">
     <div class="content">
+   
+    
+        <div class="image-views-section" >
+
+          <div>
+            <img src="{{obj.imageSide}}" alt="">
+            <div>
+                <ion-input no-padding  lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
+            (change)="changeListener($event)">
+          </ion-input>
+            </div>
+          
+
+          </div>
+          
+          <div>
+            <img src="{{obj.imageBack}}" alt="">
+            <div>
+              <ion-input no-padding  lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
+          (change)="changeListener($event)">
+        </ion-input>
+          </div>
+          </div>
+  
+          <div>
+            <img src="{{obj.imageTop}}" alt="">
+            <div>
+              <ion-input no-padding  lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
+          (change)="changeListener($event)">
+        </ion-input>
+          </div>
+          </div>
+  
+  
+        </div>
+  
       <div class="image-section">
         <img src="{{obj.image }}" alt="">
 
@@ -96,9 +132,14 @@
       <div class="details-section">
         <div class="upload">
           <ion-item color="dark">
-            <ion-input lines="none" class="image-upload" type="file" accept="image/*" placeholder="upload image"
+            <!-- <label for="file-upload"> front image </label> -->
+            <ion-input lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
               (change)="changeListener($event)">
             </ion-input>
+
+            <!-- <label for="file-upload"> side view </label>
+            <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
+              placeholder="upload image" (change)="changeListener($event)"> -->
           </ion-item>
         </div>
         <div class="Product-name">
@@ -122,7 +163,7 @@
             <ion-label position="floating"  >Price</ion-label>
             <ion-item lines="none" color="dark" class="text-field" >
               
-              <ion-input type="number" min="1"  [(ngModel)]="obj.price" ></ion-input>
+              <ion-input type="number" [(ngModel)]="obj.price"   onKeyPress="if(this.value.length==5) return false;"></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
@@ -194,8 +235,8 @@
               <p>Qty:</p>
             </div>
             <div>
+                <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
               <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
             </div>
 
           </div>
@@ -236,12 +277,13 @@
 
 
         </div> -->
+        <br><br>
         <div class="buttons">
           <div>
-            <ion-button shape="round" expand="outline" color="medium" (click)="save()">save</ion-button>
+            <ion-button  shape="block"   color="tertiary" (click)="save()">save</ion-button>
           </div>
           <div>
-            <ion-button shape="round" expand="full" color="danger" (click)="delete()">delete</ion-button>
+            <ion-button shape="block" color="danger" (click)="delete()">delete</ion-button>
           </div>
         </div>
       </div>
