@@ -187,7 +187,7 @@ firebase.firestore().collection("Sales").doc().set({
    
  
 })
-this.dismiss();
+ this.dismiss();
 }else{
 
 
