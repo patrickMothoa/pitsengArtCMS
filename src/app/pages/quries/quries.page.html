@@ -50,20 +50,19 @@
           </ion-label>
         </div>
         <div class="response-as">
-          <ion-label>Reply as: <p> martymcfly@pitseng.com</p>
+          <ion-label>Reply as: <p>{{admin.email}}</p>
+          </ion-label>
+        </div>
+        <div class="response-as">
+          <ion-label>Subject: <p>{{userMessage.subject}}</p>
           </ion-label>
         </div>
         <div class="write-message">
-          <textarea placeholder="Message" name="" id="" cols="60"></textarea>
-          <div class="btn">
-            <ion-button  shape="round" expand="outline" color="medium">send response</ion-button>
-          </div>
+          <textarea placeholder="Message" name="" [(ngModel)]="msg" id="" cols="60"></textarea>
+        <div class="btn">
+          <ion-button shape="round" (click)="sendReply()" expand="outline" color="medium" >send response</ion-button>
         </div>
-
-
-
-
-
+        </div>
       </div>
 
     </div>
@@ -72,5 +71,3 @@
 
 
 </ion-content>
-
-<!--  -->

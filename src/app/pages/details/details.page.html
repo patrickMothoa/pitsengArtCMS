@@ -125,7 +125,7 @@
             <ion-label position="floating"  >Price</ion-label>
             <ion-item lines="none" color="dark" class="text-field" >
               
-              <ion-input type="number" min="1"  [(ngModel)]="obj.price" ></ion-input>
+              <ion-input type="number" [(ngModel)]="obj.price"   onKeyPress="if(this.value.length==5) return false;"></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">

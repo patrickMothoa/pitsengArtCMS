@@ -166,10 +166,10 @@
             </div>
             <div class="edit-names">
               <ion-item>
-                <ion-input placeholder="name" type="text" [(ngModel)]="profile.name"></ion-input>
+                <ion-input placeholder="name" type="text" [(ngModel)]="profile.name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input placeholder="surname" type="text" [(ngModel)]="profile.surname"></ion-input>
+                <ion-input placeholder="surname" type="text" [(ngModel)]="profile.surname" onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
               </ion-item>
             </div>
             <!-- <div class="" >

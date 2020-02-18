@@ -22,7 +22,7 @@ ion-content {
   }
   .main-cover{
     width: 70%;
-    height: 100%;
+    // height: 100%;
     margin: 0 auto;
     transition: 300ms;
     // border: solid black;
@@ -38,7 +38,7 @@ ion-content {
   .whoWeAre{
     
     width: 100%;
-    // background-color: #000;
+    background-color: #000;
     height: 100%;      
     display: flex;
     margin: 0 auto;
@@ -73,23 +73,13 @@ ion-content {
     position: relative;
     
   }
-  @media screen and (max-width: 500px){
-    .whoWeAre{
-      flex-direction: column;
-    }
-    .image-section{
-      left: 0;
-      top: 0;
-      width: 99%;
-    }
-  }
   .services{
     // border:  solid blue;
     width: 100%;
     margin: 0 auto;
     height: 700px;
     position: relative;
-    top: 15%;
+    top: 0;
     margin-bottom: 300px;
     // background-color: #f7f7f78f;
   }
@@ -200,6 +190,14 @@ ion-content {
         right: 20px;
         top: 20px;
         z-index: 9999999999999999999999999;
+        width: 60px;
+        background: rgba(0, 0, 0, 0.582);
+        border: 2px solid white;
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 45px;
     }
     .edit-image-icon{
         font-size: x-large;
@@ -209,4 +207,27 @@ ion-content {
       .main-cover{
         width: 100%;
       }
+    }
+
+    @media screen and (max-width: 500px){
+      .whoWeAre{
+        flex-direction: column;
+      }
+      .image-section{
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+      .description-section, .services-description-section, .services-image-section{
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+    }
+    #fileUploader, #fileUpload{
+      display: none;
+    }
+    #editor{
+      color: white;
+      font-size: 25px;
     }
