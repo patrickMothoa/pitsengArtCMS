@@ -91,7 +91,7 @@ body {
   // border:  solid blue;
 }
 .navigation-bar {
-  width: 100%;
+  width: 76%;
   margin: auto;
   left: 0;
 
@@ -108,16 +108,20 @@ body {
   justify-content: center;
   flex-direction: row;
   margin: 0 auto;
-  vertical-align: middle;
+  vertical-align: middle;justify-content: right;
 }
 .nav > .nav-links {
-  display: inline;
+  display: flex;
   font-size: 18px;
-  width: 100%;
+  // width: 60%;
+
   text-align: center;
+  align-items: center;
   // border:  solid red;
   margin: 0 auto;
-  margin-top: 5px;
+  left: 0;
+ 
+  // margin-top: 15px;
   // display: flex;
   // justify-content: center;
   // flex-direction: row;
@@ -134,7 +138,7 @@ body {
   text-transform: capitalize;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: medium;
-  text-align: center;
+  text-align: right;
   // float: right;
   // width: 15%;
   margin:  0 auto;

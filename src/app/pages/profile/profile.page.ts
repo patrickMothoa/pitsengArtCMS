@@ -20,6 +20,9 @@ export class ProfilePage implements OnInit {
     name: '',
     phoneNumber:'',
     address: '',
+    streetAddress:'',
+    city:'',   
+    code:'',
     surname:'',
     email: firebase.auth().currentUser.email,
    
@@ -116,7 +119,7 @@ export class ProfilePage implements OnInit {
     }
   }
   createAccount(){
-    if (!this.profile.address||!this.profile.name||!this.profile.surname||!this.profile.phoneNumber){
+    if (!this.profile.address||!this.profile.name||!this.profile.surname||!this.profile.phoneNumber||!this.profile.streetAddress||!this.profile.city||!this.profile.code){
       this.errtext = 'Fields should not be empty'
     } else {
       if (!this.profile.image){
@@ -140,11 +143,14 @@ export class ProfilePage implements OnInit {
         this.isprofile = true;
         snapshot.forEach(doc => {
           this.profile.address = doc.data().address;
-          this.profile.image= doc.data().image
-          this.profile.name=doc.data().name
-          this.profile.surname=doc.data().surname
-          this.profile.phoneNumber=doc.data().phoneNumber
-          this.profile.email=doc.data().email
+          this.profile.image= doc.data().image;
+          this.profile.name=doc.data().name;
+          this.profile.surname=doc.data().surname;
+          this.profile.phoneNumber=doc.data().phoneNumber;
+          this.profile.email=doc.data().email;
+          this.profile.streetAddress=doc.data().streetAddress;
+          this.profile.city=doc.data().city;
+          this.profile.code=doc.data().code
           
         })
       }

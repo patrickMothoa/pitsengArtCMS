@@ -22,7 +22,7 @@ export class QuriesPage implements OnInit {
     this.getMessage()
     setTimeout(() => {
       this.showList(0, this.message[0]);
-      console.log('index',  )
+      console.log('index', this.userMessage )
     }, 1000);
   }
   //   this.userMessage.mail = m.email; this.selectedValueIndex = p
