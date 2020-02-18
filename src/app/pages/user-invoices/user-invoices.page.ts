@@ -30,6 +30,8 @@ export class UserInvoicesPage implements OnInit {
   public item = [];
   conArray = []
   Orders = []
+  autocompleteItemz: any;
+  autocompletez: any;
   public display;
   public postSort = 'recent';
   public userID; z
@@ -42,11 +44,12 @@ export class UserInvoicesPage implements OnInit {
   myProduct = false;
   orderHistory = [];
   myProfile = [];
+  name: string;
   constructor(public DataService: DataService, public modalController: ModalController, public formBuilder: FormBuilder, private router: Router, public route: ActivatedRoute, public loadingCtrl: LoadingController, public productservices: ProductService, public alertCtrl: AlertController, public toastController: ToastController) {
-
-
-    // this.db.collection("Users")
-
+    this.autocompleteItemz = [];
+    this.autocompletez = { input: '' };
+  //  this.smsSent = false
+    firebase.auth().languageCode = 'en';
   }
 
   ngOnInit() {
@@ -67,6 +70,21 @@ export class UserInvoicesPage implements OnInit {
       })
     })
     
+  }
+  SearchInvoice(ev: CustomEvent){
+    if(this.name === '') {
+      this.autocompleteItemz = [];
+      return;
+    }
+   this.autocompleteItemz = this.ordersPlaced;
+   console.log("ooo", this.autocompleteItemz );
+    this.GetOrders();
+    const val = ev.detail.value; 
+    if (val.trim() !== '') {
+      this.autocompleteItemz = this.autocompleteItemz.filter(item => {
+        return item.info.name.toLowerCase().indexOf(val.trim().toLowerCase()) > -1;
+      });
+    }
   }
   getOrderHistory() {
     this.dbHistory.onSnapshot((res) => {
