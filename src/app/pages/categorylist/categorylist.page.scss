@@ -23,19 +23,22 @@
   }
   
   ion-content{
-      top: 10%;
+      // top: 10%;
   }
   .content-container {
       // height: 100%;
-      // width: 75%;
+      width: 76%;
       // border: solid blue;
       margin: 0 auto;
-      margin-bottom: 5%;
+      // margin-bottom: 5%;
+      position: relative;
+      padding-top: 200px;
     }
   .categorySection{
       // border: solid red;
-      height: 100%;
-      margin-bottom: 40px;
+  position: relative;
+  height: auto;
+      // margin-bottom: 40px;
     }
     .categoryList{
       width: 90%;
@@ -89,12 +92,10 @@
       // }
   
       &:hover {
-        animation-name:pulse;
-        animation-duration: 0.5s;
-        animation-timing-function: ease-out;
-        animation-iteration-count:infinite;
-        animation-direction:reverse;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+   
       }
+    
   }
     .cards > img {
       width: 222px;
@@ -108,14 +109,14 @@
       text-align: center;
     }
     .cards > .price {
-      font-weight: bolder;
-      color: #4e4e4e;
-      font-size: 18px;
+      font-weight: bold;
+      color: black;
+      font-size: 25px;
     }
     .name {
-      font-size: 12px;
-      font-weight: lighter;
-      color: #4e4e4e;
+      font-size: 15px;
+      font-weight: bolder;
+      color: #4E4E4E;
     }
     .stars {
       text-align: center;

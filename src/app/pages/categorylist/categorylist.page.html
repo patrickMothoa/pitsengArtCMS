@@ -12,8 +12,9 @@
               <div  class="products-section" *ngFor="let event of Deco; let i=index;">
               <div  class="cards"(click)=" createViewProduct(event.data, event.key)"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
                 <img class="animated fadeInDown 2s" src="{{event.data.image}}" alt="">
-                <ion-label class="price">R &nbsp; {{event.data.price}}</ion-label>
                 <ion-label class="name"> {{event.data.name}} </ion-label>
+                <ion-label class="price">R&nbsp;{{event.data.price}}</ion-label>
+              
                 <div class="stars">
                   <ion-icon name="star" color="warning"></ion-icon>
                   <ion-icon name="star" color="warning"></ion-icon>

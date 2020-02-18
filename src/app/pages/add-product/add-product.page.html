@@ -175,12 +175,12 @@
                   placeholder="upload image" (change)="changeListener($event)">
               </div>
               <div class="second-side-image">
-                <label for="file-upload"> upside down view</label>
-                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
+                <label for="file-upload" color="primary" > side view</label>
+                <input color="primary"  lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
                   placeholder="upload image" (change)="changeListener($event)">
               </div>
               <div class="third-side-image">
-                <label for="file-upload">Upload File </label>
+                <label for="file-upload">side view</label>
                 <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
                   placeholder="upload image" (change)="changeListener($event)">
               </div>
@@ -193,8 +193,8 @@
         <!-- *ngIf="!event.image" style="width:500px, padding-left:16px"-->
         <div class="Product-name">
           <ion-item lines="none"  color="dark"  >
-            <ion-label  >Categories</ion-label>
-            <ion-select (ionChange)="getCategories($event)">
+            <ion-label color="medium"  >Categories</ion-label>
+            <ion-select (ionChange)="getCategories($event)"  >
               <ion-select-option value="Deco">Deco</ion-select-option>
               <ion-select-option value="Lamps">Lamps</ion-select-option>
               <ion-select-option value="Vase">Vase</ion-select-option>
@@ -279,9 +279,10 @@
               <p>Qty:{{currentNumber}}</p>
             </div>
             <div>
-              <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+              
 
               <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
             </div>
 
           </div>

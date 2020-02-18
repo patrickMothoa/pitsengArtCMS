@@ -242,7 +242,60 @@ this.myDest = ''
     });
     return await modal.present();
   }
+  active: string = ''
+
+  ShowActive(activeButton) {
+    console.log('this is active')
+    this.active = activeButton;
+
+    if (activeButton === "home") {
+  
+      document.getElementById("home").style.textDecoration = "underline";
+      document.getElementById("home").style.textDecorationColor = "#B73225";
+      document.getElementById("about").style.textDecoration = "transparent";
+      document.getElementById("queries").style.textDecoration = "transparent";
+      document.getElementById("faqs").style.textDecoration = "transparent";
+      document.getElementById("addProduct").style.textDecoration = "transparent";
+      
+      // text-decoration: underline;
+    }
+    else if (activeButton === "about") {
 
 
+      document.getElementById("home").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "underline";
+      document.getElementById("about").style.textDecorationColor = "#B73225";
+      document.getElementById("queries").style.textDecoration = "transparent";
+      document.getElementById("faqs").style.textDecoration = "transparent";
+      document.getElementById("addProduct").style.textDecoration = "transparent";
+  
+ 
+     }else if (activeButton === "queries"){
+      document.getElementById("home").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "transparent";
+      document.getElementById("queries").style.textDecoration = "underline";
+      document.getElementById("queries").style.textDecorationColor = "#B73225";
+      document.getElementById("faqs").style.textDecoration = "transparent";
+      document.getElementById("addProduct").style.textDecoration = "transparent";
+
+     }else if (activeButton === "faqs"){
+      document.getElementById("home").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "transparent";
+      document.getElementById("queries").style.textDecoration = "transparent";
+      document.getElementById("faqs").style.textDecoration = "underline";
+      document.getElementById("faqs").style.textDecorationColor = "#B73225";
+      document.getElementById("addProduct").style.textDecoration = "transparent";
+
+     }else if (activeButton === "addProduct"){
+      document.getElementById("home").style.textDecoration = "transparent";
+      document.getElementById("about").style.textDecoration = "transparent";
+      document.getElementById("queries").style.textDecoration = "transparent";
+      document.getElementById("faqs").style.textDecoration = "transparent";
+      document.getElementById("addProduct").style.textDecoration = "underline";
+      document.getElementById("addProduct").style.textDecorationColor = "#B73225";
+
+     }
+    
+  }
   Allspecials
 }
