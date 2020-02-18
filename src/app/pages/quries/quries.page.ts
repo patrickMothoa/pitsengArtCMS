@@ -17,7 +17,8 @@ export class QuriesPage implements OnInit {
   userMessage ={
     mail:"",
     name:"",
-    subject:""
+    subject:"",
+    date :""
   }
   admin = {
     uid: '',
@@ -62,6 +63,7 @@ export class QuriesPage implements OnInit {
     this.userMessage.mail = m.email;
     this.userMessage.name = m.name;
     this.userMessage.subject = m.subject
+    this.userMessage.date =m.date
 
     console.log('year',this. message);
    }

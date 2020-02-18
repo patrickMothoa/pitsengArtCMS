@@ -93,7 +93,7 @@
         <div class="image-views-section" >
 
           <div>
-            <img src="../../../assets/asset-1.png" alt="">
+            <img src="{{obj.imageSide}}" alt="">
             <div>
                 <ion-input no-padding  lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
             (change)="changeListener($event)">
@@ -104,7 +104,7 @@
           </div>
           
           <div>
-            <img src="../../../assets/asset-4.png" alt="">
+            <img src="{{obj.imageBack}}" alt="">
             <div>
               <ion-input no-padding  lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
           (change)="changeListener($event)">
@@ -113,7 +113,7 @@
           </div>
   
           <div>
-            <img src="../../../assets/asset-3.png" alt="">
+            <img src="{{obj.imageTop}}" alt="">
             <div>
               <ion-input no-padding  lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
           (change)="changeListener($event)">
