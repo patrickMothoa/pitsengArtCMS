@@ -124,123 +124,177 @@
 <ion-content>
   <div class="content-section">
     <div class="content">
-      
+
       <div class="details-section">
         <div class="upload">
-          <div  class="image-section">
-            <img  *ngIf="!event.image" src="../../../assets/images.png" alt="">
-            
-              <img *ngIf="event.image" src="{{event.image}}">
-        </div>
+          <div class="image-section">
+            <img *ngIf="!event.image" src="../../../assets/images.png" alt="">
+
+            <img *ngIf="event.image" src="{{event.image}}">
           </div>
-          
-        <ion-item class="item-progress"    >
-          <ion-label color="dark" position="stacked" id="profile_image">Upload Product Image</ion-label>
-          <input  lines="none" class="image-upload" type="file" accept="image/*" id="file-upload" placeholder="upload image" (change)="changeListener($event)">
-          <label for="file-upload">
-            Upload File
-          </label>
-            <p  >progress:  {{progress / 100 | percent}}</p>
-          
+        </div>
+
+        <ion-item class="item-progress">
+          <div class="file-upload-center">
+           
+              <div class="first-image">
+                <label for="file-upload">Upload image </label>
+                <!-- <ion-label color="dark" position="stacked" class="upload files" id="profile_image">Upload Product Images</ion-label> -->
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
+                  placeholder="upload image" (change)="changeListener($event)">
+
+                <p>progress: {{progress / 100 | percent}}</p>
+
+              </div>
+           
+
+            <div>
+              <div class="views">
+                <img *ngIf="!event.image" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
+                  alt="">
+                <img *ngIf="event.image" class="sideview" src="{{event.image}}" width="100px" height="100px">
+              </div>
+              <div class="views">
+
+                <img *ngIf="!event.image" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
+                  alt="">
+                <img *ngIf="event.image" class="sideview" src="{{event.image}}" width="100px" height="100px">
+              </div>
+              <div class="views">
+                <img *ngIf="!event.image" class="sideview" src="../../../assets/images.png" width="100px" height="100px"
+                  alt="">
+                <img *ngIf="event.image" class="sideview" src="{{event.image}}" width="100px" height="100px">
+              </div>
+
+
+            </div>
+            <div class="upload-side-images">
+              <div class="first-side-image">
+                <label for="file-upload"> side view </label>
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
+                  placeholder="upload image" (change)="changeListener($event)">
+              </div>
+              <div class="second-side-image">
+                <label for="file-upload"> upside down view</label>
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
+                  placeholder="upload image" (change)="changeListener($event)">
+              </div>
+              <div class="third-side-image">
+                <label for="file-upload">Upload File </label>
+                <input lines="none" class="image-upload" type="file" accept="image/*" id="file-upload"
+                  placeholder="upload image" (change)="changeListener($event)">
+              </div>
+
+
+            </div>
+
+          </div>
         </ion-item>
-      <!-- *ngIf="!event.image" style="width:500px, padding-left:16px"-->
+        <!-- *ngIf="!event.image" style="width:500px, padding-left:16px"-->
         <div class="Product-name">
-          <ion-item  lines="none" color="dark" >
-            <ion-label >Categories</ion-label>
+          <ion-item lines="none"  color="dark"  >
+            <ion-label  >Categories</ion-label>
             <ion-select (ionChange)="getCategories($event)">
               <ion-select-option value="Deco">Deco</ion-select-option>
               <ion-select-option value="Lamps">Lamps</ion-select-option>
               <ion-select-option value="Vase">Vase</ion-select-option>
               <ion-select-option value="Pottery">Pottery</ion-select-option>
-              
+
             </ion-select>
           </ion-item>
-        
+
 
         </div>
         <div class="Product-name">
-          <ion-item  lines="none" color="dark" >
-              <ion-input placeholder="Product Name" [(ngModel)]="event.name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
+          <ion-item lines="none" color="dark">
+            <ion-input placeholder="Product Name" [(ngModel)]="event.name"
+              onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
           </ion-item>
-        
+
 
         </div>
         <div class="Product-name">
-          <ion-item  lines="none" color="dark">
-            <ion-input  type="number" placeholder="Price" [(ngModel)]="event.price" 
- onKeyPress="if(this.value.length==5) return false;" ></ion-input>
+          <ion-item lines="none" color="dark">
+            <ion-input type="number" placeholder="Price" [(ngModel)]="event.price"
+              onKeyPress="if(this.value.length==5) return false;"></ion-input>
           </ion-item>
-        
+
 
         </div>
 
-        <div  class="product-selection" >
-          <div class="product-code" >
+        <div class="product-selection">
+          <div class="product-code">
 
           </div>
-          <div  class="item" >
+          <div class="item">
             <div>
-              <input type="radio" (input)=" getOption(0)" name="framework" value="per item" id="laravel"/>
+              <input type="radio" (input)=" getOption(0)" name="framework" value="per item" id="laravel" />
               <label for="laravel">per item</label>
             </div>
             <div>
-              <input type="radio" (input)=" getOption(1)" name="framework" value="per pack" id="yii" checked="checked"/>
+              <input type="radio" (input)=" getOption(1)" name="framework" value="per pack" id="yii"
+                checked="checked" />
               <label for="yii">per pack</label>
             </div>
 
           </div>
 
         </div>
-        <div class="description" >
-          <div class="descr" >
+        <div class="description">
+          <div class="descr">
             <ion-item color="dark">
-               <ion-textarea  lines="none"  placeholder="Enter more information about the product here..." [(ngModel)]="event.desc"></ion-textarea>
+              <ion-textarea lines="none" placeholder="Enter more information about the product here..."
+                [(ngModel)]="event.desc"></ion-textarea>
             </ion-item>
-           
+
           </div>
 
         </div>
         <div padding class="Productselection">
           <div class="size">
-            <p  >size:</p>
+            <p>size:</p>
 
-            <div >
-              <label  class="container">S
+            <div>
+              <label class="container">S
                 <input type="checkbox" value="S" [(ngModel)]="productSize.small" (click)="selectedSize($event)">
                 <span class="checkmark"></span>
               </label>
             </div>
-            <div >
+            <div>
               <label class="container">M
                 <input type="checkbox" value="M" [(ngModel)]="productSize.medium" (click)="selectedSize($event)">
                 <span class="checkmark"></span>
               </label>
             </div>
-            <div >
-            <label class="container">L
-              <input type="checkbox" value="L" [(ngModel)]="productSize.large" (click)="selectedSize($event)">
-              <span class="checkmark"></span>
-            </label>
+            <div>
+              <label class="container">L
+                <input type="checkbox" value="L" [(ngModel)]="productSize.large" (click)="selectedSize($event)">
+                <span class="checkmark"></span>
+              </label>
             </div>
 
           </div>
           <div class="quantity">
-            <div  ><p>Qty:{{currentNumber}}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger"  (click)="decrement(p)"></ion-icon>
-              
-              <ion-icon name="add-circle" color="success"   (click)="increment(p)"></ion-icon></div>
-              
+            <div>
+              <p>Qty:{{currentNumber}}</p>
+            </div>
+            <div>
+              <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+
+              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>
+            </div>
+
           </div>
-         
+
         </div>
-         
- <div class="buttons" >
-        <div>
-          <ion-button shape="round" expand="outline" color="medium"  (click)="addEvent()">save</ion-button>
+
+        <div class="buttons">
+          <div>
+            <ion-button shape="round" expand="outline" color="medium" (click)="addEvent()">save</ion-button>
+          </div>
         </div>
       </div>
-      </div>
-     
+
 
     </div>
 

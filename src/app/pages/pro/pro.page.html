@@ -50,7 +50,7 @@
     </div>
     <div class="more_deals">
       <div class="info">
-        <h1>More Deals</h1>
+        <h1>check your sales</h1>
         <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
           doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
           veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim 
@@ -81,8 +81,9 @@
         <p>{{event.obj.percentage}} % off</p>
       </div>
       <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
-      <ion-label class="price"> {{event.obj.totalPrice | currency: '&#82;'}}  <span class="span-tsrike" >{{event.obj.price | currency: '&#82;'}}</span>  </ion-label>
       <ion-label class="name"> {{event.obj.name}} </ion-label>
+      <ion-label class="price"> {{event.obj.totalPrice | currency: '&#82;'}}  <span class="span-tsrike" >{{event.obj.price | currency: '&#82;'}}</span>  </ion-label>
+     
       <div class="stars">
         <ion-icon name="star" color="warning"></ion-icon>
         <ion-icon name="star" color="warning"></ion-icon>
