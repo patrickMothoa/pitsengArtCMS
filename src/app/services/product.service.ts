@@ -30,6 +30,7 @@ export class ProductService {
     imageSide:"",
     imageBack:"",
     imageTop:"",
+    quantity:"",
     price : "",
     name : "",
     desc : "",

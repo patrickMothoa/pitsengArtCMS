@@ -93,6 +93,9 @@ adminInfo(){
     this.data.Detail.category = event.categories
     this.data.Detail.desc = event.desc
     this.data.Detail.image = event.image
+    this.data.Detail.imageSide = event.imageSide
+    this.data.Detail.imageBack = event.imageBack
+    this.data.Detail.imageTop = event.imageTop
     this.data.Detail.items = event.items
     this.data.Detail.name = event.name
     this.data.Detail.price = event.price
