@@ -80,7 +80,7 @@ export class QuriesPage implements OnInit {
    }).catch(err => {
             console.error(err);
    });
-   
+      this.msg = '';
      console.log('ss',this.msg);
      
    }

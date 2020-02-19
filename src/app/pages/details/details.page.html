@@ -209,7 +209,7 @@
 
             <div>
               <label class="container">S
-                <input type="checkbox" [(ngModel)]="obj.size" value="S">
+                <input type="checkbox" [(ngModel)]="obj.size" >
                 <span class="checkmark"></span>
               </label>
             </div>
@@ -232,7 +232,7 @@
           </div>
           <div class="quantity">
             <div>
-              <p>Qty:</p>
+              <p>Qty:{{obj.quantity}}</p>
             </div>
             <div>
                 <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon>

@@ -92,6 +92,7 @@ adminInfo(){
     // console.log("dddd ", event);
     this.data.Detail.category = event.categories
     this.data.Detail.desc = event.desc
+    this.data.Detail.quantity = event.quantity
     this.data.Detail.image = event.image
     this.data.Detail.imageSide = event.imageSide
     this.data.Detail.imageBack = event.imageBack

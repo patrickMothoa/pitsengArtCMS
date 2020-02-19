@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { AlertController, ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { async } from '@angular/core/testing';
 import * as moment from 'moment';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 
@@ -71,7 +72,8 @@ export class DetailsPage implements OnInit {
     private router: Router,
     public toastCtrl: ToastController,
     public alertController: AlertController,
-    public modalController: ModalController) { }
+    public modalController: ModalController,
+    public loading: LoadingService) { }
 
   ngOnInit() {
 
@@ -95,16 +97,16 @@ export class DetailsPage implements OnInit {
     this.value = parseFloat(this.obj.price)
   this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
     // this.getProducts();
+  
   }
 
   delete(){
-    firebase.firestore().collection("Products").doc(this.key).delete()
-    this.dismiss();
+    firebase.firestore().collection("Products").doc(this.key).delete();
+    this.router.navigateByUrl('/pro');
     
   }
 
   save(){
-
 
     firebase.firestore().collection("Products").doc(this.key).update({
       categories : this.obj.category,
@@ -117,14 +119,11 @@ export class DetailsPage implements OnInit {
       items : this.obj.items,
       name : this.obj.name,
       price : this.obj.price,
-      quantity : 7,
+      quantity :this.obj.quantity,
       sizes : this.obj.size
     })
-    this.dismiss();
+    this.loading.dismiss();
   }
-
-
-  
 
   ionViewWillEnter(){
     
@@ -133,8 +132,6 @@ export class DetailsPage implements OnInit {
   
   }
   
-      
-
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
@@ -179,7 +176,7 @@ firebase.firestore().collection("Sales").doc().set({
    totalPrice : (  this.value )-((this.editPercentage/100)*( this.value))
 
 })
- 
+this.router.navigateByUrl('/pro');
 }else{
 
   const alert = await this.alertController.create({
@@ -190,7 +187,7 @@ firebase.firestore().collection("Sales").doc().set({
   });
 
   await alert.present();
-  this.dismiss();
+
 
 }
 

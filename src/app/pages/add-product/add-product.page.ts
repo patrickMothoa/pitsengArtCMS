@@ -31,7 +31,7 @@ export class AddProductPage implements OnInit {
     items:'',
     quantity : 1,
     lastcreated: '',
-    sizes:''
+    sizes:[]
   };
   sizes = null;
   productSize = {
@@ -268,36 +268,46 @@ export class AddProductPage implements OnInit {
     } else {
       this.sizes = size.toElement.value
     }
-    console.log(this.sizes);
+    console.log(val);
 
     switch (val) {
       case 'S':
-        this.event.sizes = 'S'
-        this.productSize = {
-          small: true,
-          medium: false,
-          large: false
-        }
+        this.productSize.small = !this.productSize.small
+          if(this.productSize.small) {
+            this.event.sizes.push('S');
+            console.log('data =>',this.event.sizes);
+          }else {
+            this.event.sizes.splice(this.event.sizes.indexOf('S'), 1);
+            console.log('data =>',this.event.sizes);
+          }
         break;
       case 'M':
-        this.event.sizes = 'M'
-        this.productSize = {
-          small: false,
-          medium: true,
-          large: false
+        this.productSize.medium = !this.productSize.medium
+        if(this.productSize.medium) {
+          this.event.sizes.push('M');
+          console.log('data =>',this.event.sizes);
+        }else {
+          this.event.sizes.splice(this.event.sizes.indexOf('M'), 1);
+          console.log('data =>',this.event.sizes);
         }
         break;
       case 'L':
-        this.event.sizes = 'L'
-        this.productSize = {
-          small: false,
-          medium: false,
-          large: true
+        this.productSize.large = !this.productSize.large
+        if(this.productSize.large) {
+          this.event.sizes.push('L');
+          console.log('data =>',this.event.sizes);
+        }else {
+          this.event.sizes.splice(this.event.sizes.indexOf('L'), 1);
+          console.log('data =>',this.event.sizes);
         }
         break;
     }
 
+    
+    
+
   }
+
 
   getCategories(event){
     
