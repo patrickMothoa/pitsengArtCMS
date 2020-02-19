@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { ToastController } from '@ionic/angular';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-aobut-us',
   templateUrl: './aobut-us.page.html',
@@ -97,10 +97,13 @@ export class AobutUsPage implements OnInit {
        image :this.about.MyImage
   
        
-      }).then(() => {
-        this.toastController('information saved !')
+      })
+     
+      .then(() => {
+        this.saveAlert()
+        // this.toastController('information saved !')
      }).catch(err => {
-              console.error(err);
+              console.error('error',err);
      });
 
   //    this.about = {
@@ -151,7 +154,8 @@ export class AobutUsPage implements OnInit {
   
        
       }).then(() => {
-        this.toastController('information saved !')
+        this.saveAlert()
+        // this.toastController('information saved !')
      }).catch(err => {
               console.error(err);
      });
@@ -172,6 +176,25 @@ export class AobutUsPage implements OnInit {
     return toast.present();
 }
 
-
+saveAlert(){
+  // Swal.fire(
     
+  //   'your about us content is updated',
+  //   'You clicked the button!',
+  //   'success',
+    
+  // )
+
+  Swal.fire({
+    title: 'About us content updated.',
+    showClass: {
+      popup: 'animated fadeInDown faster'
+    },
+    hideClass: {
+      popup: 'animated fadeOutUp faster'
+    },
+    icon:'success'
+  })
+    
+}
 }

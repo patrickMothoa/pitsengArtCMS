@@ -444,7 +444,7 @@ padding-bottom: 16px;
   padding-bottom: 8px;
 }
 .productcode{
-  // border: solid red;
+  // border: solid rgb(0, 255, 242);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #707070;
   text-transform: capitalize;
@@ -456,9 +456,9 @@ padding-bottom: 16px;
   // margin: 0 auto;
 }
 .productcode > div {
-width: 50%;
+width: 100%;
 // border: solid red;
-margin: 0 auto;
+// margin: 0 auto;
 }
 .Productselection{
   // border: solid blue;
@@ -478,7 +478,12 @@ margin: 0 auto;
  
 }
 
+.product-name{
+  color: #707070;
+  font-size: 15px;
+  font-weight: bold;
 
+}
 
 /* The container */
 .container {
@@ -588,11 +593,23 @@ margin-top: 1%;
 }
 
 .tacking-heading{
+  padding-bottom: 20px;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-  color: #707070; 
+ ion-title{
+   font-size: 20px;
+   color: #707070;
+ }
+  ion-label{
+      text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  }
 }
+// .tacking-heading > ion-label {
 
+// }
 .pedding-oders{
   
   // border: 0.5px solid rgb(74, 189, 17);
@@ -623,16 +640,19 @@ margin-top: 1%;
   padding-left: 16px;
 }
 .invoice > ion-label {
-  color: black;
-  font-size: 19px;
-  font-weight: 600;
+  color:  #707070;
+  font-size: 15px;
+  font-weight: bold;
 }
 .price > ion-label {
-  color: #707070;
-  font-weight: 500;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
 }
 .quantity,.size > ion-label{
   color: #707070;
+  font-weight: 400;
+  font-size: 15px;
 
 }
 .track-button{
@@ -736,7 +756,9 @@ margin: 0 auto;
 text-align: center;
 }
 .product-price{
-  font-weight: 600;
+  font-weight: bold;
+  color: black;
+  // font-size: 20px;
 }
 .status{
   height:50px;

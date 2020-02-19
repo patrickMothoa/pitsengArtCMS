@@ -10,7 +10,7 @@
       <div class="search-section">
         <div class="faq-heading">
 
-          <ion-title>FAQ's</ion-title>
+          <h1>FAQ's</h1>
         </div>
         <div class="search">
           <!-- <div class="top-bar" (ionFocus)='onInput($event)'>
@@ -31,15 +31,18 @@
 
 
           
-           <ion-searchbar showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
-           <div id="QAAnswer">
-            <div id="QAAnswers-answered" *ngFor="let items of searchArray; let i = index">
+           <ion-searchbar id="query"  showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
+           <!-- <div class="searchList" > -->
+                   <div id="QAAnswer" *ngFor="let items of searchArray; let i = index">
+            <div id="QAAnswers-answered"  *ngFor="let items of searchArray; let i = index">
                 <div (click)="ShowAnswer(items, i)">
-                    <ion-item>{{items.question1}}</ion-item>
+                    <ion-item class="quation" >{{items.question1}}</ion-item>
                     <i id="answer-description">{{items.answer}} </i>
                 </div>
             </div>
         </div>
+           <!-- </div> -->
+     
         </div>
       </div>
       <div class="orders">

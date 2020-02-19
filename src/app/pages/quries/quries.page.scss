@@ -145,6 +145,22 @@ ion-content {
   }
 }
 }
+h2{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  color: black;
+  text-transform: capitalize;
+}
+h3{
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+ ion-content > p{
+  font-size: 15px;
+  font-weight: 400;
+  color: black;
+}
 
 .active {
   -webkit-transition: all 200ms ease-in;

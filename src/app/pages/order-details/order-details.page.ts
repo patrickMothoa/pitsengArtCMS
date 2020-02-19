@@ -540,6 +540,11 @@ cancelOrder(msg){
    
 }
 
+displaynone(){
+  if(this.status == 'cancelled'){
+    document.getElementById('cancel').style.display="none"
+  }
+}
 orderCollect() {
   this.dbOrder.doc(this.ref).onSnapshot((res) => {
     console.log("My status", res.data().status);
