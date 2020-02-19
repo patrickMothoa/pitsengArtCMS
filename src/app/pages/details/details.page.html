@@ -131,7 +131,7 @@
       </div>
       <div class="details-section">
         <div class="upload">
-          <ion-item color="dark">
+          <ion-item color="favorite">
             <!-- <label for="file-upload"> front image </label> -->
             <ion-input lines="none" class="image-upload" type="file" accept="image/*"   id="file-upload" placeholder="upload image"
               (change)="changeListener($event)">
@@ -144,7 +144,7 @@
         </div>
         <div class="Product-name">
              <ion-label position="fixed"  >Product Name</ion-label>
-          <ion-item  lines="none" color="dark" class="text-field" >
+          <ion-item  lines="none" color="dafavoriterk" class="text-field" >
          
             <ion-input [(ngModel)]="obj.name"></ion-input>
           </ion-item>
@@ -161,14 +161,14 @@
         <div class="prices">
           <div class="normal-price">
             <ion-label position="floating"  >Price</ion-label>
-            <ion-item lines="none" color="dark" class="text-field" >
+            <ion-item lines="none" color="favorite" class="text-field" >
               
               <ion-input type="number" [(ngModel)]="obj.price"   onKeyPress="if(this.value.length==5) return false;"></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
             <ion-label position="floating"  >promo-Price</ion-label>
-            <ion-item lines="none" color="dark"    class="text-field" >
+            <ion-item lines="none" color="favorite"    class="text-field" >
               
               <ion-input [(ngModel)]="discountedPrice" (ionInput)="update()"></ion-input>
             </ion-item>
@@ -195,7 +195,7 @@
         <div class="description">
           <div class="descr">  
              <ion-label position="floating"  >Prodect destription</ion-label>
-            <ion-item color="dark">
+            <ion-item color="favorite">
            
               <ion-textarea lines="none" [(ngModel)]="obj.desc"  placeholder="Enter more information about the product here..."></ion-textarea>
             </ion-item>
@@ -249,14 +249,14 @@
         <div class="dates">
           <div class="normal-price">
             <ion-label position="floating" >start date</ion-label>
-            <ion-item lines="none" color="dark" class="text-field" >
+            <ion-item lines="none" color="favorite" class="text-field" >
               
               <ion-input  type="date"  [(ngModel)]="editStartDate"  placeholder="Start Date"  [min]='today'></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
           <ion-label position="floating" >end date</ion-label>
-            <ion-item lines="none" color="dark" class="text-field" >
+            <ion-item lines="none" color="favorite" class="text-field" >
               <ion-input   type="date" placeholder="End Date"  [(ngModel)]="editEndDate" [min]='endDateLimit'></ion-input>
             </ion-item>
           </div>

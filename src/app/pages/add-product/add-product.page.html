@@ -192,13 +192,13 @@
         </ion-item>
         <!-- *ngIf="!event.image" style="width:500px, padding-left:16px"-->
         <div class="Product-name">
-          <ion-item lines="none"  color="dark"  >
+          <ion-item lines="none"  color="favorite"  >
             <ion-label color="medium"  >Categories</ion-label>
-            <ion-select color="medium"  (ionChange)="getCategories($event)"  >
-              <ion-select-option color="medium"  value="Deco">Deco</ion-select-option>
-              <ion-select-option color="medium"  value="Lamps">Lamps</ion-select-option>
-              <ion-select-option color="medium"  value="Vase">Vase</ion-select-option>
-              <ion-select-option color="medium"  value="Pottery">Pottery</ion-select-option>
+            <ion-select color="dark"  (ionChange)="getCategories($event)"  >
+              <ion-select-option color="primary"  value="Deco">Deco</ion-select-option>
+              <ion-select-option color="primary"  value="Lamps">Lamps</ion-select-option>
+              <ion-select-option color="primary"  value="Vase">Vase</ion-select-option>
+              <ion-select-option color="primary"  value="Pottery">Pottery</ion-select-option>
 
             </ion-select>
           </ion-item>
@@ -206,7 +206,7 @@
 
         </div>
         <div class="Product-name">
-          <ion-item lines="none" color="dark">
+          <ion-item lines="none" color="favorite">
             <ion-input placeholder="Product Name" [(ngModel)]="event.name"
               onkeypress="return /[a-zA-Z\s]/i.test(event.key)"></ion-input>
           </ion-item>
@@ -214,7 +214,7 @@
 
         </div>
         <div class="Product-name">
-          <ion-item lines="none" color="dark">
+          <ion-item lines="none" color="favorite">
             <ion-input type="number" placeholder="Price" [(ngModel)]="event.price"
               onKeyPress="if(this.value.length==5) return false;"></ion-input>
           </ion-item>
@@ -242,7 +242,7 @@
         </div>
         <div class="description">
           <div class="descr">
-            <ion-item color="dark">
+            <ion-item color="favorite">
               <ion-textarea lines="none" placeholder="Enter more information about the product here..."
                 [(ngModel)]="event.desc"></ion-textarea>
             </ion-item>

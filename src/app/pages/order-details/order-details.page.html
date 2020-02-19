@@ -1,7 +1,7 @@
  <div class="heading">
     <ion-fab vertical="top" horizontal="end" slot="fixed">
   
-      <ion-icon color="dark" name="close" (click)="dismiss()" ></ion-icon>
+      <ion-icon color="grey" name="close" (click)="dismiss()" ></ion-icon>
   
     </ion-fab>
     <hr>
@@ -32,7 +32,7 @@
                   <ion-label>{{p.obj.product_name}}</ion-label>
                 </div>
                 <div class="price">
-                  <ion-label>{{p.obj.price | currency : '&#82;'}}</ion-label>
+                  <ion-label>{{p.obj.price |   &nbsp; currency : '&#82;'}}</ion-label>
                 </div>
                 <div class="size">
                   <ion-label>Size: </ion-label>
@@ -50,7 +50,7 @@
             </div>
           <div class="tracking">
             <div class="tacking-heading">
-              <ion-title>tracking status: {{status}}</ion-title>
+              <ion-title>tracking status: <ion-label>{{status}}</ion-label></ion-title>
             </div>
   
             <div  class=" oders">
@@ -87,10 +87,10 @@
               <ion-button class="buttons" *ngIf="status === 'ready'"  padding  color="warning"  shape="round" expand="full" (click)="orderReady()"> order is ready </ion-button>
               <ion-button class="buttons" *ngIf="status === 'delivered'"  padding  color="secondary"  shape="round" expand="full" (click)="orderCollect()"> Close Order</ion-button> -->
             
-              <ion-button class="buttons" (click)="cancelOrder('order cancelled')">Cancel</ion-button>
-              <ion-button class="buttons"  *ngIf="status === 'received'" (click)="processOrder('processed')">Process Order</ion-button>
-              <ion-button class="buttons"  *ngIf="status === 'processed'" (click)="orderIsReady('ready')">Ready for Collection</ion-button>
-              <ion-button class="buttons"  *ngIf="status === 'ready'" (click)="closeOrder('collected')">Collected</ion-button>
+              <ion-button class="buttons"  id="cancel" color="primary" (click)="displaynone()" (click)="cancelOrder('order cancelled')">Cancel</ion-button>
+              <ion-button class="buttons" color="tertiary" *ngIf="status === 'received'" (click)="processOrder('processed')">Process Order</ion-button>
+              <ion-button class="buttons" color="tertiary" *ngIf="status === 'processed'" (click)="orderIsReady('ready')">Ready for Collection</ion-button>
+              <ion-button class="buttons" color="tertiary" *ngIf="status === 'ready'" (click)="closeOrder('collected')">Collected</ion-button>
             </div>
   
             </div>
@@ -260,7 +260,7 @@
                     <ion-label> Code: {{trackOrders.productCode}}</ion-label>
                   </div>
                    <div class="product-price">
-                    <ion-label>amount : {{trackOrders.amount}} </ion-label>
+                    <ion-label>amount : R {{trackOrders.amount}} </ion-label>
   
                   </div>
       

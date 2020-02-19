@@ -2,7 +2,29 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+.ion-color-favorite {
+  --ion-color-base: var(--ion-color-favorite);
+  --ion-color-base-rgb: var(--ion-color-favorite-rgb);
+  --ion-color-contrast: var(--ion-color-favorite-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-favorite-contrast-rgb);
+  --ion-color-shade: var(--ion-color-favorite-shade);
+  --ion-color-tint: var(--ion-color-favorite-tint);
+}
+.ion-color-grey {
+  --ion-color-base: var(--ion-color-grey);
+  --ion-color-base-rgb: var(--ion-color-grey-rgb);
+  --ion-color-contrast: var(--ion-color-grey-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-grey-contrast-rgb);
+  --ion-color-shade: var(--ion-color-grey-shade);
+  --ion-color-tint: var(--ion-color-grey-tint);
+}
 :root {
+  --ion-color-favorite: #e6e6e6;
+  --ion-color-favorite-rgb: 105,187,123;
+  --ion-color-favorite-contrast: #ffffff;
+  --ion-color-favorite-contrast-rgb: 255,255,255;
+  --ion-color-favorite-shade: #dfdfdf;
+  --ion-color-favorite-tint: #dfdfdf;
   /** primary **/
   --ion-color-primary: #B73225;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -47,19 +69,19 @@
   --ion-color-danger-tint: #f25454;
 
   /** dark **/
-  --ion-color-dark: #ebebeb;
-  --ion-color-dark-rgb: #dfdfdf;
-  --ion-color-dark-contrast: #dfdfdf;
-  --ion-color-dark-contrast-rgb:#dfdfdf;
-  --ion-color-dark-shade:#dfdfdf;
-  --ion-color-dark-tint: #dfdfdf;
+  --ion-color-dark: #000000;
+  --ion-color-dark-rgb: #000000;
+  --ion-color-dark-contrast: #000000;
+  --ion-color-dark-contrast-rgb:#000000;
+  --ion-color-dark-shade:#000000;
+  --ion-color-dark-tint: #000000;
 
   /** medium **/
   --ion-color-medium: #989aa2;
   --ion-color-medium-rgb: 152, 154, 162;
   --ion-color-medium-contrast: #ffffff;
   --ion-color-medium-contrast-rgb: 255, 255, 255;
-  --ion-color-medium-shade: #707070;
+  --ion-color-medium-shade: #c4c4c4;
   --ion-color-medium-tint: #e2e1e1;
 
   /** light **/
@@ -71,7 +93,12 @@
   --ion-color-light-tint: #f5f6f9;
   
 
-  --ion-color-orange:#FFAF65;
+  --ion-color-grey:#acacac;
+  --ion-color-grey-rgb: 152, 154, 162;
+  --ion-color-grey-contrast: #000000;
+  --ion-color-grey-shade: #acacac;
+  --ion-color-grey-tint: #acacac;
+  
 
   --ion-color-blue:#ff9900;
   --ion-color-button:#D13232;

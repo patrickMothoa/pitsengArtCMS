@@ -21,28 +21,48 @@ export class AppComponent {
     private statusBar: StatusBar,
     private routes: Router
   ) {
-    this.initializeApp();
+  }
+
+  ionViewWillEnter(){
+        this.initializeApp();
     this.getAuth(); 
      // on route change to '/login', set the variable showHead to false
-     routes.events.forEach((event) => {
+     this.routes.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         if (event['url'] == '/login') {
           this.showHead = false;
-        } else {
+        } else if ( event['url'] == '/pro' || event['url'] == '/details'||
+        event['url'] == '/categorylist' || event['url'] == '/aobut-us' || event['url'] == '/quries' ||
+        event['url'] == '/spacials' 
+
+        ){
+          // console.log("NU")
+          this.showHead = true;
+        }
+      }
+    });
+  }
+
+  ngOnInit(){
+    this.initializeApp();
+    this.getAuth(); 
+     // on route change to '/login', set the variable showHead to false
+     this.routes.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if (event['url'] == '/login') {
+          this.showHead = false;
+        } else if ( event['url'] == '/pro' || event['url'] == '/details'||
+        event['url'] == '/categorylist' || event['url'] == '/aobut-us' || event['url'] == '/quries' ||
+        event['url'] == '/spacials' 
+
+        ){
           // console.log("NU")
           this.showHead = true;
         }
       }
     });
 
-
   }
-
-  // ngOnInit(){
-  //   if (this.routes.url === '/login') {
-  //     this.showHead = false
-  //     }
-  // }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

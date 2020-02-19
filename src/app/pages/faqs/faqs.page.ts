@@ -9,7 +9,6 @@ import { QueryValueType } from '@angular/compiler/src/core';
   styleUrls: ['./faqs.page.scss'],
 })
 export class FaqsPage implements OnInit {
-
   dbFaq = firebase.firestore();
 //    firstQues = {
 //      question1: '',
@@ -183,13 +182,27 @@ Technical = [];
 // })
 
   }
+  val;
   searchresult(event) {
     // console.log(usersinput);
-    console.log(event.target.value);
-    this.filterItems(event.target.value, this.questions)
-    console.log(this.questions);
+    this.val = event.target.value
+    if(this.val == '') {
+      this.val = ''
+    }else {
+      console.log(event.target.value);
+      this.filterItems(event.target.value, this.questions)
+      console.log(this.questions);
+   console.log('serach arrayhere',this.searchArray);
+    }
+   
+ 
+    // if(this.searchArray[' '] === ' '){
+    //   this.filterItems[' '] === ' ';
+    // }
     // this.changingValue()
   }
+
+
   filterItems(query, array) {
     let queryFormatted = query.toLowerCase();
     // console.log(queryFormatted);

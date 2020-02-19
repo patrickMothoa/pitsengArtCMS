@@ -35,7 +35,9 @@ export class MenuComponent implements OnInit {
     public isSearchbarOpened = false;
 
     myProduct = false;
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
   openAboutUS(){
     this.router.navigateByUrl('/aobut-us')
   }
@@ -253,7 +255,7 @@ console.log('clieck search')
     if (activeButton === "home") {
   
       document.getElementById("home").style.textDecoration = "underline";
-     
+      // document.getElementById("home").style.textDecorationColor = "#B73225";
       document.getElementById("about").style.textDecoration = "transparent";
       document.getElementById("queries").style.textDecoration = "transparent";
       document.getElementById("faqs").style.textDecoration = "transparent";
@@ -266,7 +268,7 @@ console.log('clieck search')
 
       document.getElementById("home").style.textDecoration = "transparent";
       document.getElementById("about").style.textDecoration = "underline";
-    
+      // document.getElementById("about").style.textDecorationColor = "#B73225";
       document.getElementById("queries").style.textDecoration = "transparent";
       document.getElementById("faqs").style.textDecoration = "transparent";
       document.getElementById("addProduct").style.textDecoration = "transparent";
@@ -276,7 +278,7 @@ console.log('clieck search')
       document.getElementById("home").style.textDecoration = "transparent";
       document.getElementById("about").style.textDecoration = "transparent";
       document.getElementById("queries").style.textDecoration = "underline";
-    
+      // document.getElementById("queries").style.textDecorationColor = "#B73225";
       document.getElementById("faqs").style.textDecoration = "transparent";
       document.getElementById("addProduct").style.textDecoration = "transparent";
 
@@ -285,7 +287,7 @@ console.log('clieck search')
       document.getElementById("about").style.textDecoration = "transparent";
       document.getElementById("queries").style.textDecoration = "transparent";
       document.getElementById("faqs").style.textDecoration = "underline";
-     
+      // document.getElementById("faqs").style.textDecorationColor = "#B73225";
       document.getElementById("addProduct").style.textDecoration = "transparent";
 
      }else if (activeButton === "addProduct"){
@@ -294,10 +296,21 @@ console.log('clieck search')
       document.getElementById("queries").style.textDecoration = "transparent";
       document.getElementById("faqs").style.textDecoration = "transparent";
       document.getElementById("addProduct").style.textDecoration = "underline";
-  
+      // document.getElementById("addProduct").style.textDecorationColor = "#B73225";
 
      }
     
   }
-  Allspecials
+
+  Allspecials(){
+    this.router.navigateByUrl('/spacials');
+    // let navigationExtras: NavigationExtras = {
+    //   state: {
+    //     parms: i
+    //   }
+    // }
+    // this.router.navigate(['categorylist'],navigationExtras)   
+  }
+  
+  // Allspecials
 }
