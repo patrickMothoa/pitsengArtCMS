@@ -9,6 +9,7 @@ export class ProductService {
 
   db = firebase.firestore();
   firestore
+   data = {}
   event = {
     image: '',
     categories:'',
@@ -92,7 +93,19 @@ export class ProductService {
     console.error('Error updating document: ', error);
 });
 }
+deleteSpecialsItem(event, id){
+  return firebase.firestore().collection('Sales').doc(id).delete().then(result => {
+    firebase.firestore().collection('Products').doc(event.brand).collection(event.category).doc(event.id).update({
+      onSale : false,
+      discount : 0,
+      totalPrice : Number(event.data.price)
+    })
+    return result
+  }).catch(error => {
+    return 'Not deleted'
+  })
+}
 
-data = {};
+
 
 }

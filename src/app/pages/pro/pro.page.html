@@ -80,7 +80,7 @@
       <div class="percent-off" >
         <p>{{event.obj.percentage}} % off</p>
       </div>
-      <img class="animated fadeInDown 2s" src="{{event.obj.image}}"(click)="showList(i)" (click)="allSpecials(event)" alt="">
+      <img class="animated fadeInDown 2s" src="{{event.obj.image}}" (click)="allSpecials(event)" alt="">
       <ion-label class="name"> {{event.obj.name}} </ion-label>
       <ion-label class="price"> {{event.obj.totalPrice | currency: '&#82;'}}  <span class="span-tsrike" >{{event.obj.price | currency: '&#82;'}}</span>  </ion-label>
      

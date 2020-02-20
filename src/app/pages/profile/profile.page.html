@@ -63,7 +63,7 @@
             </div>
             <div class="edit-number">
               <ion-item>
-                <ion-input placeholder="contact Number" type="tel" minlength=10 maxlength=10 onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));"
+                <ion-input placeholder="contact Number" type="tel" value="+27" minlength=10 maxlength=10 onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));"
                   [(ngModel)]="profile.phoneNumber"></ion-input>
               </ion-item>
             </div>

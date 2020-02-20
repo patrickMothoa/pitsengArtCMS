@@ -248,16 +248,18 @@
         </div>
         <div class="dates">
           <div class="normal-price">
-            <ion-label position="floating" >start date</ion-label>
+            <ion-label position="floating" >Start date</ion-label>
             <ion-item lines="none" color="favorite" class="text-field" >
               
-              <ion-input  type="date"  [(ngModel)]="editStartDate"  placeholder="Start Date"  [min]='today'></ion-input>
+              <ion-input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'
+              (change)='enableEndDateInput()'></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
-          <ion-label position="floating" >end date</ion-label>
+          <ion-label position="floating" >End date</ion-label>
             <ion-item lines="none" color="favorite" class="text-field" >
-              <ion-input   type="date" placeholder="End Date"  [(ngModel)]="editEndDate" [min]='endDateLimit'></ion-input>
+              <ion-input [disabled]='!editStartDate' type="date" placeholder="End Date"
+              [(ngModel)]='editEndDate' [min]='endDateLimit'  (change)='enableStartDateInput()' (change)='runCheck()'></ion-input>
             </ion-item>
           </div>
 

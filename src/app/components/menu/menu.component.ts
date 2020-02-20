@@ -16,6 +16,7 @@ import { DetailsPage } from 'src/app/pages/details/details.page';
 })
 export class MenuComponent implements OnInit {
   db = firebase.firestore();
+  specials =[];
   supplier
   autocompleteItemz: any;
   autocompletez:any;
@@ -36,7 +37,14 @@ export class MenuComponent implements OnInit {
 
     myProduct = false;
   ngOnInit() {
-    
+    firebase.firestore().collection("Sales").orderBy("percentage", "desc").limit(1).onSnapshot(snapshot => {
+      this.specials = []
+      snapshot.forEach(data => {
+        this.specials.push(data.data())
+        console.log("Percentage ", data.data());
+        
+      })
+    })
   }
   openAboutUS(){
     this.router.navigateByUrl('/aobut-us')
@@ -303,7 +311,7 @@ console.log('clieck search')
   }
 
   Allspecials(){
-    this.router.navigateByUrl('/spacials');
+    this.router.navigateByUrl('/specials');
     // let navigationExtras: NavigationExtras = {
     //   state: {
     //     parms: i
@@ -311,6 +319,7 @@ console.log('clieck search')
     // }
     // this.router.navigate(['categorylist'],navigationExtras)   
   }
+  
   
   // Allspecials
 }

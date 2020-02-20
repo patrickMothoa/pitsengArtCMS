@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SpacialsPageRoutingModule } from './spacials-routing.module';
+import { SpecialsPageRoutingModule } from './specials-routing.module';
 
-import { SpacialsPage } from './spacials.page';
+import { SpecialsPage } from './specials.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SpacialsPageRoutingModule
+    SpecialsPageRoutingModule
   ],
-  declarations: [SpacialsPage]
+  declarations: [SpecialsPage]
 })
-export class SpacialsPageModule {}
+export class SpecialsPageModule {}
