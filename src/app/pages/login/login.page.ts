@@ -6,7 +6,6 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ResetPasswordPage } from '../reset-password/reset-password.page';
-import Swal from 'sweetalert2';
 import { ProfilePage } from '../profile/profile.page';
 
 declare var window

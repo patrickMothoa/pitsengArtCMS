@@ -47,7 +47,8 @@ const routes: Routes = [
   {
     path: 'sow-data',
     loadChildren: () => import('./sow-data/sow-data.module').then( m => m.SowDataPageModule)
-  },  {
+  },
+  {
     path: 'categorylist',
     loadChildren: () => import('./pages/categorylist/categorylist.module').then( m => m.CategorylistPageModule)
   },
@@ -67,10 +68,10 @@ const routes: Routes = [
     path: 'reset-password',
     loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
-  {
-    path: 'spacials',
-    loadChildren: () => import('./pages/spacials/spacials.module').then( m => m.SpacialsPageModule)
-  },
+  // {
+  //   path: 'spacials',
+  //   loadChildren: () => import('./pages/spacials/spacials.module').then( m => m.SpacialsPageModule)
+  // },
 
  
 ];

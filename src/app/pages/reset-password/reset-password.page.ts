@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { ModalController, AlertController } from '@ionic/angular';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reset-password',
@@ -57,17 +56,5 @@ export class ResetPasswordPage implements OnInit {
       
   }
 
-  doneReset(){
-  
-    Swal.fire({
-      title: 'Custom animation with Animate.css',
-      showClass: {
-        popup: 'animated fadeInDown faster'
-      },
-      hideClass: {
-        popup: 'animated fadeOutUp faster'
-      }
-    })  
-    this.dismiss
-  }
+
 }
