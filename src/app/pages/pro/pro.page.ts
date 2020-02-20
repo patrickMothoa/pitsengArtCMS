@@ -699,5 +699,24 @@ this.db.collection('Sales').limit(5).get().then(snapshot => {
         }
    });
 }
+async allSpecials(event){
+  this.data.Detail.image  = event.obj.image
+  this.data.Detail.imageSide  = event.obj.imageSide
+  this.data.Detail.imageBack  = event.obj.imageBack
+  this.data.Detail.imageTop  = event.obj.imageTop
+  this.data.Detail.category  = event.obj.categories
+ 
+  this.data.Detail.name  = event.obj.name
+  this.data.Detail.productCode = event.obj.productCode
+  this.data.Detail.price  = event.obj.price
+  this.data.Detail.desc   = event.obj.desc
+  this.data.Detail.items  = event.obj.items
+  this.data.Detail.size  = event.obj.sizes
+  this.data.Detail.quantity  = event.obj.quantity
+
+ 
+  this.router.navigateByUrl('details');
+    
+  }
 
 }

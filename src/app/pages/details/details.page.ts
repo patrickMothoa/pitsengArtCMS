@@ -21,7 +21,9 @@ export class DetailsPage implements OnInit {
   updateBtn = false;
   listproduct = [];
   MyObj = [];
-
+  today
+  endDateLimit
+  promoButtonEnabled : boolean
 
   event = {
     image: '',
@@ -73,7 +75,9 @@ export class DetailsPage implements OnInit {
     public toastCtrl: ToastController,
     public alertController: AlertController,
     public modalController: ModalController,
-    public loading: LoadingService) { }
+    public loading: LoadingService) { 
+      this.today = moment(new Date()).format('YYYY-MM-DD')
+    }
 
   ngOnInit() {
 
@@ -100,9 +104,10 @@ export class DetailsPage implements OnInit {
   
   }
 
+
   delete(){
     firebase.firestore().collection("Products").doc(this.key).delete();
-    this.router.navigateByUrl('/pro');
+    this.router.navigateByUrl('/categorylist');
     
   }
 
@@ -122,7 +127,7 @@ export class DetailsPage implements OnInit {
       quantity :this.obj.quantity,
       sizes : this.obj.size
     })
-    this.loading.dismiss();
+    // this.loading.dismiss();
   }
 
   ionViewWillEnter(){
@@ -138,8 +143,8 @@ export class DetailsPage implements OnInit {
     });
     }
   editPercentage : number = 0
-  editStartDate : String
-  editEndDate  : String
+  editStartDate 
+  editEndDate  
 
   update(){
     this.discountedPrice = (  this.value )-((this.editPercentage/100)*( this.value))
@@ -147,7 +152,7 @@ export class DetailsPage implements OnInit {
 
   async promoteItem(){
    
-    let date = moment().format()
+let date = moment().format()
  let value1 : boolean = this.editStartDate >= date.slice(0, 10)
  let value2 : boolean = this.editEndDate >= date.slice(0, 10)
 let finalValue : boolean = value1 && value2 ;
@@ -176,13 +181,13 @@ firebase.firestore().collection("Sales").doc().set({
    totalPrice : (  this.value )-((this.editPercentage/100)*( this.value))
 
 })
-this.router.navigateByUrl('/pro');
+// this.router.navigateByUrl('/pro');
 }else{
 
   const alert = await this.alertController.create({
     header: '',
     subHeader: '',
-    message: 'Please enter the correct dates',
+    message: 'Please enter the dates',
     buttons: ['OK']
   });
 
@@ -190,10 +195,31 @@ this.router.navigateByUrl('/pro');
 
 
 }
-
-
-
   }
+  checkPromoValidity(){
+    if(this.editStartDate === undefined || this.editStartDate === '' || this.editEndDate === undefined || this.editEndDate === '' || this.editPercentage === 0 || this.editPercentage === undefined || this.editPercentage === null){
+      this.promoButtonEnabled = false
+    }else if(this.editEndDate !== undefined && this.editEndDate !== '' && this.editStartDate !== undefined &&  this.editStartDate !== '' && this.editPercentage !== 0 && this.editPercentage !== undefined && this.editPercentage !== null){
+      this.promoButtonEnabled = true
+    }
+  }
+
+  runCheck(){
+    this.checkPromoValidity()
+  }
+
+enableEndDateInput(){
+    if(this.editStartDate){
+      this.endDateLimit = moment(this.editStartDate).add('days', 1).format('YYYY-MM-DD')
+    }
+    this.checkPromoValidity()
+  }
+  // enablestartDateInput(){
+  //   if(this.editEndDate){
+  //     this.endDateLimit = moment(this.editEndDate).add('days', 1).format('YYYY-MM-DD')
+  //   }
+  //   this.checkPromoValidity()
+  // }
 
 
   async toastController(message) {
