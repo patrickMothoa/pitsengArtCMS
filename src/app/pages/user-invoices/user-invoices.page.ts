@@ -153,6 +153,7 @@ export class UserInvoicesPage implements OnInit {
         ref: value.ref,
         name: value.info.product[0].name,
         price: value.info.product[0].price,
+        date:value.info.product[0].date,
         quantity: value.info.product[0].quantity,
         image: value.info.product[0].image,
         arr: value.info.product

@@ -100,65 +100,65 @@ adminInfo(){
   // const { role, data } = await loading.onDidDismiss();
   // console.log('Loading dismissed!');
 }
- deleteItem(event){
+async deleteItem(event){
   console.log("logging deletion ", event.id);
   
-  // firebase.firestore().collection("Sales").doc(event.id).delete()
-  // const alert = await this.alertController.create({
-  //   header: 'Confirm!',
-  //   message: 'Are sure you want to delete',
-  //   buttons: [
-  //     {
-  //       text: 'Cancel',
-  //       role: 'cancel',
-  //       cssClass: 'secondary',
-  //       handler: (blah) => {
-  //         console.log('Confirm Cancel: blah');
-  //       }
-  //     }, {
-  //       text: 'Okay',
-  //       handler: () => {
-  //         console.log('Confirm Okay');
-  //       }
-  //     }
-  //   ]
-  // });
-
-  // await alert.present();
-
-  const alert = document.createElement('ion-alert');
-  alert.header = 'Confirm Deletion';
-  alert.message = 'Are you sure you want to remove this item from specials?';
-  alert.buttons = [
-    {
-      text: 'Cancel',
-      role: 'cancel',
-      cssClass: 'secondary',
-      handler: (blah) => {
-        console.log('User canceled');
-      }
-    }, {
-      text: 'Remove',
-      handler: () => {
-        console.log('Confirm Okay')
-  
-        console.log(event.id);
-        console.log(event);
-        this.presentLoading()
-         this.data.deleteSpecialsItem(event.id, event.id).then(result => {
-          console.log(result);
-          if(result === 'success'){
-            if(this.loadingCtrl){
-              this.loadingCtrl.dismiss()
-            }
+  firebase.firestore().collection("Sales").doc(event.id).delete()
+  const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Are sure you want to delete from specials',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
           }
-          //location.reload()
-        })
-      }
-    }
-  ];
-  document.body.appendChild(alert);
-  return alert.present();
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+  // const alert = document.createElement('ion-alert');
+  // alert.header = 'Confirm Deletion';
+  // alert.message = 'Are you sure you want to remove this item from specials?';
+  // alert.buttons = [
+  //   {
+  //     text: 'Cancel',
+  //     role: 'cancel',
+  //     cssClass: 'secondary',
+  //     handler: (blah) => {
+  //       console.log('User canceled');
+  //     }
+  //   }, {
+  //     text: 'Remove',
+  //     handler: () => {
+  //       console.log('Confirm Okay')
+  
+  //       console.log(event.id);
+  //       console.log(event);
+  //       this.presentLoading()
+  //        this.data.deleteSpecialsItem(event.id, event.id).then(result => {
+  //         console.log(result);
+  //         if(result === 'success'){
+  //           if(this.loadingCtrl){
+  //             this.loadingCtrl.dismiss()
+  //           }
+  //         }
+  //         //location.reload()
+  //       })
+  //     }
+  //   }
+  // ];
+  // document.body.appendChild(alert);
+  // return alert.present();
 
   
 }

@@ -393,7 +393,7 @@ receivedOrder(){
           fontSize: 20,
           bold: true,
           // color: "gray",
-          margin: [0, 0, 0, 10],
+          margin: [0, 0, 0, 30],
           alignment: 'right'
       },
       invoice: {

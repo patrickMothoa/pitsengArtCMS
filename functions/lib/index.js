@@ -30,10 +30,13 @@ exports.sendEmailToClient = functions.firestore.document('AdminReply/{docid}').o
         html: `<p style="font-size: 16px;">Good day <b>${dataR.nameOfClient}</b></p>
                 <br />
                 <p style="font-size: 15px;">${dataR.message} </p>
-                <p style="font-size: 16px;">Until then,<b>HAPPY WAITING!!</b> </p>
+                <p style="font-size: 16px;">Creativity takes,<b>Courage</b> </p>
                 <br />
-                <img src="https://media.giphy.com/media/dKdtyye7l5f44/giphy.gif" />
-            ` // email content in HTML
+                
+            `
+        //banner image
+        // <img src="https://media.giphy.com/media/dKdtyye7l5f44/giphy.gif" />
+        // email content in HTML
     };
     return transporter.sendMail(mailOptions).then(() => {
         console.log('sent');

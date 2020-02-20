@@ -30,6 +30,7 @@ export class AddProductPage implements OnInit {
     desc: null,
     items:'',
     quantity : 1,
+    checked :false,
     lastcreated: '',
     sizes:[]
   };

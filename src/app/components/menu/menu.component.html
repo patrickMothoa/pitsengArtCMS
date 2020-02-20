@@ -3,7 +3,7 @@
   <ion-toolbar color="primary" *ngIf="!myProduct">
     <ion-title>
       <div class="title" *ngFor=" let s of specials">
-        <div class="text">Special Up to :{{s.percentage}}%</div>
+        <div class="text">Special Up to {{s.percentage}}%</div>
         <div>
           <ion-button fill="outline" color="light" (click)="Allspecials()"> Check Specials </ion-button>
         </div>
