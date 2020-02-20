@@ -33,7 +33,7 @@
           
            <ion-searchbar id="query"  showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
            <!-- <div class="searchList" > -->
-                   <div id="QAAnswer" [hidden]="val == ''" *ngFor="let items of searchArray; let i = index">
+                   <div id="QAAnswer" [hidden]="val == ''"  *ngFor="let items of searchArray; let i = index">
             <div id="QAAnswers-answered"  *ngFor="let items of searchArray; let i = index">
                 <div (click)="ShowAnswer(items, i)">
                     <ion-item class="quation" >{{items.question1}}</ion-item>
