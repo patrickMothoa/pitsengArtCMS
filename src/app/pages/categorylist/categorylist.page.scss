@@ -265,10 +265,11 @@
           display: flex;
           justify-content: center;
           margin: 0 auto;
-          border: solid red;
+          // border: solid red;
         }
         .content-container{
           min-width: 100%;
+          padding-top: 100px;
 
         }
         .cards{

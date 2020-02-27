@@ -36,18 +36,15 @@
         <ion-button class="items" color="medium" fill="clear" slot="end" id="about" (click)="ShowActive('about')"(click)="openAboutUS()">About Us </ion-button>
         <ion-button class="items" color="medium" fill="clear" slot="end" id="faqs" (click)="ShowActive('faqs')" (click)="createFaqs()">FAQ's</ion-button>
         <ion-button class="items" color="medium" fill="clear" slot="end" id="addProduct" (click)="ShowActive('addProduct')" (click)="addProduct()"><ion-icon name="add"></ion-icon>Product</ion-button>
-
         <ion-button class="item" color="medium" fill="clear" slot="end">
-          <div  >
+          <div>
           <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" 
              (ionCancel)='isSearchbarOpened=false' placeholder="Search Products" [(ngModel)]='myDest' (ionChange)='SearchProducts($event);' value="" style='min-width: 10px;'>
           </ion-searchbar>
         
       
           <div no-padding fill="clear" class="search" lines="none" *ngIf="!isSearchbarOpened">
-            
               <ion-icon slot="icon-only" color="medium" name="search" (click)="isSearchbarOpened=true"></ion-icon>
-            
           </div>
           </div></ion-button>
           <ion-list lines="none" scroll="true"  *ngIf = "myDest !== '' " id="closeList"  [style.display]="!myDest ? 'none' : 'block'" class="list" [hidden]="autocompleteItemz.length == 0">
