@@ -81,7 +81,6 @@
       <ion-title>Orders</ion-title>
     </div>
     <!-- <div class="search">
-
       <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel" (ionChange)='SearchInvoice($event)'></ion-searchbar>
     </div> -->
   </div>
@@ -114,20 +113,20 @@
               
               </div>
              
-             
-             
             </div>
           </div>
           <div class="tab">
             <input type="checkbox" id="chck2">
             <label class="tab-label" for="chck2">Order History</label>
+          
             <div class="tab-content">
               <div class="pedding-oders">
                 <div class="invoicesContainer">
                   <ion-card *ngFor="let item of orderHistory, let i=index " [ngClass]="{'active': active==i}" (click)="showList(i)">
+                    
                     <div class="invoicesList" (click)="viewDetail(item,'history')">
                       <div>
-                        <ion-label class="name" >{{item.user}}</ion-label>
+                        <ion-label class="name" >{{item.user}} </ion-label>
                       </div>
                       <div>
                         <ion-label class="reference" >{{item.ref}}</ion-label>

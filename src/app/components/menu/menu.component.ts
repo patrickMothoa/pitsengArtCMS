@@ -137,7 +137,7 @@ export class MenuComponent implements OnInit {
 
 this.myDest = '';
 this.router.navigateByUrl('/details');
-console.log('clieck search')
+console.log('click search')
     // const modal = await this.modalController.create({
     //   component:DetailsPage,
     //   cssClass: 'my-custom-modal-css'

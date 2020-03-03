@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { merge } from 'rxjs';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.page.html',
@@ -14,6 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddProductPage implements OnInit {
   progress: number = 0;
   db = firebase.firestore();
+  dbMainImage = firebase.firestore().collection('MainImage');
   storage = firebase.storage().ref();
   //categories
    currentNumber: number = 1;
@@ -212,6 +214,7 @@ export class AddProductPage implements OnInit {
     })
     worker.present();
     this.db.collection('Products').doc().set(this.event).then( async res => {
+      this.mainImage();
       /* this.retrieve(); */
       worker.dismiss();
       const alerter = await this.alertCtrl.create({
@@ -222,26 +225,12 @@ export class AddProductPage implements OnInit {
           }
         ],
       })
+    
       alerter.present();
       this.dismiss();
       alerter.present();
-    //   clear()
-    //  this.event = {
-    //   image: '',
-    //   categories:'',
-    //   name:'',
-    //   price:0,
-    //   productCode:'',
-    //   desc: '',
-    //   items:'',
-    //   quantity : 1,
-    //   lastcreated: '',
-    //   size:[]
+     
   
-    // };
-
-
-
     }).catch(async err => {
       const alerter = await this.alertCtrl.create({
         message: 'Error saving product.'
@@ -254,6 +243,13 @@ export class AddProductPage implements OnInit {
     
      }
     }
+  }
+  
+  mainImage( ){
+    console.log("Categories ",this.event.categories);
+   
+  this.dbMainImage.doc(this.event.categories).set({image: this.event.image },{merge: true})
+
   }
   stringGen(len){
     var text = " ";

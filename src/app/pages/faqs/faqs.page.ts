@@ -10,38 +10,7 @@ import { QueryValueType } from '@angular/compiler/src/core';
 })
 export class FaqsPage implements OnInit {
   dbFaq = firebase.firestore();
-//    firstQues = {
-//      question1: '',
-//      answer1: ''
-//    }
-//    SecondQues = {
-//     question2: '',
-//     answer2: ''
-//   }
-//   refundQues = {
-//     question1: '',
-//     answer1: ''
-//   }
-//   refunds1Ques = {
-//    question2: '',
-//    answer2: ''
-//  }
-//  returnQues = {
-//   question1: '',
-//   answer1: ''
-// }
-// returns1Ques = {
-//  question2: '',
-//  answer2: ''
-// }
-// technicalQues = {
-//   question1: '',
-//   answer1: ''
-// }
-// technical1Ques = {
-//  question2: '',
-//  answer2: ''
-// }
+
 questions = [];
 searchArray = [];
 ordershipment = [];
@@ -51,9 +20,11 @@ Technical = [];
   refunds: string;
   return :string;
   technical :string;
+  mySearch: any;
   constructor(public modalController: ModalController, public alertController: AlertController) { }
 
   ngOnInit(){
+ 
 
  this.dbFaq.collection('FAQS').doc('OrdersShipment').collection('questions').get().then((data) => {
   console.log('messges',data);
@@ -184,15 +155,19 @@ Technical = [];
   }
   val;
   searchresult(event) {
+   
     // console.log(usersinput);
     this.val = event.target.value
     if(this.val == '') {
+     
       this.val = ''
+      
     }else {
       console.log(event.target.value);
       this.filterItems(event.target.value, this.questions)
       console.log(this.questions);
-   console.log('serach arrayhere',this.searchArray);
+      this.mySearch = '';
+   console.log('search arrayhere',this.searchArray);
     }
    
  
@@ -205,8 +180,8 @@ Technical = [];
 
   filterItems(query, array) {
     let queryFormatted = query.toLowerCase();
-    // console.log(queryFormatted);
-    // console.log(array);
+    
+    this.mySearch = '';
     if (queryFormatted !== '' && queryFormatted !== '*') {
       let answerResult = array.filter(item => item.answer.toLowerCase().indexOf(queryFormatted) >= 0)
       let questionResult = array.filter(item => item.question1.toLowerCase().indexOf(queryFormatted) >= 0)
@@ -216,6 +191,7 @@ Technical = [];
       let addToReturn: boolean
       returnResult = answerResult
       if (returnResult.length === 0) {
+    
         returnResult = questionResult
       }
       for (let i in questionResult) {
@@ -247,31 +223,47 @@ Technical = [];
     } else if (queryFormatted === '*') {
       this.searchArray = this.questions
     }
+    this.mySearch = '';
     console.log(this.searchArray);
   }
 
 
-
-
-
-
-
-
+  
   async ShowAnswer(items, i){
-    console.log("Called");
+  
+  
+    console.log("Called" );
     
     setTimeout(() => {
-      this.searchArray.splice(i, 1)
+      this.searchArray.splice(i, 1) 
     }, 1000);
 
     const alert = await this.alertController.create({
+      
       header: 'Answer is :',
       subHeader: '',
       message: items.answer,
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.mySearch ='';
+            // firebase.auth().signOut().then(()=> {
+            //   this.router.navigateByUrl('/');
+           
+            // }).catch((error)=> {
+            // console.log(error);
+            // });
+          }
+        }
+      ]
     });
-
+ 
     await alert.present();
+
+  }
+  clearForm(){
+  
 
   }
 

@@ -95,7 +95,7 @@ export class ProPage implements OnInit {
 
     this.autocompleteItemz = [];
     this.autocompletez = { input: '' };
-    this.getPictures();
+  /*   this.getPictures(); */
     this.getSpecials();
   }
 
@@ -112,7 +112,25 @@ ionViewWillEnter() {
 }
 
     ngOnInit() {
-
+      this.db.collection('mainImage').doc('Deco').onSnapshot(data => {
+        this.Homescreen.deco = data.data().image;
+    
+        console.log('Not working!');
+        
+      })
+      this.db.collection('mainImage').doc('Vase').onSnapshot(data => {
+        this.Homescreen.vase = data.data().image;
+        console.log('Not working!');
+      })
+      
+      this.db.collection('mainImage').doc('Pottery').onSnapshot(data => {
+        this.Homescreen.pottery = data.data().image;
+        console.log('Not working!');
+      })
+      this.db.collection('mainImage').doc('Lamps').onSnapshot(data => {
+        this.Homescreen.lamps = data.data().image;
+        console.log('Not working!');
+      })
       this.db.collection('Products').where('categories', '==', 'Vase').onSnapshot((data) => {
         this.vaseLength = data.size;
       })
@@ -121,6 +139,7 @@ ionViewWillEnter() {
       })
       this.db.collection('Products').where('categories', '==', 'Deco').onSnapshot((data) => {
         this.decoLength = data.size;
+        
       })
       this.db.collection('Products').where('categories', '==', 'Pottery').onSnapshot((data) => {
         this.potteryLength = data.size;
@@ -651,34 +670,6 @@ if(i == "Deco"){
 }
  
  
-}
-
-
-getPictures(){
-  let obj = {id : '', obj : {}};
-  this.db.collection('Pictures').doc('images').get().then(snapshot => {
-    this.Homescreen = {
-      deco: null,
-      lamps: null,
-      pottery: null,
-      vase: null
-    }
-    if (!snapshot.exists) {
-            this.myProduct = false;
-          } else {
-            this.myProduct = true;
-              obj.id = snapshot.id;
-              obj.obj = snapshot.data();
-              this.Homescreen = {
-                deco: snapshot.data().deco,
-                lamps: snapshot.data().lamps,
-                pottery: snapshot.data().pottery,
-                vase: snapshot.data().vase
-              }
-              obj = {id : '', obj : {}};
-            console.log("xxc", this.Homescreen);
-          }
-     });
 }
 getSpecials(){
   let obj = {id : '', obj : {}};

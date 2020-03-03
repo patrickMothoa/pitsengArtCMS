@@ -6,7 +6,7 @@ import { AlertController, ModalController, LoadingController, ToastController } 
 import { async } from '@angular/core/testing';
 import * as moment from 'moment';
 import { LoadingService } from 'src/app/services/loading.service';
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -65,6 +65,7 @@ export class DetailsPage implements OnInit {
   key = ""
   value : any 
   discountedPrice : number = 0; 
+  currentNumber: number = 1;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -81,8 +82,6 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
 
-
-   
     this.obj.image =  this.data.Detail.image
     this.obj.imageSide =  this.data.Detail.imageSide
     this.obj.imageBack =  this.data.Detail.imageBack
@@ -127,8 +126,21 @@ export class DetailsPage implements OnInit {
       quantity :this.obj.quantity,
       sizes : this.obj.size
     })
-    // this.loading.dismiss();
+   this.success()
+   console.log('save',this.key) // this.loading.dismiss();
   }
+  increment(p) {
+    this.currentNumber = this.currentNumber + 1;
+    this.event.quantity = this.currentNumber
+  }
+  decrement(p) {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.event.quantity = this.currentNumber;
+    }
+    return this.currentNumber;
+  }
+
 
   ionViewWillEnter(){
     
@@ -191,6 +203,7 @@ firebase.firestore().collection("Sales").doc().set({
     buttons: ['OK']
   });
 
+
   await alert.present();
 
 
@@ -225,5 +238,12 @@ enableEndDateInput(){
   async toastController(message) {
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
     return toast.present();
+  }
+  success(){
+    Swal.fire(
+      'update!',
+      'Your product has been updated .',
+      'success'
+    )
   }
 }

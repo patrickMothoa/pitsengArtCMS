@@ -153,10 +153,12 @@ export class UserInvoicesPage implements OnInit {
         ref: value.ref,
         name: value.info.product[0].name,
         price: value.info.product[0].price,
-        date:value.info.product[0].date,
+        amount: value.info.product[0].amount,
+        date: value.info.product[0].date,
         quantity: value.info.product[0].quantity,
         image: value.info.product[0].image,
-        arr: value.info.product
+        arr: value.info.product,
+        userID: value.info.userID
       }
 
     });
@@ -199,18 +201,8 @@ export class UserInvoicesPage implements OnInit {
   }
   createTrackOder(item) {
     console.log('My item ', item)
-    /* const modal = await this.modalController.create({
-      component:OrderDetailsPage,
-      cssClass: 'track-order',
-      componentProps: { ref: item.ref,
-        totalPrice: item.info.totalPrice,
-        name: item.info.product[0].prod.product_name,
-        price: item.info.product[0].prod.price,
-        quantity: item.info.product[0].prod.quantity,
-        image: item.info.product[0].prod.image,
-      arr:item.info.product },
-    },);
-    return await modal.present(); */
+    
+    
   }
 
 }

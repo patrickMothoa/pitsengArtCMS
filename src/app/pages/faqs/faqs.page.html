@@ -13,29 +13,12 @@
           <h1>FAQs</h1>
         </div>
         <div class="search">
-          <!-- <div class="top-bar" (ionFocus)='onInput($event)'>
-            <h1 id="how-can-we-help">How can we help?</h1>
-            <input id="query" type="text" placeholder="Type keywords to find answers"
-                (ionFocus)='onInput($event)' [(ngModel)]="usersInput" (keyup)="searchresult(usersInput)">
-            <div class="searchResults" id="userSearchResults" *ngIf="usersInput">
-                <div id="QAAnswer">
-                    <div id="QAAnswers-answered" *ngFor="let items of searchArray">
-                        <div>
-                            <ion-item>{{items.data.question}}</ion-item>
-                            <i id="answer-description">{{items.data.answer}} </i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-          
-           <ion-searchbar id="query"  showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" cancelButtonText="Custom Cancel"></ion-searchbar> 
+          <ion-searchbar id="query"  [(ngModel)]="mySearch" showCancelButton="focus" placeholder="ask a question"  (ionChange)="searchresult($event)" 
+           cancelButtonText="Custom Cancel"></ion-searchbar> 
            <!-- <div class="searchList" > -->
                    <div id="QAAnswer" [hidden]="val == ''"  *ngFor="let items of searchArray; let i = index">
             <div id="QAAnswers-answered"  *ngFor="let items of searchArray; let i = index">
-                <div (click)="ShowAnswer(items, i)">
+                <div >
                     <ion-item class="quation" >{{items.question1}}</ion-item>
                     <i id="answer-description">{{items.answer}} </i>
                 </div>
@@ -73,14 +56,9 @@
                         </div>
                       </div>
 
-
-
-
                     </div>
                   </div>
                 
-
-
                 </div>
               </div>
               <div class="tab">
@@ -98,14 +76,10 @@
                           {{r.answer }}
                         </div>
                         <div class="line" >
-
-
                           <div class="small-line" ></div>
                         </div>
-
                         <div class="icon" >
                           <img src="../../../assets/globe_bulb_240px.png" alt="">
-
                         </div>
                       </div>
 

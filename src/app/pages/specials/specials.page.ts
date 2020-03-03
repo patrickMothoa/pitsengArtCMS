@@ -103,7 +103,7 @@ adminInfo(){
 async deleteItem(event){
   console.log("logging deletion ", event.id);
   
-  firebase.firestore().collection("Sales").doc(event.id).delete()
+  
   const alert = await this.alertController.create({
       header: 'Confirm!',
       message: 'Are sure you want to delete from specials',
@@ -118,7 +118,7 @@ async deleteItem(event){
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
+            firebase.firestore().collection("Sales").doc(event.id).delete()
           }
         }
       ]
