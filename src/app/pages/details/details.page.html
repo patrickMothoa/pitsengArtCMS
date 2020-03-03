@@ -115,7 +115,7 @@
               <label for="laravel">per item</label>
             </div>
             <div>
-              <input type="radio" name="framework" [(ngModel)]="obj.price"  value="yii" id="yii" checked="checked" />
+              <input type="radio" name="framework" [(ngModel)]="obj.items"  value="yii" id="yii" checked="checked" />
               <label for="yii">per pack</label>
             </div>
 
@@ -199,14 +199,14 @@
             <ion-item lines="none" color="favorite" class="text-field" >
               
               <ion-input type="date" placeholder="Start Date" [(ngModel)]='editStartDate' [min]='today'
-              (change)='enableEndDateInput()'></ion-input>
+              (change)='enableEndDateInput($event)'></ion-input>
             </ion-item>
           </div>
           <div class="promo-peice">
           <ion-label position="floating" >End date</ion-label>
             <ion-item lines="none" color="favorite" class="text-field" >
               <ion-input [disabled]='!editStartDate' type="date" placeholder="End Date"
-              [(ngModel)]='editEndDate' [min]='endDateLimit' (change)='runCheck()'></ion-input>
+              [(ngModel)]='editEndDate' [min]='endDateLimit' (change)='runCheck($event)'></ion-input>
             </ion-item>
           </div>
 

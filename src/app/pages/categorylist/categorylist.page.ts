@@ -43,7 +43,7 @@ export class CategorylistPage implements OnInit {
 
   ngOnInit() {
 
-   
+    this.loadProductSnapshot()
     console.log("Decos Products in Categori page ",  this.data.Deco);
     this.Deco = this.data.Deco
 
@@ -51,7 +51,34 @@ export class CategorylistPage implements OnInit {
 
 
   }
-
+  loadProductSnapshot(){
+    return firebase.firestore().collection('Products').onSnapshot(snap => {
+      for(let key in snap.docChanges()){
+        let change = snap.docChanges()[key]
+        if(change.type == 'modified'){
+          let productID = change.doc.id
+          for(let i in this.Deco){
+            //console.log();
+            
+            if(this.Deco[i].key === productID){
+              console.log('yes im here');
+              this.Deco[i].data.name = change.doc.data().name
+            }
+          }
+        }else if(change.type == 'removed'){
+          let productID = change.doc.id
+          for(let i in this.Deco){
+            //console.log();
+            
+            if(this.Deco[i].key === productID){
+              console.log('yes im here');
+              this.Deco.splice(Number(i), 1)
+            }
+          }
+        }
+      }
+    })
+  }
   Info = []
 adminInfo(){
   this.db.collection('admins').get().then(snapshot => {

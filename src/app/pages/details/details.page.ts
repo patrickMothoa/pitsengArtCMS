@@ -217,14 +217,23 @@ firebase.firestore().collection("Sales").doc().set({
     }
   }
 
-  runCheck(){
+  runCheck(event){
+
+    this.editEndDate = event.target.value
+    console.log(this.editEndDate);
     this.checkPromoValidity()
   }
 
-enableEndDateInput(){
-    if(this.editStartDate){
-      this.endDateLimit = moment(this.editStartDate).add('days', 1).format('YYYY-MM-DD')
-    }
+enableEndDateInput(event){
+  console.log(event.target.value);
+  this.editStartDate = event.target.value
+    //if(this.editStartDate){
+      this.endDateLimit = moment(this.editStartDate).add(1, 'days').format('YYYY-MM-DD')
+      console.log(this.editStartDate);
+      if(this.editStartDate >= this.editEndDate){
+        this.editEndDate = ''
+      }
+    //}
     this.checkPromoValidity()
   }
   // enablestartDateInput(){
