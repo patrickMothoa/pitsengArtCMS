@@ -262,48 +262,48 @@ console.log('click search')
 
     if (activeButton === "home") {
   
-      document.getElementById("home").style.textDecoration = "underline";
+      document.getElementById("home").style.borderBottom = "5px solid #B73225";
       // document.getElementById("home").style.textDecorationColor = "#B73225";
-      document.getElementById("about").style.textDecoration = "transparent";
-      document.getElementById("queries").style.textDecoration = "transparent";
-      document.getElementById("faqs").style.textDecoration = "transparent";
-      document.getElementById("addProduct").style.textDecoration = "transparent";
+      document.getElementById("about").style.borderBottom = "transparent";
+      document.getElementById("queries").style.borderBottom = "transparent";
+      document.getElementById("faqs").style.borderBottom = "transparent";
+      document.getElementById("addProduct").style.borderBottom = "transparent";
       
       // text-decoration: underline;
     }
     else if (activeButton === "about") {
 
 
-      document.getElementById("home").style.textDecoration = "transparent";
-      document.getElementById("about").style.textDecoration = "underline";
+      document.getElementById("home").style.borderBottom = "5px solid #B73225";
+      // document.getElementById("about").style.borderBottom = "underline";
       // document.getElementById("about").style.textDecorationColor = "#B73225";
-      document.getElementById("queries").style.textDecoration = "transparent";
-      document.getElementById("faqs").style.textDecoration = "transparent";
-      document.getElementById("addProduct").style.textDecoration = "transparent";
+      document.getElementById("queries").style.borderBottom = "transparent";
+      document.getElementById("faqs").style.borderBottom = "transparent";
+      document.getElementById("addProduct").style.borderBottom = "transparent";
   
  
      }else if (activeButton === "queries"){
-      document.getElementById("home").style.textDecoration = "transparent";
-      document.getElementById("about").style.textDecoration = "transparent";
-      document.getElementById("queries").style.textDecoration = "underline";
+      document.getElementById("home").style.borderBottom = "transparent";
+      document.getElementById("about").style.borderBottom = "transparent";
+      document.getElementById("queries").style.borderBottom = "5px solid #B73225";
       // document.getElementById("queries").style.textDecorationColor = "#B73225";
-      document.getElementById("faqs").style.textDecoration = "transparent";
-      document.getElementById("addProduct").style.textDecoration = "transparent";
+      document.getElementById("faqs").style.borderBottom = "transparent";
+      document.getElementById("addProduct").style.borderBottom = "transparent";
 
      }else if (activeButton === "faqs"){
-      document.getElementById("home").style.textDecoration = "transparent";
-      document.getElementById("about").style.textDecoration = "transparent";
-      document.getElementById("queries").style.textDecoration = "transparent";
-      document.getElementById("faqs").style.textDecoration = "underline";
+      document.getElementById("home").style.borderBottom = "transparent";
+      document.getElementById("about").style.borderBottom = "transparent";
+      document.getElementById("queries").style.borderBottom = "transparent";
+      document.getElementById("faqs").style.borderBottom = "underline";
       // document.getElementById("faqs").style.textDecorationColor = "#B73225";
-      document.getElementById("addProduct").style.textDecoration = "transparent";
+      document.getElementById("addProduct").style.borderBottom = "transparent";
 
      }else if (activeButton === "addProduct"){
-      document.getElementById("home").style.textDecoration = "transparent";
-      document.getElementById("about").style.textDecoration = "transparent";
-      document.getElementById("queries").style.textDecoration = "transparent";
-      document.getElementById("faqs").style.textDecoration = "transparent";
-      document.getElementById("addProduct").style.textDecoration = "underline";
+      document.getElementById("home").style.borderBottom = "transparent";
+      document.getElementById("about").style.borderBottom = "transparent";
+      document.getElementById("queries").style.borderBottom = "transparent";
+      document.getElementById("faqs").style.borderBottom = "transparent";
+      document.getElementById("addProduct").style.borderBottom = "5px solid #B73225";
       // document.getElementById("addProduct").style.textDecorationColor = "#B73225";
 
      }

@@ -29,7 +29,12 @@
   --width: 20%;
   --height: 20%;
 }
+.login-register{
 
+  --width: 50%;
+  --height: 60%;
+  // animation-name: fadeInUp;
+}
 .my-custom-modal-css .modal-wrapper{
   --width: 35%;
   --height: 95%;
@@ -91,6 +96,10 @@
 .add-product .modal-wrapper{
     --width:65%;
 }
+
+
+
+
 }
 // .pop-over-style .modal-wrapper{
 //   // position: absolute;
